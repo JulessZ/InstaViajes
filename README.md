@@ -67,7 +67,7 @@ Para financiar el proyecto, deberiamos pensar en publicidad en la pagina. Pero n
  - [ ] 3. Como seria el modelo de DB
  - [ ] 4. Como seria el modelo de microservicios
  - [ ] 5. Como hago un real CICD
- - [ ] 6. TASK brack down (Como usar Tareas con SCRUM: [SCRUM TASK WORK](https://manifesto.co.uk/agile-concepts-scrum-task-board/))
+ - [ ] 6. TASK breakdown (Como usar Tareas con SCRUM: [SCRUM TASK WORK](https://manifesto.co.uk/agile-concepts-scrum-task-board/))
  - [ ] 7. Implementacion
 
 ## API's de interes
