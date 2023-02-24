@@ -1,4 +1,4 @@
-# Noticias
+# Noticias!
 Este código utiliza la API de noticias de newsapi.org para mostrar noticias de un tema específico en una página web. El código está escrito en JavaScript y utiliza el método fetch() para recuperar los datos de la API y el método DOM para mostrarlos en la página.
 
 ## Características
