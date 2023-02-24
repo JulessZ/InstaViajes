@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="css/estilo.css">
+  <title>Noticias</title>
+</head>
+
+<body>
+  <div class="container my-5">
+    
+    <h1>
+      🆕<a href="/">PROYECTO API NOTICIAS DEW</a>🆕
+    </h1>
+    <h2 style="text-align: center;">
+      <p id="ultimo-tema"></p>
+    </h2>
+    <div class="video-container">
+      <iframe src="video/Aseguran que los días son más cortos desde 2016 _ Noticias Telemundo.mp4" frameborder="0"
+        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+    <header class="navbar navbar-expand-lg navbar-light d-flex justify-content-evenly">
+      <nav class="navbar-nav d-flex">
+        <span class="cat mx-3" onclick="buscar('Tecnología')">Tecnología</span>
+        <span class="cat mx-3" onclick="buscar('Programación')">Programación</span>
+        <span class="cat mx-3" onclick="buscar('Deportes')">Deportes</span>
+        <span class="cat mx-3" onclick="buscar('Economía')">Economía</span>
+        <span class="cat mx-3" onclick="buscar('Educación')">Educación</span>
+      </nav>
+      <form class="form-inline d-flex align-items-center">
+        <input type="text" placeholder="Introduce tu noticia..." id="busqueda" class="form-control mr-3" />
+        <button onclick="buscarTema()" class="btn btn-primary" id="searchBtn">BUSCAR</button>
+      </form>
+    </header>
+    <hr class="my-3 line">
+    <div class="container-noticias"></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+
+</html>
