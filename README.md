@@ -3,7 +3,61 @@ Crea y comparte viajes con tus amigos al momento y planealo hasta el últimos de
 
 La idea es de tener un sitio centralizado donde puedes planificar viajes, sea para un viaje a solas, con amigos, familia o pareja. 
 
-# Requisitos
+
+# 1. Prerequisitos
+
+- WSL 2 (Para usuarios de Windows)
+- Git
+- Docker
+- Docker Compose
+- Visual Studio Code (o cualquier IDE que te permita trabajar en contenedores dockers)
+
+
+# 2. Resumen de Dockers
+- [Nginx](https://hub.docker.com/_/nginx/) (Se usa como reverse proxy y nos permitirá enrutar a los servicios de la red interna de dockers)
+
+- [node-envsubst](https://hub.docker.com/repository/docker/jraicr/node-envsubst/general) (Contiene la aplicación javascript del Front)
+
+|   Servicio    | Puerto |
+|---------------|--------|
+| Frontend APP  |   80   |
+
+
+# 3. ¿Como empezar a trabajar en este repositorio?
+
+## 3.1 Clona el repositorio 
+```sh
+git clone https://github.com/JulessZ/InstaViajes.git
+```
+
+## 3.2 Configura las variables de entorno
+En primer lugar debemos añadir al final de nuestro archivo ```.bashrc``` las siguientes líneas: 
+
+```sh
+export UID="$UID"
+export USERNAME="$USER"
+export PWD="$PWD"
+```
+
+Por último hay que copiar el archivo ubicado en ```dockers/.example.env``` a ```dockers/.env```
+
+## 3.3 Abre el proyecto en un contenedor
+Si estamos en WSL debemos ir hasta la ruta de nuestro proyecto y ejecutamos code.
+
+```sh
+cd ~
+cd git/instaviajes
+code .
+```
+
+Para levantar todos los contenedores desde VSCode podemos hacer click derecho al archivo docker-compose.yml y seleccionar la opción `Compose Up`.
+
+Alternativamente podemos abrir una terminal y escribir el comando:
+```sh
+docker compose -f "dockers/docker-compose.yml" up -d --build 
+```
+
+Una vez arrancados los contenedores, podemos pulsar `F1` y escribimos `Attach to running container` y a continuación nos preguntará a que contenedor queremos conectar y le indicaremos `InstaViajes_frontend`. En este momento se abrirá una nueva instancia de VSCode cargando el proyecto en el interior del contenedor que has seleccionado. 
 
 ## APP
 Aplicación web colaborativa para la creación de viajes. La aplicación debera tener los siguientes módulos:
