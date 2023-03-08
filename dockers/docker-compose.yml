@@ -1,0 +1,52 @@
+version: '3.8' # https://docs.docker.com/compose/compose-file/compose-versioning/#version-3
+
+services:
+  # Servidor web actuando como reverse proxy (NGINX)    
+  webserver:
+    image: nginx:alpine
+    env_file:
+      - webserver/.webserver.env
+    volumes:
+      - ./webserver/config/etc/nginx/conf.d/default.conf.template.nginx:/etc/nginx/conf.d/default.conf.template.nginx
+      - ./webserver/config/etc/ssl:/etc/ssl
+      - ./webserver/logs/:/var/log/nginx
+    ports:
+      - ${FRONTEND_EXTERNAL_PORT}:80
+    restart: always
+    depends_on:
+      - frontend
+    container_name: ${PROJECT_NAME}_webserver
+    command: /bin/sh -c "envsubst '$$NGINX_HOST $$FRONTEND_CONNECTION_PORT ' < /etc/nginx/conf.d/default.conf.template.nginx > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+    networks:
+      - project_network
+
+  # Servicio Frontend
+  frontend:
+    env_file:
+      - frontend/.frontend.env
+    build:
+      context: frontend
+    image: jraicr/node-envsubst:current-alpine
+    user: ${UID}:${UID}
+    working_dir: /home/node/app
+    expose:
+      - ${FRONTEND_EXPOSE_PORT}
+    volumes:
+      - ../${PROJECT_NAME}_frontend:/home/node/app # El directorio del proyecto
+      - ./frontend/config/vite.config.template.js:/home/node/app/vite.config.template.js # Configuración de vite
+    environment:
+      NODE_ENV: ${NODE_DEVELOPMENT}
+    command: /bin/sh -c "npm install && envsubst '$$FRONTEND_INTERNAL_PORT $$FRONTEND_EXTERNAL_PORT' < /home/node/app/vite.config.template.js > /home/node/app/vite.config.js && npm run dev -- --port ${FRONTEND_EXPOSE_PORT}"
+    container_name: ${PROJECT_NAME}_frontend
+    networks:
+      - project_network
+
+networks:
+  project_network:
+    name: ${PROJECT_NAME}_network
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.25.0.0/16"
+          gateway: "172.25.0.1"
