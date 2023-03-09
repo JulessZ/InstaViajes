@@ -7,19 +7,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const activityListDiv = document.createElement("div"); //--> Div para 
 
     // Renderizar actividades de un día en concreto
-    function renderActivities(day) {
-        const activityList = document.createElement("ul");
-        day.activities.forEach(activity => {
-            const activityItem = document.createElement("li");
-            activityItem.innerText = `${activity.title} (${activity.type})`;
-            activityItem.dataset.id = activity.id;
-            activityItem.dataset.votes = activity.votes;
-            activityList.appendChild(activityItem);
-            activityListDiv.appendChild(activityList);
-            principalDiv.appendChild(activityListDiv);
-        });
+    // function renderActivities(day) {
+    //     const activityList = document.createElement("ul");
+    //     day.activities.forEach(activity => {
+    //         const activityItem = document.createElement("li");
+    //         activityItem.innerText = `${activity.title} (${activity.type})`;
+    //         activityItem.dataset.id = activity.id;
+    //         activityItem.dataset.votes = activity.votes;
+    //         activityList.appendChild(activityItem);
+    //         activityListDiv.appendChild(activityList);
+    //         principalDiv.appendChild(activityListDiv);
+    //     });
 
-    }
+    // }
 
     // Obtenemos los datos por medio de una petición mediante fetch()
     fetch("data.json")
@@ -44,20 +44,34 @@ document.addEventListener("DOMContentLoaded", function () {
             principalDiv.appendChild(container_participants);
             principalDiv.appendChild(container_budget);
 
-            // Renderizamos los días del viaje
+            // Renderizamos los días del viaje con sus actividades.
             data.trip.days.forEach((day, index) => {
-                const dayItem = document.createElement("div");
+                console.log(day);
+                var dayItem = document.createElement("div");
                 dayItem.classList.add("day-item");
                 dayItem.innerHTML = `<h2>${day.date}</h2>`;
-                dayItem.dataset.index = index;
+                dayItem.id = index;
+                const titleActivities = document.createElement("div");
+                titleActivities.innerText = `ACTIVIDADES: `;
+            
+                const activityList = document.createElement("ul");
+                day.activities.forEach(activity => {
+                    const activityItem = document.createElement("li");
+                    activityItem.innerText = `${activity.title} (${activity.type})`;
+                    dayItem.appendChild(titleActivities);
+                    activityList.appendChild(activityItem);
+                    activityListDiv.appendChild(activityList);
+                    principalDiv.appendChild(activityListDiv);
+                });
+                
+    
+                
                 principalDiv.appendChild(dayItem);
             });
 
             // Función para actualizar la vista del día seleccionado.
             function updateDayView(day) {
-                const titleActivities = document.createElement("div");
-                titleActivities.innerText = `ACTIVIDADES: `;
-                principalDiv.appendChild(titleActivities);
+
                 // Renderizamos las actividades del día
                 renderActivities(day);
             }
