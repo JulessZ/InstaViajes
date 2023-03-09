@@ -83,7 +83,6 @@ function Creartarjetas(datos){
         tarjeta.appendChild(divInsideCard3);
         divInsideCard2.appendChild(location);
         divInsideCard2.appendChild(divInsideCard4);
-        
         divInsideCard4.appendChild(user);
         divInsideCard4.appendChild(imageuser)
         divInsideCard3.appendChild(Numuser);
@@ -93,8 +92,3 @@ function Creartarjetas(datos){
 }
 
 
-function borrarNodo(nodo) {
-    while (nodo.firstChild) {
-        nodo.removeChild(nodo.firstChild);
-    }
-}
