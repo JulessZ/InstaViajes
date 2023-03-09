@@ -8,7 +8,9 @@ const routes = {
     '/misviajes' : misviajes,
     '/amigos' : amigos,
     '/crearactividades': crearactividades,
-    '/crearviaje' : crearviaje 
+    '/crearviaje' : crearviaje,
+    '/editarviaje' : editarviaje,
+    '/editaractividades' : editaractividades,
 }
  const appDiv = document.getElementById('app');
  appDiv.innerHTML=routes[window.location.pathname];
