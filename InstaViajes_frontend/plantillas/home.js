@@ -1,3 +1,16 @@
+//variable que nos imprime toda la estructura principal de la vista home
 let home = `
-<h1>pagina de inicio</h1>
+<div class="container">
+        <div class="row">
+            <!--caja para imprimir mis viajes en la vista del home
+                el id de esta caja será "mis-viajes-home"-->
+
+            <div class="d-none d-lg-block col-md-4 border py-5" id="mis-viajes-home"></div>
+
+            <!--caja para imprimir los viajes de todos los usuarios en la vista del home
+                el id de esta caja será "todos-viajes-home"-->
+
+            <div class="col border py-5" id="todos-viajes-home"></div>
+        </div>
+    </div>
 `
