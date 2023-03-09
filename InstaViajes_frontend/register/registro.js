@@ -1,56 +1,86 @@
+//Importamos la clase RegisterUser a la que le pasamos datos de usuario de prueba
 import {RegisterUser} from "./registerUser.js";
-import Fetch from 'fetch-simulator';
 
-const root = document.querySelector("#root");
+//Elemento body del DOM
+let body = document.querySelector("body");
 
+//Elemento div padre
+let fatherDiv = document.createElement("div");
+
+//Elemento div para el logo con un elemento imagen
+let logoDiv = document.createElement("div");
+let img = document.createElement("img");
+img.src = "#";
+logoDiv.appendChild(img);
+
+//Elemento div para el formulario con un formulario y los inputs
+let formDiv = document.createElement("div");
 let form = document.createElement("form");
-form.method = "POST";
 
-let div1 = document.createElement("div");
-let div2 = document.createElement("div");
-let div3 = document.createElement("div");
-let div4 = document.createElement("div");
+//Label de usuario
+let userLabel = document.createElement("label");
+let userLabelText = document.createTextNode("Usuario:");
+userLabel.appendChild(userLabelText);
 
+//input de usuario
 let user = document.createElement("input");
-let mail = document.createElement("input");
-let password = document.createElement("input");
-let repeatPassword = document.createElement("input");
-
 user.type = "text";
 user.required = true;
 
+//label de mail
+let mailLabel = document.createElement("label");
+let mailLabelText = document.createTextNode("Correo:")
+mailLabel.appendChild(mailLabelText);
+
+//input de mail
+let mail = document.createElement("input");
 mail.type = "email";
 mail.required = true;
 
+//label de password
+let passwordLabel = document.createElement("label");
+let passwordLabelText = document.createTextNode("Contraseña:");
+passwordLabel.appendChild(passwordLabelText);
+
+//input de password
+let password = document.createElement("input");
 password.type = "password";
 password.required = true;
 
+//label de repetir password
+let repeatPasswordLabel = document.createElement("label");
+let repeatPasswordLabelText = document.createTextNode("Repetir Contraseña:");
+repeatPasswordLabel.appendChild(repeatPasswordLabelText);
+
+//input de repetir password
+let repeatPassword = document.createElement("input");
 repeatPassword.type = "password";
 repeatPassword.required = true;
 
-craeteLabel("user");
-div1.appendChild(user);
-form.appendChild(div1);
+form.appendChild(userLabel);
+form.appendChild(user);
+form.appendChild(mailLabel);
+form.appendChild(mail);
+form.appendChild(passwordLabel);
+form.appendChild(password);
+form.appendChild(repeatPasswordLabel);
+form.appendChild(repeatPassword);
 
-craeteLabel("Email");
-div2.appendChild(mail);
-form.appendChild(div2);
+//Elemento div para el boton de registrarse
+let loginButtonDiv = document.createElement("div");
+let loginButton = document.createElement("input");
+loginButton.type = "submit";
+loginButton.value = "REGISTRARSE";
 
-craeteLabel("Password");
-div3.appendChild(password);
-form.appendChild(div3);
+loginButtonDiv.appendChild(loginButton);
+form.appendChild(loginButtonDiv);
 
-craeteLabel("Repeat Password");
-div4.appendChild(repeatPassword);
-form.appendChild(div4)
+//Conectamos los divs
+formDiv.appendChild(form);
+fatherDiv.appendChild(logoDiv);
+fatherDiv.appendChild(formDiv);
 
-let submit = document.createElement("input"); 
-submit.type = "submit";
-submit.value = "Registrarse";
-
-form.appendChild(submit);
-
-root.appendChild(form);
+body.appendChild(fatherDiv);
 
 //crear objeto de tipo RegisterUser con los datos del formulario
 form.addEventListener("submit", (e)=>{
@@ -72,29 +102,8 @@ form.addEventListener("submit", (e)=>{
 
         console.log(newUser)
 
-
-
-// fetch('https://instaviajes.com/register', {method:'POST'})
-// .then((response) => {
-//     console.log(response);
-//     return response.json();
-// })
-// .then((response) => {
-//     console.log(response);
-// })
-// .catch((e)=>{
-//     console.log(e.message)
-// });
-
     }})
 
-//función que crea labels
-function craeteLabel(text) {
-    let label = document.createElement("label");
-    let labelText = document.createTextNode(text);
-    label.appendChild(labelText);
-    form.appendChild(label)
-}
 
 
 
