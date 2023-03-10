@@ -1,0 +1,60 @@
+{
+    "trip":{
+        "title": "Viaje a Madrid",
+        "participants": ["Diego", "Aram", "Jorge", "Carmen"],
+        "state": "En curso",
+        "budget": 2000.54,
+        "days": [
+            {
+                "date": "Día 23/03/2023",
+                "activities": [
+                    {
+                        "id": 1,
+                        "title": "Visita al museo de cera.",
+                        "budget": 255.45,
+                        "type": "Museo",
+                        "votes": 15,
+                        "image":"https://ep01.epimg.net/verne/imagenes/2015/03/05/articulo/1425549987_841133_1425571033_noticia_normal.jpg",
+                        "description": "Visita guiada al museo del prado de Madrid.",
+                        "duration": "2 horas"
+                    },
+                    {
+                        "id": 2,
+                        "title": "Visita al parque del retiro.",
+                        "budget": 24,
+                        "type": "Monumentos públicos",
+                        "votes": 10,
+                        "image":"https://madridando.com/wp-content/uploads/2018/07/el-retiro.jpeg",
+                        "description": "Vuelta de reconocimiento a la plaza de españa.",
+                        "duration": "1 horas"
+                    }
+                ]
+            },
+            {
+                "date": "Día 24/03/2023",
+                "activities": [
+                    {
+                        "id": 1,
+                        "title": "Ruta guiada en bicicleta de montaña.",
+                        "budget": 250.10,
+                        "type": "Deportes",
+                        "votes": 5,
+                        "image":"https://www.aramon.com/blog/wp-content/uploads/2019/05/rutas-btt-teruel.jpg",
+                        "description": "Vuelta al aire libre por la sierra de Madrid.",
+                        "duration": "5 horas y media."
+                    },
+                    {
+                        "id": 2,
+                        "title": "Celebrar el cumpleaños de Carmen de tapas por Madrid.",
+                        "budget": 55.60,
+                        "type": "Entretenimiento",
+                        "votes": 9,
+                        "image":"https://detapaspormadrid.info/wp-content/uploads/2021/07/DT-Sidreri%CC%81a_El_Tigre-001-scaled-638x478.jpg",
+                        "description": "Tapeo por Madrid por diferentes bares.",
+                        "duration": "3 horas"
+                    }
+                ]
+            }
+        ]
+    }
+}
