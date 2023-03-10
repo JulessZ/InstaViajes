@@ -1,4 +1,44 @@
-generateCreateTravelForm("origen");
+// Insert the URL with friends users.
+urlFetchUsers = 'https://ejemplo.com/datos';
+
+
+usuarios = [];
+createTravelForm();
+
+// Function that initialices the form.
+function createTravelForm() {
+    fakeFetch(urlFetchUsers)
+        .then((response) => {
+            console.log(response);
+            usuarios = response;
+            generateCreateTravelForm("origen");
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}
+
+// Fake fetch to test.
+function fakeFetch(url) {
+    return new Promise((resolve, reject) => {
+        if (true) {
+            const fakeData = [];
+
+            for (let i = 1; i <= 10; i++) {
+                const fakeItem = {
+                    id: i,
+                    name: `Usuario ${i}`,
+                    mail: `usuario${i}@ejemplo.com`,
+                    image: `https://ejemplo.com/usuario${i}.jpg`
+                };
+                fakeData.push(fakeItem);
+            }
+            resolve(fakeData);
+        }
+    });
+}
+
+
 // When this function is called, you need to provide the ID of the node where you want to build it.
 // For example, if you want to append to <div id="example"/>, you need to call: generateCreateTravelForm("example");
 function generateCreateTravelForm(idToAppend) {
@@ -62,17 +102,18 @@ function generateCreateTravelForm(idToAppend) {
     presupuestoValue.textContent = " 0€";
     // Invite friends
     const amigosMenu = document.createElement("div");
-    amigosMenu.setAttribute("id", "friends-menu");
+    amigosMenu.setAttribute("id", "friends");
     const amigosTitulo = document.createElement("h5");
     amigosTitulo.textContent = "Invitar amigos";
-    const amigosInvitados = document.createElement("div");
-    amigosInvitados.setAttribute("id", "invited-friends");
-    const amigosRecomendados = document.createElement("div");
-    amigosRecomendados.setAttribute("id", "recommended-friends");
+    // Select invite friends
+
+    // Invited friends and recommended
+
     // Submit button
-    const botonSubmit = document.createElement("span");
+    const botonSubmit = document.createElement("button");
     botonSubmit.textContent = "Añadir viaje";
     botonSubmit.setAttribute("onclick", "validateForm()");
+    botonSubmit.setAttribute("class", "boton-principal");
     botonSubmit.setAttribute("id", "submit");
 
     // Generate structure
@@ -106,83 +147,83 @@ function generateCreateTravelForm(idToAppend) {
     form.appendChild(presupuestoValue);
     form.appendChild(document.createElement("br"));
     form.appendChild(document.createElement("br"));
-    amigosMenu.appendChild(amigosTitulo);
-    amigosMenu.appendChild(amigosInvitados);
-    amigosMenu.appendChild(amigosRecomendados);
+
     form.appendChild(amigosMenu);
     form.appendChild(botonSubmit);
     // Final append
     document.getElementById(idToAppend).appendChild(form);
+
+    document.querySelector("#budgetBar").addEventListener("input", function () {
+        document.querySelector("#budget-value").innerHTML = document.querySelector("#budgetBar").value + "€";
+    });
+
+    document.querySelector("#form-crear-viajes").onsubmit = () => {
+        return false;
+    }
 }
 
-document.querySelector("#budgetBar").addEventListener("input", function () {
-    document.querySelector("#budget-value").innerHTML = document.querySelector("#budgetBar").value + "€";
-});
-
+// This function is called when submit button is pressed. Validates the form.
 function validateForm() {
     clearErrors();
-    startDateValue = startDate.value;
-    endDateValue = endDate.value;
-    originValue = document.getElementById("origin").value;
-    destinyValue = destiny.value;
-    descriptionValue = description.value;
     // Checks if starting date is correct.
-    if (!startDateValue) {
+    if (!startDate.value) {
         generateError("startDate-error", "No se introdució una fecha de inicio");
-    } else {
-        if (checkDateToActual(startDateValue) == 2) {
-            generateError("startDate-error", "¡La fecha introducida no puede ser antes de hoy!");
-        }  
+    } 
+    if (startDate.value && checkDateToActual(startDate.value) == 2) {
+        generateError("startDate-error", "¡La fecha introducida no puede ser antes de hoy!");
     }
     // Checks if end date is correct.
-    if (!endDateValue) {
+    if (!endDate.value) {
         generateError("endDate-error", "No se introdució una fecha de fin de viaje");
-    } else {
-        if (checkDateToActual(endDateValue) == 2) {
-            generateError("endDate-error", "¡La fecha introducida no puede ser antes de hoy!");
-        } else {
-            if (startDateValue && compareDates(startDateValue, endDateValue) == 1) {
-                generateError("endDate-error", "¡La fecha final no puede ser antes de la fecha de inicio!");
-            }
-        }
+    } else if (checkDateToActual(endDate.value) == 2) {
+        generateError("endDate-error", "¡La fecha introducida no puede ser antes de hoy!");
+    } else if (startDate.value && compareDates(startDate.value, endDate.value) == 1) {
+        generateError("endDate-error", "¡La fecha final no puede ser antes de la fecha de inicio!");
     }
-    
-    if (!originValue) {
-        generateError("origin-error", "Tiene que haber un lugar de origen" + originValue);
+    // Checks if other fields are filled.
+    if (!document.getElementById("origin").value) {
+        generateError("origin-error", "Tiene que haber un lugar de origen");
     }
-
-    if (!destinyValue) {
+    if (!destiny.value) {
         generateError("destiny-error", "Tiene que haber un lugar de destino");
     }
-
-    if (!descriptionValue) {
+    if (!description.value) {
         generateError("description-error", "Tiene que haber una descripción");
     }
-
-
-    // Checks if there are any errors in the form.
+    // Checks if there are any errors in the form. If there are not, fetch to server is done.
     if (verifyErrors()) {
-         if (document.querySelector("#budgetBar").value == 0) {
+        if (document.querySelector("#budgetBar").value == 0) {
             if (!window.confirm("¿Estás seguro de poner el presupuesto en 0?")) {
                 return;
             }
-         }
-        console.log("¡Se puede enviar el formulario!");
+        }
+        fetch('https://ejemplo.com/datos', {
+            method: 'POST',
+            body: JSON.stringify(createObjectWithValues()),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
     }
 }
 
-function checkValue(data) {
-    if (data == "" || data == undefined || data == null) {
-        return false;
-    }
-    return true;
-}
-
+/**
+Sets the inner HTML of an element with the specified ID to the specified error message.
+@param {string} idErrorField - The ID of the element to set the error message on.
+@param {string} message - The error message to display.
+*/
 function generateError(idErrorField, message) {
     document.getElementById(idErrorField).innerHTML = message;
 }
 
-// Returns 0 in case date = actual. Returns 1 in case date > actual. Returns 2 in case date < actual.
+/**
+Checks if a given date is before, after or the same as the current local date.
+@param {string} date - A date string in the format "yyyy-mm-dd".
+@returns {number} - Returns 0 if the dates are the same, 1 if the given date is after the local date, 2 if the given date is before the local date.
+*/
 function checkDateToActual(date) {
     dateSplit = date.split("-");
     date = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
@@ -197,6 +238,12 @@ function checkDateToActual(date) {
     }
 }
 
+/**
+Compares two dates and returns an integer value indicating their relationship.
+@param {string} date1 - The first date in the format 'YYYY-MM-DD'.
+@param {string} date2 - The second date in the format 'YYYY-MM-DD'.
+@returns {number} - 0 if the dates are equal, 1 if the first date is later than the second, and 2 if the second date is later than the first.
+*/
 function compareDates(date1, date2) {
     dateSplit = date1.split("-");
     date1 = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
@@ -220,13 +267,52 @@ function clearErrors() {
     });
 }
 
+/**
+Checks if any error messages are currently displayed on the page.
+@return {boolean} - Returns true if no error messages are displayed, and false otherwise.
+*/
 function verifyErrors() {
     const elementosError = document.querySelectorAll('[id*="error"]');
     for (let i = 0; i < elementosError.length; i++) {
-      if (elementosError[i].textContent.trim() !== '') {
-        return false;
-      }
+        if (elementosError[i].textContent.trim() !== '') {
+            return false;
+        }
     }
     return true;
-  }
-  
+}
+
+/**
+Creates an object with the values of the travel form inputs and predefined data for invited friends.
+@returns {object} - The created object containing the travel information and invited friends data.
+*/
+function createObjectWithValues() {
+    const viaje = {
+        fechaInicio: startDate.value,
+        fechaFinal: endDate.value,
+        origen: document.getElementById("origin").value,
+        destino: destiny.value,
+        descripcion: description.value,
+        presupuesto: 2000,
+        amigosInvitados: [
+          {
+            id: 1,
+            nombre: 'Juan',
+            email: 'juan@example.com',
+            imagen: 'https://ejemplo.com/juan.jpg'
+          },
+          {
+            id: 2,
+            nombre: 'María',
+            email: 'maria@example.com',
+            imagen: 'https://ejemplo.com/maria.jpg'
+          },
+          {
+            id: 3,
+            nombre: 'Pedro',
+            email: 'pedro@example.com',
+            imagen: 'https://ejemplo.com/pedro.jpg'
+          }
+        ]
+    };
+    return viaje;
+}
