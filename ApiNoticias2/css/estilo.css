@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #c2c8fb;
+  background-color: rgb(194, 200, 251);
 }
 
 .container {
@@ -49,7 +49,7 @@ header input:focus {
   font-size: 15px;
 }
 header button {
-  background-color: #a4adff;
+  background-color: rgb(164, 173, 255);
   color: #0905fc;
   padding: 5px 20px;
   margin: 0 10px;
@@ -147,4 +147,4 @@ iframe {
   -o-border-radius: 10%;
   width: 25%;
   height: 50%;
-}
+}/*# sourceMappingURL=estilo.css.map */

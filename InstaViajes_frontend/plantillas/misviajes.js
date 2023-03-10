@@ -1,4 +1,4 @@
-let misviajes = `
+ export let misviajes = `
 <div class="container">
         <div class="row">
             <div class="col">
