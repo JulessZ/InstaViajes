@@ -67,3 +67,22 @@
         
 
         //Input seleccionado
+
+        //Tamaño del logo
+        .logo{
+            width: 63px;
+        }
+
+        //Ocultar flecha en el logo de usuario
+        .dropdown-toggle::after {
+            content: none;
+        }
+
+        //Posicionar el logout en la parte baja del offcanvas
+        .logout{
+            margin-top: 15rem;
+        }
+
+        .separator{
+            border-top: 2px solid black;
+        }
