@@ -1,10 +1,9 @@
-let detallesviaje = `
-<div class="container text-center  m-4 m-lg-5 mt-5">
-<div class="row align-items-center">
-  <div class="col-lg-1" ></div>
-  <div class="col-lg-10 border border-primary">
-    <div id="carouselExampleInterval col-lg-10" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner m-2 m-lg-5">
+export let detallesviaje = `
+<div class="container-fluid text-center mt-5 border border-info" id="carrusel-itinerario">
+<div class="row align-items-center  mx-lg-5  border border-danger">
+  <div class="col-12  mx-lg-5 border border-primary">
+    <div id="carouselExampleInterval" class="carousel slide  m-lg-5  border border-danger" data-bs-ride="carousel">
+      <div class="carousel-inner">
         <!--DÍA 1-->
         <div class="carousel-item active">
           <H1 class="text-start">DÍA 1</H1>
@@ -49,8 +48,6 @@ let detallesviaje = `
       </button>
     </div>
   </div>
-  <div class="col-lg-1" ></div>
-  
 </div> 
 </div>
 `

@@ -1,3 +1,16 @@
+import {crearactividades} from '/plantillas/crearactividades.js';
+import {crearviaje}  from '/plantillas/crearviajes.js';
+import {detallesviaje}  from '/plantillas/detallesviajes.js';
+import {login}  from '/plantillas/login.js';
+import {misviajes}  from '/plantillas/misviajes.js';
+import {passwordreset} from '/plantillas/passwordreset.js';
+import {perfil}  from '/plantillas/perfil.js';
+import {registro}  from '/plantillas/registro.js';
+import {editaractividades} from '/plantillas/editaractividades.js';
+import {editarviaje}  from '/plantillas/editarviajes.js';
+import {home} from './plantillas/home.js';
+import {amigos} from './plantillas/amigos.js';
+    
 const routes = {
     '/': login,
      '/registro': registro,
@@ -27,3 +40,5 @@ const routes = {
   window.onpopstate = () => {
     appDiv.innerHTML = routes[window.location.pathname]
   }
+
+window.onNavigate =onNavigate;

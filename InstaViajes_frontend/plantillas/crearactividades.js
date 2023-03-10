@@ -1,4 +1,4 @@
-let crearactividades = `
+export let crearactividades = `
     <div class="container">
         <div class="row">
             <div class="col-12 border">
