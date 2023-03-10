@@ -50,6 +50,8 @@ function editForm(object) {
         const submitButton = document.createElement('input');
 
         //Setting the attributes to the different elements
+        form.id = 'formEdit';
+
         labelName.setAttribute('for', 'name');
         labelName.textContent = 'Nombre para el Viaje';
 
@@ -57,6 +59,7 @@ function editForm(object) {
         name.setAttribute('name', 'name');
         //Inserting the values on the html
         name.value = object.name;
+        name.id = 'nameTrip';
 
         labelDateEnd.setAttribute('for', 'dateEnd');
         labelDateEnd.textContent = 'Fecha Final';
@@ -65,6 +68,7 @@ function editForm(object) {
         dateEnd.setAttribute('name', 'dateEnd');
         //Inserting the values on the html
         dateEnd.value = object.dateEnd;
+        dateEnd.id = 'dateEndTrip';
 
         labelBudget.setAttribute('for', 'budget');
         labelBudget.textContent = 'Presupuesto Aproximado';
@@ -78,6 +82,7 @@ function editForm(object) {
         budget.addEventListener('input', function() {
             budgetValue.innerHTML = budget.value +'€';
         });
+        budget.id = 'budgetTrip';
 
         submitButton.type = 'submit';
         submitButton.value = 'Editar viaje';
@@ -99,18 +104,29 @@ function editForm(object) {
     } else {
         //Elements of the form and form
         const form = document.createElement('form');
+        const divName = document.createElement('div');
         const labelName = document.createElement('label');
         const name = document.createElement('input');
+        const divDates = document.createElement('div');
+        const divDate = document.createElement('div');
+        const divDateEnd = document.createElement('div');
         const labelDate = document.createElement('label');
         const date = document.createElement('input');
         const labelDateEnd = document.createElement('label');
         const dateEnd = document.createElement('input');
         const labelOrigin = document.createElement('label');
+        const divOriDes = document.createElement('div');
+        const divOrigin = document.createElement('div');
         const origin = document.createElement('input');
         const labelDestination = document.createElement('label');
+        const divDestination = document.createElement('div');
         const destination = document.createElement('input');
+        const divTexBud = document.createElement('div');
+        const divDescription = document.createElement('div');
         const labelDescription = document.createElement('label');
         const description = document.createElement('textarea');
+        const divBudget = document.createElement('div');
+        const divLabelBudget = document.createElement('div');
         const labelBudget = document.createElement('label');
         const budget = document.createElement('input');
         const budgetValue = document.createElement('span');
@@ -121,6 +137,8 @@ function editForm(object) {
 
 
         //Setting the attributes to the different elements
+        form.id = 'formEdit';
+
         labelName.setAttribute('for', 'name');
         labelName.textContent = 'Nombre para el Viaje';
 
@@ -128,6 +146,7 @@ function editForm(object) {
         name.setAttribute('name', 'name');
         //Inserting the values on the html
         name.value = object.name;
+        name.id = 'nameTrip';
 
         labelDate.setAttribute('for', 'date');
         labelDate.textContent = 'Fecha de Inicio'
@@ -136,6 +155,7 @@ function editForm(object) {
         date.setAttribute('name' , 'date');
         //Inserting the values on the html
         date.value = object.date;
+        date.id = 'dateTrip';
 
         labelDateEnd.setAttribute('for', 'dateEnd');
         labelDateEnd.textContent = 'Fecha Final';
@@ -144,6 +164,7 @@ function editForm(object) {
         dateEnd.setAttribute('name', 'dateEnd');
         //Inserting the values on the html
         dateEnd.value = object.dateEnd;
+        dateEnd.id = 'dateEndTrip';
 
         labelOrigin.setAttribute('for', 'origin');
         labelOrigin.textContent = 'Origen';
@@ -152,6 +173,7 @@ function editForm(object) {
         origin.setAttribute('name', 'origin');
         //Inserting the values on the html
         origin.value = object.origin;
+        origin.id = 'originTrip';
 
         labelDestination.setAttribute('for', 'destination');
         labelDestination.textContent = 'Destino';
@@ -160,6 +182,7 @@ function editForm(object) {
         destination.setAttribute('name', 'destination');
         //Inserting the values on the html
         destination.value = object.destination;
+        destination.id = 'destinationTrip';
 
         labelDescription.setAttribute('for', 'description');
         labelDescription.textContent = 'Descripción del Viaje';
@@ -168,6 +191,7 @@ function editForm(object) {
         description.cols = '30';
         description.rows = '10';
         description.textContent = object.description;
+        description.id = 'descriptionTrip';
 
         labelBudget.setAttribute('for', 'budget');
         labelBudget.textContent = 'Presupuesto Aproximado';
@@ -181,8 +205,8 @@ function editForm(object) {
         budget.addEventListener('input', function() {
             budgetValue.innerHTML = budget.value +'€';
         });
+        budget.id = 'budgetTrip';
 
-        friendsOnTrip
 
         labelFriendSearch.setAttribute('for', 'search');
         labelFriendSearch.textContent = 'Invitar Amigos';
@@ -211,8 +235,9 @@ function editForm(object) {
 
         //Inserting the elements into de html
         editContainer.appendChild(form);
-        form.appendChild(labelName);
-        form.appendChild(name);
+        form.appendChild(divName)
+        divName.appendChild(labelName);
+        divName.appendChild(name);
 
         form.appendChild(labelDate);
         form.appendChild(date);
@@ -294,11 +319,6 @@ function removeAllChilds(div) {
     }
 }
 
-//Function to submit the edit-form
-function submitEditForm (e){
-    e.preventDefault();
-}
-
 //Function to load the friends already on trip
 function updateTripFriends (object) {
     //we remove the childs of the element
@@ -325,3 +345,22 @@ function updateTripFriends (object) {
 function searchOnTrip(element) {
     return trip1.friendsOnTrip.some(friend => friend.id === element.id);
 }
+
+
+//Submit the edit-form
+document.getElementById('formEdit').addEventListener('submit', function (e) {
+    e.preventDefault();
+    trip1.name = nameTrip.value;
+    trip1.date = dateTrip.value;
+    trip1.dateEnd = dateEndTrip.value;
+    trip1.origin = originTrip.value;
+    trip1.destination = destinationTrip.value;
+    trip1.description = descriptionTrip.value;
+    trip1.budget = budgetTrip.value;
+    Object.values(trip1).forEach(element => {
+        console.log(element);
+    });
+    //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
+
+    //      <-------------------------              ------------------------->
+});
