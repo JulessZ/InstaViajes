@@ -80,6 +80,12 @@ async function getMisViajesData() {
         journeyEndDate.appendChild(journeyEndDateText);
         rightDiv.appendChild(journeyEndDate);
 
+        //estado actual del viaje(abierto/cerrado)
+        let journeyStatus = document.createElement('p');
+        let journeyStatusText = document.createTextNode(`${journeyData.status}`);
+        journeyStatus.appendChild(journeyStatusText);
+        rightDiv.appendChild(journeyStatus);
+
         downDiv.appendChild(rightDiv);
 
         journeyCard.appendChild(downDiv);
@@ -160,6 +166,12 @@ async function getMisViajesData() {
         let journeyEndDateText = document.createTextNode(`${journeyData.dateEnd}`);
         journeyEndDate.appendChild(journeyEndDateText);
         rightDiv.appendChild(journeyEndDate);
+
+        //estado actual del viaje(abierto/cerrado)
+        let journeyStatus = document.createElement('p');
+        let journeyStatusText = document.createTextNode(`${journeyData.status}`);
+        journeyStatus.appendChild(journeyStatusText);
+        rightDiv.appendChild(journeyStatus);
 
         downDiv.appendChild(rightDiv);
 
