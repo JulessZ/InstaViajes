@@ -1,20 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Esteban&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hind:wght@400;600&display=swap");
-#misviajeshome {
-  border: 1px solid black;
-}
-#misviajeshome div {
-  border: 1px solid black;
-  margin: 10px;
-}
-#misviajeshome div img {
-  border: 1px solid black;
-  width: 10px;
-}
-
-input[type=submit], input[type=button], button {
-  padding: 10px;
 #formcrearviajes form {
   display: flex;
   flex-direction: column;
@@ -135,8 +121,22 @@ input[type=submit], input[type=button], button {
     width: auto;
   }
 }
+#misviajeshome {
+  border: 1px solid black;
+}
+#misviajeshome div {
+  border: 1px solid black;
+  margin: 10px;
+}
+#misviajeshome div img {
+  border: 1px solid black;
+  width: 10px;
+}
+
+input[type=submit],
+input[type=button],
 button {
-  padding: 5px;
+  padding: 10px;
   text-transform: uppercase;
   color: #152E3D;
   font-family: "Hind";
@@ -154,7 +154,8 @@ button {
   border-color: #76D6C4;
 }
 
-.boton-principal:hover, .boton-principal:active {
+.boton-principal:hover,
+.boton-principal:active {
   background-color: #76D6C4;
   border-color: #76D6C4;
 }
@@ -164,7 +165,8 @@ button {
   border-color: #A3D4FF;
 }
 
-.boton-secundario:hover, .boton-secundario:active {
+.boton-secundario:hover,
+.boton-secundario:active {
   background-color: #A3D4FF;
   border-color: #A3D4FF;
 }
@@ -174,7 +176,8 @@ button {
   border-color: #E3E3E3;
 }
 
-.boton-cancelar:hover, .boton-cancelar:active {
+.boton-cancelar:hover,
+.boton-cancelar:active {
   background-color: #E3E3E3;
   border-color: #E3E3E3;
 }
