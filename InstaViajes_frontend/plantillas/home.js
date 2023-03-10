@@ -14,7 +14,8 @@ export let home = `
             <!--caja para imprimir los viajes de todos los usuarios en la vista del home
                 el id de esta caja será "todos-viajes-home"-->
 
-            <div class="col border py-5" id="todos-viajes-home"></div>
+            <div class="col border py-5" id="todos-viajes-home"><button class="boton-principal">prueba</button>
+            </div>
         </div>
     </div>
 `

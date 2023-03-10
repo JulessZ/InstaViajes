@@ -1,0 +1,141 @@
+#formcrearviajes{
+    form{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
+        padding:50px;
+        div{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 100%;
+            label{
+                width: 100%;
+            }
+
+            input{
+                width: 100%;
+                margin: 5px;
+            }
+
+            textarea{
+                width: 100%;
+            }
+        }
+
+        .style-dates{
+            display: flex;
+            width: 100%;
+            div{
+                display: flex;
+                width: 50%;
+            }
+        }
+
+        .style-budget{
+            display: flex;
+            width: 100%;
+            div{
+                width: 100%;
+            }
+            input{
+                width: 75%;
+            }
+        }
+
+        .style-friends{
+            display: flex;
+            width: 100%;
+            div{
+                display: flex;
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .style-friends-invited{
+                display: flex;
+                width: 100%;
+                div{
+                    width: 10%;
+                }
+            }
+
+            .style-friends-searched{
+                display: flex;
+                width: 100%;
+                div{
+                    width: 50%;
+                }
+            }
+        }
+
+        .style-buttons-create{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            div{
+                width: auto;
+            }
+        }
+    }
+}
+
+@media (min-width:960px) {
+    
+    #formcrearviajes{
+        form{
+            .style-location{
+                display: flex;
+                width: 100%;
+                div{
+                    display: flex;
+                    width: 50%;
+                }
+            }
+
+            .style-desc{
+                display: flex;
+                width: 100%;
+                div{
+                    width: 50%;
+                }
+            }
+
+            .style-budget{
+                display: flex;
+                width: 100%;
+                div{
+                    width: 100%;
+                }
+                input{
+                    width: 75%;
+                }
+            }
+
+            .style-friends{
+                .style-friends-searched{
+                    display: flex;
+                    width: 100%;
+                    div{
+                        overflow: hidden;
+                        width: 25%;
+                    }
+                }
+            }
+
+            .style-buttons-create{
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                width: 100%;
+                div{
+                    width: auto;
+                }
+            }
+        }
+    }
+}

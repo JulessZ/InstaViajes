@@ -9,6 +9,126 @@
   margin: 10px;
 }
 
+#formcrearviajes form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 50px;
+}
+#formcrearviajes form div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+#formcrearviajes form div label {
+  width: 100%;
+}
+#formcrearviajes form div input {
+  width: 100%;
+  margin: 5px;
+}
+#formcrearviajes form div textarea {
+  width: 100%;
+}
+#formcrearviajes form .style-dates {
+  display: flex;
+  width: 100%;
+}
+#formcrearviajes form .style-dates div {
+  display: flex;
+  width: 50%;
+}
+#formcrearviajes form .style-budget {
+  display: flex;
+  width: 100%;
+}
+#formcrearviajes form .style-budget div {
+  width: 100%;
+}
+#formcrearviajes form .style-budget input {
+  width: 75%;
+}
+#formcrearviajes form .style-friends {
+  display: flex;
+  width: 100%;
+}
+#formcrearviajes form .style-friends div {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+#formcrearviajes form .style-friends .style-friends-invited {
+  display: flex;
+  width: 100%;
+}
+#formcrearviajes form .style-friends .style-friends-invited div {
+  width: 10%;
+}
+#formcrearviajes form .style-friends .style-friends-searched {
+  display: flex;
+  width: 100%;
+}
+#formcrearviajes form .style-friends .style-friends-searched div {
+  width: 50%;
+}
+#formcrearviajes form .style-buttons-create {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+#formcrearviajes form .style-buttons-create div {
+  width: auto;
+}
+
+@media (min-width: 960px) {
+  #formcrearviajes form .style-location {
+    display: flex;
+    width: 100%;
+  }
+  #formcrearviajes form .style-location div {
+    display: flex;
+    width: 50%;
+  }
+  #formcrearviajes form .style-desc {
+    display: flex;
+    width: 100%;
+  }
+  #formcrearviajes form .style-desc div {
+    width: 50%;
+  }
+  #formcrearviajes form .style-budget {
+    display: flex;
+    width: 100%;
+  }
+  #formcrearviajes form .style-budget div {
+    width: 100%;
+  }
+  #formcrearviajes form .style-budget input {
+    width: 75%;
+  }
+  #formcrearviajes form .style-friends .style-friends-searched {
+    display: flex;
+    width: 100%;
+  }
+  #formcrearviajes form .style-friends .style-friends-searched div {
+    overflow: hidden;
+    width: 25%;
+  }
+  #formcrearviajes form .style-buttons-create {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+  }
+  #formcrearviajes form .style-buttons-create div {
+    width: auto;
+  }
+}
 button {
   padding: 5px;
   text-transform: uppercase;
