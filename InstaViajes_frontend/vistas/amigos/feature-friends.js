@@ -51,7 +51,7 @@ await fetch('https://instaviajes.com/profile/{user_id}/friends')
         friendships = response;
     });
 
-async function showData() {
+export async function showData() {
     //Call the funciont for friendRequest for now we use an static
     friendsRequests(userLogged);
     //Call to the function to list de FriendshipList
@@ -61,7 +61,7 @@ async function showData() {
 
 }
 
-function friendsList(userId) {
+export function friendsList(userId) {
     // Create a div element to contain the friends list
     const friendListDiv = document.createElement("div");
 
@@ -143,7 +143,7 @@ function friendsList(userId) {
     divRoot.appendChild(friendListDiv);
 }
 
-function otherPeople(userId) {
+export function otherPeople(userId) {
     // Create a div element to contain the friends list
     const friendListDiv = document.createElement("div");
 
@@ -228,7 +228,7 @@ function otherPeople(userId) {
     divRoot.appendChild(friendListDiv);
 }
 
-function friendsRequests(userId) {
+export function friendsRequests(userId) {
 
     if (friendships.length === 0) {
         return;
@@ -291,7 +291,7 @@ function friendsRequests(userId) {
 }
 
 //Functions to manage friends request
-function manageFriendRequest(friendshipId, state) {
+export function manageFriendRequest(friendshipId, state) {
     // Define the URL of the API that will receive the friend request
     const apiUrl = "https://mi-api.com/amigos";
 
@@ -324,7 +324,7 @@ function manageFriendRequest(friendshipId, state) {
         });
 }
 
-function sendFriendRequest(userId) {
+export function sendFriendRequest(userId) {
 
         // Define the URL of the API that will receive the friend request
         const apiUrl = "https://mi-api.com/amigos/peticionDeAmistad";
