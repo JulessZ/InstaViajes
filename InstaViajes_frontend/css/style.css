@@ -9,9 +9,23 @@
   margin: 10px;
 }
 
-button {
-  padding: 5px;
+#logo-login {
+  height: 100px !important;
+  width: 100px !important;
+}
+
+input[type=submit], input[type=button], button {
+  padding: 10px;
   text-transform: uppercase;
+  color: #152E3D;
+  font-family: "Hind";
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.boton:hover {
+  box-shadow: 0px 0px 5px 2px lightgray;
 }
 
 .boton-principal {
@@ -42,4 +56,14 @@ button {
 .boton-cancelar:hover, .boton-cancelar:active {
   background-color: #E3E3E3;
   border-color: #E3E3E3;
+}
+
+input {
+  border-radius: 5px;
+  border: 2px solid lightgray;
+}
+
+input:focus {
+  outline: none !important;
+  border: 2px solid #0DDEB8;
 }/*# sourceMappingURL=style.css.map */
