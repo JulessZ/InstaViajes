@@ -233,9 +233,9 @@ function editForm(object) {
         form.appendChild(budget);
         form.appendChild(budgetValue);
 
-        form.appendChild(friendsOnTrip);
 
         form.appendChild(labelFriendSearch);
+        form.appendChild(friendsOnTrip);
         form.appendChild(friendsSearch);
         form.appendChild(divMainSearch);
 
@@ -310,14 +310,16 @@ function updateTripFriends (object) {
         friendsOnTripImg.src = element.image;
         friendsOnTrip.appendChild(friendsOnTripImg);
 
-        //friendsOnTripImg.setAttribute('onclick', 'deleteFriendsTrip(this)');
+        //Deleting the friends into the trip
+        friendsOnTripImg.addEventListener('click', function () {
+            console.log(this.id);
+            trip1.friendsOnTrip = trip1.friendsOnTrip.filter(friend => friend.id != this.id);
+            updateTripFriends(trip1);
+        });
     });
 }
 
-//Function to delete friends from the trip
-function deleteFriendsTrip (element) {
-    console.log(element.id);
-}
+
 
 //Function to search if the friend is on the trip
 function searchOnTrip(element) {
