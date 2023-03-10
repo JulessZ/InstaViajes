@@ -11,6 +11,7 @@ import {editaractividades} from '/plantillas/editaractividades.js';
 import {editarviaje}  from '/plantillas/editarviajes.js';
 import {home} from './plantillas/home.js';
 import {amigos} from './plantillas/amigos.js';
+
 //importacion del css
 import './css/style.css' ;
 const routes = {
