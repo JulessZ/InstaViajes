@@ -69,12 +69,14 @@ export function renderShowTravel() {
                         // Creamos botones de borrar y editar a cada actividad
                         const deleteButton = document.createElement("button");
                         deleteButton.innerText = "Borrar";
+                        deleteButton.classList.add("boton-cancelar");
                         deleteButton.addEventListener("click", () => {
                             //! Aquí se implementaría la lógica para ir borrar la actividad.
                         });
 
                         const editButton = document.createElement("button");
                         editButton.innerText = "Editar";
+                        editButton.classList.add("boton-secundario");
                         editButton.addEventListener("click", () => {
                             //! Aquí se implementaría la lógica para ir a la vista de editar actividad.
                         });
@@ -146,17 +148,20 @@ export function renderShowTravel() {
             // Creamos los botones de editar y borrar un viaje.
             const editButtonTravel = document.createElement("button");
             editButtonTravel.innerText = "Editar Viaje";
+            editButtonTravel.classList.add("boton-secundario");
             editButtonTravel.addEventListener("click", () => {
                 //!Aquí irá la lógica para ir a la vista de editar día
             });
             const deleteButtonTravel = document.createElement("button");
             deleteButtonTravel.innerText = "Borrar Viaje";
+            deleteButtonTravel.classList.add("boton-cancelar");
             deleteButtonTravel.addEventListener("click", () => {
                 //! Aquí irá la lógica para borrar un día
             });
             // Creamos el boton de añadir nueva actividad.
             const createButtonActivity = document.createElement("button");
             createButtonActivity.innerText = "Agregar actividad";
+            createButtonActivity.classList.add("boton-principal");
             createButtonActivity.addEventListener("click", () => {
                 //!Aquí irá la lógica para ir a la vista de agregar actividad.
             });
