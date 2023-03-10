@@ -1,8 +1,8 @@
 const principalDiv = document.querySelector("#root"); //? Contenedor principal.
 
-const carouselDiv = document.createElement("div");
-const container = document.createElement('div');
-const buttonsTravelDiv = document.createElement("div");
+const carouselDiv = document.createElement("div"); //div para carrusel
+const container = document.createElement('div'); //div para header
+const buttonsTravelDiv = document.createElement("div"); //div para botones
 
 const itineraryListDiv = document.createElement("div"); //? Contenedor padre donde se guardan los itinerarios de las actividades.
 const itineraryTitleDiv = document.createElement("div"); //? Contenedor para almacenar el titulo del itinerario.
