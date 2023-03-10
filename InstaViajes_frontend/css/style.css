@@ -1,17 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Esteban&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hind:wght@400;600&display=swap");
-#mis-viajes-home {
+#misviajeshome {
   border: 1px solid black;
 }
-#mis-viajes-home div {
+#misviajeshome div {
   border: 1px solid black;
   margin: 10px;
 }
+#misviajeshome div img {
+  border: 1px solid black;
+  width: 10px;
+}
 
-button {
-  padding: 5px;
+input[type=submit], input[type=button], button {
+  padding: 10px;
   text-transform: uppercase;
+  color: #152E3D;
+  font-family: "Hind";
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.boton:hover {
+  box-shadow: 0px 0px 5px 2px lightgray;
 }
 
 .boton-principal {
@@ -44,6 +57,11 @@ button {
   border-color: #E3E3E3;
 }
 
+input {
+  border-radius: 5px;
+  border: 2px solid lightgray;
+}
+
 .logo {
   width: 63px;
 }
@@ -58,4 +76,9 @@ button {
 
 .separator {
   border-top: 2px solid black;
+}
+
+input:focus {
+  outline: none !important;
+  border: 2px solid #0DDEB8;
 }/*# sourceMappingURL=style.css.map */

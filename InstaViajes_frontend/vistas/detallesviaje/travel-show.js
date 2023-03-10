@@ -17,7 +17,7 @@ export function init() {
  */
 export function renderShowTravel() {
     document.addEventListener("DOMContentLoaded", function () {
-        const principalDiv = document.querySelector("#root"); //? Contenedor principal.
+        const principalDiv = document.querySelector(".carousel-inner"); //? Contenedor principal.
         const itineraryListDiv = document.createElement("div"); //? Contenedor padre donde se guardan los itinerarios de las actividades.
         const itineraryTitleDiv = document.createElement("div"); //? Contenedor para almacenar el titulo del itinerario.
 
