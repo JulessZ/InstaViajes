@@ -29,32 +29,8 @@
                         "duration": "1 horas"
                     }
                 ]
-            },
-            {
-                "date": "Día 24/03/2023",
-                "activities": [
-                    {
-                        "id": 1,
-                        "title": "Ruta guiada en bicicleta de montaña.",
-                        "budget": 250.10,
-                        "type": "Deportes",
-                        "votes": 5,
-                        "image":"https://www.aramon.com/blog/wp-content/uploads/2019/05/rutas-btt-teruel.jpg",
-                        "description": "Vuelta al aire libre por la sierra de Madrid.",
-                        "duration": "5 horas y media."
-                    },
-                    {
-                        "id": 2,
-                        "title": "Celebrar el cumpleaños de Carmen de tapas por Madrid.",
-                        "budget": 55.60,
-                        "type": "Entretenimiento",
-                        "votes": 9,
-                        "image":"https://detapaspormadrid.info/wp-content/uploads/2021/07/DT-Sidreri%CC%81a_El_Tigre-001-scaled-638x478.jpg",
-                        "description": "Tapeo por Madrid por diferentes bares.",
-                        "duration": "3 horas"
-                    }
-                ]
             }
+           
         ]
     }
 }
