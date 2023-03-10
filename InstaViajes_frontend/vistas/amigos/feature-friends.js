@@ -27,7 +27,9 @@ fetch.addRoute('https://instaviajes.com/profile/{user_id}/friends', {
 });
 
 //Variables to use
-let divRoot = document.getElementById('root');
+let divRoot = document.getElementById('contactosamigos');
+let divRoot2 = document.getElementById('usuariosamigos');
+let divRoot3 = document.getElementById('peticionesamigos');
 let userList;
 let friendships;
 let userLogged = 1;
@@ -35,7 +37,7 @@ let userLogged = 1;
 // let userLogged;
 
 //Fetch to the fake routes
-await fetch('https://instaviajes.com/profile/users')
+const fetch1= fetch('https://instaviajes.com/profile/users')
     .then((response) => {
         return response.json();
     })
@@ -43,7 +45,7 @@ await fetch('https://instaviajes.com/profile/users')
         userList = response;
     });
 //Fetch to take friendships
-await fetch('https://instaviajes.com/profile/{user_id}/friends')
+const fetch2= fetch('https://instaviajes.com/profile/{user_id}/friends')
     .then((response) => {
         return response.json();
     })
@@ -53,6 +55,8 @@ await fetch('https://instaviajes.com/profile/{user_id}/friends')
 
 export async function showData() {
     //Call the funciont for friendRequest for now we use an static
+    await fetch1;
+    await fetch2;
     friendsRequests(userLogged);
     //Call to the function to list de FriendshipList
     friendsList(userLogged);
@@ -225,7 +229,7 @@ export function otherPeople(userId) {
     });
 
     // Add the friends list to the DOM
-    divRoot.appendChild(friendListDiv);
+    divRoot2.appendChild(friendListDiv);
 }
 
 export function friendsRequests(userId) {
@@ -287,7 +291,7 @@ export function friendsRequests(userId) {
     });
 
     // Add list of pending requests to the DOM
-    divRoot.appendChild(pendingListDiv);
+    divRoot3.appendChild(pendingListDiv);
 }
 
 //Functions to manage friends request

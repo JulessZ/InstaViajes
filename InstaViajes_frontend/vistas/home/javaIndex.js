@@ -82,7 +82,7 @@ export function init(){
 
 export function renderIndex(){
 
-const container = document.querySelector('.container')
+const container = document.querySelector('#todosviajeshome')
 
 
 window.addEventListener('DOMContentLoaded', async () => {

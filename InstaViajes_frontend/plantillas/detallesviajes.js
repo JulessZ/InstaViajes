@@ -1,3 +1,6 @@
+//importacion del js con la funcionalidad para la vista detalles viaje
+
+
 export let detallesviaje = `
 <div class="container-fluid text-center mt-5 border border-info" id="carrusel-itinerario">
 <div class="row align-items-center  mx-lg-5  border border-danger">

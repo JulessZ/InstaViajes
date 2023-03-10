@@ -1,12 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Esteban&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hind:wght@400;600&display=swap");
-#mis-viajes-home {
+#misviajeshome {
   border: 1px solid black;
 }
-#mis-viajes-home div {
+#misviajeshome div {
   border: 1px solid black;
   margin: 10px;
+}
+#misviajeshome div img {
+  border: 1px solid black;
+  width: 10px;
 }
 
 button {

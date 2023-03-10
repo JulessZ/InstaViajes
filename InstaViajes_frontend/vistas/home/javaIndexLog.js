@@ -42,7 +42,7 @@ export function init(){
 export function renderIndex(){
 
 
-const container = document.querySelector('.containerViaje')
+const container = document.querySelector('#misviajeshome')
 
 window.addEventListener('DOMContentLoaded', async () => {
  // Hace una solicitud a la URL definida anteriormente usando fetchDatos() y espera a que se complete la solicitud para crear tarjetas de viaje.
