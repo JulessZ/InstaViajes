@@ -1,3 +1,4 @@
+//importaciones de las plantillas de las diferentes secciones de la pagina
 import {crearactividades} from '/plantillas/crearactividades.js';
 import {crearviaje}  from '/plantillas/crearviajes.js';
 import {detallesviaje}  from '/plantillas/detallesviajes.js';
@@ -10,7 +11,8 @@ import {editaractividades} from '/plantillas/editaractividades.js';
 import {editarviaje}  from '/plantillas/editarviajes.js';
 import {home} from './plantillas/home.js';
 import {amigos} from './plantillas/amigos.js';
-    
+//importacion del css
+import './css/style.css' ;
 const routes = {
     '/': login,
      '/registro': registro,
