@@ -1,4 +1,4 @@
-let detallesviaje = `
+export let detallesviaje = `
 <div class="container text-center  m-4 m-lg-5 mt-5">
 <div class="row align-items-center">
   <div class="col-lg-1" ></div>

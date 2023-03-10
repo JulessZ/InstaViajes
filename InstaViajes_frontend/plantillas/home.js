@@ -1,5 +1,5 @@
 //variable que nos imprime toda la estructura principal de la vista home
-let home = `
+export let home = `
 <div class="container">
         <div class="row">
             <!--caja para imprimir mis viajes en la vista del home
