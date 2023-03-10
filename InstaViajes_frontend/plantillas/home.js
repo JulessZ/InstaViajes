@@ -5,7 +5,11 @@ export let home = `
             <!--caja para imprimir mis viajes en la vista del home
                 el id de esta caja será "mis-viajes-home"-->
 
-            <div class="d-none d-lg-block col-md-4 border py-5" id="mis-viajes-home"></div>
+            <div class="d-none d-lg-block col-md-4 border py-5" >
+            
+            <div id="mis-viajes-home"></div>
+            
+            </div>
 
             <!--caja para imprimir los viajes de todos los usuarios en la vista del home
                 el id de esta caja será "todos-viajes-home"-->
