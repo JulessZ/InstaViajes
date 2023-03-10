@@ -1,4 +1,4 @@
-let amigos = `
+export let amigos = `
 <div class="container">
     <div class="row">
         <!-- caja que contendrá los  botones y buscadores necesarios para filtrar los contactos -->
