@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="javascript/main.js"></script>
+    <title>Crear actividad</title>
+</head>
+<body>
+    <h1>Creación de la actividad</h1>
+    <!-- <form id="form-crear-actividades"> -->
+
+
+        <div>
+
+            <p>Nombre</p>
+            <input name="inputName" list="inputName" autocomplete="off" onmousedown="value = '';" />
+            <span id="errorInputName" class="error"></span>
+            <datalist id="inputName" class="nameDataList">
+                <option value="España"></option>
+                <option value="Italia"></option>
+            </datalist>
+
+
+            <p>Descripción</p>
+            <input type="text" id="inputDescription">
+            <span id="errorInputDescription" class="error"></span>
+
+
+        </div>
+    
+        <div>
+
+
+            <p>Fecha de inicio</p>
+            <input type="date" id="inputDateStart">
+            <span id="errorInputDateStart" class="error"></span>
+            
+    
+            <p>Hora de inicio</p>
+            <input type="time" id="inputHourStart">
+            <span id="errorInputHourStart" class="error"></span>
+
+    
+            <p>Duración</p>
+            <input type="time" id="inputDuration">
+            <span id="errorInputDuration" class="error"></span>
+
+    
+            <p>Precio</p>
+            <input type="number" id="inputPrice">
+            <span id="errorInputPrice" class="error"></span>
+
+
+        </div>
+    
+        <br><br>
+    
+        <button id="buttonAddActivity">AÑADIR ACTIVIDAD</button>
+
+        <button id="buttonCancell">CANCELAR</button>
+
+        
+    <!-- </form> -->
+    <div class="temporal-result"></div>
+</body>
+</html>
