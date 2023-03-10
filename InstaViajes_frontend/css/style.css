@@ -13,11 +13,6 @@
   width: 10px;
 }
 
-#logo-login {
-  height: 100px !important;
-  width: 100px !important;
-}
-
 input[type=submit], input[type=button], button {
   padding: 10px;
   text-transform: uppercase;
@@ -62,6 +57,11 @@ input[type=submit], input[type=button], button {
   border-color: #E3E3E3;
 }
 
+input {
+  border-radius: 5px;
+  border: 2px solid lightgray;
+}
+
 .logo {
   width: 63px;
 }
@@ -76,11 +76,6 @@ input[type=submit], input[type=button], button {
 
 .separator {
   border-top: 2px solid black;
-}
-
-input {
-  border-radius: 5px;
-  border: 2px solid lightgray;
 }
 
 input:focus {
