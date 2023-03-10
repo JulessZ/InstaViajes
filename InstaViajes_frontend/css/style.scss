@@ -21,12 +21,20 @@
     @import url('https://fonts.googleapis.com/css2?family=Hind:wght@400;600&display=swap');
 
 //Estilo común para toda la página
+    //Iconos
+
     //Botones
     button
     {
-        padding: 5px;
+        padding: 10px;
         text-transform: uppercase;
+        color: #152E3D;
+        font-family: "Hind";
+        text-transform: uppercase;
+        font-weight:600;
+        border-radius: 5px;
     }
+    button:hover{box-shadow: 0px 0px 5px 4px lightgray;}
         //Botón principal
             .boton-principal
             {
@@ -64,6 +72,17 @@
 
     //Inputs
         //Input estándar
-        
+            input 
+            {
+                width: 30%;
+                border-radius:5px;
+                border: 2px solid lightgray;
+                height: 24px;
+            }
 
         //Input seleccionado
+            input:focus
+            {
+                outline: none !important;
+                border: 2px solid #0DDEB8;
+            }
