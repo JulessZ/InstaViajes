@@ -3,18 +3,18 @@ export let home = `
 <div class="container">
         <div class="row">
             <!--caja para imprimir mis viajes en la vista del home
-                el id de esta caja será "mis-viajes-home"-->
+                el id de esta caja será "misviajeshome"-->
 
             <div class="d-none d-lg-block col-md-4 border py-5" >
             
-            <div id="mis-viajes-home"></div>
+            <div id="misviajeshome"></div>
             
             </div>
 
             <!--caja para imprimir los viajes de todos los usuarios en la vista del home
-                el id de esta caja será "todos-viajes-home"-->
+                el id de esta caja será "todosviajeshome"-->
 
-            <div class="col border py-5" id="todos-viajes-home"></div>
+            <div class="col border py-5" id="todosviajeshome"></div>
         </div>
     </div>
 `

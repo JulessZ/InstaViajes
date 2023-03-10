@@ -1,1 +1,5 @@
-{"version":3,"sourceRoot":"","sources":["style.scss","parciales/_home.scss"],"names":[],"mappings":"AAgBY;AAEA;AAEA;ACpBZ;EACI;;AACA;EACI;EACA;;;ADoBJ;EAEI;EACA;;;AAGI;EAEI;EACA;;;AAEJ;EAEI;EACA;;;AAGJ;EAEI;EACA;;;AAEJ;EAEI;EACA;;;AAIJ;EAEI;EACA;;;AAEJ;EAEI;EACA","file":"style.css"}
+<<<<<<< Updated upstream
+{"version":3,"sources":["style.scss","style.css"],"names":[],"mappings":"AAgBY,4EAAA;AAEA,4EAAA;AAEA,sFAAA;AAIR;EAEI,YAAA;EACA,yBAAA;ACrBR;;ADwBY;EAEI,yBAAA;EACA,qBAAA;ACtBhB;;ADwBY;EAEI,yBAAA;EACA,qBAAA;ACtBhB;;ADyBY;EAEI,yBAAA;EACA,qBAAA;ACvBhB;;ADyBY;EAEI,yBAAA;EACA,qBAAA;ACvBhB;;AD2BY;EAEI,yBAAA;EACA,qBAAA;ACzBhB;;AD2BY;EAEI,yBAAA;EACA,qBAAA;ACzBhB;;ADmCQ;EACI,WAAA;AChCZ;;ADoCQ;EACI,aAAA;ACjCZ;;ADqCQ;EACI,iBAAA;AClCZ;;ADqCQ;EACI,2BAAA;AClCZ","file":"style.css"}
+=======
+{"version":3,"sourceRoot":"","sources":["style.scss","parciales/_home.scss"],"names":[],"mappings":"AAgBY;AAEA;AAEA;ACpBZ;EACI;;AAEA;EACI;EACA;;AACA;EACI;EACA;;;ADgBR;EAEI;EACA;;;AAGI;EAEI;EACA;;;AAEJ;EAEI;EACA;;;AAGJ;EAEI;EACA;;;AAEJ;EAEI;EACA;;;AAIJ;EAEI;EACA;;;AAEJ;EAEI;EACA","file":"style.css"}
+>>>>>>> Stashed changes
