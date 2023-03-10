@@ -1,3 +1,19 @@
+import { fakeFetch } from "./fakeFetch.js";
+
+async function addMultipleOptionsToDataListInNameInput() {
+    const nameDataList = document.querySelector('.nameDataList');
+    const data = await fakeFetch.getPlacesData();
+    for(const [key, place] of Object.entries(data)){
+        console.log(place.name);
+        let newOption = document.createElement('option');
+        let newOptionText = document.createTextNode(place.name);
+        newOption.appendChild(newOptionText);
+
+        nameDataList.appendChild(newOption);
+    }
+}
+addMultipleOptionsToDataListInNameInput();
+
 const inputName = document.getElementById('inputName');
 const inputDescription  = document.getElementById('inputDescription');
 const inputDateStart = document.getElementById('inputDateStart');

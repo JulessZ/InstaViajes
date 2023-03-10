@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="javascript/main.js"></script>
+    <script type="module" src="javascript/main.js"></script>
     <title>Crear actividad</title>
 </head>
 <body>
@@ -17,10 +17,7 @@
             <p>Nombre</p>
             <input name="inputName" list="inputName" autocomplete="off" onmousedown="value = '';" />
             <span id="errorInputName" class="error"></span>
-            <datalist id="inputName" class="nameDataList">
-                <option value="España"></option>
-                <option value="Italia"></option>
-            </datalist>
+            <datalist id="inputName" class="nameDataList"/>
 
 
             <p>Descripción</p>
@@ -49,7 +46,7 @@
 
     
             <p>Precio</p>
-            <input type="number" id="inputPrice">
+            <input type="range" id="inputPrice">
             <span id="errorInputPrice" class="error"></span>
 
 
