@@ -1,10 +1,12 @@
 import { fakeFetch } from "./fakeFetch.js";
+import { createActivityView } from "./createActivityView.js";
+
+createActivityView.buildView();
 
 async function addMultipleOptionsToDataListInNameInput() {
     const nameDataList = document.querySelector('.nameDataList');
     const data = await fakeFetch.getPlacesData();
     for(const [key, place] of Object.entries(data)){
-        console.log(place.name);
         let newOption = document.createElement('option');
         let newOptionText = document.createTextNode(place.name);
         newOption.appendChild(newOptionText);
