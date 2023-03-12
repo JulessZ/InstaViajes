@@ -138,6 +138,10 @@ function checkCurrentRoute() {
 }
 
 
+/**
+ * Renderiza en la página la plantilla y la vista de una ruta dada
+ * @param {*} pathname La ruta a renderizar
+ */
 const onNavigate = (pathname) => {
   window.history.pushState(
     {},
@@ -154,6 +158,9 @@ const onNavigate = (pathname) => {
   });
 }
 
+/**
+ * Renderiza las vistas de una ruta despues de que el usuario utilice las flechas del navegador para navegar
+ */
 window.onpopstate = () => {
   let pathnameNoSlash = window.location.pathname.length > 1 ? window.location.pathname.substring(1) : window.location.pathname;
 
