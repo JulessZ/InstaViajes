@@ -10,7 +10,7 @@ import { registro as registroTemplate } from '/plantillas/registro.js';
 import { editaractividades as editarActividadesTemplate } from './plantillas/editaractividades.js';
 import { editarviaje as editarViajeTemaplte } from './plantillas/editarviajes.js';
 import { home as homeTemplate } from './plantillas/home.js';
-import { amigos } from './plantillas/amigos.js';
+import { amigos as amigosTemplate} from './plantillas/amigos.js';
 
 // Importaciones de los métodos de render de cada vista
 
@@ -20,6 +20,9 @@ import { renderIndex as homeSideView } from './vistas/home/javaIndexLog.js'
 
 // LOGIN
 import { render as renderLogin } from './vistas/login/login.js';
+
+// AMIGOS
+import { showData as renderFriends } from './vistas/amigos/feature-friends';
 
 //importacion del css
 import './css/style.css';
@@ -66,7 +69,7 @@ const routes = {
     pathname: '/home',
     template: homeTemplate,
     views: [homeView, homeSideView]
-  }
+  },
   // perfil: {
   //   pathname: '/home',
   //   template: homeTemplate,
@@ -82,11 +85,11 @@ const routes = {
   //   template: homeTemplate,
   //   views: [homeView, homeSideView]
   // },
-  // amigos: {
-  //   pathname: '/home',
-  //   template: homeTemplate,
-  //   views: [homeView, homeSideView]
-  // },
+  amigos: {
+    pathname: '/amigos',
+    template: amigosTemplate,
+    views: [renderFriends]
+  },
   // crearactividades: {
   //   pathname: '/home',
   //   template: homeTemplate,
@@ -115,9 +118,6 @@ const appDiv = document.getElementById('app');
 checkCurrentRoute();
 
 function checkCurrentRoute() {
-  console.log(window.location.pathname);
-
-
   let pathnameNoSlash = window.location.pathname.length > 1 ? window.location.pathname.substring(1) : window.location.pathname;
 
   if (routes[pathnameNoSlash]) {
@@ -128,9 +128,8 @@ function checkCurrentRoute() {
     });
 
   } else {
-    // Aqui debemos mostrar un ERROR HTTP 404 (no se encuentra esta pagina)
+    // Aqui debemos mostrar la página de un ERROR HTTP 404 (no se encuentra esta pagina)
   }
-
 }
 
 
@@ -143,10 +142,7 @@ const onNavigate = (pathname) => {
 
   let pathnameNoSlash = pathname.length > 1 ? pathname.substring(1) : pathname;
 
-  console.log(pathnameNoSlash);
-
   appDiv.innerHTML = routes[pathnameNoSlash].template;
-
 
   routes[pathnameNoSlash].views.forEach(view => {
     view();
