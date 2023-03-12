@@ -22,7 +22,10 @@ import { renderIndex as homeSideView } from './vistas/home/javaIndexLog.js'
 import { render as renderLogin } from './vistas/login/login.js';
 
 // AMIGOS
-import { showData as renderFriends } from './vistas/amigos/feature-friends';
+import { showData as renderFriends } from './vistas/amigos/feature-friends.js';
+
+// MIS VIAJES
+import {getMisViajesData as renderMisViajes } from './vistas/mis-viajes/mis-viajes.js';
 
 //importacion del css
 import './css/style.css';
@@ -80,11 +83,11 @@ const routes = {
   //   template: homeTemplate,
   //   views: [homeView, homeSideView]
   // },
-  // misviajes: {
-  //   pathname: '/home',
-  //   template: homeTemplate,
-  //   views: [homeView, homeSideView]
-  // },
+  misviajes: {
+    pathname: '/misviajes',
+    template: misViajesTemplate,
+    views: [renderMisViajes]
+  },
   amigos: {
     pathname: '/amigos',
     template: amigosTemplate,
@@ -114,9 +117,11 @@ const routes = {
 
 const appDiv = document.getElementById('app');
 
-
 checkCurrentRoute();
 
+/**
+ * Renderiza el template y vistas adecuadas según la ruta de la página actual
+ */
 function checkCurrentRoute() {
   let pathnameNoSlash = window.location.pathname.length > 1 ? window.location.pathname.substring(1) : window.location.pathname;
 
