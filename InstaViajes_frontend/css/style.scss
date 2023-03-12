@@ -11,59 +11,97 @@
 @import 'parciales/passwordreset';
 @import 'parciales/perfil';
 @import 'parciales/registro';
-
 // FUENTES
-    //Raleway (Títulos)
-    @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
-    //Esteban (Subtítulos/textos)
-    @import url('https://fonts.googleapis.com/css2?family=Esteban&display=swap');
-    //Hind (Botones)
-    @import url('https://fonts.googleapis.com/css2?family=Hind:wght@400;600&display=swap');
+//Raleway (Títulos)
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+//Esteban (Subtítulos/textos)
+@import url('https://fonts.googleapis.com/css2?family=Esteban&display=swap');
+//Hind (Botones)
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@400;600&display=swap');
 
 //Estilo común para toda la página
-    //Botones
-    button
-    {
-        padding: 5px;
-        text-transform: uppercase;
-    }
-        //Botón principal
-            .boton-principal
-            {
-                background-color: #0DDEB8;
-                border-color: #76D6C4;
-            }
-            .boton-principal:hover, .boton-principal:active
-            {
-                background-color: #76D6C4;
-                border-color: #76D6C4;
-            }
-        //Botón secundario
-            .boton-secundario
-            {
-                background-color: #70C8FF;
-                border-color: #A3D4FF;
-            }
-            .boton-secundario:hover, .boton-secundario:active
-            {
-                background-color: #A3D4FF;
-                border-color: #A3D4FF;
-            }
+//Iconos
+//Botones
+input[type=submit],
+input[type=button],
+button {
+    padding: 10px;
+    text-transform: uppercase;
+    color: #152E3D;
+    font-family: "Hind";
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 5px;
+}
 
-        //Botón de cancelar
-            .boton-cancelar
-            {
-                background-color: #F2F2F2;
-                border-color: #E3E3E3;
-            }
-            .boton-cancelar:hover, .boton-cancelar:active
-            {
-                background-color: #E3E3E3;
-                border-color: #E3E3E3;
-            }
+.boton:hover {
+    box-shadow: 0px 0px 5px 2px lightgray;
+}
 
-    //Inputs
-        //Input estándar
-        
+//Botón principal
+.boton-principal {
+    background-color: #0DDEB8;
+    border-color: #76D6C4;
+}
 
-        //Input seleccionado
+.boton-principal:hover,
+.boton-principal:active {
+    background-color: #76D6C4;
+    border-color: #76D6C4;
+}
+
+//Botón secundario
+.boton-secundario {
+    background-color: #70C8FF;
+    border-color: #A3D4FF;
+}
+
+.boton-secundario:hover,
+.boton-secundario:active {
+    background-color: #A3D4FF;
+    border-color: #A3D4FF;
+}
+
+//Botón de cancelar
+.boton-cancelar {
+    background-color: #F2F2F2;
+    border-color: #E3E3E3;
+}
+
+.boton-cancelar:hover,
+.boton-cancelar:active {
+    background-color: #E3E3E3;
+    border-color: #E3E3E3;
+}
+
+//Inputs
+//Input estándar
+input {
+    border-radius: 5px;
+    border: 2px solid lightgray;
+}
+
+//Input seleccionado
+//Tamaño del logo
+.logo {
+    width: 63px;
+}
+
+//Ocultar flecha en el logo de usuario
+.dropdown-toggle::after {
+    content: none;
+}
+
+//Posicionar el logout en la parte baja del offcanvas
+.logout {
+    margin-top: 15rem;
+}
+
+.separator {
+    border-top: 2px solid black;
+}
+
+input:focus {
+    outline: none !important;
+    border: 2px solid #0DDEB8;
+}

@@ -1,15 +1,12 @@
 import { fetchMisViajes } from "./fetch-mis-viajes";
 
-const misViajesContainer = document.querySelector('.mis-viajes');
-
-const viajesCompartidosContainer = document.querySelector('.viajes-compartidos');
-
-async function getMisViajesData() {
+export async function getMisViajesData() {
+    const misViajesContainer = document.querySelector('#misviajesmisviajes');
+    const viajesCompartidosContainer = document.querySelector('#viajescompartidosmisviajes');
 
     //mis viajes
-
     const data = await fetchMisViajes.showMisViajesData();
-    for(const [key, journeyData] of Object.entries(data)){
+    for (const [key, journeyData] of Object.entries(data)) {
         let journeyCard = document.createElement('div');
 
         //imagen del viaje
@@ -30,7 +27,7 @@ async function getMisViajesData() {
         let leftDiv = document.createElement('div');
 
         //nombre del destino del viaje
-        
+
 
         let journeyDestination = document.createElement('p');
         let journeyDestinationText = document.createTextNode(`${journeyData.destination}`);
@@ -96,7 +93,7 @@ async function getMisViajesData() {
     //viajes compartidos
 
     const dataViajesCompartidos = await fetchMisViajes.showMisViajesData();
-    for(const [key, journeyData] of Object.entries(data)){
+    for (const [key, journeyData] of Object.entries(data)) {
         let journeyCard = document.createElement('div');
 
         //imagen del viaje
@@ -117,7 +114,7 @@ async function getMisViajesData() {
         let leftDiv = document.createElement('div');
 
         //nombre del destino del viaje
-        
+
 
         let journeyDestination = document.createElement('p');
         let journeyDestinationText = document.createTextNode(`${journeyData.destination}`);
@@ -180,5 +177,5 @@ async function getMisViajesData() {
         viajesCompartidosContainer.appendChild(journeyCard);
     }
 };
-getMisViajesData();
-fetchMisViajes.showViajesCompartidosData();
+// getMisViajesData();
+// fetchMisViajes.showViajesCompartidosData();

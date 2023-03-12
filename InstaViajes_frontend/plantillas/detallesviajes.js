@@ -1,9 +1,12 @@
+//importacion del js con la funcionalidad para la vista detalles viaje
+
+
 export let detallesviaje = `
-<div class="container-fluid text-center mt-5 border border-info" id="carrusel-itinerario">
+<div class="container-fluid text-center mt-5 border border-info" >
 <div class="row align-items-center  mx-lg-5  border border-danger">
-  <div class="col-12  mx-lg-5 border border-primary">
+  <div class="col-12  mx-lg-5 border border-primary" id="detallesviaje">
     <div id="carouselExampleInterval" class="carousel slide  m-lg-5  border border-danger" data-bs-ride="carousel">
-      <div class="carousel-inner">
+      <div class="carousel-inner" id="carruselitinerario">
 
 
       
@@ -17,6 +20,7 @@ export let detallesviaje = `
         <span class="visually-hidden">Next</span>
       </button>
     </div>
+    <div id="detallesactividades"></div>
   </div>
 </div> 
 </div>

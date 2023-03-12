@@ -1,17 +1,152 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Esteban&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hind:wght@400;600&display=swap");
-#mis-viajes-home {
+#formcrearviajes form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 50px;
+}
+#formcrearviajes form div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+#formcrearviajes form div label {
+  width: 100%;
+}
+#formcrearviajes form div input {
+  width: 100%;
+  margin: 5px;
+}
+#formcrearviajes form div textarea {
+  width: 100%;
+}
+#formcrearviajes form .style-dates {
+  display: flex;
+  width: 100%;
+}
+#formcrearviajes form .style-dates div {
+  display: flex;
+  width: 50%;
+}
+#formcrearviajes form .style-budget {
+  display: flex;
+  width: 100%;
+}
+#formcrearviajes form .style-budget div {
+  width: 100%;
+}
+#formcrearviajes form .style-budget input {
+  width: 75%;
+}
+#formcrearviajes form .style-friends {
+  display: flex;
+  width: 100%;
+}
+#formcrearviajes form .style-friends div {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+#formcrearviajes form .style-friends .style-friends-invited {
+  display: flex;
+  width: 100%;
+}
+#formcrearviajes form .style-friends .style-friends-invited div {
+  width: 10%;
+}
+#formcrearviajes form .style-friends .style-friends-searched {
+  display: flex;
+  width: 100%;
+}
+#formcrearviajes form .style-friends .style-friends-searched div {
+  width: 50%;
+}
+#formcrearviajes form .style-buttons-create {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+#formcrearviajes form .style-buttons-create div {
+  width: auto;
+}
+
+@media (min-width: 960px) {
+  #formcrearviajes form .style-location {
+    display: flex;
+    width: 100%;
+  }
+  #formcrearviajes form .style-location div {
+    display: flex;
+    width: 50%;
+  }
+  #formcrearviajes form .style-desc {
+    display: flex;
+    width: 100%;
+  }
+  #formcrearviajes form .style-desc div {
+    width: 50%;
+  }
+  #formcrearviajes form .style-budget {
+    display: flex;
+    width: 100%;
+  }
+  #formcrearviajes form .style-budget div {
+    width: 100%;
+  }
+  #formcrearviajes form .style-budget input {
+    width: 75%;
+  }
+  #formcrearviajes form .style-friends .style-friends-searched {
+    display: flex;
+    width: 100%;
+  }
+  #formcrearviajes form .style-friends .style-friends-searched div {
+    overflow: hidden;
+    width: 25%;
+  }
+  #formcrearviajes form .style-buttons-create {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+  }
+  #formcrearviajes form .style-buttons-create div {
+    width: auto;
+  }
+}
+#misviajeshome {
   border: 1px solid black;
 }
-#mis-viajes-home div {
+#misviajeshome div {
   border: 1px solid black;
   margin: 10px;
 }
+#misviajeshome div img {
+  border: 1px solid black;
+  width: 10px;
+}
 
+input[type=submit],
+input[type=button],
 button {
-  padding: 5px;
+  padding: 10px;
   text-transform: uppercase;
+  color: #152E3D;
+  font-family: "Hind";
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.boton:hover {
+  box-shadow: 0px 0px 5px 2px lightgray;
 }
 
 .boton-principal {
@@ -19,7 +154,8 @@ button {
   border-color: #76D6C4;
 }
 
-.boton-principal:hover, .boton-principal:active {
+.boton-principal:hover,
+.boton-principal:active {
   background-color: #76D6C4;
   border-color: #76D6C4;
 }
@@ -29,7 +165,8 @@ button {
   border-color: #A3D4FF;
 }
 
-.boton-secundario:hover, .boton-secundario:active {
+.boton-secundario:hover,
+.boton-secundario:active {
   background-color: #A3D4FF;
   border-color: #A3D4FF;
 }
@@ -39,7 +176,34 @@ button {
   border-color: #E3E3E3;
 }
 
-.boton-cancelar:hover, .boton-cancelar:active {
+.boton-cancelar:hover,
+.boton-cancelar:active {
   background-color: #E3E3E3;
   border-color: #E3E3E3;
+}
+
+input {
+  border-radius: 5px;
+  border: 2px solid lightgray;
+}
+
+.logo {
+  width: 63px;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
+
+.logout {
+  margin-top: 15rem;
+}
+
+.separator {
+  border-top: 2px solid black;
+}
+
+input:focus {
+  outline: none !important;
+  border: 2px solid #0DDEB8;
 }/*# sourceMappingURL=style.css.map */
