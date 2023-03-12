@@ -1,7 +1,7 @@
 //importaciones de las plantillas de las diferentes secciones de la pagina
 import { crearactividades as crearActividadesTemplate } from './plantillas/crearactividades.js';
 import { crearviaje as crearViajeTemplate } from './plantillas/crearviajes.js';
-import { detallesviaje as detallesViajeTempalte } from './plantillas/detallesviajes.js';
+import { detallesviaje as detallesViajeTemplate } from './plantillas/detallesviajes.js';
 import { login as loginTemplate } from './plantillas/login.js';
 import { misviajes as misViajesTemplate } from './plantillas/misviajes.js';
 import { passwordreset as passwordResetTemplate } from './plantillas/passwordreset.js';
@@ -10,7 +10,7 @@ import { registro as registroTemplate } from '/plantillas/registro.js';
 import { editaractividades as editarActividadesTemplate } from './plantillas/editaractividades.js';
 import { editarviaje as editarViajeTemaplte } from './plantillas/editarviajes.js';
 import { home as homeTemplate } from './plantillas/home.js';
-import { amigos as amigosTemplate} from './plantillas/amigos.js';
+import { amigos as amigosTemplate } from './plantillas/amigos.js';
 
 // Importaciones de los métodos de render de cada vista
 
@@ -25,7 +25,13 @@ import { render as renderLogin } from './vistas/login/login.js';
 import { showData as renderFriends } from './vistas/amigos/feature-friends.js';
 
 // MIS VIAJES
-import {getMisViajesData as renderMisViajes } from './vistas/mis-viajes/mis-viajes.js';
+import { getMisViajesData as renderMisViajes } from './vistas/mis-viajes/mis-viajes.js';
+
+// DETALLES DE UN VIAJE
+import { renderHeader as renderHeaderDetallesViajes } from './vistas/detallesviaje/travel-show.js';
+import { renderButtonTravel as renderButtonDetallesViajes } from './vistas/detallesviaje/travel-show.js';
+import { renderDivCarousel as renderCarouselDetallesViajes } from './vistas/detallesviaje/travel-show.js';
+
 
 //importacion del css
 import './css/style.css';
@@ -78,11 +84,11 @@ const routes = {
   //   template: homeTemplate,
   //   views: [homeView, homeSideView]
   // },
-  // detallesviaje: {
-  //   pathname: '/home',
-  //   template: homeTemplate,
-  //   views: [homeView, homeSideView]
-  // },
+  detallesviaje: {
+    pathname: '/detallesviaje',
+    template: detallesViajeTemplate,
+    views: [renderButtonDetallesViajes, renderCarouselDetallesViajes, renderHeaderDetallesViajes]
+  },
   misviajes: {
     pathname: '/misviajes',
     template: misViajesTemplate,
