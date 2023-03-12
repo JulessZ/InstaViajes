@@ -30,13 +30,13 @@ Fetch.addRoute('https://instaviajes.com/viajes-compartidos', {
 Fetch.use();
 
 export class fetchMisViajes {
-    static showMisViajesData() {
+    static async showMisViajesData() {
         return fetch('https://instaviajes.com/mis-viajes')
         .then((response) => {
             return response.json();
         })
     }
-    static showViajesCompartidosData() {
+    static async showViajesCompartidosData() {
         fetch('https://instaviajes.com/viajes-compartidos')
         .then((response) => {
             return response.json();
