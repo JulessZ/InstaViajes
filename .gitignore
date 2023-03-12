@@ -102,3 +102,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+# DB volume
+dockers/mariadb/data/db/mysql/*
+!*.dockers/mariadb/data/db/mysql/readme.md

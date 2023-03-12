@@ -1,37 +1,79 @@
-const principalDiv = document.querySelector("#root"); //? Contenedor principal.
+// const principalDiv = document.querySelector("#root"); //? Contenedor principal.
 
-const carouselDiv = document.createElement("div"); //div para carrusel
-const container = document.createElement('div'); //div para header
-const buttonsTravelDiv = document.createElement("div"); //div para botones
+import Fetch from 'fetch-simulator';
+Fetch.use();
 
-const itineraryListDiv = document.createElement("div"); //? Contenedor padre donde se guardan los itinerarios de las actividades.
+fetch.addRoute('https://somekindofserver.com/travel/2', {
+    get: {
+        response: [{
+            trip: {
+                title: "Viaje a Madrid",
+                participants: ["Diego", "Aram", "Jorge", "Carmen"],
+                state: "En curso",
+                budget: 2000.54,
+                days: [
+                    {
+                        date: "Día 23/03/2023",
+                        activities: [
+                            {
+                                id: 1,
+                                title: "Visita al museo de cera.",
+                                budget: 255.45,
+                                type: "Museo",
+                                votes: 15,
+                                image: "https://ep01.epimg.net/verne/imagenes/2015/03/05/articulo/1425549987_841133_1425571033_noticia_normal.jpg",
+                                description: "Visita guiada al museo del prado de Madrid.",
+                                duration: "2 horas"
+                            },
+                            {
+                                id: 2,
+                                title: "Visita al parque del retiro.",
+                                budget: 24,
+                                type: "Monumentos públicos",
+                                votes: 10,
+                                image: "https://madridando.com/wp-content/uploads/2018/07/el-retiro.jpeg",
+                                description: "Vuelta de reconocimiento a la plaza de españa.",
+                                duration: "1 horas"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }]
+    }
+});
+
+// const itineraryListDiv = document.createElement("div"); //? Contenedor padre donde se guardan los itinerarios de las actividades.
+const itineraryListDiv = document.querySelector('#itinerary-list');
+
 const itineraryTitleDiv = document.createElement("div"); //? Contenedor para almacenar el titulo del itinerario.
 
-renderHeader();
-renderDivCarousel();
-renderButtonTravel();
-
 export function renderHeader() {
-    fetch("data.json")
+    const container = document.querySelector("#detallesviaje");
+
+    fetch("https://somekindofserver.com/travel/2")
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             const container_title = document.createElement('h1'); //? Titulo para el Viaje.
             const container_participants = document.createElement('h3'); //? Sub-titulo para los nombres de los participantes del viaje.
             const container_budget = document.createElement('h3'); //? Sub-titulo para el presupuesto del viaje.
             const container_state = document.createElement('h4'); //? Titulo pequeño para el estado del viaje.
-            container_title.innerText = data.trip.title;
-            container_participants.innerText = "Participantes: " + data.trip.participants;
-            container_budget.innerText = "Presupuesto: " + data.trip.budget + "€";
-            container_state.innerText = "Estado: " + data.trip.state;
+            container_title.innerText = data[0].trip.title;
+            container_participants.innerText = "Participantes: " + data[0].trip.participants;
+            container_budget.innerText = "Presupuesto: " + data[0].trip.budget + "€";
+            container_state.innerText = "Estado: " + data[0].trip.state;
             container.appendChild(container_title);
             container.appendChild(container_state);
             container.appendChild(container_participants);
             container.appendChild(container_budget);
-            principalDiv.appendChild(container);
+            // principalDiv.appendChild(container);
         })
 }
 
 export function renderButtonTravel() {
+    const buttonsTravelDiv = document.querySelector("#detallesactividades");
+
     // Creamos los botones de editar y borrar un viaje.
     const editButtonTravel = document.createElement("button");
     editButtonTravel.innerText = "Editar Viaje";
@@ -56,20 +98,23 @@ export function renderButtonTravel() {
     buttonsTravelDiv.appendChild(editButtonTravel);
     buttonsTravelDiv.appendChild(deleteButtonTravel);
     buttonsTravelDiv.appendChild(createButtonActivity);
-    principalDiv.appendChild(buttonsTravelDiv);
+    // principalDiv.appendChild(buttonsTravelDiv);
 }
 
 export function renderDivCarousel() {
-    fetch("data.json")
+    const carouselDiv = document.querySelector("#carruselitinerario");
+
+    fetch("https://somekindofserver.com/travel/2")
         .then(response => response.json())
         .then(data => {
-            data.trip.days.forEach((day, index) => {
+            console.log(data);
+            data[0].trip.days.forEach((day, index) => {
                 const dayItem = document.createElement("div"); //? Contenedor para almacenar los datos de cada día de un viaje.
                 dayItem.classList.add("day-item");
                 dayItem.innerHTML = `<h2>${day.date}</h2>`;
                 dayItem.dataset.index = index;
                 carouselDiv.appendChild(dayItem); //? Agregar al contendor padre del HTML cada contenedor (día) que tiene el viaje.
-                carouselDiv.classList.add("carousel-item");
+                carouselDiv.classList.add("carousel-item", "active");
                 const activitiesDiv = document.createElement("div"); //? Contenedor para almacenar actividades dentro de cada día.
                 activitiesDiv.innerText = `ACTIVIDADES: `;
                 dayItem.appendChild(activitiesDiv);
@@ -94,18 +139,23 @@ export function renderDivCarousel() {
                     activityList.appendChild(activityItem);
                     activitiesDiv.appendChild(activityList);
                 });
-                principalDiv.appendChild(carouselDiv);
+                // principalDiv.appendChild(carouselDiv);
             });
+
+
             function handleDayClick(event) {
                 deleteSpecificNode(itineraryListDiv); //? Borrar el itinerario primero para luego crear el nuevo.
                 const dayItem = event.target.closest(".day-item"); //? Buscar elemento más cercano con la clase ".day-item". Almacenarlo en una constante.
+
                 if (dayItem && event.target.tagName !== "BUTTON") {
                     //! Obtener el día seleccionado y sus datos asociados a través del índice del elemento HTML seleccionado.
                     const dayIndex = dayItem.dataset.index;
-                    const day = data.trip.days[dayIndex];
+                    const day = data[0].trip.days[dayIndex];
                     updateItineraryView(day);
                 }
             }
+
+            
             carouselDiv.addEventListener("click", handleDayClick);
         })
 }
@@ -120,7 +170,7 @@ function renderItinerary(day) {
         const activityItem = document.createElement("div");
         activityItem.innerHTML = `<h3>${activity.title} - ${activity.budget}€</h3><p>${activity.description}</p><p>Duración: ${activity.duration}</p>`;
         itineraryListDiv.appendChild(activityItem);
-        principalDiv.appendChild(itineraryListDiv);
+        // principalDiv.appendChild(itineraryListDiv);
     });
 }
 
