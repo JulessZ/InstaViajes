@@ -1,3 +1,17 @@
+// // Define una función para filtrar la lista de usuarios por el valor del campo "firstName"
+// function filterUsersByName(name) {
+//     return userList.filter(user => user.firstName.toLowerCase().includes(name.toLowerCase()));
+//   }
+  
+//   // Obtén la lista de usuarios filtrada
+//   const filteredUsers = filterUsersByName(searchInput.value);
+  
+//   // Pasa la lista filtrada a las funciones friendsList() y otherPeople()
+//   friendsList(filteredUsers, friendships, userLogged);
+//   otherPeople(filteredUsers, friendships, userLogged);
+  
+
+
 //Import fake-simulator for develop
 import Fetch from 'fetch-simulator';
 Fetch.use();
@@ -240,6 +254,36 @@ export function otherPeople(userId) {
     divRoot2.appendChild(friendListDiv);
 }
 
+//Function to create the top buttons
+export function buttons() {
+    let divRoot4 = document.getElementById('botonfiltroamigos');
+    // Create the first button
+    const button1 = document.createElement("button");
+    button1.textContent = "TODOS";
+
+    // Create the second button
+    const button2 = document.createElement("button");
+    button2.textContent = "RECIENTES";
+
+    // Create a container div for the buttons
+    const buttonsDiv = document.createElement("div");
+    buttonsDiv.appendChild(button1);
+    buttonsDiv.appendChild(button2);
+
+    // Create the search input
+    const searchInput = document.createElement("input");
+    searchInput.type = "text";
+    searchInput.placeholder = "Buscar";
+
+    // Create a container div for the search input
+    const searchDiv = document.createElement("div");
+    searchDiv.appendChild(searchInput);
+
+    // Add the buttons and search divs to the root div
+    divRoot4.appendChild(buttonsDiv);
+    divRoot4.appendChild(searchDiv);
+}
+
 export function friendsRequests(userId) {
 
     let divRoot3 = document.getElementById('peticionesamigos');
@@ -303,35 +347,7 @@ export function friendsRequests(userId) {
     // Add list of pending requests to the DOM
     divRoot3.appendChild(pendingListDiv);
 }
-//Function to create the top buttons
-export function buttons() {
-    let divRoot4 = document.getElementById('botonfiltroamigos');
-    // Create the first button
-    const button1 = document.createElement("button");
-    button1.textContent = "TODOS";
 
-    // Create the second button
-    const button2 = document.createElement("button");
-    button2.textContent = "RECIENTES";
-
-    // Create a container div for the buttons
-    const buttonsDiv = document.createElement("div");
-    buttonsDiv.appendChild(button1);
-    buttonsDiv.appendChild(button2);
-
-    // Create the search input
-    const searchInput = document.createElement("input");
-    searchInput.type = "text";
-    searchInput.placeholder = "Buscar";
-
-    // Create a container div for the search input
-    const searchDiv = document.createElement("div");
-    searchDiv.appendChild(searchInput);
-
-    // Add the buttons and search divs to the root div
-    divRoot4.appendChild(buttonsDiv);
-    divRoot4.appendChild(searchDiv);
-}
 //Functions to manage friends request
 export function manageFriendRequest(friendshipId, state) {
     //If the petition is accepted, send a PUT fetch, if not send a DELETE fetch
