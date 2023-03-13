@@ -1,0 +1,94 @@
+.style-form-title{
+    text-align: center;
+    margin-top: 75px;
+}
+
+#formcrearactividades{
+    form{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 50px;
+
+        div{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 100%;
+            padding: 5px;
+            padding-bottom: 15px;
+            label{
+                padding-bottom: 10px;
+                width: 100%;
+            }
+
+            input{
+                width: 100%;
+            }
+
+            textarea{
+                width: 100%;
+            }
+        }
+
+        .style-time{
+            display: flex;
+            width: 100%;
+            div{
+                display: flex;
+                width: 50%;
+            }
+        }
+
+        .style-buttons-create{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            margin-top: 50px;
+
+            div{
+                display: flex;
+                justify-content: flex-end;
+                button{
+                    width: 100%;
+                    margin: 5px;
+                }
+            }
+
+            div:nth-child(1){
+                width: 30%;
+            }
+
+            div:nth-child(2){
+                width: 20%;
+            }
+        }
+    }
+}
+
+@media (max-width:960px) {
+    
+    .style-form-title{
+        margin-left: 10px;
+        text-align: left;
+    }
+
+    #formcrearactividades{
+        form{
+            padding:10px;
+
+            .style-buttons-create{
+                div:nth-child(1){
+                    width: 55%;
+                }
+    
+                div:nth-child(2){
+                    width: 45%;
+                }
+            }
+        }
+    }
+}

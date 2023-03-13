@@ -4,19 +4,21 @@
         flex-direction: column;
         flex-wrap: wrap;
         width: 100%;
-        padding:50px;
+        padding:10px;
         div{
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             width: 100%;
+            padding: 5px;
+            padding-bottom: 15px;
             label{
+                padding-bottom: 10px;
                 width: 100%;
             }
 
             input{
                 width: 100%;
-                margin: 5px;
             }
 
             textarea{
@@ -47,17 +49,37 @@
         .style-friends{
             display: flex;
             width: 100%;
+
             div{
                 display: flex;
                 width: 100%;
                 flex-wrap: wrap;
+                label{
+                    display: flex;
+                    align-items: center;
+                    background-color: #f2f2f2;
+                    width: 100%;
+                    padding: 15px;
+                    margin-bottom: 10px;
+                }
             }
 
             .style-friends-invited{
                 display: flex;
                 width: 100%;
                 div{
-                    width: 10%;
+                    background-position: center;
+                    background-size: cover;
+                    background-image: url('https://freesvg.org/img/icon_user_whiteongrey.png');
+                    width: 20%;
+                    height: 50px;
+                    margin: 5px;
+                    box-shadow: 0px 0px 2.5px 2.5px #f2f2f2;
+                    border-radius: 100%;
+                }
+
+                div:hover{
+                    cursor: pointer;
                 }
             }
 
@@ -65,7 +87,21 @@
                 display: flex;
                 width: 100%;
                 div{
-                    width: 50%;
+                    display: flex;
+                    padding: 10px;
+                    justify-content: center;
+                    align-items: center;
+                    width: 49%;
+                    background-color: #f2f2f2;
+                    cursor: pointer;
+                    margin: 1px;
+
+                    div{
+                        width: 50%;
+                        img{
+                            width: 100%;
+                        }
+                    }
                 }
             }
         }
@@ -87,6 +123,8 @@
     
     #formcrearviajes{
         form{
+            padding:50px;
+
             .style-location{
                 display: flex;
                 width: 100%;
@@ -106,6 +144,7 @@
 
             .style-budget{
                 display: flex;
+                align-items: center;
                 width: 100%;
                 div{
                     width: 100%;
@@ -116,12 +155,38 @@
             }
 
             .style-friends{
+
+                .style-friends-invited{
+                    display: flex;
+                    width: 100%;
+                    div{
+                        background-position: center;
+                        background-size: cover;
+                        background-image: url('https://freesvg.org/img/icon_user_whiteongrey.png');
+                        width: 5%;
+                        height: 50px;
+                        box-shadow: 0px 0px 2.5px 2.5px #f2f2f2;
+                        border-radius: 100%;
+                    }
+                }
+
                 .style-friends-searched{
                     display: flex;
                     width: 100%;
                     div{
-                        overflow: hidden;
-                        width: 25%;
+                        display: flex;
+                        padding: 10px;
+                        justify-content: space-around;
+                        align-items: center;
+                        width: 24.6%;
+                        background-color: #f2f2f2;
+                        cursor: pointer;
+                        margin: 1px;
+                        div{
+                            img{
+                                width: 125px;
+                            }
+                        }
                     }
                 }
             }

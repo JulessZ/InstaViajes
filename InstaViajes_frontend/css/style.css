@@ -1,25 +1,103 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Esteban&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hind:wght@400;600&display=swap");
-#formcrearviajes form {
+.style-form-title {
+  text-align: center;
+  margin-top: 75px;
+}
+
+#formcrearactividades form {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   width: 100%;
   padding: 50px;
 }
+#formcrearactividades form div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 5px;
+  padding-bottom: 15px;
+}
+#formcrearactividades form div label {
+  padding-bottom: 10px;
+  width: 100%;
+}
+#formcrearactividades form div input {
+  width: 100%;
+}
+#formcrearactividades form div textarea {
+  width: 100%;
+}
+#formcrearactividades form .style-time {
+  display: flex;
+  width: 100%;
+}
+#formcrearactividades form .style-time div {
+  display: flex;
+  width: 50%;
+}
+#formcrearactividades form .style-buttons-create {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin-top: 50px;
+}
+#formcrearactividades form .style-buttons-create div {
+  display: flex;
+  justify-content: flex-end;
+}
+#formcrearactividades form .style-buttons-create div button {
+  width: 100%;
+  margin: 5px;
+}
+#formcrearactividades form .style-buttons-create div:nth-child(1) {
+  width: 30%;
+}
+#formcrearactividades form .style-buttons-create div:nth-child(2) {
+  width: 20%;
+}
+
+@media (max-width: 960px) {
+  .style-form-title {
+    margin-left: 10px;
+    text-align: left;
+  }
+  #formcrearactividades form {
+    padding: 10px;
+  }
+  #formcrearactividades form .style-buttons-create div:nth-child(1) {
+    width: 55%;
+  }
+  #formcrearactividades form .style-buttons-create div:nth-child(2) {
+    width: 45%;
+  }
+}
+#formcrearviajes form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 10px;
+}
 #formcrearviajes form div {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
+  padding: 5px;
+  padding-bottom: 15px;
 }
 #formcrearviajes form div label {
+  padding-bottom: 10px;
   width: 100%;
 }
 #formcrearviajes form div input {
   width: 100%;
-  margin: 5px;
 }
 #formcrearviajes form div textarea {
   width: 100%;
@@ -51,19 +129,50 @@
   width: 100%;
   flex-wrap: wrap;
 }
+#formcrearviajes form .style-friends div label {
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
+}
 #formcrearviajes form .style-friends .style-friends-invited {
   display: flex;
   width: 100%;
 }
 #formcrearviajes form .style-friends .style-friends-invited div {
-  width: 10%;
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://freesvg.org/img/icon_user_whiteongrey.png");
+  width: 20%;
+  height: 50px;
+  margin: 5px;
+  box-shadow: 0px 0px 2.5px 2.5px #f2f2f2;
+  border-radius: 100%;
+}
+#formcrearviajes form .style-friends .style-friends-invited div:hover {
+  cursor: pointer;
 }
 #formcrearviajes form .style-friends .style-friends-searched {
   display: flex;
   width: 100%;
 }
 #formcrearviajes form .style-friends .style-friends-searched div {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 49%;
+  background-color: #f2f2f2;
+  cursor: pointer;
+  margin: 1px;
+}
+#formcrearviajes form .style-friends .style-friends-searched div div {
   width: 50%;
+}
+#formcrearviajes form .style-friends .style-friends-searched div div img {
+  width: 100%;
 }
 #formcrearviajes form .style-buttons-create {
   display: flex;
@@ -77,6 +186,9 @@
 }
 
 @media (min-width: 960px) {
+  #formcrearviajes form {
+    padding: 50px;
+  }
   #formcrearviajes form .style-location {
     display: flex;
     width: 100%;
@@ -94,6 +206,7 @@
   }
   #formcrearviajes form .style-budget {
     display: flex;
+    align-items: center;
     width: 100%;
   }
   #formcrearviajes form .style-budget div {
@@ -102,13 +215,35 @@
   #formcrearviajes form .style-budget input {
     width: 75%;
   }
+  #formcrearviajes form .style-friends .style-friends-invited {
+    display: flex;
+    width: 100%;
+  }
+  #formcrearviajes form .style-friends .style-friends-invited div {
+    background-position: center;
+    background-size: cover;
+    background-image: url("https://freesvg.org/img/icon_user_whiteongrey.png");
+    width: 5%;
+    height: 50px;
+    box-shadow: 0px 0px 2.5px 2.5px #f2f2f2;
+    border-radius: 100%;
+  }
   #formcrearviajes form .style-friends .style-friends-searched {
     display: flex;
     width: 100%;
   }
   #formcrearviajes form .style-friends .style-friends-searched div {
-    overflow: hidden;
-    width: 25%;
+    display: flex;
+    padding: 10px;
+    justify-content: space-around;
+    align-items: center;
+    width: 24.6%;
+    background-color: #f2f2f2;
+    cursor: pointer;
+    margin: 1px;
+  }
+  #formcrearviajes form .style-friends .style-friends-searched div div img {
+    width: 125px;
   }
   #formcrearviajes form .style-buttons-create {
     display: flex;
@@ -118,6 +253,252 @@
     width: 100%;
   }
   #formcrearviajes form .style-buttons-create div {
+    width: auto;
+  }
+}
+#formeditaractividades form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 50px;
+}
+#formeditaractividades form div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 5px;
+  padding-bottom: 15px;
+}
+#formeditaractividades form div label {
+  padding-bottom: 10px;
+  width: 100%;
+}
+#formeditaractividades form div input {
+  width: 100%;
+}
+#formeditaractividades form div textarea {
+  width: 100%;
+}
+#formeditaractividades form .style-time {
+  display: flex;
+  width: 100%;
+}
+#formeditaractividades form .style-time div {
+  display: flex;
+  width: 50%;
+}
+#formeditaractividades form .style-buttons-create {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin-top: 50px;
+}
+#formeditaractividades form .style-buttons-create div {
+  display: flex;
+  justify-content: flex-end;
+}
+#formeditaractividades form .style-buttons-create div button {
+  width: 100%;
+  margin: 5px;
+}
+#formeditaractividades form .style-buttons-create div:nth-child(1) {
+  width: 30%;
+}
+#formeditaractividades form .style-buttons-create div:nth-child(2) {
+  width: 20%;
+}
+
+@media (max-width: 960px) {
+  #formeditaractividades form {
+    padding: 10px;
+  }
+  #formeditaractividades form .style-buttons-create div:nth-child(1) {
+    width: 55%;
+  }
+  #formeditaractividades form .style-buttons-create div:nth-child(2) {
+    width: 45%;
+  }
+}
+#formeditarviajes form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 10px;
+}
+#formeditarviajes form div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 5px;
+  padding-bottom: 15px;
+}
+#formeditarviajes form div label {
+  padding-bottom: 10px;
+  width: 100%;
+}
+#formeditarviajes form div input {
+  width: 100%;
+}
+#formeditarviajes form div textarea {
+  width: 100%;
+}
+#formeditarviajes form .style-dates {
+  display: flex;
+  width: 100%;
+}
+#formeditarviajes form .style-dates div {
+  display: flex;
+  width: 50%;
+}
+#formeditarviajes form .style-budget {
+  display: flex;
+  width: 100%;
+}
+#formeditarviajes form .style-budget div {
+  width: 100%;
+}
+#formeditarviajes form .style-budget input {
+  width: 75%;
+}
+#formeditarviajes form .style-friends {
+  display: flex;
+  width: 100%;
+}
+#formeditarviajes form .style-friends div {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+#formeditarviajes form .style-friends div label {
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+#formeditarviajes form .style-friends .style-friends-invited {
+  display: flex;
+  width: 100%;
+}
+#formeditarviajes form .style-friends .style-friends-invited div {
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://freesvg.org/img/icon_user_whiteongrey.png");
+  width: 20%;
+  height: 50px;
+  margin: 5px;
+  box-shadow: 0px 0px 2.5px 2.5px #f2f2f2;
+  border-radius: 100%;
+}
+#formeditarviajes form .style-friends .style-friends-invited div:hover {
+  cursor: pointer;
+}
+#formeditarviajes form .style-friends .style-friends-searched {
+  display: flex;
+  width: 100%;
+}
+#formeditarviajes form .style-friends .style-friends-searched div {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 49%;
+  background-color: #f2f2f2;
+  cursor: pointer;
+  margin: 1px;
+}
+#formeditarviajes form .style-friends .style-friends-searched div div {
+  width: 50%;
+}
+#formeditarviajes form .style-friends .style-friends-searched div div img {
+  width: 100%;
+}
+#formeditarviajes form .style-buttons-create {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+#formeditarviajes form .style-buttons-create div {
+  width: auto;
+}
+
+@media (min-width: 960px) {
+  #formeditarviajes form {
+    padding: 50px;
+  }
+  #formeditarviajes form .style-location {
+    display: flex;
+    width: 100%;
+  }
+  #formeditarviajes form .style-location div {
+    display: flex;
+    width: 50%;
+  }
+  #formeditarviajes form .style-desc {
+    display: flex;
+    width: 100%;
+  }
+  #formeditarviajes form .style-desc div {
+    width: 50%;
+  }
+  #formeditarviajes form .style-budget {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  #formeditarviajes form .style-budget div {
+    width: 100%;
+  }
+  #formeditarviajes form .style-budget input {
+    width: 75%;
+  }
+  #formeditarviajes form .style-friends .style-friends-invited {
+    display: flex;
+    width: 100%;
+  }
+  #formeditarviajes form .style-friends .style-friends-invited div {
+    background-position: center;
+    background-size: cover;
+    background-image: url("https://freesvg.org/img/icon_user_whiteongrey.png");
+    width: 5%;
+    height: 50px;
+    box-shadow: 0px 0px 2.5px 2.5px #f2f2f2;
+    border-radius: 100%;
+  }
+  #formeditarviajes form .style-friends .style-friends-searched {
+    display: flex;
+    width: 100%;
+  }
+  #formeditarviajes form .style-friends .style-friends-searched div {
+    display: flex;
+    padding: 10px;
+    justify-content: space-around;
+    align-items: center;
+    width: 24.6%;
+    background-color: #f2f2f2;
+    cursor: pointer;
+    margin: 1px;
+  }
+  #formeditarviajes form .style-friends .style-friends-searched div div img {
+    width: 125px;
+  }
+  #formeditarviajes form .style-buttons-create {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+  }
+  #formeditarviajes form .style-buttons-create div {
     width: auto;
   }
 }
