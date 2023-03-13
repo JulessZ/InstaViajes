@@ -13,56 +13,22 @@ import { home as homeTemplate } from './plantillas/home.js';
 import { amigos as amigosTemplate } from './plantillas/amigos.js';
 
 // Importaciones de los métodos de render de cada vista
-
-// HOME
-import { renderIndex as homeView } from './vistas/home/javaIndex.js';
-import { renderIndex as homeSideView } from './vistas/home/javaIndexLog.js'
-
-// LOGIN
-import { render as renderLogin } from './vistas/login/login.js';
-
-// AMIGOS
-import { showData as renderFriends } from './vistas/amigos/feature-friends.js';
-
-// MIS VIAJES
-import { getMisViajesData as renderMisViajes } from './vistas/mis-viajes/mis-viajes.js';
-
-// DETALLES DE UN VIAJE
-import { renderHeader as renderHeaderDetallesViajes } from './vistas/detallesviaje/travel-show.js';
-import { renderButtonTravel as renderButtonDetallesViajes } from './vistas/detallesviaje/travel-show.js';
-import { renderDivCarousel as renderCarouselDetallesViajes } from './vistas/detallesviaje/travel-show.js';
-
+import * as View from './viewImports.js';
 
 //importacion del css
 import './css/style.css';
-
-// Sistema ruta antiguo
-// const routes = {
-//   '/': login,
-//   '/registro': registro,
-//   '/passwordreset': passwordreset,
-//   '/home': home,
-//   '/perfil': perfil,
-//   '/detallesviaje': detallesviaje,
-//   '/misviajes': misviajes,
-//   '/amigos': amigos,
-//   '/crearactividades': crearactividades,
-//   '/crearviaje': crearviaje,
-//   '/editarviaje': editarviaje,
-//   '/editaractividades': editaractividades
-// }
 
 // Sistema ruta nuevo
 const routes = {
   "/": {
     pathname: '/',
     template: loginTemplate,
-    views: [renderLogin]
+    views: [View.renderLogin]
   },
   login: {
     pathname: '/login',
     template: loginTemplate,
-    views: [renderLogin]
+    views: [View.renderLogin]
   },
   // registro: {
   //   pathname: '/registro',
@@ -77,7 +43,7 @@ const routes = {
   home: {
     pathname: '/home',
     template: homeTemplate,
-    views: [homeView, homeSideView]
+    views: [View.homeView, View.homeSideView]
   },
   // perfil: {
   //   pathname: '/home',
@@ -87,17 +53,17 @@ const routes = {
   detallesviaje: {
     pathname: '/detallesviaje',
     template: detallesViajeTemplate,
-    views: [renderButtonDetallesViajes, renderCarouselDetallesViajes, renderHeaderDetallesViajes]
+    views: [View.renderButtonDetallesViajes, View.renderCarouselDetallesViajes, View.renderHeaderDetallesViajes]
   },
   misviajes: {
     pathname: '/misviajes',
     template: misViajesTemplate,
-    views: [renderMisViajes]
+    views: [View.renderMisViajes]
   },
   amigos: {
     pathname: '/amigos',
     template: amigosTemplate,
-    views: [renderFriends]
+    views: [View.renderFriends]
   },
   // crearactividades: {
   //   pathname: '/crearactividades',
@@ -178,4 +144,5 @@ window.onpopstate = () => {
 
 }
 
+// Hacemos que onNavigate sea usable globalmente
 window.onNavigate = onNavigate;
