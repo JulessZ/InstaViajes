@@ -192,6 +192,8 @@ function generateCreateTravelForm(idToAppend) {
         const friendsSearch = document.createElement('input');
         const divMainSearch = document.createElement('div');
         divMainSearch.className = 'style-friends-searched';
+        const friendsError = document.createElement('span');
+        friendsError.id = 'friend-error';
         friendsSearch.setAttribute('type', 'search');
         // TODO: Friends List / Searcher
 
@@ -285,6 +287,7 @@ function generateCreateTravelForm(idToAppend) {
     divFriendOnTrip.appendChild(divStyleFriends);
     divFriendOnTrip.appendChild(friendsSearch);
     friendsContainer.appendChild(divMainSearch);
+    friendsContainer.appendChild(friendsError);
 
         // Buttons Container
         const buttonsContainer = document.createElement("div");
@@ -353,6 +356,9 @@ function validateForm() {
     }
     if (!description.value) {
         generateError("description-error", "Tiene que haber una descripción");
+    }
+    if (usuariosEnViaje.length == 0) {
+        generateError("friend-error", "Tiene que invitar mínimo a 1 amigo al viaje.");
     }
     // Checks if there are any errors in the form. If there are not, fetch to server is done.
     if (verifyErrors()) {
