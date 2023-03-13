@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('test', function() {
+Route::get('test', function () {
     return 'Prueba de endpoint llamado test';
+});
+
+
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('logout', [AuthController::class, 'logout']);
 });
