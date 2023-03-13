@@ -8,7 +8,7 @@ const trip1 = {
     destination: "Lisboa",
     description: "El viaje consistirá en un mes de blablablalbal",
     budget: 3000,
-    estado: 'abierto',
+    estado: 'zbierto',
     //Var to introduce friends into the trip
     friendsOnTrip : [
         {id: 1, image: 'imageDiegoB.png' },
@@ -32,6 +32,9 @@ const friends = [
 const editContainer = document.querySelector('#form-editar-viajes');
 //Div mains of searcher realted to friends
 const divMainSearch = document.createElement('div');
+//Adding to the img Main Search parent the classname necessary
+divMainSearch.className = 'style-friends-searched';
+//Const to the friends parent
 const friendsOnTrip = document.createElement('div');
 
 //Function to create edit-Form
@@ -40,14 +43,24 @@ function editForm(object) {
     if (object.estado == 'en curso') {
         //Create elements
         const form = document.createElement('form');
+        const divName = document.createElement('div');
         const labelName = document.createElement('label');
         const name = document.createElement('input');
+        const divDates = document.createElement('div');
+        const divDateEnd = document.createElement('div');
         const labelDateEnd = document.createElement('label');
         const dateEnd = document.createElement('input');
+        const divBudgetMain = document.createElement('div');
+        const divBudget = document.createElement('div');
+        const divLabelBudget = document.createElement('div');
         const labelBudget = document.createElement('label');
         const budget = document.createElement('input');
         const budgetValue = document.createElement('span');
+        const divButtons = document.createElement('div');
+        const divSubmit = document.createElement('div');
         const submitButton = document.createElement('input');
+        const divCancel = document.createElement('div');
+        const cancelButton = document.createElement('input');
 
         //Setting the attributes to the different elements
         form.id = 'formEdit';
@@ -61,6 +74,7 @@ function editForm(object) {
         name.value = object.name;
         name.id = 'nameTrip';
 
+        divDates.className = 'style-dates';
         labelDateEnd.setAttribute('for', 'dateEnd');
         labelDateEnd.textContent = 'Fecha Final';
 
@@ -70,6 +84,8 @@ function editForm(object) {
         dateEnd.value = object.dateEnd;
         dateEnd.id = 'dateEndTrip';
 
+        divBudgetMain.className = 'style-desc';
+        divBudget.className = 'style-budget';
         labelBudget.setAttribute('for', 'budget');
         labelBudget.textContent = 'Presupuesto Aproximado';
 
@@ -84,22 +100,38 @@ function editForm(object) {
         });
         budget.id = 'budgetTrip';
 
+        divButtons.className = 'style-buttons-create';
+
         submitButton.type = 'submit';
         submitButton.value = 'Editar viaje';
 
+        cancelButton.type = 'reset';
+        cancelButton.value = 'Cancelar';
+
         //Inserting the elements into de html
         editContainer.appendChild(form);
-        form.appendChild(labelName);
-        form.appendChild(name);
+        form.appendChild(divName);
+        divName.appendChild(labelName);
+        divName.appendChild(name);
 
-        form.appendChild(labelDateEnd);
-        form.appendChild(dateEnd);
+        form.appendChild(divDates);
+        divDates.appendChild(divDateEnd);
+        divDateEnd.appendChild(labelDateEnd);
+        divDateEnd.appendChild(dateEnd);
 
-        form.appendChild(labelBudget);
-        form.appendChild(budget);
-        form.appendChild(budgetValue);
+        form.appendChild(divBudgetMain);
+        divBudgetMain.appendChild(divBudget);
+        divBudget.appendChild(divLabelBudget);
+        divLabelBudget.appendChild(labelBudget);
+        divBudget.appendChild(budget);
+        divBudget.appendChild(budgetValue);
 
-        form.appendChild(submitButton);
+        form.appendChild(divButtons);
+        divButtons.appendChild(divSubmit);
+        divButtons.appendChild(divCancel);
+        divSubmit.appendChild(submitButton);
+        divButtons.appendChild(divCancel);
+        divCancel.appendChild(cancelButton);
 
     } else {
         //Elements of the form and form
@@ -121,7 +153,7 @@ function editForm(object) {
         const labelDestination = document.createElement('label');
         const divDestination = document.createElement('div');
         const destination = document.createElement('input');
-        const divTexBud = document.createElement('div');
+        const divDesBud = document.createElement('div');
         const divDescription = document.createElement('div');
         const labelDescription = document.createElement('label');
         const description = document.createElement('textarea');
@@ -130,9 +162,13 @@ function editForm(object) {
         const labelBudget = document.createElement('label');
         const budget = document.createElement('input');
         const budgetValue = document.createElement('span');
+        const divStyleFriends = document.createElement('div');
         const labelFriendSearch = document.createElement('label');
         const friendsSearch = document.createElement('input');
+        const divButtons = document.createElement('div');
+        const divSubmit = document.createElement('div');
         const submitButton = document.createElement('input');
+        const divCancel = document.createElement('div');
         const cancelButton = document.createElement('input');
 
 
@@ -148,6 +184,8 @@ function editForm(object) {
         name.value = object.name;
         name.id = 'nameTrip';
 
+
+        divDates.className = 'style-dates';
         labelDate.setAttribute('for', 'date');
         labelDate.textContent = 'Fecha de Inicio'
 
@@ -166,6 +204,7 @@ function editForm(object) {
         dateEnd.value = object.dateEnd;
         dateEnd.id = 'dateEndTrip';
 
+        divOriDes.className = 'style-location';
         labelOrigin.setAttribute('for', 'origin');
         labelOrigin.textContent = 'Origen';
 
@@ -184,6 +223,7 @@ function editForm(object) {
         destination.value = object.destination;
         destination.id = 'destinationTrip';
 
+        divDesBud.className = 'style-desc';
         labelDescription.setAttribute('for', 'description');
         labelDescription.textContent = 'Descripción del Viaje';
 
@@ -193,6 +233,7 @@ function editForm(object) {
         description.textContent = object.description;
         description.id = 'descriptionTrip';
 
+        divBudget.className = 'style-budget';
         labelBudget.setAttribute('for', 'budget');
         labelBudget.textContent = 'Presupuesto Aproximado';
 
@@ -227,6 +268,10 @@ function editForm(object) {
             }
         });
 
+        divStyleFriends.className = 'style-friends-searched';
+
+        divButtons.className = 'style-buttons-create';
+
         submitButton.type = 'submit';
         submitButton.value = 'Editar viaje';
 
@@ -239,34 +284,47 @@ function editForm(object) {
         divName.appendChild(labelName);
         divName.appendChild(name);
 
-        form.appendChild(labelDate);
-        form.appendChild(date);
+        form.appendChild(divDates);
+        divDates.appendChild(divDate);
+        divDate.appendChild(labelDate);
+        divDate.appendChild(date);
 
-        form.appendChild(labelDateEnd);
-        form.appendChild(dateEnd);
+        divDates.appendChild(divDateEnd);
+        divDateEnd.appendChild(labelDateEnd);
+        divDateEnd.appendChild(dateEnd);
 
-        form.appendChild(labelOrigin);
-        form.appendChild(origin);
+        form.appendChild(divOriDes);
+        divOriDes.appendChild(divOrigin);
+        divOrigin.appendChild(labelOrigin);
+        divOrigin.appendChild(origin);
 
-        form.appendChild(labelDestination);
-        form.appendChild(destination);
+        divOriDes.appendChild(divDestination);
+        divDestination.appendChild(labelDestination);
+        divDestination.appendChild(destination);
 
-        form.appendChild(labelDescription);
-        form.appendChild(description);
+        form.appendChild(divDesBud);
+        divDesBud.appendChild(divDescription);
+        divDescription.appendChild(labelDescription);
+        divDescription.appendChild(description);
 
-        form.appendChild(labelBudget);
-        form.appendChild(budget);
-        form.appendChild(budgetValue);
+        form.appendChild(divBudget);
+        divBudget.appendChild(divLabelBudget);
+        divLabelBudget.appendChild(labelBudget);
+        divBudget.appendChild(budget);
+        divBudget.appendChild(budgetValue);
 
+        form.appendChild(divStyleFriends);
+        divStyleFriends.appendChild(labelFriendSearch);
+        divStyleFriends.appendChild(friendsOnTrip);
+        divStyleFriends.appendChild(friendsSearch);
+        divStyleFriends.appendChild(divMainSearch);
 
-        form.appendChild(labelFriendSearch);
-        form.appendChild(friendsOnTrip);
-        form.appendChild(friendsSearch);
-        form.appendChild(divMainSearch);
-
-        form.appendChild(submitButton);
-
-        form.appendChild(cancelButton);
+        form.appendChild(divButtons);
+        divButtons.appendChild(divSubmit);
+        divButtons.appendChild(divCancel);
+        divSubmit.appendChild(submitButton);
+        divButtons.appendChild(divCancel);
+        divCancel.appendChild(cancelButton);
 
         updateTripFriends(object);
     }
@@ -325,10 +383,11 @@ function updateTripFriends (object) {
     removeAllChilds(friendsOnTrip);
     //Then we charge the elements in trip
     (object.friendsOnTrip).forEach(element => {
+        const imageDiv = document.createElement('div');
         const friendsOnTripImg = document.createElement('img');
-        friendsOnTripImg.id = element.id;
-        friendsOnTripImg.src = element.image;
-        friendsOnTrip.appendChild(friendsOnTripImg);
+        imageDiv.id = element.id;
+        imageDiv.style.backgroundImage = `url(`+element.image+`)`;
+        friendsOnTrip.appendChild(imageDiv);
 
         //Deleting the friends into the trip
         friendsOnTripImg.addEventListener('click', function () {
@@ -350,17 +409,28 @@ function searchOnTrip(element) {
 //Submit the edit-form
 document.getElementById('formEdit').addEventListener('submit', function (e) {
     e.preventDefault();
-    trip1.name = nameTrip.value;
-    trip1.date = dateTrip.value;
-    trip1.dateEnd = dateEndTrip.value;
-    trip1.origin = originTrip.value;
-    trip1.destination = destinationTrip.value;
-    trip1.description = descriptionTrip.value;
-    trip1.budget = budgetTrip.value;
-    Object.values(trip1).forEach(element => {
-        console.log(element);
-    });
-    //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
+    if (trip1.estado == 'abierto') {
+        trip1.name = nameTrip.value;
+        trip1.date = dateTrip.value;
+        trip1.dateEnd = dateEndTrip.value;
+        trip1.origin = originTrip.value;
+        trip1.destination = destinationTrip.value;
+        trip1.description = descriptionTrip.value;
+        trip1.budget = budgetTrip.value;
+        Object.values(trip1).forEach(element => {
+            console.log(element);
+        });
+        //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
 
     //      <-------------------------              ------------------------->
+    } else {
+        trip1.name = nameTrip.value;
+        trip1.dateEnd = dateEndTrip.value;
+        trip1.budget = budgetTrip.value;
+        Object.values(trip1).forEach(element => {
+            console.log(element);
+        });
+        //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
+    //      <-------------------------              ------------------------->
+    }
 });
