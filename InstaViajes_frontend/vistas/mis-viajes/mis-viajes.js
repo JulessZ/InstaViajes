@@ -8,7 +8,7 @@ export async function getMisViajesData() {
     const data = await fetchMisViajes.showMisViajesData();
     for (const [key, journeyData] of Object.entries(data)) {
         let journeyCard = document.createElement('div');
-
+        journeyCard.setAttribute("class","cajaSombra");
         //imagen del viaje
         let imgDiv = document.createElement('div');
         let img = document.createElement('img');

@@ -503,15 +503,120 @@
   }
 }
 #misviajeshome {
-  border: 1px solid black;
+  padding: 20px;
+  margin-top: 10%;
+  margin-right: 35px;
 }
-#misviajeshome div {
-  border: 1px solid black;
-  margin: 10px;
+#misviajeshome h1 {
+  margin-bottom: 30px;
+}
+#misviajeshome .tarjetaviajehome {
+  border-bottom: 2px solid #D3CFCF;
+  margin-bottom: 15px;
+}
+#misviajeshome .divFoot {
+  text-align: right;
 }
 #misviajeshome div img {
+  width: 30%;
+  height: 100px;
+  object-fit: cover;
+}
+#misviajeshome div div {
+  display: flex;
+}
+#misviajeshome div .divInfo {
+  display: block;
+  padding-left: 10px;
+}
+#misviajeshome div .divInfo h3 {
+  margin-left: 10px;
+}
+#misviajeshome div .divInfo span {
+  margin-left: 10px;
+}
+#misviajeshome div .divInfo .divUserDays {
+  margin-top: 25px;
+}
+
+#todosviajeshome {
+  display: block;
+  margin-top: 3%;
+}
+#todosviajeshome .imageuser {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
   border: 1px solid black;
-  width: 10px;
+  margin-left: 10px;
+}
+#todosviajeshome .imgViaje {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  object-position: 0px 50%;
+}
+#todosviajeshome .tarjetaviaje {
+  margin-bottom: 4%;
+}
+#todosviajeshome .infoViaje {
+  position: relative;
+  width: 50%;
+  margin-top: -150px;
+}
+#todosviajeshome .infoViaje .cajablancauno {
+  width: 50%;
+  margin: 10px;
+  border-radius: 10px 10px;
+  padding: 2px;
+  padding-top: 10px;
+  background-color: rgba(255, 255, 255, 0.671);
+}
+#todosviajeshome .infoViaje .cajablancauno h3 {
+  margin-left: 10px;
+}
+#todosviajeshome .infoViaje .cajablancauno div {
+  display: flex;
+}
+#todosviajeshome .infoViaje .cajablancados {
+  width: 50%;
+  margin: 10px;
+  border-radius: 10px 10px;
+  padding: 2px;
+  background-color: rgba(255, 255, 255, 0.671);
+}
+#todosviajeshome .infoViaje .cajablancados span {
+  margin-left: 10px;
+}
+
+@media only screen and (max-width: 960px) {
+  #todosviajeshome {
+    display: block;
+    margin-top: 3%;
+  }
+  #todosviajeshome .tarjetaviaje {
+    margin-bottom: 8%;
+  }
+  #todosviajeshome .infoViaje {
+    width: 80%;
+  }
+  #todosviajeshome .infoViaje .cajablancauno {
+    width: 65%;
+    background-color: rgba(255, 255, 255, 0.671);
+  }
+  #todosviajeshome .infoViaje .cajablancados {
+    width: 65%;
+    background-color: rgba(255, 255, 255, 0.671);
+  }
+}
+.misviajes {
+  display: flex;
+  margin-right: 10px;
+}
+.misviajes img {
+  width: 200px;
+  height: auto;
+  border-radius: 31px 31px 0px 0px;
 }
 
 .profile-image {
@@ -578,6 +683,7 @@ button {
 input {
   border-radius: 5px;
   border: 2px solid lightgray;
+  font-family: "Hind";
 }
 
 .logo {
@@ -599,4 +705,26 @@ input {
 input:focus {
   outline: none !important;
   border: 2px solid #0DDEB8;
+}
+
+body {
+  font-family: Esteban;
+}
+
+h1 {
+  font-family: Raleway;
+}
+
+h2 {
+  font-family: Esteban;
+}
+
+p {
+  font-family: "Hind";
+}
+
+.cajaSombra {
+  border: 1px solid #D3CFCF;
+  border-radius: 31px;
+  box-shadow: 0px 4px 2px #D3CFCF;
 }/*# sourceMappingURL=style.css.map */
