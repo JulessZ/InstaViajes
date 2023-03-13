@@ -45,11 +45,11 @@ const routes = {
     template: homeTemplate,
     views: [View.homeView, View.homeSideView]
   },
-  // perfil: {
-  //   pathname: '/home',
-  //   template: homeTemplate,
-  //   views: [homeView, homeSideView]
-  // },
+  perfil: {
+    pathname: '/perfil',
+    template: perfilTemplate,
+    views: [View.renderPerfil]
+  },
   detallesviaje: {
     pathname: '/detallesviaje',
     template: detallesViajeTemplate,
