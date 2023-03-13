@@ -212,4 +212,9 @@ function borrarNodo(nodo) {
         nodo.removeChild(nodo.firstChild);
       }
     }
-}
+  }
+  
+
+
+
+
