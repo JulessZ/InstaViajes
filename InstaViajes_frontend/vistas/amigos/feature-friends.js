@@ -1,3 +1,17 @@
+// // Define una función para filtrar la lista de usuarios por el valor del campo "firstName"
+// function filterUsersByName(name) {
+//     return userList.filter(user => user.firstName.toLowerCase().includes(name.toLowerCase()));
+//   }
+  
+//   // Obtén la lista de usuarios filtrada
+//   const filteredUsers = filterUsersByName(searchInput.value);
+  
+//   // Pasa la lista filtrada a las funciones friendsList() y otherPeople()
+//   friendsList(filteredUsers, friendships, userLogged);
+//   otherPeople(filteredUsers, friendships, userLogged);
+  
+
+
 //Import fake-simulator for develop
 import Fetch from 'fetch-simulator';
 Fetch.use();
