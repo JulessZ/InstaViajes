@@ -8,6 +8,7 @@ fetch.addRoute('https://somekindofserver.com/travel/2', {
             trip: {
                 title: "Viaje a Madrid",
                 participants: ["Diego", "Aram", "Jorge", "Carmen"],
+                boss: "Diego",
                 state: "En curso",
                 budget: 2000.54,
                 days: [
