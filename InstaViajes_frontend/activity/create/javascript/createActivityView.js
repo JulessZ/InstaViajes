@@ -130,7 +130,7 @@ export class createActivityView{
             priceDiv.appendChild(price);
 
             let inputPrice = document.createElement('input');
-            inputPrice.setAttribute('type', 'range');
+            inputPrice.setAttribute('type', 'text');
             inputPrice.setAttribute('id', 'inputPrice');
             priceDiv.appendChild(inputPrice);
 
