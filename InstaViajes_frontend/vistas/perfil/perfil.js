@@ -38,17 +38,20 @@ export function renderProfile() {
     subDivsRow.className = "row";
 
     let labelsDiv = document.createElement("div");
-    labelsDiv.className = "col-4 offset-2";
+    labelsDiv.className = "col-3 col-md-3 offset-2 offset-md-3 mt-1";
 
     let verticalLineDiv = document.createElement("div");
-    verticalLineDiv.className = "vertical-line col-1";
+    verticalLineDiv.className = "vertical-line col-1 offset-1 offset-md-0";
 
     let inputsDiv = document.createElement("div");
-    inputsDiv.className = "col-3";
+    inputsDiv.className = "col-1 col-md-3";
+
+    let submitDiv = document.createElement("div");
+    submitDiv.className = "col-6 offset-3 mt-5";
 
     //Elemento div del label usuario 
     let userLabelDiv = document.createElement("div");
-    userLabelDiv.className = "mt-4"
+    userLabelDiv.className = "mt-4";
 
     let userLabel = document.createElement("label");
     let userLabelText = document.createTextNode("Usuario");
@@ -70,8 +73,14 @@ export function renderProfile() {
     nameLabelDiv.className = "mt-4"
 
     let nameLabel = document.createElement("label");
-    let nameLabelText = document.createTextNode("Nombre completo");
+    let nameLabelText = document.createTextNode("Nombre");
+    let br = document.createElement("br");
+    let nameLabelTextDown = document.createTextNode("Completo");
+
     nameLabel.appendChild(nameLabelText);
+    nameLabel.appendChild(br);
+    nameLabel.appendChild(nameLabelTextDown);
+
     nameLabelDiv.appendChild(nameLabel)
     labelsDiv.appendChild(nameLabelDiv);
 
@@ -124,22 +133,23 @@ export function renderProfile() {
     inputsDiv.appendChild(passwordDiv);
 
     //Elemento div del submit
-    let submitDiv = document.createElement("div");
     let submitInput = document.createElement("input");
     submitInput.type = "submit";
     submitInput.value = "Guardar";
+    submitInput.className = "boton-secundario";
 
     submitDiv.appendChild(submitInput);
 
     //Append child del formulario
 
-    subDivsRow.appendChild(labelsDiv)
-    subDivsRow.appendChild(verticalLineDiv)
-    subDivsRow.appendChild(inputsDiv)
+    subDivsRow.appendChild(labelsDiv);
+    subDivsRow.appendChild(verticalLineDiv);
+    subDivsRow.appendChild(inputsDiv);
+    subDivsRow.appendChild(submitDiv);
 
-    profileForm.appendChild(subDivsRow)
+    profileForm.appendChild(subDivsRow);
 
-    profileDiv.appendChild(profileForm)
+    profileDiv.appendChild(profileForm);
 
     //Append child de los div
     fatherDiv.appendChild(imgDiv);
