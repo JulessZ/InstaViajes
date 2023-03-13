@@ -107,3 +107,10 @@ dist
 # DB volume
 dockers/mariadb/data/db/mysql/*
 !*.dockers/mariadb/data/db/mysql/readme.md
+
+
+# Sass
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
