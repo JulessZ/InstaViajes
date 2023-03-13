@@ -8,7 +8,7 @@ import { passwordreset as passwordResetTemplate } from './plantillas/passwordres
 import { perfil as perfilTemplate } from './plantillas/perfil.js';
 import { registro as registroTemplate } from '/plantillas/registro.js';
 import { editaractividades as editarActividadesTemplate } from './plantillas/editaractividades.js';
-import { editarviaje as editarViajeTemaplte } from './plantillas/editarviajes.js';
+import { editarviaje as editarViajeTemplate } from './plantillas/editarviajes.js';
 import { home as homeTemplate } from './plantillas/home.js';
 import { amigos as amigosTemplate } from './plantillas/amigos.js';
 
@@ -100,24 +100,24 @@ const routes = {
     views: [renderFriends]
   },
   // crearactividades: {
-  //   pathname: '/home',
-  //   template: homeTemplate,
-  //   views: [homeView, homeSideView]
+  //   pathname: '/crearactividades',
+  //   template: crearActividadesTemplate,
+  //   views: [null]
   // },
   // crearviaje: {
-  //   pathname: '/home',
-  //   template: homeTemplate,
-  //   views: [homeView, homeSideView]
+  //   pathname: '/crearviaje',
+  //   template: crearViajeTemplate,
+  //   views: [null]
   // },
   // editarviaje: {
-  //   pathname: '/home',
-  //   template: homeTemplate,
-  //   views: [homeView, homeSideView]
+  //   pathname: '/editarviaje',
+  //   template: editarViajeTemplate,
+  //   views: [null]
   // },
   // editaractividades: {
-  //   pathname: '/home',
-  //   template: homeTemplate,
-  //   views: [homeView, homeSideView]
+  //   pathname: '/editaractividades',
+  //   template: editarActividadesTemplate,
+  //   views: [null]
   // }
 };
 
