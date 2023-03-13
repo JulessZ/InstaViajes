@@ -115,5 +115,5 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: "172.25.0.0/16"
-          gateway: "172.25.0.1"
+        - subnet: "172.22.0.0/16"
+          gateway: "172.22.0.1"
