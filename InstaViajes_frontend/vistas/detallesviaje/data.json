@@ -1,0 +1,36 @@
+{
+    "trip":{
+        "title": "Viaje a Madrid",
+        "participants": ["Diego", "Aram", "Jorge", "Carmen"],
+        "state": "En curso",
+        "budget": 2000.54,
+        "days": [
+            {
+                "date": "Día 23/03/2023",
+                "activities": [
+                    {
+                        "id": 1,
+                        "title": "Visita al museo de cera.",
+                        "budget": 255.45,
+                        "type": "Museo",
+                        "votes": 15,
+                        "image":"https://ep01.epimg.net/verne/imagenes/2015/03/05/articulo/1425549987_841133_1425571033_noticia_normal.jpg",
+                        "description": "Visita guiada al museo del prado de Madrid.",
+                        "duration": "2 horas"
+                    },
+                    {
+                        "id": 2,
+                        "title": "Visita al parque del retiro.",
+                        "budget": 24,
+                        "type": "Monumentos públicos",
+                        "votes": 10,
+                        "image":"https://madridando.com/wp-content/uploads/2018/07/el-retiro.jpeg",
+                        "description": "Vuelta de reconocimiento a la plaza de españa.",
+                        "duration": "1 horas"
+                    }
+                ]
+            }
+           
+        ]
+    }
+}

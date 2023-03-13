@@ -1,4 +1,4 @@
-let misviajes = `
+ export let misviajes = `
 <div class="container">
         <div class="row">
             <div class="col">
@@ -6,7 +6,7 @@ let misviajes = `
                     <h1>Mis viajes</h1>
                 </div>
                 <!-- caja que contendra todos los viajes creados el usuario-->
-                <div class="border py-5" id="mis-viajes-misviajes">
+                <div class="border py-5" id="misviajesmisviajes">
 
                 </div>
             </div>
@@ -17,7 +17,7 @@ let misviajes = `
                     <h1>Tus viajes compartidos</h1>
                 </div>
                 <!-- caja que contendra todos los viajes compartidos con el usuario-->
-                <div class="border py-5" id="viajes-compartidos-misviajes">
+                <div class="border py-5" id="viajescompartidosmisviajes">
                     
                 </div>
             </div>
