@@ -1,10 +1,7 @@
 export let perfil = `
-<div class="container text-center" id="form-login">
-  <div class="row align-items-center" style="min-height: 100vh">
-    <div class="col-12">
+<div class="container text-center">
+  <div class="row" id="profile">
 
-
-    </div>
   </div>
 </div>
 `
