@@ -53,7 +53,7 @@ const routes = {
   detallesviaje: {
     pathname: '/detallesviaje',
     template: detallesViajeTemplate,
-    views: [View.renderButtonDetallesViajes, View.renderCarouselDetallesViajes, View.renderHeaderDetallesViajes]
+    views: [View.renderButtonDetallesViajes, View.renderCarouselDetallesViajes, View.renderHeaderDetallesViajes, View.renderPostDetallesViajes]
   },
   misviajes: {
     pathname: '/misviajes',
@@ -65,6 +65,11 @@ const routes = {
     template: amigosTemplate,
     views: [View.renderFriends]
   },
+  // crearPost: {
+  //   pathname: '/crearPost',
+  //   template: crearPostTemplate,
+  //   views: []
+  // },
   // crearactividades: {
   //   pathname: '/crearactividades',
   //   template: crearActividadesTemplate,

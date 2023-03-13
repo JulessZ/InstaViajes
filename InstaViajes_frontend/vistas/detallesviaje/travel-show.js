@@ -6,10 +6,22 @@ fetch.addRoute('https://somekindofserver.com/travel/2', {
     get: {
         response: [{
             trip: {
+                id: 300,
                 title: "Viaje a Madrid",
                 participants: ["Diego", "Aram", "Jorge", "Carmen"],
                 state: "En curso",
                 budget: 2000.54,
+                posts:[
+                    {
+                        post:[
+                            {
+                                id:6,
+                                img: "#",
+                                text: "Loren Ipsum"
+                            }
+                        ]
+                    }
+                ],
                 days: [
                     {
                         date: "Día 23/03/2023",
@@ -212,9 +224,21 @@ function borrarNodo(nodo) {
         nodo.removeChild(nodo.firstChild);
       }
     }
-  }
-  
+}
 
+//Función que renderiza los post que crea el usuario
+export function renderPost() {
+    const travelPostsDiv = document.querySelector("#postsViaje");
 
+    const addPostDiv = document.createElement("div");
+    addPostDiv.className = "mt-5";
 
-
+    const addPostButton = document.createElement("button");
+    addPostButton.className = "boton-principal";
+    const postButtonText = document.createTextNode("Agregar Post");
+    
+    addPostButton.appendChild(postButtonText);
+    addPostDiv.appendChild(addPostButton);
+    travelPostsDiv.appendChild(addPostDiv);
+    
+}
