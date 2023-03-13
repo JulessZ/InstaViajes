@@ -312,7 +312,7 @@ function editForm(object) {
         divDescription.appendChild(labelDescription);
         divDescription.appendChild(description);
 
-        form.appendChild(divBudget);
+        divDesBud.appendChild(divBudget);
         divBudget.appendChild(divLabelBudget);
         divLabelBudget.appendChild(labelBudget);
         divBudget.appendChild(budget);
