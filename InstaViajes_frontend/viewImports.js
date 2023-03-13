@@ -26,3 +26,6 @@ export { renderEditForm as renderEditarViaje } from './vistas/editarviaje/edit-t
 
 // PERFIL
 export { renderProfile as renderPerfil } from './vistas/perfil/perfil.js';
+
+//EDICIÓN DE UN VIAJE
+export { renderEditForm as renderEditarViaje } from './vistas/editarviaje/edit-travel.js';

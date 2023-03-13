@@ -32,6 +32,11 @@
         }
         .divUserDays{
             margin-top: 25px;
+            svg{
+                margin-top: 3px;
+                margin-left: 3px;
+                vertical-align: top;
+            }
         }
        }
     }
@@ -84,6 +89,12 @@
             span{
                 margin-left: 10px;
             }
+            svg{
+                margin-top: 3px;
+                margin-left: 3px;
+                vertical-align: top;
+            }
+            
         }
     }
     

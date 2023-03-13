@@ -1,8 +1,12 @@
 .misviajes{
     display: flex;
-    margin-right: 10px;
+    
+    .cajatarjeta{
+        margin-right:3%;
+        width: 25%;
+    }
     img{
-        width: 200px;
+        width: 100%;
         height:auto;
         border-radius: 31px 31px 0px 0px;
     }

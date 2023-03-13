@@ -538,6 +538,11 @@
 #misviajeshome div .divInfo .divUserDays {
   margin-top: 25px;
 }
+#misviajeshome div .divInfo .divUserDays svg {
+  margin-top: 3px;
+  margin-left: 3px;
+  vertical-align: top;
+}
 
 #todosviajeshome {
   display: block;
@@ -588,6 +593,11 @@
 #todosviajeshome .infoViaje .cajablancados span {
   margin-left: 10px;
 }
+#todosviajeshome .infoViaje .cajablancados svg {
+  margin-top: 3px;
+  margin-left: 3px;
+  vertical-align: top;
+}
 
 @media only screen and (max-width: 960px) {
   #todosviajeshome {
@@ -611,10 +621,13 @@
 }
 .misviajes {
   display: flex;
-  margin-right: 10px;
+}
+.misviajes .cajatarjeta {
+  margin-right: 3%;
+  width: 25%;
 }
 .misviajes img {
-  width: 200px;
+  width: 100%;
   height: auto;
   border-radius: 31px 31px 0px 0px;
 }
