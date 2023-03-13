@@ -3,6 +3,7 @@ urlFetchUsers = 'https://ejemplo.com/datos';
 
 
 usuarios = [];
+usuariosEnViaje = []
 createTravelForm();
 
 // Function that initialices the form.
@@ -23,7 +24,7 @@ function fakeFetch(url) {
     return new Promise((resolve, reject) => {
         if (true) {
             const fakeData = [];
-
+            
             for (let i = 1; i <= 10; i++) {
                 const fakeItem = {
                     id: i,
@@ -179,10 +180,112 @@ function generateCreateTravelForm(idToAppend) {
         extraInfoContainer.appendChild(budgetContainer);
     form.appendChild(extraInfoContainer);
         // Friends Container
+
+
+
         const friendsContainer = document.createElement("div");
         friendsContainer.setAttribute("class", "style-friends");
+        const divFriendOnTrip = document.createElement('div');
+        const divStyleFriends = document.createElement('div');
+        const labelFriendSearch = document.createElement('label');
+        labelFriendSearch.textContent = 'Invitar amigos';
+        const friendsSearch = document.createElement('input');
+        const divMainSearch = document.createElement('div');
+        divMainSearch.className = 'style-friends-searched';
+        friendsSearch.setAttribute('type', 'search');
         // TODO: Friends List / Searcher
+
+        //  ------------------------------------------------------
+
+        //Adding the event listener to search into the friends of an user
+        friendsSearch.addEventListener('input', function () {
+            removeAllChilds(divMainSearch);
+            if ((friendsSearch.value).length != 0) {
+                //If we obtain the value needed we print the divs 
+                (usuarios).filter(element => {
+                    if ((element.name).includes(friendsSearch.value)) {
+                        createNameSearch(element.id, element.image, element.name);
+                    }
+                })
+            }
+        });
+        
+        //Function to create the elements of the search
+        function createNameSearch(id, img, name) {
+            //Giving the necesary elements
+            const divNameSearch = document.createElement('div');
+            const divImg = document.createElement('div');
+            const imgSearch = document.createElement('img');
+            const divName = document.createElement('div');
+
+            //Setting some attributes
+            imgSearch.src = img;
+            imgSearch.alt = 'img';
+            divName.textContent = name;
+
+
+            divNameSearch.addEventListener('click', function () {
+                const element = {
+                    id: id,
+                    image: img
+                }
+                if (searchOnTrip(element)) {
+                    window.alert('No se puede insertar este amigo ya que se encuentra en el viaje');
+                } else {
+                    (usuariosEnViaje).push(element);
+                    updateTripFriends(usuariosEnViaje);
+                }
+            });
+            //Insert the elements into html
+            divMainSearch.appendChild(divNameSearch);
+            divNameSearch.appendChild(divImg);
+            divImg.appendChild(imgSearch);
+            divNameSearch.appendChild(divName);
+        }
+
+        //Function to load the friends already on trip
+        function updateTripFriends(object) {
+            //we remove the childs of the element
+            removeAllChilds(divStyleFriends);
+            //Then we charge the elements in trip
+            (usuariosEnViaje).forEach(element => {
+                const imageDiv = document.createElement('div');
+                imageDiv.id = element.id;
+                imageDiv.style.backgroundImage = `url(` + element.image + `)`;
+                divStyleFriends.appendChild(imageDiv);
+
+                //Deleting the friends into the trip
+                imageDiv.addEventListener('click', function () {
+                    console.log(this.id);
+                    usuariosEnViaje = usuariosEnViaje.filter(friend => friend.id != this.id);
+                    updateTripFriends(usuariosEnViaje);
+                });
+            });
+        }
+        
+        //Function to remove all childs
+        function removeAllChilds(div) {
+            while (div.firstChild) {
+                div.removeChild(div.firstChild);
+            }
+        }
+
+        //Function to search if the friend is on the trip
+        function searchOnTrip(element) {
+            return usuariosEnViaje.some(friend => friend.id === element.id);
+        }
+
+
+
+        //  -----------------------------------------------------
+
     form.appendChild(friendsContainer);
+    friendsContainer.appendChild(divFriendOnTrip);
+    divFriendOnTrip.appendChild(labelFriendSearch);
+    divFriendOnTrip.appendChild(divStyleFriends);
+    divFriendOnTrip.appendChild(friendsSearch);
+    friendsContainer.appendChild(divMainSearch);
+
         // Buttons Container
         const buttonsContainer = document.createElement("div");
         buttonsContainer.setAttribute("class", "style-buttons-create");
@@ -355,26 +458,7 @@ function createObjectWithValues() {
         destino: destiny.value,
         descripcion: description.value,
         presupuesto: document.getElementById("budget").value,
-        amigosInvitados: [
-          {
-            id: 1,
-            nombre: 'Juan',
-            email: 'juan@example.com',
-            imagen: 'https://ejemplo.com/juan.jpg'
-          },
-          {
-            id: 2,
-            nombre: 'María',
-            email: 'maria@example.com',
-            imagen: 'https://ejemplo.com/maria.jpg'
-          },
-          {
-            id: 3,
-            nombre: 'Pedro',
-            email: 'pedro@example.com',
-            imagen: 'https://ejemplo.com/pedro.jpg'
-          }
-        ]
+        amigosInvitados: usuariosEnViaje.slice()
     };
     return viaje;
 }
