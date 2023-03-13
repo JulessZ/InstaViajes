@@ -75,11 +75,11 @@ const routes = {
   //   template: crearViajeTemplate,
   //   views: [null]
   // },
-  // editarviaje: {
-  //   pathname: '/editarviaje',
-  //   template: editarViajeTemplate,
-  //   views: [null]
-  // },
+  editarviaje: {
+    pathname: '/editarviaje',
+    template: editarViajeTemplate,
+    views: [View.renderEditarViaje]
+  },
   // editaractividades: {
   //   pathname: '/editaractividades',
   //   template: editarActividadesTemplate,

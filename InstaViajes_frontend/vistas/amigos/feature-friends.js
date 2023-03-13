@@ -3,6 +3,7 @@ import Fetch from 'fetch-simulator';
 Fetch.use();
 
 //Generate fake routes to use
+//Need to the API send this info with the profileImage in it
 fetch.addRoute('https://instaviajes.com/profile/users', {
     get: {
         response: [
@@ -27,6 +28,10 @@ fetch.addRoute('https://instaviajes.com/profile/{user_id}/friends', {
 });
 
 //Variables to use
+// let divRoot = document.getElementById('contactosamigos');
+// let divRoot2 = document.getElementById('usuariosamigos');
+// let divRoot3 = document.getElementById('peticionesamigos');
+// let divRoot4 = document.getElementById('botonfiltroamigos');
 let userList;
 let friendships;
 let userLogged = 1;
@@ -59,9 +64,11 @@ export async function showData() {
     friendsList(userLogged);
     //Show other users that are not friends
     otherPeople(userLogged);
+    //Show the top buttons
+    buttons();
 
 }
-
+//Function to create the friends list
 export function friendsList(userId) {
     let divRoot = document.getElementById('contactosamigos');
 
@@ -296,41 +303,103 @@ export function friendsRequests(userId) {
     // Add list of pending requests to the DOM
     divRoot3.appendChild(pendingListDiv);
 }
+//Function to create the top buttons
+export function buttons() {
+    let divRoot4 = document.getElementById('botonfiltroamigos');
+    // Create the first button
+    const button1 = document.createElement("button");
+    button1.textContent = "TODOS";
 
+    // Create the second button
+    const button2 = document.createElement("button");
+    button2.textContent = "RECIENTES";
+
+    // Create a container div for the buttons
+    const buttonsDiv = document.createElement("div");
+    buttonsDiv.appendChild(button1);
+    buttonsDiv.appendChild(button2);
+
+    // Create the search input
+    const searchInput = document.createElement("input");
+    searchInput.type = "text";
+    searchInput.placeholder = "Buscar";
+
+    // Create a container div for the search input
+    const searchDiv = document.createElement("div");
+    searchDiv.appendChild(searchInput);
+
+    // Add the buttons and search divs to the root div
+    divRoot4.appendChild(buttonsDiv);
+    divRoot4.appendChild(searchDiv);
+}
 //Functions to manage friends request
 export function manageFriendRequest(friendshipId, state) {
-    // Define the URL of the API that will receive the friend request
-    const apiUrl = "https://mi-api.com/amigos";
+    //If the petition is accepted, send a PUT fetch, if not send a DELETE fetch
+    if (state) {
+        // Define the URL of the API that will receive the friend request
+        const apiUrl = "https://mi-api.com/amigos";
 
-    // Defines the data object to be sent to the server
-    const requestData = {
-        friendshipId: friendshipId,
-        accepted: state
-    };
+        // Defines the data object to be sent to the server
+        const requestData = {
+            friendshipId: friendshipId,
+        };
 
-    // Define the application options
-    const requestOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(requestData)
-    };
+        // Define the application options
+        const requestOptions = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestData)
+        };
 
-    // Sends the request to the server using fetch
-    fetch(apiUrl, requestOptions)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Error al enviar la solicitud");
-            }
-            console.log("Solicitud enviada con éxito");
-            console.log(response);
-        })
-        .catch(error => {
-            console.log(error);
-        });
+        // Sends the request to the server using fetch
+        fetch(apiUrl, requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error al enviar la solicitud");
+                }
+                console.log("Solicitud enviada con éxito");
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    } else {
+        // Define the URL of the API that will receive the friend request
+        const apiUrl = "https://mi-api.com/amigos";
+
+        // Defines the data object to be sent to the server
+        const requestData = {
+            friendshipId: friendshipId,
+            accepted: state
+        };
+
+        // Define the application options
+        const requestOptions = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestData)
+        };
+
+        // Sends the request to the server using fetch
+        fetch(apiUrl, requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error al enviar la solicitud");
+                }
+                console.log("Solicitud enviada con éxito");
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
 }
-
+//Funcion to send a friend request
 export function sendFriendRequest(userId) {
 
     // Define the URL of the API that will receive the friend request
@@ -363,5 +432,6 @@ export function sendFriendRequest(userId) {
             console.log(error);
         });
 }
+
 
 // showData();
