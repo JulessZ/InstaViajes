@@ -9,6 +9,9 @@ fetch.addRoute('https://somekindofserver.com/location/miami', {
 });
 
 
+
+
+
 fetch('https://somekindofserver.com/location/miami')
   .then((response) => {
       console.log(response);
