@@ -42,116 +42,159 @@ function fakeFetch(url) {
 // When this function is called, you need to provide the ID of the node where you want to build it.
 // For example, if you want to append to <div id="example"/>, you need to call: generateCreateTravelForm("example");
 function generateCreateTravelForm(idToAppend) {
+    // Div container
+    const formContainer = document.createElement("div");
+    formContainer.setAttribute("class", "col-12 border");
+    formContainer.setAttribute("id", "formcrearviajes");
+    // form
     const form = document.createElement("form");
     form.setAttribute("id", "form-crear-viajes");
-    // Starting date
-    const fechaInicioLabel = document.createElement("label");
-    fechaInicioLabel.textContent = "Fecha de inicio ";
-    const fechaInicioInput = document.createElement("input");
-    fechaInicioInput.setAttribute("type", "date");
-    fechaInicioInput.setAttribute("id", "startDate");
-    // !! Starting date error
-    const fechaInicioError = document.createElement("span");
-    fechaInicioError.setAttribute("id", "startDate-error");
-    // End date
-    const fechaFinalLabel = document.createElement("label");
-    fechaFinalLabel.textContent = "Fecha final ";
-    const fechaFinalInput = document.createElement("input");
-    fechaFinalInput.setAttribute("type", "date");
-    fechaFinalInput.setAttribute("id", "endDate");
-    // !! End date error
-    const fechaFinalError = document.createElement("span");
-    fechaFinalError.setAttribute("id", "endDate-error");
-    // Origin input
-    const origenLabel = document.createElement("label");
-    origenLabel.textContent = "Origen";
-    const origenInput = document.createElement("input");
-    origenInput.setAttribute("id", "origin");
-    // !! Origin error
-    const origenError = document.createElement("span");
-    origenError.setAttribute("id", "origin-error");
-    // Destiny input
-    const destinoLabel = document.createElement("label");
-    destinoLabel.textContent = "Destino ";
-    const destinoInput = document.createElement("input");
-    destinoInput.setAttribute("id", "destiny");
-    // !! Destiny error
-    const destinoError = document.createElement("span");
-    destinoError.setAttribute("id", "destiny-error");
-    // Description input
-    const descripcionLabel = document.createElement("label");
-    descripcionLabel.textContent = "Descripción del viaje ";
-    const descripcionTextarea = document.createElement("textarea");
-    descripcionTextarea.setAttribute("id", "description");
-    descripcionTextarea.setAttribute("cols", "30");
-    descripcionTextarea.setAttribute("rows", "10");
-    // !! Description error
-    const descripcionError = document.createElement("span");
-    descripcionError.setAttribute("id", "description-error");
-    // Budget
-    const presupuestoLabel = document.createElement("label");
-    presupuestoLabel.textContent = "Presupuesto aproximado ";
-    const presupuestoInput = document.createElement("input");
-    presupuestoInput.setAttribute("type", "range");
-    presupuestoInput.setAttribute("min", "0");
-    presupuestoInput.setAttribute("max", "1000");
-    presupuestoInput.setAttribute("value", "0");
-    presupuestoInput.setAttribute("id", "budgetBar");
-    const presupuestoValue = document.createElement("span");
-    presupuestoValue.setAttribute("id", "budget-value");
-    presupuestoValue.textContent = " 0€";
-    // Invite friends
-    const amigosMenu = document.createElement("div");
-    amigosMenu.setAttribute("id", "friends");
-    const amigosTitulo = document.createElement("h5");
-    amigosTitulo.textContent = "Invitar amigos";
-    // Select invite friends
 
-    // Invited friends and recommended
+        // Dates Container
+        const datesContainer = document.createElement("div"); 
+        datesContainer.setAttribute("class", "style-dates")
+            // Starting date container
+            const startingDateContainer = document.createElement("div"); 
+                // Starting date Label/Input
+                const fechaInicioLabel = document.createElement("label");
+                fechaInicioLabel.textContent = "Fecha de inicio ";
+                const fechaInicioInput = document.createElement("input");
+                fechaInicioInput.setAttribute("type", "date");
+                fechaInicioInput.setAttribute("id", "startDate");
+                // !! Starting date Error
+                const fechaInicioError = document.createElement("span");
+                fechaInicioError.setAttribute("id", "startDate-error");
 
-    // Submit button
-    const botonSubmit = document.createElement("button");
-    botonSubmit.textContent = "Añadir viaje";
-    botonSubmit.setAttribute("onclick", "validateForm()");
-    botonSubmit.setAttribute("class", "boton-principal");
-    botonSubmit.setAttribute("id", "submit");
+                startingDateContainer.appendChild(fechaInicioLabel);
+                startingDateContainer.appendChild(fechaInicioInput);
+                startingDateContainer.appendChild(fechaInicioError);
+        datesContainer.appendChild(startingDateContainer);
+            // End date container
+            const endDateContainer = document.createElement("div");
+                // End date Label/input
+                const fechaFinalLabel = document.createElement("label");
+                fechaFinalLabel.textContent = "Fecha final ";
+                const fechaFinalInput = document.createElement("input");
+                fechaFinalInput.setAttribute("type", "date");
+                fechaFinalInput.setAttribute("id", "endDate");
+                // !! End date error
+                const fechaFinalError = document.createElement("span");
+                fechaFinalError.setAttribute("id", "endDate-error");
 
-    // Generate structure
-    form.appendChild(fechaInicioLabel);
-    form.appendChild(fechaInicioInput);
-    form.appendChild(fechaInicioError);
-    form.appendChild(document.createTextNode(" "));
-    form.appendChild(fechaFinalLabel);
-    form.appendChild(fechaFinalInput);
-    form.appendChild(fechaFinalError);
-    form.appendChild(document.createElement("br"));
-    form.appendChild(document.createElement("br"));
-    form.appendChild(origenLabel);
-    form.appendChild(origenInput);
-    form.appendChild(origenError);
-    form.appendChild(document.createTextNode(" "));
-    form.appendChild(destinoLabel);
-    form.appendChild(destinoInput);
-    form.appendChild(destinoError);
-    form.appendChild(document.createElement("br"));
-    form.appendChild(document.createElement("br"));
-    form.appendChild(descripcionLabel);
-    form.appendChild(descripcionTextarea);
-    form.appendChild(descripcionError);
-    form.appendChild(document.createElement("br"));
-    form.appendChild(document.createElement("br"));
-    form.appendChild(presupuestoLabel);
-    form.appendChild(document.createElement("br"));
-    form.appendChild(document.createElement("br"));
-    form.appendChild(presupuestoInput);
-    form.appendChild(presupuestoValue);
-    form.appendChild(document.createElement("br"));
-    form.appendChild(document.createElement("br"));
-
-    form.appendChild(amigosMenu);
-    form.appendChild(botonSubmit);
-    // Final append
-    document.getElementById(idToAppend).appendChild(form);
+                endDateContainer.appendChild(fechaFinalLabel);
+                endDateContainer.appendChild(fechaFinalInput);
+                endDateContainer.appendChild(fechaFinalError);
+        datesContainer.appendChild(endDateContainer);
+    form.appendChild(datesContainer);
+        // Locations Container
+        const locationsContainer = document.createElement("div"); 
+        locationsContainer.setAttribute("class", "style-location")
+            // Origin Location Container
+            const originLocationsContainer = document.createElement("div"); 
+                // Origin Location Label/input
+                const origenLabel = document.createElement("label");
+                origenLabel.textContent = "Origen";
+                const origenInput = document.createElement("input");
+                origenInput.setAttribute("id", "origin");
+                origenInput.setAttribute("placeholder", "Desde donde va a salir el viaje...");
+                // !! Origin Location Origin Error
+                const origenError = document.createElement("span");
+                origenError.setAttribute("id", "origin-error");
+            originLocationsContainer.appendChild(origenLabel);
+            originLocationsContainer.appendChild(origenInput);
+            originLocationsContainer.appendChild(origenError);
+        locationsContainer.appendChild(originLocationsContainer);
+            // Destiny Location Container
+            const destinyLocationsContainer = document.createElement("div"); 
+                // Destiny Location Label/Input
+                const destinyLabel = document.createElement("label");
+                destinyLabel.textContent = "Destino ";
+                const destinyInput = document.createElement("input");
+                destinyInput.setAttribute("id", "destiny");
+                destinyInput.setAttribute("placeholder", "Hacia donde va a llegar...");
+                // !! Destiny Location Error
+                const destinyError = document.createElement("span");
+                destinyError.setAttribute("id", "destiny-error");
+            destinyLocationsContainer.appendChild(destinyLabel);
+            destinyLocationsContainer.appendChild(destinyInput);
+            destinyLocationsContainer.appendChild(destinyError);
+        locationsContainer.appendChild(destinyLocationsContainer);
+    form.appendChild(locationsContainer);
+        // Description/Budget Container
+        const extraInfoContainer = document.createElement("div");
+        extraInfoContainer.setAttribute("class", "style-desc");
+            // Description Container
+            const descriptionContainer = document.createElement("div");
+                // Description Label/TextArea
+                const descriptionLabel = document.createElement("label");
+                descriptionLabel.textContent = "Descripción del viaje ";
+                const descriptionTextarea = document.createElement("textarea");
+                descriptionTextarea.setAttribute("id", "description");
+                descriptionTextarea.setAttribute("cols", "30");
+                descriptionTextarea.setAttribute("rows", "10");
+                descriptionTextarea.setAttribute("placeholder", "Describe expectativas, posibles sitios a visitar...");
+                // !! Description Error
+                const descriptionError = document.createElement("span");
+                descriptionError.setAttribute("id", "description-error");
+            descriptionContainer.appendChild(descriptionLabel);
+            descriptionContainer.appendChild(descriptionTextarea);
+            descriptionContainer.appendChild(descriptionError);
+        extraInfoContainer.appendChild(descriptionContainer);
+            // Budget Container
+            const budgetContainer = document.createElement("div");
+            budgetContainer.setAttribute("class", "style-budget")
+                // Budget Label Container
+                const budgetLabelContainer = document.createElement("div");
+                    // Budget Label
+                    const budgetLabel = document.createElement("label");
+                    budgetLabel.textContent = "Presupuesto aproximado ";
+                budgetLabelContainer.appendChild(budgetLabel);
+            budgetContainer.appendChild(budgetLabelContainer);
+                // Budget Input/Span
+                const budgetInput = document.createElement("input");
+                budgetInput.setAttribute("type", "range");
+                budgetInput.setAttribute("min", "0");
+                budgetInput.setAttribute("max", "1000");
+                budgetInput.setAttribute("value", "0");
+                budgetInput.setAttribute("id", "budgetBar");
+                const budgetValue = document.createElement("span");
+                budgetValue.setAttribute("id", "budget-value");
+                budgetValue.textContent = " 0€";
+            budgetContainer.appendChild(budgetInput);
+            budgetContainer.appendChild(budgetValue);
+        extraInfoContainer.appendChild(budgetContainer);
+    form.appendChild(extraInfoContainer);
+        // Friends Container
+        const friendsContainer = document.createElement("div");
+        friendsContainer.setAttribute("class", "style-friends");
+        // TODO: Friends List / Searcher
+    form.appendChild(friendsContainer);
+        // Buttons Container
+        const buttonsContainer = document.createElement("div");
+        buttonsContainer.setAttribute("class", "style-buttons-create");
+            // Submit Button Container
+            const submitButtonContainer = document.createElement("div");
+                // Submit Button
+                const submitButton = document.createElement("button");
+                submitButton.setAttribute("id", "submit")
+                submitButton.setAttribute("class", "boton-principal")
+                submitButton.textContent = "Añadir viaje";
+                submitButton.setAttribute("onclick", "validateForm()");
+            submitButtonContainer.appendChild(submitButton);
+        buttonsContainer.appendChild(submitButtonContainer);
+            // Cancel Button Container
+            const cancelButtonContainer = document.createElement("div");
+                // Cancel Button
+                const cancelButton = document.createElement("button");
+                cancelButton.setAttribute("id", "cancel")
+                cancelButton.setAttribute("class", "boton-cancelar")
+                cancelButton.textContent = "Cancelar";
+                cancelButton.setAttribute("onclick", "cancelarForm()");
+            cancelButtonContainer.appendChild(cancelButton);
+        buttonsContainer.appendChild(cancelButtonContainer);
+    form.appendChild(buttonsContainer);
+    formContainer.appendChild(form);
+    document.getElementById(idToAppend).appendChild(formContainer)
 
     document.querySelector("#budgetBar").addEventListener("input", function () {
         document.querySelector("#budget-value").innerHTML = document.querySelector("#budgetBar").value + "€";
