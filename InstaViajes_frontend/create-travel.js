@@ -49,13 +49,27 @@ function generateCreateTravelForm(idToAppend) {
     // form
     const form = document.createElement("form");
     form.setAttribute("id", "form-crear-viajes");
-
+        // Name container
+        const nameContainer = document.createElement("div"); 
+            // Name Label/Input
+            const nameLabel = document.createElement("label");
+            nameLabel.textContent = "Nombre para el viaje";
+            const nameInput = document.createElement("input");
+            nameInput.setAttribute("id", "name");
+            nameInput.setAttribute("placeholder", "Añade un nombre descriptivo para el viaje...");
+            // !! Name Error
+            const nameError = document.createElement("span");
+            nameError.setAttribute("id", "name-error");
+        nameContainer.appendChild(nameLabel);
+        nameContainer.appendChild(nameInput);
+        nameContainer.appendChild(nameError);
+    form.appendChild(nameContainer);
         // Dates Container
         const datesContainer = document.createElement("div"); 
         datesContainer.setAttribute("class", "style-dates")
-            // Starting date container
+            // Starting Date Container
             const startingDateContainer = document.createElement("div"); 
-                // Starting date Label/Input
+                // Starting Date Label/Input
                 const fechaInicioLabel = document.createElement("label");
                 fechaInicioLabel.textContent = "Fecha de inicio ";
                 const fechaInicioInput = document.createElement("input");
@@ -208,6 +222,10 @@ function generateCreateTravelForm(idToAppend) {
 // This function is called when submit button is pressed. Validates the form.
 function validateForm() {
     clearErrors();
+    // Checks if travel name is defined.
+    if (!document.querySelector("#name").value) {
+        generateError("name-error", "No se introdució un nombre para el viaje");
+    }
     // Checks if starting date is correct.
     if (!startDate.value) {
         generateError("startDate-error", "No se introdució una fecha de inicio");
@@ -330,12 +348,13 @@ Creates an object with the values of the travel form inputs and predefined data 
 */
 function createObjectWithValues() {
     const viaje = {
+        travelName: document.getElementById("name").value,
         fechaInicio: startDate.value,
         fechaFinal: endDate.value,
         origen: document.getElementById("origin").value,
         destino: destiny.value,
         descripcion: description.value,
-        presupuesto: 2000,
+        presupuesto: document.getElementById("budget").value,
         amigosInvitados: [
           {
             id: 1,
