@@ -8,14 +8,14 @@ const trip1 = {
     destination: "Lisboa",
     description: "El viaje consistirá en un mes de blablablalbal",
     budget: 3000,
-    estado: 'zbierto',
+    estado: 'abierto',
     //Var to introduce friends into the trip
-    friendsOnTrip : [
-        {id: 1, image: 'imageDiegoB.png' },
-        {id: 2, image: 'imageBrian.png' }
+    friendsOnTrip: [
+        { id: 1, image: 'imageDiegoB.png' },
+        { id: 2, image: 'imageBrian.png' }
     ]
-    
-}; 
+
+};
 const friends = [
     { id: 3, name: 'diegoR', mail: 'diego@example.com', image: 'image.png' },
     { id: 4, name: 'aram', mail: 'aram@example.com', image: 'image.png' },
@@ -26,10 +26,11 @@ const friends = [
     { id: 9, name: 'marco', mail: 'marco@example.com', image: 'image.png' },
     { id: 10, name: 'donovan', mail: 'donovan@example.com', image: 'image.png' }
 ];
-  
 
-//Const parent to insert the form
-const editContainer = document.querySelector('#form-editar-viajes');
+
+// //Const parent to insert the form
+// const editContainer = document.querySelector('#formeditarviajes');
+
 //Div mains of searcher realted to friends
 const divMainSearch = document.createElement('div');
 //Adding to the img Main Search parent the classname necessary
@@ -39,6 +40,10 @@ const friendsOnTrip = document.createElement('div');
 
 //Function to create edit-Form
 function editForm(object) {
+
+    //Const parent to insert the form
+    const editContainer = document.querySelector('#formeditarviajes');
+
     //If the trip is on road
     if (object.estado == 'en curso') {
         //Create elements
@@ -89,14 +94,14 @@ function editForm(object) {
         labelBudget.setAttribute('for', 'budget');
         labelBudget.textContent = 'Presupuesto Aproximado';
 
-        budget.type= 'range';
+        budget.type = 'range';
         budget.setAttribute('name', 'budget');
         budget.min = 0;
         budget.max = 10000;
         budget.value = object.budget;
-        budgetValue.innerHTML = budget.value +'€';
-        budget.addEventListener('input', function() {
-            budgetValue.innerHTML = budget.value +'€';
+        budgetValue.innerHTML = budget.value + '€';
+        budget.addEventListener('input', function () {
+            budgetValue.innerHTML = budget.value + '€';
         });
         budget.id = 'budgetTrip';
 
@@ -190,7 +195,7 @@ function editForm(object) {
         labelDate.textContent = 'Fecha de Inicio'
 
         date.type = 'date';
-        date.setAttribute('name' , 'date');
+        date.setAttribute('name', 'date');
         //Inserting the values on the html
         date.value = object.date;
         date.id = 'dateTrip';
@@ -237,14 +242,14 @@ function editForm(object) {
         labelBudget.setAttribute('for', 'budget');
         labelBudget.textContent = 'Presupuesto Aproximado';
 
-        budget.type= 'range';
+        budget.type = 'range';
         budget.setAttribute('name', 'budget');
         budget.min = 0;
         budget.max = 10000;
         budget.value = object.budget;
-        budgetValue.innerHTML = budget.value +'€';
-        budget.addEventListener('input', function() {
-            budgetValue.innerHTML = budget.value +'€';
+        budgetValue.innerHTML = budget.value + '€';
+        budget.addEventListener('input', function () {
+            budgetValue.innerHTML = budget.value + '€';
         });
         budget.id = 'budgetTrip';
 
@@ -260,11 +265,11 @@ function editForm(object) {
             removeAllChilds(divMainSearch);
             if ((friendsSearch.value).length != 0) {
                 //If we obtain the value needed we print the divs 
-                (friends).filter(element =>  {
+                (friends).filter(element => {
                     if ((element.name).includes(friendsSearch.value)) {
-                        createNameSearch(element.id,element.image, element.name);
+                        createNameSearch(element.id, element.image, element.name);
                     }
-                }) 
+                })
             }
         });
 
@@ -328,15 +333,18 @@ function editForm(object) {
 
         updateTripFriends(object);
     }
-    
+
 }
 
-editForm(trip1);
+//function to call the front end
+export function renderEditForm() {
+    editForm(trip1);
+}
 
 
 
 //Function to create the elements of the search
-function createNameSearch(id,img,name) {
+function createNameSearch(id, img, name) {
     //Giving the necesary elements
     const divNameSearch = document.createElement('div');
     const divImg = document.createElement('div');
@@ -349,7 +357,7 @@ function createNameSearch(id,img,name) {
     divName.textContent = name;
 
 
-    divNameSearch.addEventListener('click', function() {
+    divNameSearch.addEventListener('click', function () {
         const element = {
             id: id,
             image: img
@@ -377,7 +385,7 @@ function removeAllChilds(div) {
 }
 
 //Function to load the friends already on trip
-function updateTripFriends (object) {
+function updateTripFriends(object) {
     //we remove the childs of the element
     removeAllChilds(friendsOnTrip);
     //Then we charge the elements in trip
@@ -385,7 +393,7 @@ function updateTripFriends (object) {
         const imageDiv = document.createElement('div');
         const friendsOnTripImg = document.createElement('img');
         imageDiv.id = element.id;
-        imageDiv.style.backgroundImage = `url(`+element.image+`)`;
+        imageDiv.style.backgroundImage = `url(` + element.image + `)`;
         friendsOnTrip.appendChild(imageDiv);
 
         //Deleting the friends into the trip
@@ -405,31 +413,31 @@ function searchOnTrip(element) {
 }
 
 
-//Submit the edit-form
-document.getElementById('formEdit').addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (trip1.estado == 'abierto') {
-        trip1.name = nameTrip.value;
-        trip1.date = dateTrip.value;
-        trip1.dateEnd = dateEndTrip.value;
-        trip1.origin = originTrip.value;
-        trip1.destination = destinationTrip.value;
-        trip1.description = descriptionTrip.value;
-        trip1.budget = budgetTrip.value;
-        Object.values(trip1).forEach(element => {
-            console.log(element);
-        });
-        //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
+// //Submit the edit-form
+// document.getElementById('formEdit').addEventListener('submit', function (e) {
+//     e.preventDefault();
+//     if (trip1.estado == 'abierto') {
+//         trip1.name = nameTrip.value;
+//         trip1.date = dateTrip.value;
+//         trip1.dateEnd = dateEndTrip.value;
+//         trip1.origin = originTrip.value;
+//         trip1.destination = destinationTrip.value;
+//         trip1.description = descriptionTrip.value;
+//         trip1.budget = budgetTrip.value;
+//         Object.values(trip1).forEach(element => {
+//             console.log(element);
+//         });
+//         //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
 
-    //      <-------------------------              ------------------------->
-    } else {
-        trip1.name = nameTrip.value;
-        trip1.dateEnd = dateEndTrip.value;
-        trip1.budget = budgetTrip.value;
-        Object.values(trip1).forEach(element => {
-            console.log(element);
-        });
-        //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
-    //      <-------------------------              ------------------------->
-    }
-});
+//     //      <-------------------------              ------------------------->
+//     } else {
+//         trip1.name = nameTrip.value;
+//         trip1.dateEnd = dateEndTrip.value;
+//         trip1.budget = budgetTrip.value;
+//         Object.values(trip1).forEach(element => {
+//             console.log(element);
+//         });
+//         //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
+//     //      <-------------------------              ------------------------->
+//     }
+// });
