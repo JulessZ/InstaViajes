@@ -1,7 +1,21 @@
 import { fakeFetch } from "./fakeFetch.js";
 import { createActivityView } from "./createActivityView.js";
 
-createActivityView.buildView();
+async function getActivityData() {
+    let data = await fakeFetch.getActivityData();
+    createActivityView.buildView(data);
+    const buttonAddActivity = document.getElementById('buttonAddActivity');
+
+    buttonAddActivity.addEventListener('click',()=>{
+        checkVoidInputAndSaveValues();
+    });
+
+    addMultipleOptionsToDataListInNameInput();
+
+}
+
+getActivityData();
+
 
 async function addMultipleOptionsToDataListInNameInput() {
 
@@ -21,20 +35,11 @@ async function addMultipleOptionsToDataListInNameInput() {
     }
 }
 
-addMultipleOptionsToDataListInNameInput();
-
-const inputName = document.getElementById('inputName');
-const inputDescription  = document.getElementById('inputDescription');
-const inputDateStart = document.getElementById('inputDateStart');
-const inputHourStart = document.getElementById('inputHourStart');
-const inputDuration = document.getElementById('inputDuration');
-const inputPrice = document.getElementById('inputPrice');
-
 function checkVoidInputAndSaveValues() {
 
     let status = 0;
 
-    let newActivity = {
+    let currentActivity = {
         name: '',
         description: '',
         date: '',
@@ -43,74 +48,64 @@ function checkVoidInputAndSaveValues() {
         price: ''
     };
 
-    if(inputName.value == '') {
+    if(document.getElementById('inputName').value == '') {
         let spanErrorName = document.getElementById('spanErrorName');
         spanErrorName.innerHTML = 'DEBE ASIGNAR UN NOMBRE A LA ACTIVIDAD';
         status = 1;
     }
+    
     else {
-        newActivity.name = inputName.value;
         spanErrorName.innerHTML = '';
+        currentActivity.name = document.getElementById('inputName').value;
     }
-
-    if(inputDescription.value == '') {
+    
+    if(document.getElementById('inputDescription').value == '') {
         let spanErrorDescription = document.getElementById('spanErrorDescription');
         spanErrorDescription.innerHTML = 'ES NECESARIA UNA DESCRIPCIÓN DEL VIAJE';
         status = 1;
     }
     else {
-        newActivity.description = inputDescription.value;
         spanErrorDescription.innerHTML = '';
+        currentActivity.description = document.getElementById('inputDescription').value;
     }
-
-    if(inputDateStart.value == '') {
+    if(document.getElementById('inputDateStart').value == '') {
         let spanErrorDate = document.getElementById('spanErrorDate');
         spanErrorDate.innerHTML = 'DEBE ASIGNAR UNA FECHA DE COMIENZO';
         status = 1;
     }
     else {
-        newActivity.date = inputDateStart.value;
         spanErrorDate.innerHTML = '';
+        currentActivity.date = document.getElementById('inputDateStart').value;
     }
-
-    if(inputHourStart.value == '') {
+    if(document.getElementById('inputHourStart').value == '') {
         let spanErrorHour = document.getElementById('spanErrorHour');
         spanErrorHour.innerHTML = 'ES NECESARIA UNA HORA DE INICIO';
         status = 1;
     }
     else {
-        newActivity.hour = inputHourStart.value;
         spanErrorHour.innerHTML = '';
+        currentActivity.hour  = document.getElementById('inputHourStart').value;
     }
 
-    if(inputDuration.value == '') {
+    if(document.getElementById('inputDuration').value == '') {
         let spanErrorDuration = document.getElementById('spanErrorDuration');
         spanErrorDuration.innerHTML = 'DEBE ASIGNAR UNA DURACIÓN ESTIMADA';
         status = 1;
     }
     else {
-        newActivity.duration = inputDuration.value;
         spanErrorDuration.innerHTML = '';
+        currentActivity.duration = document.getElementById('inputDuration').value;
     }
 
-    newActivity.price = inputPrice.value;
+    currentActivity.price = document.getElementById('inputPrice').value;
 
-    //solo se genera el viaje si todos los campos obligatorios(es decir todos menos precio) son rellenados
-    if (status == 0) {
+    let activitiesList = [];
 
-        activitiesList.push(newActivity);
-        
-    };
-
+    //solo se suben los datos si todos los campos obligatorios han sido rellenados
+    //en este caso los guardo en un array para hacer las pruebas.
+    if  (status == 0) {
+        activitiesList.push(currentActivity);
+    }
 }
 
 
-let activitiesList = [];
-
-const buttonAddActivity = document.getElementById('buttonAddActivity');
-
-buttonAddActivity.addEventListener('click',()=>{
-
-    checkVoidInputAndSaveValues();
-
-});

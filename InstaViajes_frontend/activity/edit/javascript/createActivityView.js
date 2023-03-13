@@ -1,6 +1,7 @@
 export class createActivityView{
-    static buildView() {
 
+
+    static buildView(data) {
         const container = document.getElementById('formcrearactividades');
         container.setAttribute('onsubmit', 'return false');
         
@@ -13,7 +14,7 @@ export class createActivityView{
             divName.appendChild(name);
 
             let inputName = document.createElement('input');
-            inputName.setAttribute('value', '');
+            inputName.setAttribute('value', data.place.name);
             inputName.setAttribute('name', 'inputName');
             inputName.setAttribute('id', 'inputName');
             inputName.setAttribute('list', 'nameDataList');
@@ -47,6 +48,7 @@ export class createActivityView{
             inputDescription.setAttribute('id', 'inputDescription');
             inputDescription.setAttribute('autocomplete', 'off');
             inputDescription.setAttribute('placeholder', 'Describe los diferentes pasos, sitios y experiencias que se van a vivir en la actividad.');
+            inputDescription.innerHTML = data.place.description;
             
             descriptionDiv.appendChild(inputDescription);
 
@@ -71,6 +73,7 @@ export class createActivityView{
             let dateStartInput = document.createElement('input');
             dateStartInput.setAttribute('type', 'date');
             dateStartInput.setAttribute('id', 'inputDateStart');
+            dateStartInput.value = data.place.date;
             dateStartDiv.appendChild(dateStartInput);
 
             let spanErrorDate = document.createElement('span');
@@ -89,6 +92,7 @@ export class createActivityView{
             let inputHourStart = document.createElement('input');
             inputHourStart.setAttribute('type', 'time');
             inputHourStart.setAttribute('id', 'inputHourStart');
+            inputHourStart.value = data.place.hour;
             hourDiv.appendChild(inputHourStart);
 
             let spanErrorHour = document.createElement('span');
@@ -111,8 +115,9 @@ export class createActivityView{
             durationDiv.appendChild(duration);
 
             let inputDuration = document.createElement('input');
-            inputDuration.setAttribute('type', 'time');
+            inputDuration.setAttribute('type', 'text');
             inputDuration.setAttribute('id', 'inputDuration');
+            inputDuration.setAttribute('value', data.place.duration);
             durationDiv.appendChild(inputDuration);
 
             let spanErrorDuration = document.createElement('span');
@@ -133,6 +138,7 @@ export class createActivityView{
             let inputPrice = document.createElement('input');
             inputPrice.setAttribute('type', 'text');
             inputPrice.setAttribute('id', 'inputPrice');
+            inputPrice.setAttribute('value', data.place.price);
             priceDiv.appendChild(inputPrice);
 
             let spanErrorPrice = document.createElement('span');
@@ -149,7 +155,7 @@ export class createActivityView{
 
             let buttonAddActivity = document.createElement('button');
             buttonAddActivity.setAttribute('id', 'buttonAddActivity');
-            buttonAddActivity.textContent = 'Añadir actividad'
+            buttonAddActivity.textContent = 'Editar actividad'
 
             buttonsDiv.appendChild(buttonAddActivity);
 
