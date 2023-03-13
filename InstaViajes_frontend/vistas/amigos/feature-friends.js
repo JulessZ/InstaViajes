@@ -27,7 +27,6 @@ fetch.addRoute('https://instaviajes.com/profile/{user_id}/friends', {
 });
 
 //Variables to use
-let divRoot = document.getElementById('root');
 let userList;
 let friendships;
 let userLogged = 1;
@@ -35,7 +34,7 @@ let userLogged = 1;
 // let userLogged;
 
 //Fetch to the fake routes
-await fetch('https://instaviajes.com/profile/users')
+const fetch1 = fetch('https://instaviajes.com/profile/users')
     .then((response) => {
         return response.json();
     })
@@ -43,7 +42,7 @@ await fetch('https://instaviajes.com/profile/users')
         userList = response;
     });
 //Fetch to take friendships
-await fetch('https://instaviajes.com/profile/{user_id}/friends')
+const fetch2 = fetch('https://instaviajes.com/profile/{user_id}/friends')
     .then((response) => {
         return response.json();
     })
@@ -53,6 +52,8 @@ await fetch('https://instaviajes.com/profile/{user_id}/friends')
 
 export async function showData() {
     //Call the funciont for friendRequest for now we use an static
+    await fetch1;
+    await fetch2;
     friendsRequests(userLogged);
     //Call to the function to list de FriendshipList
     friendsList(userLogged);
@@ -62,6 +63,8 @@ export async function showData() {
 }
 
 export function friendsList(userId) {
+    let divRoot = document.getElementById('contactosamigos');
+
     // Create a div element to contain the friends list
     const friendListDiv = document.createElement("div");
 
@@ -144,6 +147,8 @@ export function friendsList(userId) {
 }
 
 export function otherPeople(userId) {
+    let divRoot2 = document.getElementById('usuariosamigos');
+
     // Create a div element to contain the friends list
     const friendListDiv = document.createElement("div");
 
@@ -225,10 +230,12 @@ export function otherPeople(userId) {
     });
 
     // Add the friends list to the DOM
-    divRoot.appendChild(friendListDiv);
+    divRoot2.appendChild(friendListDiv);
 }
 
 export function friendsRequests(userId) {
+
+    let divRoot3 = document.getElementById('peticionesamigos');
 
     if (friendships.length === 0) {
         return;
@@ -287,7 +294,7 @@ export function friendsRequests(userId) {
     });
 
     // Add list of pending requests to the DOM
-    divRoot.appendChild(pendingListDiv);
+    divRoot3.appendChild(pendingListDiv);
 }
 
 //Functions to manage friends request
@@ -326,38 +333,35 @@ export function manageFriendRequest(friendshipId, state) {
 
 export function sendFriendRequest(userId) {
 
-        // Define the URL of the API that will receive the friend request
-        const apiUrl = "https://mi-api.com/amigos/peticionDeAmistad";
+    // Define the URL of the API that will receive the friend request
+    const apiUrl = "https://mi-api.com/amigos/peticionDeAmistad";
 
-        // Defines the data object to be sent to the server
-        const requestData = {
-            userId: userLogged,
-            userInvitedId: userId
-        };
-        // Define the application options
-        const requestOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(requestData)
-        };
-    
-        // Sends the request to the server using fetch
-        fetch(apiUrl, requestOptions)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Error al enviar la solicitud");
-                }
-                console.log("Solicitud enviada con éxito");
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+    // Defines the data object to be sent to the server
+    const requestData = {
+        userId: userLogged,
+        userInvitedId: userId
+    };
+    // Define the application options
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(requestData)
+    };
+
+    // Sends the request to the server using fetch
+    fetch(apiUrl, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error al enviar la solicitud");
+            }
+            console.log("Solicitud enviada con éxito");
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        });
 }
 
-
-
-
-showData();
+// showData();

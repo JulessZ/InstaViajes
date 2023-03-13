@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Sass
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
