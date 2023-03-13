@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col">
                 <div>
-                    <h1>Mis viajes</h1>
+                    <h1 class="titulos">Mis viajes</h1>
                 </div>
                 <!-- caja que contendra todos los viajes creados el usuario-->
                 <div class="misviajes" id="misviajesmisviajes">
@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col">
                 <div>
-                    <h1>Tus viajes compartidos</h1>
+                    <h1 class="titulos">Tus viajes compartidos</h1>
                 </div>
                 <!-- caja que contendra todos los viajes compartidos con el usuario-->
                 <div class="misviajes" id="viajescompartidosmisviajes">

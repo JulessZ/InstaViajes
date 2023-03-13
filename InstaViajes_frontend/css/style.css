@@ -619,6 +619,11 @@
     background-color: rgba(255, 255, 255, 0.671);
   }
 }
+.titulos {
+  margin-top: 4%;
+  margin-bottom: 3%;
+}
+
 .misviajes {
   display: flex;
 }
@@ -631,7 +636,44 @@
   height: auto;
   border-radius: 31px 31px 0px 0px;
 }
+.misviajes .divnombre {
+  margin: 20px;
+  text-align: center;
+  margin-top: -60px;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.737);
+  padding: 2px;
+  border-radius: 10px 10px;
+}
+.misviajes .divdatos {
+  display: flex;
+}
+.misviajes .divdatos div {
+  width: 50%;
+  text-align: center;
+  margin-top: 10px;
+}
+.misviajes .divdatos div svg {
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: 2px;
+  vertical-align: top;
+}
 
+#viajescompartidosmisviajes {
+  margin-bottom: 5%;
+}
+
+@media only screen and (max-width: 425px) {
+  .misviajes {
+    display: block;
+  }
+  .misviajes .cajatarjeta {
+    margin-right: 3%;
+    width: 100%;
+    margin-bottom: 10%;
+  }
+}
 .profile-image {
   width: 200px;
   height: 200px;
