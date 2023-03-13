@@ -42,51 +42,57 @@ function checkVoidInputAndSaveValues() {
     };
 
     if(inputName.value == '') {
-        window.alert('Nombre vacio');
-        return;
+        let spanErrorName = document.getElementById('spanErrorName');
+        spanErrorName.innerHTML = 'DEBE ASIGNAR UN NOMBRE A LA ACTIVIDAD';
     }
     else {
         newActivity.name = inputName.value;
+        spanErrorName.innerHTML = '';
     }
 
     if(inputDescription.value == '') {
-        window.alert('Descripcion vacia');
-        return;
+        let spanErrorDescription = document.getElementById('spanErrorDescription');
+        spanErrorDescription.innerHTML = 'ES NECESARIA UNA DESCRIPCIÓN DEL VIAJE';
     }
     else {
         newActivity.description = inputDescription.value;
+        spanErrorDescription.innerHTML = '';
     }
 
     if(inputDateStart.value == '') {
-        window.alert('Fecha vacia');
-        return;
+        let spanErrorDate = document.getElementById('spanErrorDate');
+        spanErrorDate.innerHTML = 'DEBE ASIGNAR UNA FECHA DE COMIENZO';
     }
     else {
         newActivity.date = inputDateStart.value;
+        spanErrorDate.innerHTML = '';
     }
 
     if(inputHourStart.value == '') {
-        window.alert('Hora vacia');
-        return;
+        let spanErrorHour = document.getElementById('spanErrorHour');
+        spanErrorHour.innerHTML = 'ES NECESARIA UNA HORA DE INICIO';
     }
     else {
         newActivity.hour = inputHourStart.value;
+        spanErrorHour.innerHTML = '';
     }
 
     if(inputDuration.value == '') {
-        window.alert('Duracion vacia');
-        return;
+        let spanErrorDuration = document.getElementById('spanErrorDuration');
+        spanErrorDuration.innerHTML = 'DEBE ASIGNAR UNA DURACIÓN ESTIMADA';
     }
     else {
         newActivity.duration = inputDuration.value;
+        spanErrorDuration.innerHTML = '';
     }
 
     if(inputPrice.value == '') {
-        window.alert('Precio vacio');
-        return;
+        let spanErrorPrice = document.getElementById('spanErrorPrice');
+        spanErrorPrice.innerHTML = 'ES NECESARIO UN PRESUPUESTO APROXIMADO';
     }
     else {
         newActivity.price = inputPrice.value;
+        spanErrorPrice.innerHTML = '';
     }
 
     activitiesList.push(newActivity);
