@@ -148,12 +148,9 @@ function generateCreateTravelForm(idToAppend) {
                 descriptionTextarea.setAttribute("cols", "30");
                 descriptionTextarea.setAttribute("rows", "10");
                 descriptionTextarea.setAttribute("placeholder", "Describe expectativas, posibles sitios a visitar...");
-                // !! Description Error
-                const descriptionError = document.createElement("span");
-                descriptionError.setAttribute("id", "description-error");
+
             descriptionContainer.appendChild(descriptionLabel);
             descriptionContainer.appendChild(descriptionTextarea);
-            descriptionContainer.appendChild(descriptionError);
         extraInfoContainer.appendChild(descriptionContainer);
             // Budget Container
             const budgetContainer = document.createElement("div");
@@ -192,8 +189,6 @@ function generateCreateTravelForm(idToAppend) {
         const friendsSearch = document.createElement('input');
         const divMainSearch = document.createElement('div');
         divMainSearch.className = 'style-friends-searched';
-        const friendsError = document.createElement('span');
-        friendsError.id = 'friend-error';
         friendsSearch.setAttribute('type', 'search');
         // TODO: Friends List / Searcher
 
@@ -287,7 +282,6 @@ function generateCreateTravelForm(idToAppend) {
     divFriendOnTrip.appendChild(divStyleFriends);
     divFriendOnTrip.appendChild(friendsSearch);
     friendsContainer.appendChild(divMainSearch);
-    friendsContainer.appendChild(friendsError);
 
         // Buttons Container
         const buttonsContainer = document.createElement("div");
@@ -353,12 +347,6 @@ function validateForm() {
     }
     if (!destiny.value) {
         generateError("destiny-error", "Tiene que haber un lugar de destino");
-    }
-    if (!description.value) {
-        generateError("description-error", "Tiene que haber una descripción");
-    }
-    if (usuariosEnViaje.length == 0) {
-        generateError("friend-error", "Tiene que invitar mínimo a 1 amigo al viaje.");
     }
     // Checks if there are any errors in the form. If there are not, fetch to server is done.
     if (verifyErrors()) {
