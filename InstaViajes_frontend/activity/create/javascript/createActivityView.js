@@ -11,7 +11,8 @@ export class createActivityView{
         let inputName = document.createElement('input');
         inputName.setAttribute('value', '');
         inputName.setAttribute('name', 'inputName');
-        inputName.setAttribute('list', 'inputName');
+        inputName.setAttribute('id', 'inputName');
+        inputName.setAttribute('list', 'nameDataList');
         inputName.setAttribute('autocomplete', 'off');
         container.appendChild(inputName);
 
@@ -64,6 +65,11 @@ export class createActivityView{
         inputPrice.setAttribute('type', 'range');
         inputPrice.setAttribute('id', 'inputPrice');
         container.appendChild(inputPrice);
+
+        let datalist = document.createElement('datalist');
+        datalist.setAttribute('class', 'nameDataList');
+        datalist.setAttribute('id', 'nameDataList');
+        container.appendChild(datalist);
 
     }
 }

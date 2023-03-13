@@ -4,16 +4,23 @@ import { createActivityView } from "./createActivityView.js";
 createActivityView.buildView();
 
 async function addMultipleOptionsToDataListInNameInput() {
+
     const nameDataList = document.querySelector('.nameDataList');
+
     const data = await fakeFetch.getPlacesData();
+
     for(const [key, place] of Object.entries(data)){
+
         let newOption = document.createElement('option');
+
         let newOptionText = document.createTextNode(place.name);
+
         newOption.appendChild(newOptionText);
 
         nameDataList.appendChild(newOption);
     }
 }
+
 addMultipleOptionsToDataListInNameInput();
 
 const inputName = document.getElementById('inputName');
