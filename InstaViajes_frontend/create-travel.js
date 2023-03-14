@@ -383,9 +383,11 @@ Checks if a given date is before, after or the same as the current local date.
 @returns {number} - Returns 0 if the dates are the same, 1 if the given date is after the local date, 2 if the given date is before the local date.
 */
 function checkDateToActual(date) {
+    let dateSplit = [];
+    console.log(date);
     dateSplit = date.split("-");
     date = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
-    localDate = new Date();
+    let localDate = new Date();
     localDate = new Date(localDate.getFullYear(), localDate.getMonth(), localDate.getDate());
     if (date.getTime() == localDate.getTime()) {
         return 0;
@@ -403,7 +405,7 @@ Compares two dates and returns an integer value indicating their relationship.
 @returns {number} - 0 if the dates are equal, 1 if the first date is later than the second, and 2 if the second date is later than the first.
 */
 function compareDates(date1, date2) {
-    dateSplit = date1.split("-");
+    let dateSplit = date1.split("-");
     date1 = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
     dateSplit = date2.split("-");
     date2 = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);

@@ -2,8 +2,8 @@
 const trip1 = {
     name: "Vacaciones en Lisboa",
     //---IMPORTANT--- 
-    date: "2018-06-01", //THE FORMAT OF THE DATES TO PRINT ON THE HMTL
-    dateEnd: "2018-07-01", //THE FORMAT OF THE DATES TO PRINT ON THE HMTL
+    date: "2023-06-01", //THE FORMAT OF THE DATES TO PRINT ON THE HMTL
+    dateEnd: "2023-07-01", //THE FORMAT OF THE DATES TO PRINT ON THE HMTL
     origin: "La palma",
     destination: "Lisboa",
     description: "El viaje consistirá en un mes de blablablalbal",
@@ -37,6 +37,7 @@ const divMainSearch = document.createElement('div');
 divMainSearch.className = 'style-friends-searched';
 //Const to the friends parent
 const friendsOnTrip = document.createElement('div');
+friendsOnTrip.id = 'style-friends-invited';
 
 //Function to create edit-Form
 function editForm(object) {
@@ -51,10 +52,12 @@ function editForm(object) {
         const divName = document.createElement('div');
         const labelName = document.createElement('label');
         const name = document.createElement('input');
+        const nameError = document.createElement('span');
         const divDates = document.createElement('div');
         const divDateEnd = document.createElement('div');
         const labelDateEnd = document.createElement('label');
         const dateEnd = document.createElement('input');
+        const dateEndError = document.createElement('span');
         const divBudgetMain = document.createElement('div');
         const divBudget = document.createElement('div');
         const divLabelBudget = document.createElement('div');
@@ -78,6 +81,7 @@ function editForm(object) {
         //Inserting the values on the html
         name.value = object.name;
         name.id = 'nameTrip';
+        nameError.id = 'name-error';
 
         divDates.className = 'style-dates';
         labelDateEnd.setAttribute('for', 'dateEnd');
@@ -87,7 +91,8 @@ function editForm(object) {
         dateEnd.setAttribute('name', 'dateEnd');
         //Inserting the values on the html
         dateEnd.value = object.dateEnd;
-        dateEnd.id = 'dateEndTrip';
+        dateEnd.id = 'endDate';
+        dateEndError.id = 'endDate-error';
 
         divBudgetMain.className = 'style-desc';
         divBudget.className = 'style-budget';
@@ -118,11 +123,13 @@ function editForm(object) {
         form.appendChild(divName);
         divName.appendChild(labelName);
         divName.appendChild(name);
+        divName.appendChild(nameError);
 
         form.appendChild(divDates);
         divDates.appendChild(divDateEnd);
         divDateEnd.appendChild(labelDateEnd);
         divDateEnd.appendChild(dateEnd);
+        divDateEnd.appendChild(dateEndError);
 
         form.appendChild(divBudgetMain);
         divBudgetMain.appendChild(divBudget);
@@ -173,6 +180,7 @@ function editForm(object) {
         const budget = document.createElement('input');
         const budgetValue = document.createElement('span');
         const divStyleFriends = document.createElement('div');
+        const divFriendsInvited = document.createElement('div');
         const labelFriendSearch = document.createElement('label');
         const friendsSearch = document.createElement('input');
         const divButtons = document.createElement('div');
@@ -283,7 +291,7 @@ function editForm(object) {
             }
         });
 
-        divStyleFriends.className = 'style-friends-searched';
+        divStyleFriends.className = 'style-friends';
 
         divButtons.className = 'style-buttons-create';
 
@@ -333,9 +341,10 @@ function editForm(object) {
         divBudget.appendChild(budgetValue);
 
         form.appendChild(divStyleFriends);
-        divStyleFriends.appendChild(labelFriendSearch);
-        divStyleFriends.appendChild(friendsOnTrip);
-        divStyleFriends.appendChild(friendsSearch);
+        divStyleFriends.appendChild(divFriendsInvited);
+        divFriendsInvited.appendChild(labelFriendSearch);
+        divFriendsInvited.appendChild(friendsOnTrip);
+        divFriendsInvited.appendChild(friendsSearch);
         divStyleFriends.appendChild(divMainSearch);
 
         form.appendChild(divButtons);
@@ -352,7 +361,7 @@ function editForm(object) {
 
 //function to call the front end
 export function renderEditForm() {
-    
+
     editForm(trip1);
     setupSubmitEventListener();
 }
@@ -371,7 +380,7 @@ function validateForm() {
     if (startDate.value && checkDateToActual(startDate.value) == 2) {
         generateError("startDate-error", "¡La fecha introducida no puede ser antes de hoy!");
     }
-    // Checks if end date is correct.
+    // // Checks if end date is correct.
     if (!endDate.value) {
         generateError("endDate-error", "No se introdució una fecha de fin de viaje");
     } else if (checkDateToActual(endDate.value) == 2) {
@@ -385,6 +394,29 @@ function validateForm() {
     }
     if (!destinationTrip.value) {
         generateError("destination-error", "Tiene que haber un lugar de destino");
+    }
+    // Checks if there are any errors in the form. If there are not, fetch to server is done.
+    if (verifyErrors()) {
+        if (document.querySelector("#budgetTrip").value == 0) {
+            if (!window.confirm("¿Estás seguro de poner el presupuesto en 0?")) {
+                return;
+            }
+        }
+    }
+}
+// This function is called when submit button is pressed. Validates the form.
+function validateFormShort() {
+    clearErrors();
+    // Checks if travel name is defined.
+    if (!nameTrip.value) {
+        generateError("name-error", "No se introdució un nombre para el viaje");
+    }
+
+    // // Checks if end date is correct.
+    if (!endDate.value) {
+        generateError("endDate-error", "No se introdució una fecha de fin de viaje");
+    } else if (checkDateToActual(endDate.value) == 2) {
+        generateError("endDate-error", "¡La fecha introducida no puede ser antes de hoy!");
     }
     // Checks if there are any errors in the form. If there are not, fetch to server is done.
     if (verifyErrors()) {
@@ -412,9 +444,10 @@ Checks if a given date is before, after or the same as the current local date.
 @returns {number} - Returns 0 if the dates are the same, 1 if the given date is after the local date, 2 if the given date is before the local date.
 */
 function checkDateToActual(date) {
+    let dateSplit = [];
     dateSplit = date.split("-");
     date = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
-    localDate = new Date();
+    let localDate = new Date();
     localDate = new Date(localDate.getFullYear(), localDate.getMonth(), localDate.getDate());
     if (date.getTime() == localDate.getTime()) {
         return 0;
@@ -432,7 +465,7 @@ Compares two dates and returns an integer value indicating their relationship.
 @returns {number} - 0 if the dates are equal, 1 if the first date is later than the second, and 2 if the second date is later than the first.
 */
 function compareDates(date1, date2) {
-    dateSplit = date1.split("-");
+    let dateSplit = date1.split("-");
     date1 = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
     dateSplit = date2.split("-");
     date2 = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
@@ -548,31 +581,56 @@ function setupSubmitEventListener() {
     document.getElementById('formEdit').addEventListener('submit', function (e) {
         // console.log("test frm submit");
         e.preventDefault();
-        validateForm();
-
         if (trip1.estado == 'abierto') {
-            trip1.name = nameTrip.value;
-            trip1.date = startDate.value;
-            trip1.dateEnd = endDate.value;
-            trip1.origin = originTrip.value;
-            trip1.destination = destinationTrip.value;
-            trip1.description = descriptionTrip.value;
-            trip1.budget = budgetTrip.value;
-            Object.values(trip1).forEach(element => {
-                console.log(element);
-            });
-            //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
-
-            //      <-------------------------              ------------------------->
+            validateForm();
         } else {
-            trip1.name = nameTrip.value;
-            trip1.dateEnd = dateEndTrip.value;
-            trip1.budget = budgetTrip.value;
-            Object.values(trip1).forEach(element => {
-                console.log(element);
-            });
-            //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
-            //      <-------------------------              ------------------------->
+            validateFormShort();
         }
+        if (verifyErrors()){
+            if (trip1.estado == 'abierto') {
+                trip1.name = nameTrip.value;
+                trip1.date = startDate.value;
+                trip1.dateEnd = endDate.value;
+                trip1.origin = originTrip.value;
+                trip1.destination = destinationTrip.value;
+                trip1.description = descriptionTrip.value;
+                trip1.budget = budgetTrip.value;
+                Object.values(trip1).forEach(element => {
+                    console.log(element);
+                });
+                //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
+                // fetch('https://ejemplo.com/editar', {
+                //     method: 'POST',
+                //     body: JSON.stringify(createObjectWithValues()),
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     }
+                // })
+                //     .then(response => response.json())
+                //     .then(data => console.log(data))
+                //     .catch(error => console.error(error));
+                //      <-------------------------              ------------------------->
+            } else {
+                trip1.name = nameTrip.value;
+                trip1.dateEnd = endDate.value;
+                trip1.budget = budgetTrip.value;
+                Object.values(trip1).forEach(element => {
+                    console.log(element);
+                });
+                //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
+                // fetch('https://ejemplo.com/datos', {
+                //     method: 'POST',
+                //     body: JSON.stringify(createObjectWithValues()),
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     }
+                // })
+                // .then(response => response.json())
+                // .then(data => console.log(data))
+                // .catch(error => console.error(error));
+                //      <-------------------------              ------------------------->
+            }
+        }
+        
     });
 }
