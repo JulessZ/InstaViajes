@@ -3,6 +3,7 @@ urlFetchUsers = 'https://ejemplo.com/datos';
 
 
 usuarios = [];
+usuariosEnViaje = []
 createTravelForm();
 
 // Function that initialices the form.
@@ -23,7 +24,7 @@ function fakeFetch(url) {
     return new Promise((resolve, reject) => {
         if (true) {
             const fakeData = [];
-
+            
             for (let i = 1; i <= 10; i++) {
                 const fakeItem = {
                     id: i,
@@ -147,12 +148,9 @@ function generateCreateTravelForm(idToAppend) {
                 descriptionTextarea.setAttribute("cols", "30");
                 descriptionTextarea.setAttribute("rows", "10");
                 descriptionTextarea.setAttribute("placeholder", "Describe expectativas, posibles sitios a visitar...");
-                // !! Description Error
-                const descriptionError = document.createElement("span");
-                descriptionError.setAttribute("id", "description-error");
+
             descriptionContainer.appendChild(descriptionLabel);
             descriptionContainer.appendChild(descriptionTextarea);
-            descriptionContainer.appendChild(descriptionError);
         extraInfoContainer.appendChild(descriptionContainer);
             // Budget Container
             const budgetContainer = document.createElement("div");
@@ -179,10 +177,112 @@ function generateCreateTravelForm(idToAppend) {
         extraInfoContainer.appendChild(budgetContainer);
     form.appendChild(extraInfoContainer);
         // Friends Container
+
+
+
         const friendsContainer = document.createElement("div");
         friendsContainer.setAttribute("class", "style-friends");
+        const divFriendOnTrip = document.createElement('div');
+        const divStyleFriends = document.createElement('div');
+        const labelFriendSearch = document.createElement('label');
+        labelFriendSearch.textContent = 'Invitar amigos';
+        const friendsSearch = document.createElement('input');
+        const divMainSearch = document.createElement('div');
+        divMainSearch.className = 'style-friends-searched';
+        friendsSearch.setAttribute('type', 'search');
         // TODO: Friends List / Searcher
+
+        //  ------------------------------------------------------
+
+        //Adding the event listener to search into the friends of an user
+        friendsSearch.addEventListener('input', function () {
+            removeAllChilds(divMainSearch);
+            if ((friendsSearch.value).length != 0) {
+                //If we obtain the value needed we print the divs 
+                (usuarios).filter(element => {
+                    if ((element.name).includes(friendsSearch.value)) {
+                        createNameSearch(element.id, element.image, element.name);
+                    }
+                })
+            }
+        });
+        
+        //Function to create the elements of the search
+        function createNameSearch(id, img, name) {
+            //Giving the necesary elements
+            const divNameSearch = document.createElement('div');
+            const divImg = document.createElement('div');
+            const imgSearch = document.createElement('img');
+            const divName = document.createElement('div');
+
+            //Setting some attributes
+            imgSearch.src = img;
+            imgSearch.alt = 'img';
+            divName.textContent = name;
+
+
+            divNameSearch.addEventListener('click', function () {
+                const element = {
+                    id: id,
+                    image: img
+                }
+                if (searchOnTrip(element)) {
+                    window.alert('No se puede insertar este amigo ya que se encuentra en el viaje');
+                } else {
+                    (usuariosEnViaje).push(element);
+                    updateTripFriends(usuariosEnViaje);
+                }
+            });
+            //Insert the elements into html
+            divMainSearch.appendChild(divNameSearch);
+            divNameSearch.appendChild(divImg);
+            divImg.appendChild(imgSearch);
+            divNameSearch.appendChild(divName);
+        }
+
+        //Function to load the friends already on trip
+        function updateTripFriends(object) {
+            //we remove the childs of the element
+            removeAllChilds(divStyleFriends);
+            //Then we charge the elements in trip
+            (usuariosEnViaje).forEach(element => {
+                const imageDiv = document.createElement('div');
+                imageDiv.id = element.id;
+                imageDiv.style.backgroundImage = `url(` + element.image + `)`;
+                divStyleFriends.appendChild(imageDiv);
+
+                //Deleting the friends into the trip
+                imageDiv.addEventListener('click', function () {
+                    console.log(this.id);
+                    usuariosEnViaje = usuariosEnViaje.filter(friend => friend.id != this.id);
+                    updateTripFriends(usuariosEnViaje);
+                });
+            });
+        }
+        
+        //Function to remove all childs
+        function removeAllChilds(div) {
+            while (div.firstChild) {
+                div.removeChild(div.firstChild);
+            }
+        }
+
+        //Function to search if the friend is on the trip
+        function searchOnTrip(element) {
+            return usuariosEnViaje.some(friend => friend.id === element.id);
+        }
+
+
+
+        //  -----------------------------------------------------
+
     form.appendChild(friendsContainer);
+    friendsContainer.appendChild(divFriendOnTrip);
+    divFriendOnTrip.appendChild(labelFriendSearch);
+    divFriendOnTrip.appendChild(divStyleFriends);
+    divFriendOnTrip.appendChild(friendsSearch);
+    friendsContainer.appendChild(divMainSearch);
+
         // Buttons Container
         const buttonsContainer = document.createElement("div");
         buttonsContainer.setAttribute("class", "style-buttons-create");
@@ -248,9 +348,6 @@ function validateForm() {
     if (!destiny.value) {
         generateError("destiny-error", "Tiene que haber un lugar de destino");
     }
-    if (!description.value) {
-        generateError("description-error", "Tiene que haber una descripción");
-    }
     // Checks if there are any errors in the form. If there are not, fetch to server is done.
     if (verifyErrors()) {
         if (document.querySelector("#budgetBar").value == 0) {
@@ -286,9 +383,11 @@ Checks if a given date is before, after or the same as the current local date.
 @returns {number} - Returns 0 if the dates are the same, 1 if the given date is after the local date, 2 if the given date is before the local date.
 */
 function checkDateToActual(date) {
+    let dateSplit = [];
+    console.log(date);
     dateSplit = date.split("-");
     date = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
-    localDate = new Date();
+    let localDate = new Date();
     localDate = new Date(localDate.getFullYear(), localDate.getMonth(), localDate.getDate());
     if (date.getTime() == localDate.getTime()) {
         return 0;
@@ -306,7 +405,7 @@ Compares two dates and returns an integer value indicating their relationship.
 @returns {number} - 0 if the dates are equal, 1 if the first date is later than the second, and 2 if the second date is later than the first.
 */
 function compareDates(date1, date2) {
-    dateSplit = date1.split("-");
+    let dateSplit = date1.split("-");
     date1 = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
     dateSplit = date2.split("-");
     date2 = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
@@ -355,26 +454,7 @@ function createObjectWithValues() {
         destino: destiny.value,
         descripcion: description.value,
         presupuesto: document.getElementById("budget").value,
-        amigosInvitados: [
-          {
-            id: 1,
-            nombre: 'Juan',
-            email: 'juan@example.com',
-            imagen: 'https://ejemplo.com/juan.jpg'
-          },
-          {
-            id: 2,
-            nombre: 'María',
-            email: 'maria@example.com',
-            imagen: 'https://ejemplo.com/maria.jpg'
-          },
-          {
-            id: 3,
-            nombre: 'Pedro',
-            email: 'pedro@example.com',
-            imagen: 'https://ejemplo.com/pedro.jpg'
-          }
-        ]
+        amigosInvitados: usuariosEnViaje.slice()
     };
     return viaje;
 }
