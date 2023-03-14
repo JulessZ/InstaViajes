@@ -6,7 +6,7 @@ use App\Models\Travel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class TravelUserSeeder extends Seeder
+class TravelUsersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
