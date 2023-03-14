@@ -21,12 +21,12 @@ Fetch.use();
 fetch.addRoute('https://instaviajes.com/profile/users', {
     get: {
         response: [
-            { id: 1, firstName: 'Juan', lastName: 'Pérez', userName: '@juan', email: 'juan.perez@example.com' },
-            { id: 2, firstName: 'María', lastName: 'García', userName: '@maria', email: 'maria.garcia@example.com' },
-            { id: 3, firstName: 'Pedro', lastName: 'Martínez', userName: '@pedro', email: 'pedro.martinez@example.com' },
-            { id: 4, firstName: 'Ana', lastName: 'Hernández', userName: '@ana', email: 'Ana.hdez@example.com' },
-            { id: 5, firstName: 'Luis', lastName: 'Expósito', userName: '@luis', email: 'luis.exposito@example.com' },
-            { id: 6, firstName: 'Belén', lastName: 'Ruíz', userName: '@belen', email: 'belen.ruiz@example.com' },
+            { id: 1, firstName: 'Juan', lastName: 'Pérez', image: 'https://concepto.de/wp-content/uploads/2019/05/cultura-griega-acropolis-e1559077275552-800x400.jpg' , email: 'juan.perez@example.com' },
+            { id: 2, firstName: 'María', lastName: 'García', image: 'https://concepto.de/wp-content/uploads/2019/05/cultura-griega-acropolis-e1559077275552-800x400.jpg', email: 'maria.garcia@example.com' },
+            { id: 3, firstName: 'Pedro', lastName: 'Martínez', image: 'https://concepto.de/wp-content/uploads/2019/05/cultura-griega-acropolis-e1559077275552-800x400.jpg' , email: 'pedro.martinez@example.com' },
+            { id: 4, firstName: 'Ana', lastName: 'Hernández', image: 'https://concepto.de/wp-content/uploads/2019/05/cultura-griega-acropolis-e1559077275552-800x400.jpg', email: 'Ana.hdez@example.com' },
+            { id: 5, firstName: 'Luis', lastName: 'Expósito', image: 'https://concepto.de/wp-content/uploads/2019/05/cultura-griega-acropolis-e1559077275552-800x400.jpg' , email: 'luis.exposito@example.com' },
+            { id: 6, firstName: 'Belén', lastName: 'Ruíz', image: 'https://concepto.de/wp-content/uploads/2019/05/cultura-griega-acropolis-e1559077275552-800x400.jpg' , email: 'belen.ruiz@example.com' },
         ]
     }
 });
@@ -59,6 +59,9 @@ const fetch1 = fetch('https://instaviajes.com/profile/users')
     })
     .then((response) => {
         userList = response;
+        console.log(userList)
+
+        
     });
 //Fetch to take friendships
 const fetch2 = fetch('https://instaviajes.com/profile/{user_id}/friends')
@@ -106,14 +109,14 @@ export function friendsList(userId) {
             // Add a profile picture
             const imgDiv = document.createElement("div");
             const img = document.createElement("img");
-            img.src = friend.profileImage;
+            img.src = `${friend.image}`;
             imgDiv.appendChild(img);
             friendDiv.appendChild(imgDiv);
 
             // Add friend's name
             const nameDiv = document.createElement("div");
             // nameDiv.textContent = `${friend.firstName} ${friend.lastName}`;
-            nameDiv.textContent = `${friend.userName}`;
+            nameDiv.textContent = `${friend.firstName}`;
             friendDiv.appendChild(nameDiv);
 
             // Add a button
@@ -142,7 +145,7 @@ export function friendsList(userId) {
 
                 // Add information to the div
                 const deleteLink = document.createElement("a");
-                deleteLink.textContent = "Eliminar a " + `${friend.userName}` + " de la lista de amigos";
+                deleteLink.textContent = "Eliminar a " + `${friend.firstName}` + " de la lista de amigos";
                 deleteLink.style.cursor = "pointer";
                 deleteLink.addEventListener("click", () => {
                     // Code to delete friend from the list goes here
@@ -193,13 +196,13 @@ export function otherPeople(userId) {
             // Add a profile picture
             const imgDiv = document.createElement("div");
             const img = document.createElement("img");
-            img.src = user.profileImage;
+            img.src = `${user.image}`;
             imgDiv.appendChild(img);
             userDiv.appendChild(imgDiv);
 
             // Add user's name
             const nameDiv = document.createElement("div");
-            nameDiv.textContent = `${user.userName}`;
+            nameDiv.textContent = `${user.firstName}`;
             userDiv.appendChild(nameDiv);
 
             // Add a button
@@ -228,7 +231,7 @@ export function otherPeople(userId) {
 
                 // Add information to the div
                 const addLink = document.createElement("a");
-                addLink.textContent = "Agregar a " + `${user.userName}` + " a la lista de amigos";
+                addLink.textContent = "Agregar a " + `${user.firstName}` + " a la lista de amigos";
                 addLink.style.cursor = "pointer";
                 addLink.addEventListener("click", () => {
                     // Code to add user to the list goes here
@@ -275,6 +278,36 @@ export function buttons() {
     searchInput.type = "text";
     searchInput.placeholder = "Buscar";
 
+    const divSearchedElements = document.createElement('div');
+    divSearchedElements.id = 'prueba';
+
+    searchInput.addEventListener('input', function () { 
+        borrarNodo(divSearchedElements);
+        if (searchInput.value.length != 0) {
+            userList.filter(element => {
+                if(((element.firstName).toLowerCase()).includes((searchInput.value).toLowerCase())) {
+                    createSearchedFriends(element.firstName);
+                }
+            }
+            );
+        }
+        
+    });
+    
+    function borrarNodo(nodo) {
+        while (nodo.firstChild) {
+            nodo.removeChild(nodo.firstChild);
+        }
+    }
+
+    // Function to create the structure of searched friends
+    function createSearchedFriends (name) {
+        const divStyleFriends = document.createElement('div');
+
+        divStyleFriends.textContent = name;
+        divSearchedElements.appendChild(divStyleFriends);
+    }
+
     // Create a container div for the search input
     const searchDiv = document.createElement("div");
     searchDiv.appendChild(searchInput);
@@ -282,6 +315,7 @@ export function buttons() {
     // Add the buttons and search divs to the root div
     divRoot4.appendChild(buttonsDiv);
     divRoot4.appendChild(searchDiv);
+    divRoot4.appendChild(divSearchedElements);
 }
 
 export function friendsRequests(userId) {
@@ -312,13 +346,13 @@ export function friendsRequests(userId) {
 
             // Add a profile picture
             const img = document.createElement("img");
-            img.src = friend.profileImage;
+            img.src = `${friend.image}`;
             friendDiv.appendChild(img);
 
             // Add friend's name
             const nameDiv = document.createElement("div");
             // nameDiv.textContent = `${friend.firstName} ${friend.lastName}`;
-            nameDiv.textContent = `${friend.userName}`;
+            nameDiv.textContent = `${friend.firstName}`;
             friendDiv.appendChild(nameDiv);
 
             // Add a button to accept request
