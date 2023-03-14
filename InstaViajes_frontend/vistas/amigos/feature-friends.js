@@ -99,12 +99,14 @@ export function friendsList(userId) {
         if (friendship.state) {
             const friendId = friendship.user_id_sender === userId ? friendship.user_id_receptor : friendship.user_id_sender;
             const friend = userList.find((user) => user.id === friendId);
-
+            const divdown = document.createElement('div');
+            divdown.setAttribute('class','divdown');
             // Create a div element to contain a friend's information
             const friendDiv = document.createElement("div");
-
+            friendDiv.setAttribute('class','divContacto');
             // Add a profile picture
             const imgDiv = document.createElement("div");
+            imgDiv.setAttribute('class','imgDiv');
             const img = document.createElement("img");
             img.src = friend.profileImage;
             imgDiv.appendChild(img);
@@ -112,14 +114,19 @@ export function friendsList(userId) {
 
             // Add friend's name
             const nameDiv = document.createElement("div");
+            nameDiv.setAttribute('class','nameDiv');
             // nameDiv.textContent = `${friend.firstName} ${friend.lastName}`;
             nameDiv.textContent = `${friend.userName}`;
             friendDiv.appendChild(nameDiv);
 
             // Add a button
+            const divButton = document.createElement('div');
+            divButton.setAttribute('class','divButton');
             const button = document.createElement("button");
+            button.setAttribute('class','boton-cancelar');
             button.textContent = "...";
-            friendDiv.appendChild(button);
+            divButton.appendChild(button);
+            friendDiv.appendChild(divButton);
 
             // Create a new div for the information
             const infoDiv = document.createElement("div");
@@ -154,12 +161,13 @@ export function friendsList(userId) {
                 infoDiv.appendChild(deleteLink);
 
                 // Append the new div to the userDiv
-                friendDiv.appendChild(infoDiv);
+                divdown.appendChild(infoDiv);
             });
 
 
             // Add the friend's div element to the friends list
             friendListDiv.appendChild(friendDiv);
+            friendListDiv.appendChild(divdown);
         }
     });
 
@@ -169,10 +177,10 @@ export function friendsList(userId) {
 
 export function otherPeople(userId) {
     let divRoot2 = document.getElementById('usuariosamigos');
-
+    const divdown = document.createElement('div');
+    divdown.setAttribute('class','divdown');
     // Create a div element to contain the friends list
     const friendListDiv = document.createElement("div");
-
     // Add a header
     let header = document.createElement("h2");
     header.textContent = "Otros usuarios";
@@ -189,9 +197,10 @@ export function otherPeople(userId) {
 
             // Create a div element to contain a user's information
             const userDiv = document.createElement("div");
-
+            userDiv.setAttribute('class','divContacto');
             // Add a profile picture
             const imgDiv = document.createElement("div");
+            imgDiv.setAttribute('class','imgDiv');
             const img = document.createElement("img");
             img.src = user.profileImage;
             imgDiv.appendChild(img);
@@ -199,13 +208,18 @@ export function otherPeople(userId) {
 
             // Add user's name
             const nameDiv = document.createElement("div");
+            nameDiv.setAttribute('class','nameDiv');
             nameDiv.textContent = `${user.userName}`;
             userDiv.appendChild(nameDiv);
 
             // Add a button
+            const divButton = document.createElement('div');
+            divButton.setAttribute('class','divButton');
             const button = document.createElement("button");
+            button.setAttribute('class','boton-cancelar');
             button.textContent = "...";
-            userDiv.appendChild(button);
+            divButton.appendChild(button);
+            userDiv.appendChild(divButton);
 
             // Create a new div for the information
             const infoDiv = document.createElement("div");
@@ -240,13 +254,15 @@ export function otherPeople(userId) {
                 infoDiv.appendChild(addLink);
 
                 // Append the new div to the userDiv
-                userDiv.appendChild(infoDiv);
+                divdown.appendChild(infoDiv);
             });
 
 
 
             // Add the user's div element to the friends list
+            
             friendListDiv.appendChild(userDiv);
+            friendListDiv.appendChild(divdown);
         }
     });
 
@@ -259,24 +275,28 @@ export function buttons() {
     let divRoot4 = document.getElementById('botonfiltroamigos');
     // Create the first button
     const button1 = document.createElement("button");
+    button1.setAttribute('class','boton-principal');
     button1.textContent = "TODOS";
 
     // Create the second button
     const button2 = document.createElement("button");
+    button2.setAttribute('class','boton-secundario');
     button2.textContent = "RECIENTES";
 
     // Create a container div for the buttons
     const buttonsDiv = document.createElement("div");
+    buttonsDiv.setAttribute('class','divbtnfiltroamigos');
     buttonsDiv.appendChild(button1);
     buttonsDiv.appendChild(button2);
 
     // Create the search input
     const searchInput = document.createElement("input");
     searchInput.type = "text";
-    searchInput.placeholder = "Buscar";
+    searchInput.placeholder = 'Buscar';
 
     // Create a container div for the search input
     const searchDiv = document.createElement("div");
+    searchDiv.setAttribute('class','searchDiv');
     searchDiv.appendChild(searchInput);
 
     // Add the buttons and search divs to the root div
@@ -309,33 +329,43 @@ export function friendsRequests(userId) {
         if (!friendship.state) {
             // Create a div element to contain the information of a pending request
             const friendDiv = document.createElement("div");
-
+            friendDiv.setAttribute('class','friendDiv');
+            const divimagenfriend = document.createElement('div');
+            divimagenfriend.setAttribute('class','divimagenfriend');
             // Add a profile picture
             const img = document.createElement("img");
             img.src = friend.profileImage;
-            friendDiv.appendChild(img);
+            divimagenfriend.appendChild(img);
+            friendDiv.appendChild(divimagenfriend);
 
             // Add friend's name
             const nameDiv = document.createElement("div");
             // nameDiv.textContent = `${friend.firstName} ${friend.lastName}`;
             nameDiv.textContent = `${friend.userName}`;
+            nameDiv.setAttribute('class','nameDiv');
             friendDiv.appendChild(nameDiv);
 
             // Add a button to accept request
+            const divbotonrepuesta= document.createElement('div');
+            divbotonrepuesta.setAttribute('class','divbotonrepuesta');
             const acceptButton = document.createElement("button");
             acceptButton.textContent = "Aceptar solicitud";
+            acceptButton.setAttribute('class','boton-secundario');
             acceptButton.addEventListener("click", () => {
                 manageFriendRequest(friendship.id, true);
             });
-            friendDiv.appendChild(acceptButton);
+            divbotonrepuesta.appendChild(acceptButton);
+            friendDiv.appendChild(divbotonrepuesta);
 
             // Add a reject button
             const rejectButton = document.createElement("button");
+            rejectButton.setAttribute('class','boton-cancelar');
             rejectButton.textContent = "Rechazar solicitud";
             rejectButton.addEventListener("click", () => {
                 manageFriendRequest(friendship.id, false);
             });
-            friendDiv.appendChild(rejectButton);
+            divbotonrepuesta.appendChild(rejectButton);
+            friendDiv.appendChild(divbotonrepuesta);
 
 
             // Add the div element of the request to the list of pending requests
