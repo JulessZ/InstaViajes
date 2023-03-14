@@ -24,15 +24,15 @@ class TravelUsers extends Model
 
     //RELACIÓN PIVOTE CON TRAVEL_USERS
 
-    // /**
-    //  * The travels that belong to the TravelUsers
-    //  *
-    //  * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    //  */
-    // public function travels(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(Travel::class);
-    // }
+    /**
+     * The travels that belong to the TravelUsers
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function travels(): BelongsToMany
+    {
+        return $this->belongsToMany(Travel::class);
+    }
 
     // RELATIONSHIPS END
 }
