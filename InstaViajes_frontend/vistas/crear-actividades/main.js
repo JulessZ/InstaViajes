@@ -19,13 +19,6 @@ async function addMultipleOptionsToDataListInNameInput() {
     }
 }
 
-const inputName = document.getElementById('inputName');
-const inputDescription  = document.getElementById('inputDescription');
-const inputDateStart = document.getElementById('inputDateStart');
-const inputHourStart = document.getElementById('inputHourStart');
-const inputDuration = document.getElementById('inputDuration');
-const inputPrice = document.getElementById('inputPrice');
-
 function checkVoidInputAndSaveValues() {
 
     let status = 0;
@@ -103,9 +96,12 @@ function checkVoidInputAndSaveValues() {
 
 let activitiesList = [];
 
-const buttonAddActivity = document.getElementById('buttonAddActivity');
+
 
 function addCheckEvent() {
+
+    const buttonAddActivity = document.getElementById('buttonAddActivity');
+
     buttonAddActivity.addEventListener('click',()=>{
 
         checkVoidInputAndSaveValues();
@@ -115,12 +111,19 @@ function addCheckEvent() {
 
 export async function renderCreateActivityForm() {
 
+    const inputName = document.getElementById('inputName');
+    const inputDescription  = document.getElementById('inputDescription');
+    const inputDateStart = document.getElementById('inputDateStart');
+    const inputHourStart = document.getElementById('inputHourStart');
+    const inputDuration = document.getElementById('inputDuration');
+    const inputPrice = document.getElementById('inputPrice');
+
     let activitiesList = [];
 
     createActivityView.buildView();
 
     addMultipleOptionsToDataListInNameInput();
 
-    addCheckEvent();
+    addCheckEvent()
     
 }

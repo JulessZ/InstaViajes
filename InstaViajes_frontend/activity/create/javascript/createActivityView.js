@@ -1,7 +1,7 @@
 export class createActivityView{
     static buildView() {
 
-        const container = document.getElementById('formcrearactividades');
+        const container = document.getElementById('form-crear-actividades');
         container.setAttribute('onsubmit', 'return false');
         
         //start name, name input and its datalist
@@ -32,8 +32,6 @@ export class createActivityView{
 
             container.appendChild(divName);
         //end
-
-        
 
         //start description and description input
             let descriptionDiv = document.createElement('div');

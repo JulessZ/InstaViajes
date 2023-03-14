@@ -104,7 +104,6 @@ function checkVoidInputAndSaveValues() {
 
 }
 
-
 let activitiesList = [];
 
 const buttonAddActivity = document.getElementById('buttonAddActivity');
