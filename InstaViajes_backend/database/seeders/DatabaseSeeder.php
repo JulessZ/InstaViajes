@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Friendship;
 use App\Models\Post;
 use App\Models\Travel;
+use App\Models\TravelUsers;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
         Travel::factory(50)->create();
         Post::factory(100)->create();
         $this->call(UserSeeder::class);
+        TravelUsers::factory(100)->create();
 
         // \App\Models\User::factory(10)->create();
     }
