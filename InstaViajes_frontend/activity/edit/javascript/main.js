@@ -106,4 +106,24 @@ function checkVoidInputAndSaveValues() {
     if  (status == 0) {
         activitiesList.push(currentActivity);
     }
+
+}
+
+export async function renderEditActivityForm() {
+
+    const inputName = document.getElementById('inputName');
+    const inputDescription  = document.getElementById('inputDescription');
+    const inputDateStart = document.getElementById('inputDateStart');
+    const inputHourStart = document.getElementById('inputHourStart');
+    const inputDuration = document.getElementById('inputDuration');
+    const inputPrice = document.getElementById('inputPrice');
+
+    let activitiesList = [];
+
+    createActivityView.buildView();
+
+    addMultipleOptionsToDataListInNameInput();
+
+    addCheckEvent();
+    
 }

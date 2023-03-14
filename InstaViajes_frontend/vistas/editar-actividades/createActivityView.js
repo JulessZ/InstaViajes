@@ -10,7 +10,6 @@ export class createActivityView{
         document.getElementById('formeditaractividades').appendChild(form);
 
         const container = document.getElementById('form-editar-actividades');
-
         container.setAttribute('onsubmit', 'return false');
         
         //start name, name input and its datalist
@@ -175,5 +174,4 @@ export class createActivityView{
             container.appendChild(buttonsDiv);
         //end
     }
-
 }

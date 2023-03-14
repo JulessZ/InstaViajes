@@ -14,8 +14,6 @@ async function getActivityData() {
 
 }
 
-getActivityData();
-
 
 async function addMultipleOptionsToDataListInNameInput() {
 
@@ -109,7 +107,10 @@ function checkVoidInputAndSaveValues() {
 
 }
 
+
+
 export async function renderEditActivityForm() {
+
 
     const inputName = document.getElementById('inputName');
     const inputDescription  = document.getElementById('inputDescription');
@@ -120,10 +121,8 @@ export async function renderEditActivityForm() {
 
     let activitiesList = [];
 
-    createActivityView.buildView();
+    getActivityData();
 
-    addMultipleOptionsToDataListInNameInput();
 
-    addCheckEvent();
     
 }
