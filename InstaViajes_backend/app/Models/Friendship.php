@@ -10,7 +10,6 @@ class Friendship extends Model
 {
     use HasFactory;
 
-
     // RELATIONSHIPS
 
     /**

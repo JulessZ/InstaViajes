@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Travel extends Model
 {
     use HasFactory;
-
+    protected $table = 'travels';
 
     // RELATIONSHIPS
 
