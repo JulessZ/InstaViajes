@@ -251,8 +251,6 @@ function editForm(object) {
         labelDescription.textContent = 'Descripción del Viaje';
 
         description.setAttribute('name', 'description');
-        description.cols = '30';
-        description.rows = '10';
         description.textContent = object.description;
         description.id = 'descriptionTrip';
 

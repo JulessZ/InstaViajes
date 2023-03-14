@@ -20,6 +20,8 @@ export { renderHeader as renderHeaderDetallesViajes } from './vistas/detallesvia
 export { renderButtonTravel as renderButtonDetallesViajes } from './vistas/detallesviaje/travel-show.js';
 export { renderDivCarousel as renderCarouselDetallesViajes } from './vistas/detallesviaje/travel-show.js';
 
+//CREACIÓN DE UN VIAJE
+export { renderCreateForm as renderFormCreateTravel } from './vistas/crearviaje/create-travel.js';
 //EDICIÓN DE UN VIAJE
 export { renderEditForm as renderEditarViaje } from './vistas/editarviaje/edit-travel.js';
 
