@@ -77,10 +77,25 @@ export async function getMisViajesData() {
         rightDiv.appendChild(journeyStatus);
 
         downDiv.appendChild(rightDiv);
-
         journeyCard.appendChild(downDiv);
 
+        //botones de editar y eliminar
+        let buttonDiv = document.createElement('div');
+        buttonDiv.setAttribute('class', 'style-button-create');
+
+        let journeyButtonEdit = document.createElement('button');
+        journeyButtonEdit.textContent = 'Editar';
+        journeyButtonEdit.setAttribute('class', 'boton-secundario');
+        buttonDiv.appendChild(journeyButtonEdit);
+        journeyCard.appendChild(buttonDiv);
+
+        let journeyButtonDelete = document.createElement('button');
+        journeyButtonDelete.textContent = 'Eliminar';
+        journeyButtonDelete.setAttribute('class', 'boton-cancelar');
+        buttonDiv.appendChild(journeyButtonDelete);
+
         misViajesContainer.appendChild(journeyCard);
+
     }
 
     //viajes compartidos
