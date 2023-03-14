@@ -5,22 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TravelStates extends Model
+class Place extends Model
 {
     use HasFactory;
 
 
     // RELATIONSHIPS
-    
+
     /**
-     * Get all of the travels for the TravelStates
-     * Travel states can be in any travel.
+     * Get all of the activities for the Place
+     * Places can be in any activity.
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function travels(): HasMany
+    public function activities(): HasMany
     {
-        return $this->hasMany(Travel::class);
+        return $this->hasMany(Activity::class);
     }
-
+    
     // RELATIONSHIPS END
 }

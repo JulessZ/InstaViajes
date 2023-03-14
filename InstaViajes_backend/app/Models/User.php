@@ -12,6 +12,72 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+    // RELATIONSHIPS
+
+    /**
+     * Get all of the travels for the User
+     * An user can have many travels.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function travels(): HasMany
+    {
+        return $this->hasMany(Travel::class);
+    }
+
+    /**
+     * Get all of the friendships for the User
+     * An user can have many friendships.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function friendships(): HasMany
+    {
+        return $this->hasMany(Friendship::class);
+    }
+    
+    /**
+     * Get all of the travels interactions for the User
+     * An user can have many travels where he's been invited.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function travelUsers(): HasMany
+    {
+        return $this->hasMany(TravelUsers::class);
+    }
+
+    /**
+     * Get all of the activities for the User
+     * An user can have many activities.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function activities(): HasMany
+    {
+        return $this->hasMany(Activity::class);
+    }
+
+    /**
+     * Get all of the activity votes for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function activityVotes(): HasMany
+    {
+        return $this->hasMany(ActivityVotes::class);
+    }
+
+    /**
+     * Get all of the posts for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    // RELATIONSHIPS END
+
+
     /**
      * The attributes that are mass assignable.
      *

@@ -5,31 +5,31 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Friendship extends Model
+class Post extends Model
 {
     use HasFactory;
 
-
+    
     // RELATIONSHIPS
 
     /**
-     * Get the sender user of the Friendship's invitation
+     * Get the user that owns the Post
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function senderUser(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'sender_user_id');
+        return $this->belongsTo(User::class);
     }
 
     /**
-     * Get the receptor user of the Friendship's invitation
+     * Get the travel that owns the Post
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function receptorUser(): BelongsTo
+    public function travel(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'receptor_user_id');
+        return $this->belongsTo(Travel::class);
     }
 
     // RELATIONSHIPS END
