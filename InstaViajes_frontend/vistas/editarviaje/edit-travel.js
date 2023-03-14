@@ -114,6 +114,7 @@ function editForm(object) {
 
         submitButton.type = 'submit';
         submitButton.value = 'Editar viaje';
+        submitButton.className = 'boton-secundario';
 
         cancelButton.textContent = 'Cancelar';
         
@@ -296,6 +297,7 @@ function editForm(object) {
 
         submitButton.type = 'submit';
         submitButton.value = 'Editar viaje';
+        submitButton.className = 'boton-secundario';
 
         cancelButton.textContent = 'Cancelar';
 
