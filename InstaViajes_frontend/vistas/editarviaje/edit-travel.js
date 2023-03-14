@@ -68,7 +68,7 @@ function editForm(object) {
         const divSubmit = document.createElement('div');
         const submitButton = document.createElement('input');
         const divCancel = document.createElement('div');
-        const cancelButton = document.createElement('input');
+        const cancelButton = document.createElement('button');
 
         //Setting the attributes to the different elements
         form.id = 'formEdit';
@@ -114,10 +114,10 @@ function editForm(object) {
 
         submitButton.type = 'submit';
         submitButton.value = 'Editar viaje';
+        submitButton.className = 'boton-secundario';
 
-        cancelButton.type = 'reset';
-        cancelButton.value = 'Cancelar';
-
+        cancelButton.textContent = 'Cancelar';
+        
         //Inserting the elements into de html
         editContainer.appendChild(form);
         form.appendChild(divName);
@@ -297,6 +297,7 @@ function editForm(object) {
 
         submitButton.type = 'submit';
         submitButton.value = 'Editar viaje';
+        submitButton.className = 'boton-secundario';
 
         cancelButton.textContent = 'Cancelar';
 
