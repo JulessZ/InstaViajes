@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         Post::factory(100)->create();
         $this->call(UserSeeder::class);
         TravelUsers::factory(100)->create();
-
+        $this->call(TravelUsersSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }
