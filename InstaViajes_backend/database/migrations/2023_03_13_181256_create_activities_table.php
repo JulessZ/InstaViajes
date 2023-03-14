@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("travel_id")->nullable();
+            $table->unsignedBigInteger("travel_id");
             $table->foreign("travel_id")->references("id")->on("travels")->onDelete("cascade");
-            $table->unsignedBigInteger("user_id")->nullable();
-            $table->foreign("user_id")->references("id")->on("users")->onDelete("null");
-            $table->string("name");
+            $table->unsignedBigInteger("user_id");
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
+            $table->unsignedBigInteger("place_id")->nullable();
+            $table->foreign("place_id")->references("id")->on("places")->onDelete("null");
+            // La foreign key anterior cumple la misma función: $table->string("name");
             $table->date("start_date");
             $table->time("start_hour");
             $table->integer("duration");

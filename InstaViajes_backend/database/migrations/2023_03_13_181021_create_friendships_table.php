@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('friendships', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("user_sender_id");
-            $table->foreign("user_sender_id")->references("id")->on("users")->onDelete("cascade");
-            $table->unsignedBigInteger("user_receptor_id");
-            $table->foreign("user_receptor_id")->references("id")->on("users")->onDelete("cascade");
+            $table->unsignedBigInteger("sender_user_id");
+            $table->foreign("sender_user_id")->references("id")->on("users")->onDelete("cascade");
+            $table->unsignedBigInteger("receptor_user_id");
+            $table->foreign("receptor_user_id")->references("id")->on("users")->onDelete("cascade");
             $table->boolean('state')->default(false);
             $table->timestamps();
         });

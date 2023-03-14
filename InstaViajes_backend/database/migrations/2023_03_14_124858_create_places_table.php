@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('travel_states', function (Blueprint $table) {
+        Schema::create('places', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('type');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('travel_states');
+        Schema::dropIfExists('places');
     }
 };
