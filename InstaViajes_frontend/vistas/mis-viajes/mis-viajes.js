@@ -8,7 +8,7 @@ export async function getMisViajesData() {
     const data = await fetchMisViajes.showMisViajesData();
     for (const [key, journeyData] of Object.entries(data)) {
         let journeyCard = document.createElement('div');
-
+        journeyCard.setAttribute("class","cajaSombra cajatarjeta");
         //imagen del viaje
         let imgDiv = document.createElement('div');
         let img = document.createElement('img');
@@ -17,12 +17,16 @@ export async function getMisViajesData() {
         journeyCard.appendChild(imgDiv);
 
         //nombre del viaje
-        let journeyName = document.createElement('p');
+        let journeyName = document.createElement('h3');
         let journeyNameText = document.createTextNode(`${journeyData.name}`);
+        let divname= document.createElement('div');
+        divname.setAttribute('class','divnombre');
         journeyName.appendChild(journeyNameText);
-        journeyCard.appendChild(journeyName);
+        divname.appendChild(journeyName);
+        journeyCard.appendChild(divname);
 
         let downDiv = document.createElement('div');
+        downDiv.setAttribute('class','divdatos');
 
         let leftDiv = document.createElement('div');
 
@@ -31,12 +35,7 @@ export async function getMisViajesData() {
 
         let journeyDestination = document.createElement('p');
         let journeyDestinationText = document.createTextNode(`${journeyData.destination}`);
-
-        let iconMap = document.createElement('i');
-        iconMap.classList.add('bi');
-        iconMap.classList.add('bi-map');
-        journeyDestination.appendChild(iconMap);
-
+        journeyDestination.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-map" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"/></svg>';
         journeyDestination.appendChild(journeyDestinationText);
         leftDiv.appendChild(journeyDestination);
 
@@ -44,14 +43,8 @@ export async function getMisViajesData() {
         //numero de participantes del viaje
         let journeyParticipants = document.createElement('p');
         let journeyParticipantsText = document.createTextNode(`${journeyData.participants}`);
-
-        let iconPerson = document.createElement('i');
-        iconPerson.classList.add('bi');
-        iconPerson.classList.add('bi-people');
-
         journeyParticipants.appendChild(journeyParticipantsText);
-        journeyParticipants.appendChild(iconPerson);
-
+        journeyParticipants.innerHTML+='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16"><path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/></svg>';
         leftDiv.appendChild(journeyParticipants);
 
         //dias de duracion del viaje
@@ -95,7 +88,7 @@ export async function getMisViajesData() {
     const dataViajesCompartidos = await fetchMisViajes.showMisViajesData();
     for (const [key, journeyData] of Object.entries(data)) {
         let journeyCard = document.createElement('div');
-
+        journeyCard.setAttribute("class","cajaSombra cajatarjeta");
         //imagen del viaje
         let imgDiv = document.createElement('div');
         let img = document.createElement('img');
@@ -104,12 +97,16 @@ export async function getMisViajesData() {
         journeyCard.appendChild(imgDiv);
 
         //nombre del viaje
-        let journeyName = document.createElement('p');
+        let journeyName = document.createElement('h3');
         let journeyNameText = document.createTextNode(`${journeyData.name}`);
-        journeyName.appendChild(journeyNameText);
-        journeyCard.appendChild(journeyName);
+        let divname= document.createElement('div');
+        divname.setAttribute('class','divnombre');
+       journeyName.appendChild(journeyNameText);
+        divname.appendChild(journeyName);
+        journeyCard.appendChild(divname);
 
         let downDiv = document.createElement('div');
+        downDiv.setAttribute('class','divdatos');
 
         let leftDiv = document.createElement('div');
 
@@ -118,12 +115,7 @@ export async function getMisViajesData() {
 
         let journeyDestination = document.createElement('p');
         let journeyDestinationText = document.createTextNode(`${journeyData.destination}`);
-
-        let iconMap = document.createElement('i');
-        iconMap.classList.add('bi');
-        iconMap.classList.add('bi-map');
-        journeyDestination.appendChild(iconMap);
-
+        journeyDestination.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-map" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"/></svg>';
         journeyDestination.appendChild(journeyDestinationText);
         leftDiv.appendChild(journeyDestination);
 
@@ -131,14 +123,8 @@ export async function getMisViajesData() {
         //numero de participantes del viaje
         let journeyParticipants = document.createElement('p');
         let journeyParticipantsText = document.createTextNode(`${journeyData.participants}`);
-
-        let iconPerson = document.createElement('i');
-        iconPerson.classList.add('bi');
-        iconPerson.classList.add('bi-people');
-
         journeyParticipants.appendChild(journeyParticipantsText);
-        journeyParticipants.appendChild(iconPerson);
-
+        journeyParticipants.innerHTML+='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16"><path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/></svg>';
         leftDiv.appendChild(journeyParticipants);
 
         //dias de duracion del viaje
