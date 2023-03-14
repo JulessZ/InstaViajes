@@ -8,7 +8,6 @@ fetch.addRoute('https://somekindofserver.com/travel/2', {
             trip: {
                 title: "Viaje a Madrid",
                 participants: ["Diego", "Aram", "Jorge", "Carmen"],
-                boss: "Diego",
                 state: "En curso",
                 budget: 2000.54,
                 days: [
@@ -58,6 +57,31 @@ fetch.addRoute('https://somekindofserver.com/travel/2', {
                                 votes: 10,
                                 image: "https://madridando.com/wp-content/uploads/2018/07/el-retiro.jpeg",
                                 description: "Vuelta de reconocimiento a la plaza de españa.",
+                                duration: "1 horas"
+                            }
+                        ]
+                    },
+                    {
+                        date: "Día 25/03/2023",
+                        activities: [
+                            {
+                                id: 1,
+                                title: "5g4g4g43r23g4g4",
+                                budget: 2.45,
+                                type: "M23r23r23usg45g45eo",
+                                votes: 155,
+                                image: "https://ep01.epimg.net/verne/imagenes/2015/03/05/articulo/1425549987_841133_1425571033_noticia_normal.jpg",
+                                description: "V2r23r23r32risita guiada al museo del prado de Madrid.",
+                                duration: "2 horas"
+                            },
+                            {
+                                id: 2,
+                                title: "3r23r32Visita4h4h4hrg4 d32r32r32rl retiro.",
+                                budget: 244333,
+                                type: "Monumentos públicos",
+                                votes: 10,
+                                image: "https://madridando.com/wp-content/uploads/2018/07/el-retiro.jpeg",
+                                description: "23r23r23rVuelta de reconocimiento a la plaza de españa.",
                                 duration: "1 horas"
                             }
                         ]
@@ -187,6 +211,19 @@ export function renderDivCarousel() {
                 }
             }
             carouselDiv.addEventListener("click", handleDayClick);
+
+            function handleCarouselClick(event) {
+                const carousel = event.target.closest("#carouselExampleInterval");
+                if (carousel) {
+                    const itineraryListDiv = document.querySelector("#itinerarylist");
+                    borrarNodo(itineraryListDiv);
+                }
+            }
+
+            const carouselPrevButton = document.querySelector(".carousel-control-prev");
+            carouselPrevButton.addEventListener("click", handleCarouselClick);
+            const carouselNextButton = document.querySelector(".carousel-control-next");
+            carouselNextButton.addEventListener("click", handleCarouselClick);
         })
 }
 
@@ -209,13 +246,8 @@ function renderItinerary(day) {
 
 function borrarNodo(nodo) {
     if (nodo.hasChildNodes()) {
-      while (nodo.firstChild) {
-        nodo.removeChild(nodo.firstChild);
-      }
+        while (nodo.firstChild) {
+            nodo.removeChild(nodo.firstChild);
+        }
     }
-  }
-  
-
-
-
-
+}

@@ -45,11 +45,11 @@ const routes = {
     template: homeTemplate,
     views: [View.homeView, View.homeSideView]
   },
-  perfil: {
-    pathname: '/perfil',
-    template: perfilTemplate,
-    views: [View.renderPerfil]
-  },
+  // perfil: {
+  //   pathname: '/home',
+  //   template: homeTemplate,
+  //   views: [homeView, homeSideView]
+  // },
   detallesviaje: {
     pathname: '/detallesviaje',
     template: detallesViajeTemplate,
@@ -75,11 +75,11 @@ const routes = {
   //   template: crearViajeTemplate,
   //   views: [null]
   // },
-  editarviaje: {
-    pathname: '/editarviaje',
-    template: editarViajeTemplate,
-    views: [View.renderEditarViaje]
-  },
+  // editarviaje: {
+  //   pathname: '/editarviaje',
+  //   template: editarViajeTemplate,
+  //   views: [null]
+  // },
   // editaractividades: {
   //   pathname: '/editaractividades',
   //   template: editarActividadesTemplate,
