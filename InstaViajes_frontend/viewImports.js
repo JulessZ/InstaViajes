@@ -22,3 +22,8 @@ export { renderDivCarousel as renderCarouselDetallesViajes } from './vistas/deta
 
 //EDICIÓN DE UN VIAJE
 export { renderEditForm as renderEditarViaje } from './vistas/editarviaje/edit-travel.js';
+
+
+// PERFIL
+export { renderProfile as renderPerfil } from './vistas/perfil/perfil.js';
+
