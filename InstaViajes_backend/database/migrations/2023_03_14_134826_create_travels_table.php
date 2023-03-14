@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger("travel_states_id");
             $table->foreign("travel_states_id")->references("id")->on("travel_states");
             $table->string("name");
-            $table->string("description")->nullable();
+            $table->text('description', 1000)->nullable();
             $table->date("start_date");
             $table->date("end_date");
             $table->string("origin");

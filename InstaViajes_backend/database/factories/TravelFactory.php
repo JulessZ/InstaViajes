@@ -22,7 +22,7 @@ class TravelFactory extends Factory
             'user_id' => User::all()->random()->id,
             'travel_states_id' => TravelStates::all()->random()->id,
             'name' => $this->faker->word(),
-            'description' => $this->faker->paragraph(),
+            'description' => $this->faker->paragraph(10),
             'start_date' => $this->faker->date(),
             'end_date' => $this->faker->date(),
             'origin' => $this->faker->word(),
