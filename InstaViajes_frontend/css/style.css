@@ -33,17 +33,17 @@
   padding: 6px;
   margin-bottom: 2%;
 }
-#peticionesamigos .friendDiv .divimagenfriend {
-  width: 15%;
-  text-align: center;
-}
-#peticionesamigos .friendDiv .divimagenfriend img {
+#peticionesamigos .friendDiv img {
   border: 1px solid #D3CFCF;
   border-radius: 50%;
   width: 70px;
   height: 70px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+#peticionesamigos .friendDiv .divimagenfriend {
+  width: 15%;
+  text-align: center;
 }
 #peticionesamigos .friendDiv .nameDiv {
   width: 25%;
@@ -936,4 +936,4 @@ p {
   border: 1px solid #D3CFCF;
   border-radius: 31px;
   box-shadow: 0px 4px 2px #D3CFCF;
-}
+}/*# sourceMappingURL=style.css.map */
