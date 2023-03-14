@@ -1,31 +1,31 @@
-//Import fake-simulator for develop
-import Fetch from 'fetch-simulator';
-Fetch.use();
+// Import fake-simulator for develop
+// import fetchSim from 'fetch-simulator';
+// fetchSim.use();
 
-//Generate fake routes to use
-//Need to the API send this info with the profileImage in it
-fetch.addRoute('https://instaviajes.com/profile/users', {
-    get: {
-        response: [
-            { id: 1, firstName: 'Juan', lastName: 'Pérez', userName: '@juan', email: 'juan.perez@example.com' },
-            { id: 2, firstName: 'María', lastName: 'García', userName: '@maria', email: 'maria.garcia@example.com' },
-            { id: 3, firstName: 'Pedro', lastName: 'Martínez', userName: '@pedro', email: 'pedro.martinez@example.com' },
-            { id: 4, firstName: 'Ana', lastName: 'Hernández', userName: '@ana', email: 'Ana.hdez@example.com' },
-            { id: 5, firstName: 'Luis', lastName: 'Expósito', userName: '@luis', email: 'luis.exposito@example.com' },
-            { id: 6, firstName: 'Belén', lastName: 'Ruíz', userName: '@belen', email: 'belen.ruiz@example.com' },
-        ]
-    }
-});
-fetch.addRoute('https://instaviajes.com/profile/{user_id}/friends', {
-    get: {
-        response: [
-            { id: 1, user_id_sender: 1, user_id_receptor: 2, state: true },
-            { id: 2, user_id_sender: 1, user_id_receptor: 3, state: false },
-            { id: 3, user_id_sender: 1, user_id_receptor: 4, state: false },
-            { id: 4, user_id_sender: 1, user_id_receptor: 5, state: false },
-        ]
-    }
-});
+// //Generate fake routes to use
+// //Need to the API send this info with the profileImage in it
+// fetchSim.addRoute('https://instaviajes.com/profile/users', {
+//     get: {
+//         response: [
+//             { id: 1, firstName: 'Juan', lastName: 'Pérez', userName: '@juan', email: 'juan.perez@example.com' },
+//             { id: 2, firstName: 'María', lastName: 'García', userName: '@maria', email: 'maria.garcia@example.com' },
+//             { id: 3, firstName: 'Pedro', lastName: 'Martínez', userName: '@pedro', email: 'pedro.martinez@example.com' },
+//             { id: 4, firstName: 'Ana', lastName: 'Hernández', userName: '@ana', email: 'Ana.hdez@example.com' },
+//             { id: 5, firstName: 'Luis', lastName: 'Expósito', userName: '@luis', email: 'luis.exposito@example.com' },
+//             { id: 6, firstName: 'Belén', lastName: 'Ruíz', userName: '@belen', email: 'belen.ruiz@example.com' },
+//         ]
+//     }
+// });
+// fetchSim.addRoute('https://instaviajes.com/profile/{user_id}/friends', {
+//     get: {
+//         response: [
+//             { id: 1, user_id_sender: 1, user_id_receptor: 2, state: true },
+//             { id: 2, user_id_sender: 1, user_id_receptor: 3, state: false },
+//             { id: 3, user_id_sender: 1, user_id_receptor: 4, state: false },
+//             { id: 4, user_id_sender: 1, user_id_receptor: 5, state: false },
+//         ]
+//     }
+// });
 
 //Variables to use
 // let divRoot = document.getElementById('contactosamigos');
