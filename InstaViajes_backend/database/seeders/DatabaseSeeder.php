@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TravelStateSeeder::class);
         Travel::factory(50)->create();
         Post::factory(100)->create();
+        $this->call(UserSeeder::class);
 
         // \App\Models\User::factory(10)->create();
     }
