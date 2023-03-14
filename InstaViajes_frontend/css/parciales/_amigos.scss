@@ -1,0 +1,150 @@
+#botonfiltroamigos{
+    display:flex;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    .divbtnfiltroamigos{
+        width:50%;
+        button{
+            margin-right:3%;
+        }
+    }
+    .searchDiv{
+        width:50%;
+        text-align: right;
+        input{
+            width: 50%;
+            padding: 1%;
+        }
+    }
+}
+#peticionesamigos{
+    h2{
+        margin-bottom: 3%;
+    }
+    .friendDiv{
+        display: flex;
+        width:75%;
+        padding:6px;
+        margin-bottom:2%;
+        .divimagenfriend{
+            width:15%;
+            text-align: center;
+            img{
+                border:1px solid #D3CFCF;
+                border-radius: 50%;
+                width: 70px;
+                height:70px;
+                object-fit: cover;
+            }
+        }
+        .nameDiv{
+            width:25%;
+            font-size: x-large;
+            padding-top: 15px;
+        }
+        .divbotonrepuesta{
+            padding-top: 15px;
+        }
+    }
+    margin-bottom: 3%;
+}
+#contactosamigos, #usuariosamigos{
+    margin-bottom:5%;
+    h2{
+        margin-bottom: 10%;
+    }
+    .divContacto{
+        width:100%;
+        display: flex;
+        margin-bottom: 2%;
+        .imgDiv{
+            width:15%;
+            text-align: center;
+            img{
+                border:1px solid #D3CFCF;
+                border-radius: 50%;
+                width: 70px;
+                height:70px;
+                object-fit: cover;
+            }
+        }
+        .nameDiv{
+            width:50%;
+            font-size: x-large;
+            padding-top: 15px;
+        }
+        .divButton{
+            width: 35%;
+            padding-top: 15px;
+            text-align: center;
+        }
+        
+    }
+    .divdown{
+            padding: 2%;
+        }
+}
+@media only screen and (max-width: 960px) {
+    #botonfiltroamigos{
+
+        .divbtnfiltroamigos{
+            display:flex;
+        }
+    }
+    #peticionesamigos{
+        .friendDiv{
+            display: flex;
+            width:100%;
+            .divimagenfriend{
+                width:15%;
+                text-align: center;
+                img{
+                    border:1px solid #D3CFCF;
+                    border-radius: 50%;
+                    width: 50px;
+                    height:50px;
+                    object-fit: cover;
+                }
+            }
+            .nameDiv{
+                width:40%;
+                font-size: x-large;
+                padding-top: 5px;
+            }
+            .divbotonrepuesta{
+                padding-top: 5px;
+                display: flex;
+                button{
+                    font-size: x-small;
+                    margin-left: 2%;
+                }
+            }
+        }
+    }
+    #contactosamigos, #usuariosamigos{
+        .divContacto{
+            .imgDiv{
+                width:15%;
+                text-align: center;
+                img{
+                    border:1px solid #D3CFCF;
+                    border-radius: 50%;
+                    width: 50px;
+                    height:50px;
+                    object-fit: cover;
+                }
+            }
+            .nameDiv{
+                width:40%;
+                font-size: x-large;
+                padding-top: 5px;
+            }
+            .divButton{
+                width: 35%;
+                padding-top: 5px;
+                text-align: center;
+            }
+            
+        }
+    }
+}

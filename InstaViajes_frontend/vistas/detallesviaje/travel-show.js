@@ -1,4 +1,3 @@
-// const principalDiv = document.querySelector("#root"); //? Contenedor principal.
 
 // import fetchSim from 'fetch-simulator';
 // fetchSim.use();
@@ -43,10 +42,6 @@
 //     }
 // });
 
-// const itineraryListDiv = document.createElement("div"); //? Contenedor padre donde se guardan los itinerarios de las actividades.
-const itineraryListDiv = document.querySelector('#itinerary-list');
-
-const itineraryTitleDiv = document.createElement("div"); //? Contenedor para almacenar el titulo del itinerario.
 
 export function renderHeader() {
     const container = document.querySelector("#detallesviaje");
@@ -54,22 +49,29 @@ export function renderHeader() {
     fetch("https://somekindofserver.com/travel/2")
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            const headerContainer = document.createElement('div'); // Nuevo contenedor para el encabezado
             const container_title = document.createElement('h1'); //? Titulo para el Viaje.
             const container_participants = document.createElement('h3'); //? Sub-titulo para los nombres de los participantes del viaje.
             const container_budget = document.createElement('h3'); //? Sub-titulo para el presupuesto del viaje.
             const container_state = document.createElement('h4'); //? Titulo pequeño para el estado del viaje.
+            const container_owner = document.createElement('h5'); //? dueño del viaje.
             container_title.innerText = data[0].trip.title;
             container_participants.innerText = "Participantes: " + data[0].trip.participants;
             container_budget.innerText = "Presupuesto: " + data[0].trip.budget + "€";
             container_state.innerText = "Estado: " + data[0].trip.state;
-            container.appendChild(container_title);
-            container.appendChild(container_state);
+            container_owner.innerText = "Dueño: " + data[0].trip.owner;
+            headerContainer.appendChild(container_title);
+            headerContainer.appendChild(container_state);
+            container.appendChild(headerContainer);
             container.appendChild(container_participants);
             container.appendChild(container_budget);
+            container.appendChild(container_owner);
+            headerContainer.classList.add('d-flex', 'justify-content-between', 'align-items-center'); // Aplicar clases de Bootstrap
+            container_title.classList.add('mr-4'); // Agregar margen derecho para separar el título del estado
             // principalDiv.appendChild(container);
         })
 }
+
 
 export function renderButtonTravel() {
     const buttonsTravelDiv = document.querySelector("#detallesactividades");
@@ -101,26 +103,34 @@ export function renderButtonTravel() {
     // principalDiv.appendChild(buttonsTravelDiv);
 }
 
+
+const prueba = document.createElement("div");
 export function renderDivCarousel() {
     const carouselDiv = document.querySelector("#carruselitinerario");
-
+    let isFirstItem = true;
     fetch("https://somekindofserver.com/travel/2")
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             data[0].trip.days.forEach((day, index) => {
                 const dayItem = document.createElement("div"); //? Contenedor para almacenar los datos de cada día de un viaje.
                 dayItem.classList.add("day-item");
                 dayItem.innerHTML = `<h2>${day.date}</h2>`;
                 dayItem.dataset.index = index;
+
                 carouselDiv.appendChild(dayItem); //? Agregar al contendor padre del HTML cada contenedor (día) que tiene el viaje.
-                carouselDiv.classList.add("carousel-item", "active");
+                if (isFirstItem) {
+                    dayItem.classList.add("carousel-item", "active");
+                    isFirstItem = false; // Cambiar el estado de la variable para los siguientes items del carrusel
+                } else {
+                    dayItem.classList.add("carousel-item");
+                }
                 const activitiesDiv = document.createElement("div"); //? Contenedor para almacenar actividades dentro de cada día.
                 activitiesDiv.innerText = `ACTIVIDADES: `;
                 dayItem.appendChild(activitiesDiv);
                 const activityList = document.createElement("ul"); //? Lista para almacenar actividades.
                 day.activities.forEach(activity => {
-                    const activityItem = document.createElement("li"); //? Elementos de dentro de la lista (activityItem) que son las actividades en sí.
+                    const activityItem = document.createElement("li");
+                    activityList.style.listStyleType = "none";
                     activityItem.innerText = `${activity.title} (${activity.type})`;
                     const deleteButton = document.createElement("button");
                     deleteButton.innerText = "Borrar";
@@ -144,41 +154,56 @@ export function renderDivCarousel() {
 
 
             function handleDayClick(event) {
-                deleteSpecificNode(itineraryListDiv); //? Borrar el itinerario primero para luego crear el nuevo.
                 const dayItem = event.target.closest(".day-item"); //? Buscar elemento más cercano con la clase ".day-item". Almacenarlo en una constante.
-
                 if (dayItem && event.target.tagName !== "BUTTON") {
                     //! Obtener el día seleccionado y sus datos asociados a través del índice del elemento HTML seleccionado.
                     const dayIndex = dayItem.dataset.index;
                     const day = data[0].trip.days[dayIndex];
-                    updateItineraryView(day);
+                    renderItinerary(day);
                 }
             }
-
-            
             carouselDiv.addEventListener("click", handleDayClick);
+
+            const prevButton = document.querySelector(".carousel-control-prev");
+            const nextButton = document.querySelector(".carousel-control-next");
+            prevButton.addEventListener("click", () => {
+                const itineraryListDiv = document.querySelector("#itinerarylist");
+                borrarNodo(itineraryListDiv);
+            });
+            nextButton.addEventListener("click", () => {
+                const itineraryListDiv = document.querySelector("#itinerarylist");
+                borrarNodo(itineraryListDiv);
+            });
+
         })
 }
 
-function updateItineraryView(day) {
-    itineraryTitleDiv.innerText = `ITINERARIO: ${day.date}`;
-    renderItinerary(day);
-}
-
 function renderItinerary(day) {
+    const itineraryListDiv = document.querySelector("#itinerarylist");
+    borrarNodo(itineraryListDiv); // borra el contenido anterior del itinerario
+    const itineraryTitleDiv = document.createElement("div");
+    itineraryTitleDiv.innerHTML = `<h3>ITINERARIO: ${day.date}</h3>`;
+    itineraryListDiv.appendChild(itineraryTitleDiv);
+    const activityList = document.createElement("ul");
     day.activities.forEach(activity => {
-        const activityItem = document.createElement("div");
-        activityItem.innerHTML = `<h3>${activity.title} - ${activity.budget}€</h3><p>${activity.description}</p><p>Duración: ${activity.duration}</p>`;
-        itineraryListDiv.appendChild(activityItem);
-        // principalDiv.appendChild(itineraryListDiv);
+        const activityItem = document.createElement("li");
+        activityList.style.listStyleType = "none";
+        activityItem.innerHTML = `<h4>${activity.title} - ${activity.budget}€</h4><p>${activity.description}</p><p>Duración: ${activity.duration}</p>`;
+        activityList.appendChild(activityItem);
     });
+    itineraryListDiv.appendChild(activityList);
 }
 
-function deleteSpecificNode(nodo) {
-    while (nodo.firstChild) {
-        nodo.removeChild(nodo.firstChild);
+
+function borrarNodo(nodo) {
+    if (nodo.hasChildNodes()) {
+        while (nodo.firstChild) {
+            nodo.removeChild(nodo.firstChild);
+        }
     }
 }
+
+
 
 
 

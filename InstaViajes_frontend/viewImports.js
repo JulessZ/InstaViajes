@@ -19,3 +19,17 @@ export { getMisViajesData as renderMisViajes } from './vistas/mis-viajes/mis-via
 export { renderHeader as renderHeaderDetallesViajes } from './vistas/detallesviaje/travel-show.js';
 export { renderButtonTravel as renderButtonDetallesViajes } from './vistas/detallesviaje/travel-show.js';
 export { renderDivCarousel as renderCarouselDetallesViajes } from './vistas/detallesviaje/travel-show.js';
+
+// CREACION DE ACTIVIDAD
+export { renderCreateActivityForm as renderFormCreateActivity } from './vistas/crear-actividades/main.js';
+
+//EDITAR ACTIVIDAD
+export { renderEditActivityForm as renderFormEditActivity } from './vistas/editar-actividades/main.js';
+
+//EDICIÓN DE UN VIAJE
+export { renderEditForm as renderEditarViaje } from './vistas/editarviaje/edit-travel.js';
+
+
+// PERFIL
+export { renderProfile as renderPerfil } from './vistas/perfil/perfil.js';
+
