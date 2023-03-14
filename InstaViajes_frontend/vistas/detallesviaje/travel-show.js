@@ -8,7 +8,7 @@ fetch.addRoute('https://somekindofserver.com/travel/2', {
             trip: {
                 title: "Viaje a Madrid",
                 participants: ["Diego", "Aram", "Jorge", "Carmen"],
-                boss: "Diego",
+                owner: "Diego",
                 state: "En curso",
                 budget: 2000.54,
                 days: [
@@ -75,21 +75,23 @@ export function renderHeader() {
     fetch("https://somekindofserver.com/travel/2")
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             const headerContainer = document.createElement('div'); // Nuevo contenedor para el encabezado
             const container_title = document.createElement('h1'); //? Titulo para el Viaje.
             const container_participants = document.createElement('h3'); //? Sub-titulo para los nombres de los participantes del viaje.
             const container_budget = document.createElement('h3'); //? Sub-titulo para el presupuesto del viaje.
             const container_state = document.createElement('h4'); //? Titulo pequeño para el estado del viaje.
+            const container_owner = document.createElement('h5'); //? dueño del viaje.
             container_title.innerText = data[0].trip.title;
             container_participants.innerText = "Participantes: " + data[0].trip.participants;
             container_budget.innerText = "Presupuesto: " + data[0].trip.budget + "€";
             container_state.innerText = "Estado: " + data[0].trip.state;
+            container_owner.innerText = "Dueño: " + data[0].trip.owner;
             headerContainer.appendChild(container_title);
             headerContainer.appendChild(container_state);
             container.appendChild(headerContainer);
             container.appendChild(container_participants);
             container.appendChild(container_budget);
+            container.appendChild(container_owner);
             headerContainer.classList.add('d-flex', 'justify-content-between', 'align-items-center'); // Aplicar clases de Bootstrap
             container_title.classList.add('mr-4'); // Agregar margen derecho para separar el título del estado
             // principalDiv.appendChild(container);
@@ -140,7 +142,7 @@ export function renderDivCarousel() {
                 dayItem.classList.add("day-item");
                 dayItem.innerHTML = `<h2>${day.date}</h2>`;
                 dayItem.dataset.index = index;
-                console.log(dayItem);
+
                 carouselDiv.appendChild(dayItem); //? Agregar al contendor padre del HTML cada contenedor (día) que tiene el viaje.
                 if (isFirstItem) {
                     dayItem.classList.add("carousel-item", "active");
@@ -187,6 +189,18 @@ export function renderDivCarousel() {
                 }
             }
             carouselDiv.addEventListener("click", handleDayClick);
+
+            const prevButton = document.querySelector(".carousel-control-prev");
+            const nextButton = document.querySelector(".carousel-control-next");
+            prevButton.addEventListener("click", () => {
+                const itineraryListDiv = document.querySelector("#itinerarylist");
+                borrarNodo(itineraryListDiv);
+            });
+            nextButton.addEventListener("click", () => {
+                const itineraryListDiv = document.querySelector("#itinerarylist");
+                borrarNodo(itineraryListDiv);
+            });
+
         })
 }
 
@@ -209,12 +223,12 @@ function renderItinerary(day) {
 
 function borrarNodo(nodo) {
     if (nodo.hasChildNodes()) {
-      while (nodo.firstChild) {
-        nodo.removeChild(nodo.firstChild);
-      }
+        while (nodo.firstChild) {
+            nodo.removeChild(nodo.firstChild);
+        }
     }
-  }
-  
+}
+
 
 
 
