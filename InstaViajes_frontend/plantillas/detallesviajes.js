@@ -21,6 +21,7 @@ export let detallesviaje = `
       </div>
       
       <div id="detallesactividades"></div>
+      <div id="postsViaje"></div>
     </div>
   </div>
 </div>

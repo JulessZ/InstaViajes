@@ -11,6 +11,28 @@ fetch.addRoute('https://somekindofserver.com/travel/2', {
                 boss: "Diego",
                 state: "En curso",
                 budget: 2000.54,
+                posts:[
+                    {
+                        id:1,
+                        img: "https://media.traveler.es/photos/62fe1ebd47832420e24c36d8/16:9/w_2580,c_limit/SurItalia_Positano1-Global.jpg",
+                        text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", 
+                    },
+                    {
+                        id:2,
+                        img: "https://media.traveler.es/photos/62fe1ebd47832420e24c36d8/16:9/w_2580,c_limit/SurItalia_Positano1-Global.jpg",
+                        text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", 
+                    },
+                    {
+                        id:3,
+                        img: "https://media.traveler.es/photos/62fe1ebd47832420e24c36d8/16:9/w_2580,c_limit/SurItalia_Positano1-Global.jpg",
+                        text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.", 
+                    },
+                    {
+                        id:4,
+                        img: "https://media.traveler.es/photos/62fe1ebd47832420e24c36d8/16:9/w_2580,c_limit/SurItalia_Positano1-Global.jpg",
+                        text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's .", 
+                    },
+                ],
                 days: [
                     {
                         date: "Día 23/03/2023",
@@ -215,7 +237,51 @@ function borrarNodo(nodo) {
     }
   }
   
+//Función que renderiza los post que crea el usuario
+export function renderPost() {
+    const travelPostsDiv = document.querySelector("#postsViaje");
 
+    const addPostButtonDiv = document.createElement("div");
+    addPostButtonDiv.className = "mt-5";
 
+    const addPostButton = document.createElement("button");
+    
+    addPostButton.className = "boton-principal";
+    const postButtonText = document.createTextNode("Agregar Post");
 
+    const addPostCardDiv = document.createElement("div");
+    addPostCardDiv.className = "misviajes mb-5 mt-5 ms-5";
+    
+    addPostButton.appendChild(postButtonText);
+    addPostButtonDiv.appendChild(addPostButton);
+    travelPostsDiv.appendChild(addPostButtonDiv);
 
+    fetch("https://somekindofserver.com/travel/2")
+    .then(response => response.json())
+    .then(data => {
+        let posts = data[0].trip.posts;
+
+        posts.forEach(element => {
+            let card = document.createElement("div");
+            card.className = "cajaSombra cajatarjeta";
+
+            let imgDiv = document.createElement("div");
+            let img = document.createElement("img");
+            img.src = element.img; 
+            imgDiv.appendChild(img);
+
+            let dataDiv = document.createElement("div");
+            dataDiv.className = "divdatos";
+            let textElement = document.createElement("p");
+            let text = document.createTextNode(element.text);
+            textElement.appendChild(text);
+            dataDiv.appendChild(textElement);
+
+            card.appendChild(imgDiv);
+            card.appendChild(dataDiv);
+
+            addPostCardDiv.appendChild(card);
+            travelPostsDiv.appendChild(addPostCardDiv);
+        });
+    })   
+}
