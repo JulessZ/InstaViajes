@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('imageables', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger("imageable_id");
-            $table->string("imageable_type");
+            $table->unsignedBigInteger("image_id");
+            $table->foreign("image_id")->references("id")->on("images")->onDelete("cascade");
+            $table->unsignedBigInteger("parentable_id");
+            $table->string("parentable_type");
             $table->timestamps();
         });
     }

@@ -82,7 +82,7 @@ class User extends Authenticatable
      */
     public function images(): MorphToMany
     {
-        return $this->morphToMany(Image::class, 'imagable');
+        return $this->morphToMany(Image::class, 'imageable');
     }
 
     // RELATIONSHIPS END
