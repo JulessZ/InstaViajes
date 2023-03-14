@@ -5,7 +5,7 @@ export let amigos = `
 
         <div class="col" id="botonfiltroamigos"></div>
     </div>
-    <div class="row">
+    <div class="row" >
         <!--  caja que contendrá todas las peticiones de amistad -->
 
         <div class="col" id="peticionesamigos"></div>
