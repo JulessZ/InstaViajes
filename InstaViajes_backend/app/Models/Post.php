@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Post extends Model
 {
@@ -30,6 +32,15 @@ class Post extends Model
     public function travel(): BelongsTo
     {
         return $this->belongsTo(Travel::class);
+    }
+
+
+    /**
+     * Get all of the images for the post.
+     */
+    public function images(): MorphToMany
+    {
+        return $this->morphToMany(Image::class, 'imagable');
     }
 
     // RELATIONSHIPS END
