@@ -85,6 +85,12 @@
         }
 }
 @media only screen and (max-width: 960px) {
+    #botonfiltroamigos{
+
+        .divbtnfiltroamigos{
+            display:flex;
+        }
+    }
     #peticionesamigos{
         .friendDiv{
             display: flex;
