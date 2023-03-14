@@ -3,7 +3,7 @@ export let amigos = `
     <div class="row">
         <!-- caja que contendrá los  botones y buscadores necesarios para filtrar los contactos -->
 
-        <div class="col border py-5" id="boton-filtroamigos"></div>
+        <div class="col border py-5" id="botonfiltroamigos"></div>
     </div>
     <div class="row">
         <!--  caja que contendrá todas las peticiones de amistad -->
