@@ -57,7 +57,7 @@ export async function renderIndex() {
     // Crea una tarjeta de viaje para cada elemento del objeto JSON devuelto por la función fetchDatos()
     function Creartarjetas(datos) {
         // ------creamos el titulo de nuevo viaje------
-        const title = document.createElement('h2');
+        const title = document.createElement('h1');
         title.textContent = 'Mis viajes';
         container.appendChild(title);
         //comprobamos que no ha datos en el fetch y solo entonces mostramos el boto de crea tu primer viaje
@@ -80,8 +80,12 @@ export async function renderIndex() {
             datos.forEach(element => {
                 // Crea los elementos de la tarjeta de viaje
                 const tarjeta = document.createElement('div');
+                tarjeta.setAttribute("class",'tarjetaviajehome')
+                const divInfo = document.createElement('div');
+                divInfo.setAttribute("class","divInfo");
                 const divLocation = document.createElement('div');
                 const divUserDays = document.createElement('div');
+                divUserDays.setAttribute("class","divUserDays");
                 // Establece el contenido de los elementos creados
                 const image = document.createElement('img');
                 image.setAttribute('src', element.image);
@@ -97,8 +101,9 @@ export async function renderIndex() {
                 // Agrega los elementos a la tarjeta de viaje
                 tarjetacontainer.appendChild(tarjeta);
                 tarjeta.appendChild(image);
-                tarjeta.appendChild(divLocation);
-                tarjeta.appendChild(divUserDays);
+                divInfo.appendChild(divLocation);
+                divInfo.appendChild(divUserDays);
+                tarjeta.appendChild(divInfo);
                 divLocation.appendChild(location);
                 divUserDays.appendChild(Numuser);
 
@@ -115,9 +120,15 @@ export async function renderIndex() {
         } else {
             // -----creamos el link a nuevo viaje--------
             const divFoot = document.createElement('div');
+            divFoot.setAttribute("class","divFoot");
             const NuevoViaje = document.createElement('a');
+            const btnNuevoViaje = document.createElement('input');
+            btnNuevoViaje.type="submit";
+            btnNuevoViaje.value="Nuevo Viaje";
+            btnNuevoViaje.setAttribute('class','boton-secundario');
             NuevoViaje.setAttribute('href', "index.html");
-            NuevoViaje.textContent = 'Nuevo Viaje';
+            /* NuevoViaje.textContent = 'Nuevo Viaje'; */
+            NuevoViaje.appendChild(btnNuevoViaje);
             container.appendChild(divFoot);
             divFoot.appendChild(NuevoViaje);
         }
