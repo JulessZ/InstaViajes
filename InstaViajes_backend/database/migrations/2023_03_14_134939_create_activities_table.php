@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger("user_id");
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
             $table->unsignedBigInteger("place_id")->nullable();
-            $table->foreign("place_id")->references("id")->on("places")->onDelete("null");
+            $table->foreign("place_id")->references("id")->on("places")->onDelete("set null");
             // La foreign key anterior cumple la misma función: $table->string("name");
             $table->date("start_date");
             $table->time("start_hour");
