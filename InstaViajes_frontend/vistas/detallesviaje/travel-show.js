@@ -156,6 +156,13 @@ export function renderDivCarousel() {
                 const activityList = document.createElement("ul"); //? Lista para almacenar actividades.
                 day.activities.forEach(activity => {
                     const activityItem = document.createElement("li");
+
+                    //Parte de los votos
+                    const voteButton = document.createElement("span");
+                    const voteCount = document.createElement("span");
+                    voteButton.innerHTML = '<i class="far fa-heart"></i>';
+                    voteCount.innerText = `${activity.votes}`;
+
                     activityList.style.listStyleType = "none";
                     activityItem.innerText = `${activity.title} (${activity.type})`;
                     const deleteButton = document.createElement("button");
@@ -170,9 +177,31 @@ export function renderDivCarousel() {
                     editButton.addEventListener("click", () => {
                         //! Aquí se implementaría la lógica para ir a la vista de editar actividad.
                     });
+
+                    voteButton.addEventListener("click", () => {
+                        fetch("https://somekindofserver.com/travel/2")
+                            .then(response => response.json())
+                            .then(data => {
+                                // si la solicitud se realiza con éxito, actualizar el número de votos y desactivar el botón
+                                for (let i = 0; i < data.length; i++) {
+                                    voteCount.innerText = `${(data[i].trip.days[i].activities[i].votes)+1}`;
+                                    voteCount.innerText = "¡Has votado!";
+                                }
+                                voteButton.disabled = true;
+                            })
+                            .catch(error => {
+                                console.error("Error al registrar el voto:", error);
+                            });
+                    });
+
                     activityItem.appendChild(editButton);
                     activityItem.appendChild(deleteButton);
                     activityList.appendChild(activityItem);
+
+                    //Añadir nodos de la votación.
+                    activityItem.appendChild(voteButton);
+                    activityItem.appendChild(voteCount);
+
                     activitiesDiv.appendChild(activityList);
                 });
                 // principalDiv.appendChild(carouselDiv);
@@ -181,7 +210,7 @@ export function renderDivCarousel() {
 
             function handleDayClick(event) {
                 const dayItem = event.target.closest(".day-item"); //? Buscar elemento más cercano con la clase ".day-item". Almacenarlo en una constante.
-                if (dayItem && event.target.tagName !== "BUTTON") {
+                if (dayItem && event.target.tagName !== "BUTTON" && event.target.tagName !== "SPAN"  && event.target.tagName !== "I") {
                     //! Obtener el día seleccionado y sus datos asociados a través del índice del elemento HTML seleccionado.
                     const dayIndex = dayItem.dataset.index;
                     const day = data[0].trip.days[dayIndex];
@@ -200,6 +229,7 @@ export function renderDivCarousel() {
                 const itineraryListDiv = document.querySelector("#itinerarylist");
                 borrarNodo(itineraryListDiv);
             });
+
 
         })
 }
