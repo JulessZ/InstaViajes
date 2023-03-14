@@ -45,11 +45,11 @@ const routes = {
     template: homeTemplate,
     views: [View.homeView, View.homeSideView]
   },
-  // perfil: {
-  //   pathname: '/home',
-  //   template: homeTemplate,
-  //   views: [homeView, homeSideView]
-  // },
+  perfil: {
+    pathname: '/perfil',
+    template: perfilTemplate,
+    views: [View.renderPerfil]
+  },
   detallesviaje: {
     pathname: '/detallesviaje',
     template: detallesViajeTemplate,
@@ -65,26 +65,26 @@ const routes = {
     template: amigosTemplate,
     views: [View.renderFriends]
   },
-  // crearactividades: {
-  //   pathname: '/crearactividades',
-  //   template: crearActividadesTemplate,
-  //   views: [null]
-  // },
+  crearactividades: {
+    pathname: '/crearactividades',
+    template: crearActividadesTemplate,
+    views: [View.renderFormCreateActivity]
+  },
   // crearviaje: {
   //   pathname: '/crearviaje',
   //   template: crearViajeTemplate,
   //   views: [null]
   // },
-  // editarviaje: {
-  //   pathname: '/editarviaje',
-  //   template: editarViajeTemplate,
-  //   views: [null]
-  // },
-  // editaractividades: {
-  //   pathname: '/editaractividades',
-  //   template: editarActividadesTemplate,
-  //   views: [null]
-  // }
+  editaractividades: {
+    pathname: '/editaractividades',
+    template: editarActividadesTemplate,
+    views: [View.renderFormEditActivity]
+  },
+  editarviaje: {
+    pathname: '/editarviaje',
+    template: editarViajeTemplate,
+    views: [View.renderEditarViaje]
+  },
 };
 
 const appDiv = document.getElementById('app');
