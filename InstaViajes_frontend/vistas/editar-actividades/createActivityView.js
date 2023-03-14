@@ -158,20 +158,26 @@ export class createActivityView{
         //end
 
         //start buttons
-            let buttonsDiv = document.createElement('div');
+        let buttonsDiv = document.createElement('div');
+        buttonsDiv.setAttribute('class', 'style-buttons-create')
 
-            let buttonAddActivity = document.createElement('button');
-            buttonAddActivity.setAttribute('id', 'buttonAddActivity');
-            buttonAddActivity.textContent = 'Editar actividad'
+        let addDiv = document.createElement('div');
+        let buttonAddActivity = document.createElement('button');
+        buttonAddActivity.setAttribute('id', 'buttonAddActivity');
+        buttonAddActivity.setAttribute('class', 'boton-principal');
+        buttonAddActivity.textContent = 'Editar actividad'
+        addDiv.appendChild(buttonAddActivity);
+        buttonsDiv.appendChild(addDiv);
 
-            buttonsDiv.appendChild(buttonAddActivity);
+        let cancellDiv = document.createElement('div');
+        let buttonCancell = document.createElement('button');
+        buttonCancell.setAttribute('id', 'buttonCancell');
+        buttonCancell.setAttribute('class', 'boton-cancelar');
+        buttonCancell.textContent = 'Cancelar'
+        cancellDiv.appendChild(buttonCancell);
+        buttonsDiv.appendChild(cancellDiv);
 
-            let buttonCancell = document.createElement('button');
-            buttonCancell.setAttribute('id', 'buttonCancell');
-            buttonCancell.textContent = 'Cancelar'
-
-            buttonsDiv.appendChild(buttonCancell);
-            container.appendChild(buttonsDiv);
-        //end
+        container.appendChild(buttonsDiv);
+    //end
     }
 }
