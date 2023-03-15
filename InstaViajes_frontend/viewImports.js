@@ -9,6 +9,9 @@ export { renderIndex as homeSideView } from './vistas/home/javaIndexLog.js'
 // LOGIN
 export { render as renderLogin } from './vistas/login/login.js';
 
+// REGISTRO
+export { render as renderRegistro } from './vistas/register/registro.js';
+
 // AMIGOS
 export { showData as renderFriends } from './vistas/amigos/feature-friends.js';
 
