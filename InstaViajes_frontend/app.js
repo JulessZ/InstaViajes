@@ -31,11 +31,11 @@ const routes = {
     template: loginTemplate,
     views: [View.renderLogin]
   },
-  // registro: {
-  //   pathname: '/registro',
-  //   template: registroTemplate,
-  //   views: [homeView, homeSideView]
-  // },
+  registro: {
+    pathname: '/registro',
+    template: registroTemplate,
+    views: [View.renderRegistro]
+  },
   // passwordreset: {
   //   pathname: '/home',
   //   template: homeTemplate,
