@@ -145,6 +145,7 @@ export class createActivityView{
             let inputPrice = document.createElement('input');
             inputPrice.setAttribute('type', 'text');
             inputPrice.setAttribute('id', 'inputPrice');
+            inputPrice.setAttribute('placeholder', '€');
             inputPrice.setAttribute('value', `${data.place.price} €`);
             priceDiv.appendChild(inputPrice);
 

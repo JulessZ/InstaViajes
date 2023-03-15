@@ -141,6 +141,7 @@ export class createActivityView{
             let inputPrice = document.createElement('input');
             inputPrice.setAttribute('type', 'text');
             inputPrice.setAttribute('id', 'inputPrice');
+            inputPrice.setAttribute('placeholder', '€');
             priceDiv.appendChild(inputPrice);
 
             let spanErrorPrice = document.createElement('span');
