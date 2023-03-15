@@ -81,6 +81,7 @@ function editForm(object) {
         //Inserting the values on the html
         name.value = object.name;
         name.id = 'nameTrip';
+        name.setAttribute("placeholder", "Añade un nombre descriptivo para el viaje...");
         nameError.id = 'name-error';
 
         divDates.className = 'style-dates';
@@ -201,6 +202,7 @@ function editForm(object) {
         //Inserting the values on the html
         name.value = object.name;
         name.id = 'nameTrip';
+        name.setAttribute("placeholder", "Añade un nombre descriptivo para el viaje...");
         nameError.id = 'name-error';
 
 
@@ -230,6 +232,7 @@ function editForm(object) {
         labelOrigin.textContent = 'Origen';
 
         origin.type = 'text';
+        origin.setAttribute("placeholder", "Desde donde va a salir el viaje...");
         origin.setAttribute('name', 'origin');
         //Inserting the values on the html
         origin.value = object.origin;
@@ -244,6 +247,7 @@ function editForm(object) {
         //Inserting the values on the html
         destination.value = object.destination;
         destination.id = 'destinationTrip';
+        destination.setAttribute("placeholder", "Hacia donde va a llegar...");
         destinationError.id = 'destination-error';
 
         divDesBud.className = 'style-desc';
@@ -253,6 +257,7 @@ function editForm(object) {
         description.setAttribute('name', 'description');
         description.textContent = object.description;
         description.id = 'descriptionTrip';
+        description.setAttribute("placeholder", "Describe expectativas, posibles sitios a visitar...");
 
         divBudget.className = 'style-budget';
         labelBudget.setAttribute('for', 'budget');
