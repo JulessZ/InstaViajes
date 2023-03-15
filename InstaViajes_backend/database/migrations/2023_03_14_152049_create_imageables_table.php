@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreign("image_id")->references("id")->on("images")->onDelete("cascade");
             $table->unsignedBigInteger("parentable_id");
             $table->string("parentable_type");
+            $table->primary(["image_id"]);
             $table->timestamps();
         });
     }
