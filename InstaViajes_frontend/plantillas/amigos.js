@@ -1,14 +1,15 @@
 export let amigos = `
 <div class="container">
-    <div class="row">
-        <!-- caja que contendrá los  botones y buscadores necesarios para filtrar los contactos -->
-
-        <div class="col" id="botonfiltroamigos"></div>
-    </div>
+    
     <div class="row" >
         <!--  caja que contendrá todas las peticiones de amistad -->
 
         <div class="col" id="peticionesamigos"></div>
+    </div>
+    <div class="row">
+        <!-- caja que contendrá los  botones y buscadores necesarios para filtrar los contactos -->
+
+        <div class="col" id="botonfiltroamigos"></div>
     </div>
     <div class="row">
         <!--  caja que contendrá todos los amigos del usuario -->
