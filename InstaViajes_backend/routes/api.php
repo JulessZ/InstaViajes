@@ -29,8 +29,19 @@ Route::get('test', function () {
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
+// Viajes
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
     Route::get('/viajes', 'App\Http\Controllers\TravelController@index');
     Route::get('/viajes/{viaje}', 'App\Http\Controllers\TravelController@show');
 });
+
+// Perfil de usuario
+
+Route::get('/usuarios/{user}/travels', 'App\Http\Controllers\UserController@showTravel');
+
+
+
+
+
+
