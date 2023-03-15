@@ -33,4 +33,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
     Route::get('/viajes', 'App\Http\Controllers\TravelController@index');
     Route::get('/viajes/{viaje}', 'App\Http\Controllers\TravelController@show');
+    Route::post('/verify', [AuthController::class, 'verify']);
 });

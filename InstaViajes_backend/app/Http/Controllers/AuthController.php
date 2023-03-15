@@ -59,4 +59,15 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'Successfully logged out']);
     }
+
+    public function verify()
+    {
+        if (!Auth::check()) {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 401);
+        }
+        
+        return response()->json(['message' => 'Authenticated']);
+    }
 }
