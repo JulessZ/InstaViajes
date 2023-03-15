@@ -165,7 +165,7 @@ export class createActivityView{
         let buttonAddActivity = document.createElement('button');
         buttonAddActivity.setAttribute('id', 'buttonAddActivity');
         buttonAddActivity.setAttribute('class', 'boton-secundario');
-        buttonAddActivity.textContent = 'Editar actividad'
+        buttonAddActivity.textContent = 'Editar actividad';
         addDiv.appendChild(buttonAddActivity);
         buttonsDiv.appendChild(addDiv);
 
