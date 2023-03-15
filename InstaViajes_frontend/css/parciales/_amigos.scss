@@ -17,6 +17,7 @@
         }
     }
 }
+
 #peticionesamigos{
     h2{
         margin-bottom: 3%;
@@ -26,16 +27,17 @@
         width:75%;
         padding:6px;
         margin-bottom:2%;
+        img{
+            border:1px solid #D3CFCF;
+            border-radius: 50%;
+            width: 70px;
+            height:70px;
+            object-fit: cover;
+        }
         .divimagenfriend{
             width:15%;
             text-align: center;
-            img{
-                border:1px solid #D3CFCF;
-                border-radius: 50%;
-                width: 70px;
-                height:70px;
-                object-fit: cover;
-            }
+           
         }
         .nameDiv{
             width:25%;
