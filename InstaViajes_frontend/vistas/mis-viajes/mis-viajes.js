@@ -105,7 +105,6 @@ export async function getMisViajesData() {
     //viajes compartidos
 
     const dataViajesCompartidos = await fetchMisViajes.showViajesCompartidosData();
-    console.log(dataViajesCompartidos);
     for (const [key, journeyData] of Object.entries(dataViajesCompartidos)) {
         let journeyCard = document.createElement('div');
         journeyCard.setAttribute("class","cajaSombra cajatarjeta");
