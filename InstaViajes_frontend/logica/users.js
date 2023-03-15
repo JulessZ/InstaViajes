@@ -56,5 +56,11 @@ export function logout() {
 }
 
 export function isUserAuth() {
-    
+    //Por logica debemos de recoger el token
+    const tokenExistente = localStorage.getItem("auth_token");
+    if(!tokenExistente){
+        return window.location.href = "";
+    }else{
+        
+    }
 }
