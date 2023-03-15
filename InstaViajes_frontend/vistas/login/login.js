@@ -123,6 +123,7 @@ export function render() {
             })
             .then(data => {
                 localStorage.setItem("auth_token", data.access_token);
+                onNavigate("/home");
             })
             .catch(error => {
                 console.log(error);

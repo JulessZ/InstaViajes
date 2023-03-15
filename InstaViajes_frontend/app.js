@@ -10,6 +10,5 @@ function init(){
   exportLogicRoutes();
   // Users.js
   users.init();
-  users.isUserAuth();
-
+  // users.isUserAuth();
 }
