@@ -3,7 +3,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Hind:wght@400;600&display=swap");
 #botonfiltroamigos {
   display: flex;
-  margin-top: 5%;
   margin-bottom: 3%;
 }
 #botonfiltroamigos .divbtnfiltroamigos {
@@ -22,7 +21,9 @@
 }
 
 #peticionesamigos {
-  margin-bottom: 3%;
+  margin-top: 5%;
+  font-size: x-small;
+  margin-bottom: 4%;
 }
 #peticionesamigos h2 {
   margin-bottom: 3%;
@@ -31,13 +32,13 @@
   display: flex;
   width: 75%;
   padding: 6px;
-  margin-bottom: 2%;
+  margin-bottom: 1%;
 }
 #peticionesamigos .friendDiv img {
   border: 1px solid #D3CFCF;
   border-radius: 50%;
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   object-fit: cover;
 }
 #peticionesamigos .friendDiv .divimagenfriend {
@@ -45,17 +46,15 @@
   text-align: center;
 }
 #peticionesamigos .friendDiv .nameDiv {
-  width: 25%;
-  font-size: x-large;
+  width: 15%;
+  font-size: medium;
   padding-top: 15px;
+  margin-left: 2%;
 }
 #peticionesamigos .friendDiv .divbotonrepuesta {
   padding-top: 15px;
 }
 
-#contactosamigos, #usuariosamigos {
-  margin-bottom: 5%;
-}
 #contactosamigos h2, #usuariosamigos h2 {
   margin-bottom: 10%;
 }
@@ -896,10 +895,12 @@
   margin-top: 2px;
   vertical-align: top;
 }
-
-.style-button-create {
+.misviajes .style-button-create {
   text-align: center;
-  padding: 1%;
+  padding: 2%;
+}
+.misviajes .style-button-create button {
+  margin-right: 10px;
 }
 
 #viajescompartidosmisviajes {
