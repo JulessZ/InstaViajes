@@ -1,12 +1,12 @@
-import Fetch from 'fetch-simulator';
-Fetch.use();
+// import fetchSim from 'fetch-simulator';
+// fetchSim.use();
 
 
-fetch.addRoute('https://somekindofserver.com/location/miami', {
-    get: {
-        response: 'Miami, Florida, USA'
-    }
-});
+// fetchSim.addRoute('https://somekindofserver.com/location/miami', {
+//     get: {
+//         response: 'Miami, Florida, USA'
+//     }
+// });
 
 
 
