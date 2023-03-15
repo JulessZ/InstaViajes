@@ -1,4 +1,5 @@
 //importaciones de las plantillas de las diferentes secciones de la pagina
+import { crearposts as crearPostsTemplate} from './plantillas/crearposts.js';
 import { crearactividades as crearActividadesTemplate } from './plantillas/crearactividades.js';
 import { crearviaje as crearViajeTemplate } from './plantillas/crearviajes.js';
 import { detallesviaje as detallesViajeTemplate } from './plantillas/detallesviajes.js';
@@ -53,7 +54,7 @@ const routes = {
   detallesviaje: {
     pathname: '/detallesviaje',
     template: detallesViajeTemplate,
-    views: [View.renderButtonDetallesViajes, View.renderCarouselDetallesViajes, View.renderHeaderDetallesViajes]
+    views: [View.renderButtonDetallesViajes, View.renderCarouselDetallesViajes, View.renderHeaderDetallesViajes, View.renderPostDetallesViajes]
   },
   misviajes: {
     pathname: '/misviajes',
@@ -75,16 +76,31 @@ const routes = {
     template: crearViajeTemplate,
     views: [View.renderFormCreateTravel]
   },
+  crearactividades: {
+    pathname: '/crearactividades',
+    template: crearActividadesTemplate,
+    views: [View.renderFormCreateActivity]
+  },
+  // crearviaje: {
+  //   pathname: '/crearviaje',
+  //   template: crearViajeTemplate,
+  //   views: [null]
+  // },
+  editaractividades: {
+    pathname: '/editaractividades',
+    template: editarActividadesTemplate,
+    views: [View.renderFormEditActivity]
+  },
+  crearpost: {
+    pathname: '/crearpost',
+    template: crearPostsTemplate,
+    views: [View.renderFormCreatePost]
+  },
   editarviaje: {
     pathname: '/editarviaje',
     template: editarViajeTemplate,
     views: [View.renderEditarViaje]
   },
-  // editaractividades: {
-  //   pathname: '/editaractividades',
-  //   template: editarActividadesTemplate,
-  //   views: [null]
-  // }
 };
 
 const appDiv = document.getElementById('app');
