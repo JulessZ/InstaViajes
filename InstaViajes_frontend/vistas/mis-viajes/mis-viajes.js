@@ -92,7 +92,7 @@ export async function getMisViajesData() {
 
         let journeyButtonDelete = document.createElement('button');
         journeyButtonDelete.textContent = 'Eliminar';
-        journeyButtonDelete.setAttribute('class', 'boton-cancelar');
+        journeyButtonDelete.setAttribute('class', 'boton-cancelar deleteButton');
         buttonDiv.appendChild(journeyButtonDelete);
 
         misViajesContainer.appendChild(journeyCard);
@@ -177,7 +177,18 @@ export async function getMisViajesData() {
         journeyCard.appendChild(downDiv);
 
         viajesCompartidosContainer.appendChild(journeyCard);
+
+    }
+
+    //apartado para borrar contenido
+    const deleteButton = document.querySelectorAll('.deleteButton');
+
+    for (let index = 0; index < deleteButton.length; index++) {
+
+        deleteButton[index].addEventListener('click', ()=> {
+
+            console.log(`Se elimina la carta en la posiocion ${index}`);
+
+        });
     }
 };
-// getMisViajesData();
-// fetchMisViajes.showViajesCompartidosData();
