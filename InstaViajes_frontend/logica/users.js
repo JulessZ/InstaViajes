@@ -2,6 +2,8 @@
 
 let logoutBtn;
 
+
+
 export function init() {
     console.log("entra?");
     cacheElements();
@@ -56,11 +58,28 @@ export function logout() {
 }
 
 export function isUserAuth() {
-    //Por logica debemos de recoger el token
-    const tokenExistente = localStorage.getItem("auth_token");
-    if(!tokenExistente){
-        return window.location.href = "";
-    }else{
-        
-    }
+    //Set de auth token to send for request
+    const token = localStorage.getItem("auth_token");
+    // Define the URL of the API that will receive the friend request
+    const apiUrl = "http://localhost/api/verify";
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        }
+        //body: JSON.stringify(requestData)
+    };
+
+      // Sends the request to the server using fetch
+      fetch(apiUrl, requestOptions)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("new error token unauthenticated");
+          }
+          console.log(response);
+      })
+      .catch(error => {
+          console.log(error);
+      });
 }
