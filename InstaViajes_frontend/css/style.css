@@ -928,6 +928,35 @@
   border-left: 3px solid #6A6A6A;
 }
 
+#form-registro > div > div {
+  padding: 2%;
+}
+
+#form-registro > div > div > form > label, #form-registro > div > div > form > div > label {
+  padding: 1%;
+}
+
+.boton-principal {
+  margin-top: 1%;
+}
+
+#form-registro-datos > label {
+  display: inline-block;
+  width: 200px;
+  text-align: left;
+}
+
+@media only screen and (max-width: 960px) {
+  #form-registro > div > div {
+    padding: 5%;
+  }
+  #form-registro > div > div > form > label, #form-registro > div > div > form > div > label {
+    padding: 3%;
+  }
+  .boton-principal {
+    margin-top: 3%;
+  }
+}
 input[type=submit],
 input[type=button],
 button {
