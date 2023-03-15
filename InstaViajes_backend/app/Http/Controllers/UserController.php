@@ -84,8 +84,19 @@ class UserController extends Controller
     }
 
     public function showTravel(User $user) {
+
         foreach ($user->travels as $travel) {
-            return $travel->images;
+
+            echo "TRAVEL " .  $travel . "<br>";
+
+            // foreach ($travel->images as $image) {
+            //     echo $travel->images;
+            //     echo "aaaa" . $image->name . "<br>";
+            // };
+            foreach ($travel->images as $image) {
+                
+                bb($image);
+            }
         }
         
         // dd($user->travels());

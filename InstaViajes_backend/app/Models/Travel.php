@@ -68,10 +68,12 @@ class Travel extends Model
         return $this->belongsToMany(TravelUsers::class);
     }
 
+    /**
+     * Get all of the images for the travel.
+     */
     public function images()
     {
-
-        return $this->morphedByMany(Image::class, 'imageable');
+        return $this->morphToMany(Image::class, 'imageable');
     }
 
 

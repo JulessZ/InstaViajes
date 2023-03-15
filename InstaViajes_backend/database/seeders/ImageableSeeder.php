@@ -46,8 +46,8 @@ class ImageableSeeder extends Seeder
 
             Imageable::create([
                     "image_id" => $image->id,
-                    "parentable_id" => $p_id,
-                    "parentable_type" => $p_type,
+                    "imageable_id" => $p_id,
+                    "imageable_type" => $p_type,
             ]);
         }
     }
