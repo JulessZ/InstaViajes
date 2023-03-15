@@ -65,26 +65,26 @@ const routes = {
     template: amigosTemplate,
     views: [View.renderFriends]
   },
-  // crearactividades: {
-  //   pathname: '/crearactividades',
-  //   template: crearActividadesTemplate,
-  //   views: [null]
-  // },
+  crearactividades: {
+    pathname: '/crearactividades',
+    template: crearActividadesTemplate,
+    views: [View.renderFormCreateActivity]
+  },
   // crearviaje: {
   //   pathname: '/crearviaje',
   //   template: crearViajeTemplate,
   //   views: [null]
   // },
+  editaractividades: {
+    pathname: '/editaractividades',
+    template: editarActividadesTemplate,
+    views: [View.renderFormEditActivity]
+  },
   editarviaje: {
     pathname: '/editarviaje',
     template: editarViajeTemplate,
     views: [View.renderEditarViaje]
   },
-  // editaractividades: {
-  //   pathname: '/editaractividades',
-  //   template: editarActividadesTemplate,
-  //   views: [null]
-  // }
 };
 
 const appDiv = document.getElementById('app');
