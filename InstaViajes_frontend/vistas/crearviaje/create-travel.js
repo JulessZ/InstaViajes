@@ -40,7 +40,7 @@ function fakeFetch(url) {
     });
 }
 
-//function to call the front end
+//function to call the front
 export async function renderCreateForm() {
     await createTravelForm();
     setupSubmitEventListener();
