@@ -100,7 +100,7 @@ function checkVoidInputAndSaveValues() {
     }
 
     //validacion de que el precio introducido es un string de tipo numerico mediante el metodo isNan
-    let priceValue = (document.getElementById('inputPrice').value).split('$')[0];
+    let priceValue = (document.getElementById('inputPrice').value).split('€')[0];
     if(isNaN(priceValue)) {
         let spanErrorPrice = document.getElementById('spanErrorPrice');
         spanErrorPrice.innerHTML = 'Debe introducir datos númericos';
