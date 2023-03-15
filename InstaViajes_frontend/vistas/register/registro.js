@@ -96,59 +96,57 @@ export function render() {
 
     body.appendChild(fatherDiv);
 
-//crear objeto de tipo RegisterUser con los datos del formulario
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let newUser = new RegisterUser();
+    //crear objeto de tipo RegisterUser con los datos del formulario
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let newUser = new RegisterUser();
 
         if (password.value !== repeatPassword.value) {
             let error = document.createElement("p");
             let errorText = document.createTextNode("Las contraseñas deben ser iguales");
 
-        error.appendChild(errorText);
-        form.appendChild(error);
-    } else {
+            error.appendChild(errorText);
+            form.appendChild(error);
+        } else {
 
             newUser.user = user.value;
             newUser.mail = mail.value;
             newUser.password = password.value;
             newUser.repeatPassword = repeatPassword.value;
 
-        // Define the URL of the API that will receive the friend request
-        const apiUrl = "http://localhost/api/register";
+            // Define the URL of the API that will receive the friend request
+            const apiUrl = "http://localhost/api/register";
 
-        // Defines the data object to be sent to the server
-        const requestData = {
-            name: user.value,
-            email: mail.value,
-            password: password.value
+            // Defines the data object to be sent to the server
+            const requestData = {
+                name: user.value,
+                email: mail.value,
+                password: password.value
 
-        };
-        // Define the application options
-        const requestOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(requestData)
-        };
+            };
+            // Define the application options
+            const requestOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(requestData)
+            };
 
-        // Sends the request to the server using fetch
-        fetch(apiUrl, requestOptions)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Error al enviar la solicitud");
-                }
-                console.log("Solicitud enviada con éxito");
-                console.log(response);
-            })
-            .catch(error => {
-                
-                console.log(error);
-            });
-    }
-})
+            // Sends the request to the server using fetch
+            fetch(apiUrl, requestOptions)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Error al enviar la solicitud");
+                    }
+                    console.log("Solicitud enviada con éxito");
+                    console.log(response);
+                })
+                .catch(error => {
 
-
-
+                    console.log(error);
+                });
+        }
+    })
+}
 

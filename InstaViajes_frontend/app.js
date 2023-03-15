@@ -1,4 +1,5 @@
 import {exportLogicRoutes}  from "./logica/routes.js";
+import {logout} from './logic/logout.js';
 
 // Recoger el elemento body y llamamos a la función init() para que se ejecute mediante event onload
 document.querySelector('body').addEventListener('load', init());
@@ -7,7 +8,7 @@ document.querySelector('body').addEventListener('load', init());
 function init(){
   exportLogicRoutes();
   
-import {logout} from './logic/logout.js';
+
 }
 
 
