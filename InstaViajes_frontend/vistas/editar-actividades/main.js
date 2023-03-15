@@ -91,11 +91,21 @@ function checkVoidInputAndSaveValues() {
         status = 1;
     }
     else {
+        
         spanErrorDuration.innerHTML = '';
         let durationValue = (document.getElementById('inputDuration').value.split('Horas'))[0];
         durationValue = durationValue.slice(0, -1);
         
-        currentActivity.duration = durationValue;
+        if(!isNaN(durationValue)) {
+            spanErrorDuration.innerHTML = '';
+            currentActivity.duration = durationValue;
+
+        }
+        else {
+            let spanErrorDuration = document.getElementById('spanErrorDuration');
+            spanErrorDuration.innerHTML = 'DEBE ASIGNAR UN VALOR NÚMERICO';
+            status = 1;
+        }
         
     }
 
