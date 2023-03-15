@@ -1,6 +1,152 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Esteban&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hind:wght@400;600&display=swap");
+#botonfiltroamigos {
+  display: flex;
+  margin-top: 5%;
+  margin-bottom: 3%;
+}
+#botonfiltroamigos .divbtnfiltroamigos {
+  width: 50%;
+}
+#botonfiltroamigos .divbtnfiltroamigos button {
+  margin-right: 3%;
+}
+#botonfiltroamigos .searchDiv {
+  width: 50%;
+  text-align: right;
+}
+#botonfiltroamigos .searchDiv input {
+  width: 50%;
+  padding: 1%;
+}
+
+#peticionesamigos {
+  margin-bottom: 3%;
+}
+#peticionesamigos h2 {
+  margin-bottom: 3%;
+}
+#peticionesamigos .friendDiv {
+  display: flex;
+  width: 75%;
+  padding: 6px;
+  margin-bottom: 2%;
+}
+#peticionesamigos .friendDiv img {
+  border: 1px solid #D3CFCF;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#peticionesamigos .friendDiv .divimagenfriend {
+  width: 15%;
+  text-align: center;
+}
+#peticionesamigos .friendDiv .nameDiv {
+  width: 25%;
+  font-size: x-large;
+  padding-top: 15px;
+}
+#peticionesamigos .friendDiv .divbotonrepuesta {
+  padding-top: 15px;
+}
+
+#contactosamigos, #usuariosamigos {
+  margin-bottom: 5%;
+}
+#contactosamigos h2, #usuariosamigos h2 {
+  margin-bottom: 10%;
+}
+#contactosamigos .divContacto, #usuariosamigos .divContacto {
+  width: 100%;
+  display: flex;
+  margin-bottom: 2%;
+}
+#contactosamigos .divContacto .imgDiv, #usuariosamigos .divContacto .imgDiv {
+  width: 15%;
+  text-align: center;
+}
+#contactosamigos .divContacto .imgDiv img, #usuariosamigos .divContacto .imgDiv img {
+  border: 1px solid #D3CFCF;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#contactosamigos .divContacto .nameDiv, #usuariosamigos .divContacto .nameDiv {
+  width: 50%;
+  font-size: x-large;
+  padding-top: 15px;
+}
+#contactosamigos .divContacto .divButton, #usuariosamigos .divContacto .divButton {
+  width: 35%;
+  padding-top: 15px;
+  text-align: center;
+}
+#contactosamigos .divdown, #usuariosamigos .divdown {
+  padding: 2%;
+}
+
+@media only screen and (max-width: 960px) {
+  #botonfiltroamigos .divbtnfiltroamigos {
+    display: flex;
+  }
+  #peticionesamigos .friendDiv {
+    display: flex;
+    width: 100%;
+  }
+  #peticionesamigos .friendDiv .divimagenfriend {
+    width: 15%;
+    text-align: center;
+  }
+  #peticionesamigos .friendDiv .divimagenfriend img {
+    border: 1px solid #D3CFCF;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  #peticionesamigos .friendDiv .nameDiv {
+    width: 40%;
+    font-size: x-large;
+    padding-top: 5px;
+  }
+  #peticionesamigos .friendDiv .divbotonrepuesta {
+    padding-top: 5px;
+    display: flex;
+  }
+  #peticionesamigos .friendDiv .divbotonrepuesta button {
+    font-size: x-small;
+    margin-left: 2%;
+  }
+  #contactosamigos .divContacto .imgDiv, #usuariosamigos .divContacto .imgDiv {
+    width: 15%;
+    text-align: center;
+  }
+  #contactosamigos .divContacto .imgDiv img, #usuariosamigos .divContacto .imgDiv img {
+    border: 1px solid #D3CFCF;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  #contactosamigos .divContacto .nameDiv, #usuariosamigos .divContacto .nameDiv {
+    width: 40%;
+    font-size: x-large;
+    padding-top: 5px;
+  }
+  #contactosamigos .divContacto .divButton, #usuariosamigos .divContacto .divButton {
+    width: 35%;
+    padding-top: 5px;
+    text-align: center;
+  }
+}
 .style-form-title {
   text-align: center;
   margin-top: 75px;
@@ -661,6 +807,11 @@
   margin-right: 3px;
   margin-top: 2px;
   vertical-align: top;
+}
+
+.style-button-create {
+  text-align: center;
+  padding: 1%;
 }
 
 #viajescompartidosmisviajes {

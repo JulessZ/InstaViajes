@@ -2,8 +2,8 @@
 const trip1 = {
     name: "Vacaciones en Lisboa",
     //---IMPORTANT--- 
-    date: "2018-06-01", //THE FORMAT OF THE DATES TO PRINT ON THE HMTL
-    dateEnd: "2018-07-01", //THE FORMAT OF THE DATES TO PRINT ON THE HMTL
+    date: "2023-06-01", //THE FORMAT OF THE DATES TO PRINT ON THE HMTL
+    dateEnd: "2023-07-01", //THE FORMAT OF THE DATES TO PRINT ON THE HMTL
     origin: "La palma",
     destination: "Lisboa",
     description: "El viaje consistirá en un mes de blablablalbal",
@@ -37,6 +37,7 @@ const divMainSearch = document.createElement('div');
 divMainSearch.className = 'style-friends-searched';
 //Const to the friends parent
 const friendsOnTrip = document.createElement('div');
+friendsOnTrip.id = 'style-friends-invited';
 
 //Function to create edit-Form
 function editForm(object) {
@@ -51,10 +52,12 @@ function editForm(object) {
         const divName = document.createElement('div');
         const labelName = document.createElement('label');
         const name = document.createElement('input');
+        const nameError = document.createElement('span');
         const divDates = document.createElement('div');
         const divDateEnd = document.createElement('div');
         const labelDateEnd = document.createElement('label');
         const dateEnd = document.createElement('input');
+        const dateEndError = document.createElement('span');
         const divBudgetMain = document.createElement('div');
         const divBudget = document.createElement('div');
         const divLabelBudget = document.createElement('div');
@@ -65,7 +68,7 @@ function editForm(object) {
         const divSubmit = document.createElement('div');
         const submitButton = document.createElement('input');
         const divCancel = document.createElement('div');
-        const cancelButton = document.createElement('input');
+        const cancelButton = document.createElement('button');
 
         //Setting the attributes to the different elements
         form.id = 'formEdit';
@@ -78,6 +81,7 @@ function editForm(object) {
         //Inserting the values on the html
         name.value = object.name;
         name.id = 'nameTrip';
+        nameError.id = 'name-error';
 
         divDates.className = 'style-dates';
         labelDateEnd.setAttribute('for', 'dateEnd');
@@ -87,7 +91,8 @@ function editForm(object) {
         dateEnd.setAttribute('name', 'dateEnd');
         //Inserting the values on the html
         dateEnd.value = object.dateEnd;
-        dateEnd.id = 'dateEndTrip';
+        dateEnd.id = 'endDate';
+        dateEndError.id = 'endDate-error';
 
         divBudgetMain.className = 'style-desc';
         divBudget.className = 'style-budget';
@@ -109,20 +114,22 @@ function editForm(object) {
 
         submitButton.type = 'submit';
         submitButton.value = 'Editar viaje';
+        submitButton.className = 'boton-secundario';
 
-        cancelButton.type = 'reset';
-        cancelButton.value = 'Cancelar';
-
+        cancelButton.textContent = 'Cancelar';
+        
         //Inserting the elements into de html
         editContainer.appendChild(form);
         form.appendChild(divName);
         divName.appendChild(labelName);
         divName.appendChild(name);
+        divName.appendChild(nameError);
 
         form.appendChild(divDates);
         divDates.appendChild(divDateEnd);
         divDateEnd.appendChild(labelDateEnd);
         divDateEnd.appendChild(dateEnd);
+        divDateEnd.appendChild(dateEndError);
 
         form.appendChild(divBudgetMain);
         divBudgetMain.appendChild(divBudget);
@@ -144,20 +151,25 @@ function editForm(object) {
         const divName = document.createElement('div');
         const labelName = document.createElement('label');
         const name = document.createElement('input');
+        const nameError = document.createElement('span');
         const divDates = document.createElement('div');
         const divDate = document.createElement('div');
+        const dateStartError = document.createElement('span');
         const divDateEnd = document.createElement('div');
         const labelDate = document.createElement('label');
         const date = document.createElement('input');
         const labelDateEnd = document.createElement('label');
         const dateEnd = document.createElement('input');
+        const dateEndError = document.createElement('span');
         const labelOrigin = document.createElement('label');
         const divOriDes = document.createElement('div');
         const divOrigin = document.createElement('div');
         const origin = document.createElement('input');
+        const originError = document.createElement('span');
         const labelDestination = document.createElement('label');
         const divDestination = document.createElement('div');
         const destination = document.createElement('input');
+        const destinationError = document.createElement('span');
         const divDesBud = document.createElement('div');
         const divDescription = document.createElement('div');
         const labelDescription = document.createElement('label');
@@ -168,13 +180,14 @@ function editForm(object) {
         const budget = document.createElement('input');
         const budgetValue = document.createElement('span');
         const divStyleFriends = document.createElement('div');
+        const divFriendsInvited = document.createElement('div');
         const labelFriendSearch = document.createElement('label');
         const friendsSearch = document.createElement('input');
         const divButtons = document.createElement('div');
         const divSubmit = document.createElement('div');
         const submitButton = document.createElement('input');
         const divCancel = document.createElement('div');
-        const cancelButton = document.createElement('input');
+        const cancelButton = document.createElement('button');
 
 
         //Setting the attributes to the different elements
@@ -188,6 +201,7 @@ function editForm(object) {
         //Inserting the values on the html
         name.value = object.name;
         name.id = 'nameTrip';
+        nameError.id = 'name-error';
 
 
         divDates.className = 'style-dates';
@@ -198,7 +212,8 @@ function editForm(object) {
         date.setAttribute('name', 'date');
         //Inserting the values on the html
         date.value = object.date;
-        date.id = 'dateTrip';
+        date.id = 'startDate';
+        dateStartError.id = 'startDate-error';
 
         labelDateEnd.setAttribute('for', 'dateEnd');
         labelDateEnd.textContent = 'Fecha Final';
@@ -207,7 +222,8 @@ function editForm(object) {
         dateEnd.setAttribute('name', 'dateEnd');
         //Inserting the values on the html
         dateEnd.value = object.dateEnd;
-        dateEnd.id = 'dateEndTrip';
+        dateEnd.id = 'endDate';
+        dateEndError.id = 'endDate-error';
 
         divOriDes.className = 'style-location';
         labelOrigin.setAttribute('for', 'origin');
@@ -218,6 +234,7 @@ function editForm(object) {
         //Inserting the values on the html
         origin.value = object.origin;
         origin.id = 'originTrip';
+        originError.id = 'origin-error';
 
         labelDestination.setAttribute('for', 'destination');
         labelDestination.textContent = 'Destino';
@@ -227,6 +244,7 @@ function editForm(object) {
         //Inserting the values on the html
         destination.value = object.destination;
         destination.id = 'destinationTrip';
+        destinationError.id = 'destination-error';
 
         divDesBud.className = 'style-desc';
         labelDescription.setAttribute('for', 'description');
@@ -273,55 +291,61 @@ function editForm(object) {
             }
         });
 
-        divStyleFriends.className = 'style-friends-searched';
+        divStyleFriends.className = 'style-friends';
 
         divButtons.className = 'style-buttons-create';
 
         submitButton.type = 'submit';
         submitButton.value = 'Editar viaje';
+        submitButton.className = 'boton-secundario';
 
-        cancelButton.type = 'reset';
-        cancelButton.value = 'Cancelar';
+        cancelButton.textContent = 'Cancelar';
 
         //Inserting the elements into de html
         editContainer.appendChild(form);
         form.appendChild(divName)
         divName.appendChild(labelName);
         divName.appendChild(name);
+        divName.appendChild(nameError);
 
         form.appendChild(divDates);
         divDates.appendChild(divDate);
         divDate.appendChild(labelDate);
         divDate.appendChild(date);
+        divDate.appendChild(dateStartError);
 
         divDates.appendChild(divDateEnd);
         divDateEnd.appendChild(labelDateEnd);
         divDateEnd.appendChild(dateEnd);
+        divDateEnd.appendChild(dateEndError);
 
         form.appendChild(divOriDes);
         divOriDes.appendChild(divOrigin);
         divOrigin.appendChild(labelOrigin);
         divOrigin.appendChild(origin);
+        divOrigin.appendChild(originError);
 
         divOriDes.appendChild(divDestination);
         divDestination.appendChild(labelDestination);
         divDestination.appendChild(destination);
+        divDestination.appendChild(destinationError);
 
         form.appendChild(divDesBud);
         divDesBud.appendChild(divDescription);
         divDescription.appendChild(labelDescription);
         divDescription.appendChild(description);
 
-        form.appendChild(divBudget);
+        divDesBud.appendChild(divBudget);
         divBudget.appendChild(divLabelBudget);
         divLabelBudget.appendChild(labelBudget);
         divBudget.appendChild(budget);
         divBudget.appendChild(budgetValue);
 
         form.appendChild(divStyleFriends);
-        divStyleFriends.appendChild(labelFriendSearch);
-        divStyleFriends.appendChild(friendsOnTrip);
-        divStyleFriends.appendChild(friendsSearch);
+        divStyleFriends.appendChild(divFriendsInvited);
+        divFriendsInvited.appendChild(labelFriendSearch);
+        divFriendsInvited.appendChild(friendsOnTrip);
+        divFriendsInvited.appendChild(friendsSearch);
         divStyleFriends.appendChild(divMainSearch);
 
         form.appendChild(divButtons);
@@ -338,8 +362,147 @@ function editForm(object) {
 
 //function to call the front end
 export function renderEditForm() {
+
     editForm(trip1);
+    setupSubmitEventListener();
 }
+
+// This function is called when submit button is pressed. Validates the form.
+function validateForm() {
+    clearErrors();
+    // Checks if travel name is defined.
+    if (!nameTrip.value) {
+        generateError("name-error", "No se introdució un nombre para el viaje");
+    }
+    // Checks if starting date is correct.
+    if (!startDate.value) {
+        generateError("startDate-error", "No se introdució una fecha de inicio");
+    }
+    if (startDate.value && checkDateToActual(startDate.value) == 2) {
+        generateError("startDate-error", "¡La fecha introducida no puede ser antes de hoy!");
+    }
+    // // Checks if end date is correct.
+    if (!endDate.value) {
+        generateError("endDate-error", "No se introdució una fecha de fin de viaje");
+    } else if (checkDateToActual(endDate.value) == 2) {
+        generateError("endDate-error", "¡La fecha introducida no puede ser antes de hoy!");
+    } else if (startDate.value && compareDates(startDate.value, endDate.value) == 1) {
+        generateError("endDate-error", "¡La fecha final no puede ser antes de la fecha de inicio!");
+    }
+    // Checks if other fields are filled.
+    if (!originTrip.value) {
+        generateError("origin-error", "Tiene que haber un lugar de origen");
+    }
+    if (!destinationTrip.value) {
+        generateError("destination-error", "Tiene que haber un lugar de destino");
+    }
+    // Checks if there are any errors in the form. If there are not, fetch to server is done.
+    if (verifyErrors()) {
+        if (document.querySelector("#budgetTrip").value == 0) {
+            if (!window.confirm("¿Estás seguro de poner el presupuesto en 0?")) {
+                return;
+            }
+        }
+    }
+}
+// This function is called when submit button is pressed. Validates the form.
+function validateFormShort() {
+    clearErrors();
+    // Checks if travel name is defined.
+    if (!nameTrip.value) {
+        generateError("name-error", "No se introdució un nombre para el viaje");
+    }
+
+    // // Checks if end date is correct.
+    if (!endDate.value) {
+        generateError("endDate-error", "No se introdució una fecha de fin de viaje");
+    } else if (checkDateToActual(endDate.value) == 2) {
+        generateError("endDate-error", "¡La fecha introducida no puede ser antes de hoy!");
+    }
+    // Checks if there are any errors in the form. If there are not, fetch to server is done.
+    if (verifyErrors()) {
+        if (document.querySelector("#budgetTrip").value == 0) {
+            if (!window.confirm("¿Estás seguro de poner el presupuesto en 0?")) {
+                return;
+            }
+        }
+    }
+}
+
+
+/**
+Sets the inner HTML of an element with the specified ID to the specified error message.
+@param {string} idErrorField - The ID of the element to set the error message on.
+@param {string} message - The error message to display.
+*/
+function generateError(idErrorField, message) {
+    document.getElementById(idErrorField).innerHTML = message;
+}
+
+/**
+Checks if a given date is before, after or the same as the current local date.
+@param {string} date - A date string in the format "yyyy-mm-dd".
+@returns {number} - Returns 0 if the dates are the same, 1 if the given date is after the local date, 2 if the given date is before the local date.
+*/
+function checkDateToActual(date) {
+    let dateSplit = [];
+    dateSplit = date.split("-");
+    date = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
+    let localDate = new Date();
+    localDate = new Date(localDate.getFullYear(), localDate.getMonth(), localDate.getDate());
+    if (date.getTime() == localDate.getTime()) {
+        return 0;
+    } else if (date > localDate) {
+        return 1;
+    } else {
+        return 2;
+    }
+}
+
+/**
+Compares two dates and returns an integer value indicating their relationship.
+@param {string} date1 - The first date in the format 'YYYY-MM-DD'.
+@param {string} date2 - The second date in the format 'YYYY-MM-DD'.
+@returns {number} - 0 if the dates are equal, 1 if the first date is later than the second, and 2 if the second date is later than the first.
+*/
+function compareDates(date1, date2) {
+    let dateSplit = date1.split("-");
+    date1 = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
+    dateSplit = date2.split("-");
+    date2 = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
+    if (date1.getTime() == date2.getTime()) {
+        return 0;
+    } else if (date1 > date2) {
+        return 1;
+    } else {
+        return 2;
+    }
+}
+
+// All fields that cointains in their id the word "error" are cleaned.
+// For example, IDs included: validate-error, compilateerror.
+function clearErrors() {
+    const elementosError = document.querySelectorAll('[id*="error"]');
+    elementosError.forEach(element => {
+        element.innerHTML = "";
+    });
+}
+
+/**
+Checks if any error messages are currently displayed on the page.
+@return {boolean} - Returns true if no error messages are displayed, and false otherwise.
+*/
+function verifyErrors() {
+    const elementosError = document.querySelectorAll('[id*="error"]');
+    for (let i = 0; i < elementosError.length; i++) {
+        if (elementosError[i].textContent.trim() !== '') {
+            return false;
+        }
+    }
+    return true;
+}
+
+
 
 
 
@@ -413,31 +576,62 @@ function searchOnTrip(element) {
 }
 
 
-// //Submit the edit-form
-// document.getElementById('formEdit').addEventListener('submit', function (e) {
-//     e.preventDefault();
-//     if (trip1.estado == 'abierto') {
-//         trip1.name = nameTrip.value;
-//         trip1.date = dateTrip.value;
-//         trip1.dateEnd = dateEndTrip.value;
-//         trip1.origin = originTrip.value;
-//         trip1.destination = destinationTrip.value;
-//         trip1.description = descriptionTrip.value;
-//         trip1.budget = budgetTrip.value;
-//         Object.values(trip1).forEach(element => {
-//             console.log(element);
-//         });
-//         //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
+function setupSubmitEventListener() {
 
-//     //      <-------------------------              ------------------------->
-//     } else {
-//         trip1.name = nameTrip.value;
-//         trip1.dateEnd = dateEndTrip.value;
-//         trip1.budget = budgetTrip.value;
-//         Object.values(trip1).forEach(element => {
-//             console.log(element);
-//         });
-//         //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
-//     //      <-------------------------              ------------------------->
-//     }
-// });
+    //Submit the edit-form
+    document.getElementById('formEdit').addEventListener('submit', function (e) {
+        // console.log("test frm submit");
+        e.preventDefault();
+        if (trip1.estado == 'abierto') {
+            validateForm();
+        } else {
+            validateFormShort();
+        }
+        if (verifyErrors()){
+            if (trip1.estado == 'abierto') {
+                trip1.name = nameTrip.value;
+                trip1.date = startDate.value;
+                trip1.dateEnd = endDate.value;
+                trip1.origin = originTrip.value;
+                trip1.destination = destinationTrip.value;
+                trip1.description = descriptionTrip.value;
+                trip1.budget = budgetTrip.value;
+                Object.values(trip1).forEach(element => {
+                    console.log(element);
+                });
+                //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
+                // fetch('https://ejemplo.com/editar', {
+                //     method: 'POST',
+                //     body: JSON.stringify(createObjectWithValues()),
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     }
+                // })
+                //     .then(response => response.json())
+                //     .then(data => console.log(data))
+                //     .catch(error => console.error(error));
+                //      <-------------------------              ------------------------->
+            } else {
+                trip1.name = nameTrip.value;
+                trip1.dateEnd = endDate.value;
+                trip1.budget = budgetTrip.value;
+                Object.values(trip1).forEach(element => {
+                    console.log(element);
+                });
+                //WE ONLY HAVE TO SEND THE TRIP1 READJUSTED WITH A FETCH
+                // fetch('https://ejemplo.com/datos', {
+                //     method: 'POST',
+                //     body: JSON.stringify(createObjectWithValues()),
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     }
+                // })
+                // .then(response => response.json())
+                // .then(data => console.log(data))
+                // .catch(error => console.error(error));
+                //      <-------------------------              ------------------------->
+            }
+        }
+        
+    });
+}
