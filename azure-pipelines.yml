@@ -1,0 +1,38 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- microservice-frontend
+
+pool:
+  vmImage: ubuntu-latest
+
+# NPM install dependencias de Javascript
+steps:
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    workingDir: 'InstaViajes_frontend'
+    verbose: false
+
+# Compilación de la aplicación Javascript  
+- task: Npm@1
+  displayName: 'npm run build'
+  inputs:
+    command: custom
+    workingDir: 'InstaViajes_frontend'
+    verbose: false
+    customCommand: 'run build'
+
+# Hace build y push de la imagen docker al registro de Dockers privado
+- task: Docker@2
+  displayName: 'Build and push Docker Image'
+  inputs:
+    containerRegistry: 'instadockersRegistry'
+    repository: 'instaviajes-frontend'
+    command: 'buildAndPush'
+    Dockerfile: 'dockers/frontend/production_deploy/Dockerfile'
+    buildContext: '$(Build.Repository.LocalPath)'
+
