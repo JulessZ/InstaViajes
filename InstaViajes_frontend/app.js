@@ -76,6 +76,11 @@ const routes = {
   //   template: crearViajeTemplate,
   //   views: [null]
   // },
+  crearpost: {
+    pathname: '/crearpost',
+    template: crearPostsTemplate,
+    views: [View.renderFormCreatePost]
+  },
   editarviaje: {
     pathname: '/editarviaje',
     template: editarViajeTemplate,

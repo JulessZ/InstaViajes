@@ -245,7 +245,7 @@ export function renderPost() {
     addPostButtonDiv.className = "mt-5";
 
     const addPostButton = document.createElement("button");
-    
+    addPostButton.setAttribute('onclick', 'onNavigate("/crearpost"); return false;');
     addPostButton.className = "boton-principal";
     const postButtonText = document.createTextNode("Agregar Post");
 

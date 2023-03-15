@@ -24,7 +24,8 @@ export { renderPost as renderPostDetallesViajes } from './vistas/detallesviaje/t
 //EDICIÓN DE UN VIAJE
 export { renderEditForm as renderEditarViaje } from './vistas/editarviaje/edit-travel.js';
 
-//
+//CREACIÓN DE UN POST
+export { renderCreatePost as renderFormCreatePost} from './vistas/posts/post.js';
 
 // PERFIL
 export { renderProfile as renderPerfil } from './vistas/perfil/perfil.js';
