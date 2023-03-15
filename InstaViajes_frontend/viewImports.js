@@ -27,6 +27,8 @@ export { renderCreateActivityForm as renderFormCreateActivity } from './vistas/c
 //EDITAR ACTIVIDAD
 export { renderEditActivityForm as renderFormEditActivity } from './vistas/editar-actividades/main.js';
 
+//CREACIÓN DE UN VIAJE
+export { renderCreateForm as renderFormCreateTravel } from './vistas/crearviaje/create-travel.js';
 //EDICIÓN DE UN VIAJE
 export { renderEditForm as renderEditarViaje } from './vistas/editarviaje/edit-travel.js';
 

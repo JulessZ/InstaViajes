@@ -66,6 +66,16 @@ const routes = {
     template: amigosTemplate,
     views: [View.renderFriends]
   },
+  // crearactividades: {
+  //   pathname: '/crearactividades',
+  //   template: crearActividadesTemplate,
+  //   views: [null]
+  // },
+  crearviaje: {
+    pathname: '/crearviaje',
+    template: crearViajeTemplate,
+    views: [View.renderFormCreateTravel]
+  },
   crearactividades: {
     pathname: '/crearactividades',
     template: crearActividadesTemplate,
