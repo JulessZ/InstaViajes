@@ -86,6 +86,7 @@ export async function getMisViajesData() {
         let journeyButtonEdit = document.createElement('button');
         journeyButtonEdit.textContent = 'Editar';
         journeyButtonEdit.setAttribute('class', 'boton-secundario');
+        journeyButtonEdit.setAttribute('onclick', `onNavigate('/editarviaje'); return false;`);
         buttonDiv.appendChild(journeyButtonEdit);
         journeyCard.appendChild(buttonDiv);
 
