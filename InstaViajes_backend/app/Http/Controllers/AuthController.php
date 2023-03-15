@@ -68,6 +68,12 @@ class AuthController extends Controller
             ], 401);
         }
         
-        return response()->json(['message' => 'Authenticated']);
+        $user = User::find(Auth::id());
+        
+        return response()->json([
+            'message' => 'Authenticated',
+            'user' => $user
+        ]);
     }
+    
 }
