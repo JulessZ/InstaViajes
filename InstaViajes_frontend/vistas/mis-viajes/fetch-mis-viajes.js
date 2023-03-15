@@ -37,7 +37,7 @@ export class fetchMisViajes {
         })
     }
     static async showViajesCompartidosData() {
-        fetch('https://instaviajes.com/viajes-compartidos')
+        return fetch('https://instaviajes.com/viajes-compartidos')
         .then((response) => {
             return response.json();
         })
