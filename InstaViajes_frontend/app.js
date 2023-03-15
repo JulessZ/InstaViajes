@@ -15,6 +15,9 @@ import { amigos as amigosTemplate } from './plantillas/amigos.js';
 // Importaciones de los métodos de render de cada vista
 import * as View from './viewImports.js';
 
+// Importar archivo logout para manejar esta acción
+import {logout} from './logic/logout.js';
+
 //importacion del css
 import './css/style.css';
 
@@ -146,3 +149,4 @@ window.onpopstate = () => {
 
 // Hacemos que onNavigate sea usable globalmente
 window.onNavigate = onNavigate;
+window.logout = logout;
