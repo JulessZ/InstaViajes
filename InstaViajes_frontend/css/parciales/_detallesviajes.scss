@@ -1,0 +1,28 @@
+#participantes-viaje, #carruselitinerario > div > div, #carruselitinerario > div > div > ul{margin-top: 2%;}
+#carruselitinerario{padding: 2%;}
+#detallesactividades > button {margin:3%;; margin-top: 0%;}
+#carruselitinerario > div > div > ul > li > button {
+    margin: 1%;
+    padding: 5px;
+    font-size: small;
+}
+#itinerarylist > div > h3{margin-bottom: 2%;}
+.carousel-control-next-icon, .carousel-control-prev-icon{filter: invert(100%);}
+
+
+//correcciones de márgenes y tamaños para versión móvil
+@media only screen and (max-width: 960px) 
+{
+    #participantes-viaje, #carruselitinerario > div > div, #carruselitinerario > div > div > ul{margin-top: 5%;}
+    #carruselitinerario{padding: 5%;}
+    #detallesactividades > button {margin:3%; margin-top: 5%; padding: 1%; font-size: small;}
+
+    #carruselitinerario > div > div > ul > li > button {
+        margin: 2%;
+        margin-bottom: 5%;
+        padding: 3px;
+        font-size: small;
+    }
+    #itinerarylist > div > h3{margin-bottom: 5%;}
+    h4{font-size:larger}
+}
