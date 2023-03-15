@@ -1,0 +1,96 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+    
+- task: replacetokens@5
+  displayName: Replace variables
+  inputs:
+    rootDirectory: '$(Pipeline.Workspace)/s/j22thotportal'
+    targetFiles: 'app-config.production.yaml'
+    encoding: 'auto'
+    tokenPattern: 'custom'
+    tokenPrefix: '${'
+    tokenSuffix: '}'
+    writeBOM: true
+    verbosity: 'detailed'
+    actionOnMissing: 'warn'
+    keepToken: false
+    actionOnNoFiles: 'continue'
+    enableTransforms: false
+    enableRecursion: false
+    useLegacyPattern: false
+    enableTelemetry: true
+
+- task: Bash@3
+  displayName: Build backstage pack
+  inputs:
+    targetType: 'inline'
+    script: |
+      cd $(Pipeline.Workspace)/s/j22thotportal
+      yarn install --frozen-lockfile && yarn tsc && yarn build:backend
+
+- task: Bash@3
+  displayName: Build docker image & save
+  inputs:
+    targetType: 'inline'
+    script: |
+      cd $(Pipeline.Workspace)/s/j22thotportal
+      DOCKER_BUILDKIT=1 docker image build . -f packages/backend/Dockerfile --tag backstage
+      docker save -o $(Build.ArtifactStagingDirectory)/backstage.tar.gz backstage
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/backstage.tar.gz'
+    artifact: 'backstage.tar.gz'
+    publishLocation: 'pipeline'
+
+- task: DownloadPipelineArtifact@2
+  inputs:
+    buildType: 'current'
+    artifactName: 'backstage.tar.gz'
+    targetPath: '$(Pipeline.Workspace)'
+
+- task: DownloadSecureFile@1
+  name: downloadkey
+  displayName: 'Download private key'
+  inputs:
+    secureFile: 'NPA_AZ_KEY'
+
+- task: InstallSSHKey@0
+  displayName: 'Install_SSH_Key'
+  inputs:
+    knownHostsEntry: 'madintbackstage'
+    sshPublicKey: '$(NPA_AZ_PUB)'
+    sshKeySecureFile: 'NPA_AZ_KEY'
+    configUser: root
+
+- task: Bash@3
+  displayName: 'Copy Dockerimage'
+  inputs: 
+    targetType: 'inline'
+    script: |
+      # Copy docker file
+      scp -o StrictHostKeyChecking=no $(Pipeline.Workspace)/backstage.tar.gz root@5.22.219.145:/backstage/backstage.tar.gz
+      
+- task: Bash@3
+  displayName: 'Prepare Dockerimage'
+  inputs:
+    targetType: 'inline'
+    script: |
+      ssh -o StrictHostKeyChecking=no root@5.22.219.145 "ls -l /backstage && chmod 700 /backstage/backstage.tar.gz && docker load --input /backstage/backstage.tar.gz && docker image ls && rm -rf /backstage/backstage.tar.gz"
+      
+- task: Bash@3
+  displayName: 'Run Backstage'
+  inputs:
+    targetType: 'inline'
+    script: |
+      ssh -o StrictHostKeyChecking=no root@5.22.219.145 "docker stop backstage && docker rm backstage && docker run -it -d --name backstage -p 7007:7007 backstage && docker container ls"
