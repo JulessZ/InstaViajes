@@ -34,7 +34,10 @@ class User extends Authenticatable
      */
     public function friendships(): HasMany
     {
-        return $this->hasMany(Friendship::class);
+        $amigos = $this->hasMany(Friendship::class, "sender_user_id")->where("state", "=", "True");
+        $amigos2 = $this->hasMany(Friendship::class, "receptor_user_id")->where("state", "=", "True");
+        $amigos_totales = $amigos->union($amigos2);
+        return $amigos_totales;
     }
     
     /**
@@ -82,6 +85,7 @@ class User extends Authenticatable
      */
     public function images(): MorphToMany
     {
+        
         return $this->morphToMany(Image::class, 'imageable');
     }
 

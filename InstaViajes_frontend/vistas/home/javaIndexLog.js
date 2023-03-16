@@ -1,35 +1,35 @@
 
-import Fetch from 'fetch-simulator';
-Fetch.use();
+// import fetchSim from 'fetch-simulator';
+// fetchSim.use();
 
 
-fetch.addRoute('https://somekindofserver.com/user/travels', {
-    get: {
-        response: [{
+// fetchSim.addRoute('https://somekindofserver.com/user/travels', {
+//     get: {
+//         response: [{
 
-            location: 'India',
-            image: 'https://concepto.de/wp-content/uploads/2019/05/cultura-griega-acropolis-e1559077275552-800x400.jpg',
-            days: 8,
-            NumUsers: 4,
+//             location: 'India',
+//             image: 'https://concepto.de/wp-content/uploads/2019/05/cultura-griega-acropolis-e1559077275552-800x400.jpg',
+//             days: 8,
+//             NumUsers: 4,
 
-        },
-        {
+//         },
+//         {
 
-            location: 'Thailandia',
-            image: 'https://www.surfingtheplanet.com/wp-content/uploads/2017/08/plaza-navona-roma-italia-800x400.jpg',
-            days: 3,
-            NumUsers: 5,
-        },
-        {
+//             location: 'Thailandia',
+//             image: 'https://www.surfingtheplanet.com/wp-content/uploads/2017/08/plaza-navona-roma-italia-800x400.jpg',
+//             days: 3,
+//             NumUsers: 5,
+//         },
+//         {
 
-            location: 'Francia',
-            image: 'https://humanidades.com/wp-content/uploads/2018/09/Berlin-min-e1536096458165.jpg',
-            days: 2,
-            NumUsers: 7,
-        }
-        ]
-    }
-});
+//             location: 'Francia',
+//             image: 'https://humanidades.com/wp-content/uploads/2018/09/Berlin-min-e1536096458165.jpg',
+//             days: 2,
+//             NumUsers: 7,
+//         }
+//         ]
+//     }
+// });
 
 // Función principal que crea el contenido de la página
 export async function renderIndex() {

@@ -11,6 +11,7 @@ export async function getMisViajesData() {
         linkDetallesViaje.setAttribute("href", "/detallesviaje");
         let journeyCard = document.createElement('div');
         journeyCard.setAttribute("class","cajaSombra cajatarjeta caja-mis-viajes");
+        journeyCard.setAttribute('id', `${journeyData.id}`);
         //imagen del viaje
         let imgDiv = document.createElement('div');
         let img = document.createElement('img');
@@ -111,6 +112,7 @@ export async function getMisViajesData() {
         linkDetallesViaje.setAttribute("href", "/detallesviaje");
         let journeyCard = document.createElement('div');
         journeyCard.setAttribute("class","cajaSombra cajatarjeta");
+        journeyCard.setAttribute('value', `${journeyData.id}`);
         //imagen del viaje
         let imgDiv = document.createElement('div');
         let img = document.createElement('img');
@@ -196,6 +198,8 @@ export async function getMisViajesData() {
 
         deleteButton[index].addEventListener('click', ()=> {
 
+            // console.log(cajaSombra[index].id); ESTE ES EL ID DEL VIAJE QUE SE DEBE INDICAR AL SERVIDOR QUE DEBE SER BORRADO
+            
             misViajesContainer.removeChild(cajaSombra[index]);
 
         });

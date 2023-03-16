@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('activity_votes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("user_id")->nullable();
+            $table->unsignedBigInteger("user_id");
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
-            $table->unsignedBigInteger("activity_id")->nullable();
+            $table->unsignedBigInteger("activity_id");
             $table->foreign("activity_id")->references("id")->on("activities")->onDelete("cascade");
             $table->timestamps();
         });

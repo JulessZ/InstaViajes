@@ -146,10 +146,11 @@ export class createActivityView{
             let priceText = document.createTextNode('Precio');
             price.appendChild(priceText);
             priceDiv.appendChild(price);
-
+            
             let inputPrice = document.createElement('input');
             inputPrice.setAttribute('type', 'text');
             inputPrice.setAttribute('id', 'inputPrice');
+            inputPrice.setAttribute('placeholder', '€');
             inputPrice.setAttribute('value', `${data.place.price} €`);
             priceDiv.appendChild(inputPrice);
 

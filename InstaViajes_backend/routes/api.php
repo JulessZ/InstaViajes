@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TravelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,23 @@ Route::get('test', function () {
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
+// Viajes
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
+    Route::get('/viajes', 'App\Http\Controllers\TravelController@index');
+    Route::get('/viajes/{viaje}', 'App\Http\Controllers\TravelController@show');
+    Route::post('/verify', [AuthController::class, 'verify']);
 });
+
+
+// Viajes de un usuario
+Route::get('/usuario/{user}/viajes', 'App\Http\Controllers\UserController@indexTravels');
+// Viajes de los amigos de un usuario
+Route::get('/usuario/{user}/friends/viajes', 'App\Http\Controllers\UserController@indexFriendTravels');
+
+// Edición de viaje
+
+Route::get('/misviajes/{travel}/editar', 'App\Http\Controllers\TravelController@edit');
+
+// Edicion de actividad
+Route::get('/viaje/{activity}/editar', 'App\Http\Controllers\ActivityController@edit');

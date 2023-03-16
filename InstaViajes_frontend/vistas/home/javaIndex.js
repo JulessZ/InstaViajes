@@ -1,77 +1,77 @@
 
-import Fetch from 'fetch-simulator';
-Fetch.use();
+// import fetchSim from 'fetch-simulator';
+// fetchSim.use();
 
-// Viajes de otros usuarios de la plataforma
-fetch.addRoute('https://somekindofserver.com/travelsRandom', {
-    get: {
-        response: [{
+// // Viajes de otros usuarios de la plataforma
+// fetchSim.addRoute('https://somekindofserver.com/travelsRandom', {
+//     get: {
+//         response: [{
 
-            location: 'Grecia',
-            image: 'https://concepto.de/wp-content/uploads/2019/05/cultura-griega-acropolis-e1559077275552-800x400.jpg',
-            imageuser: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png',
-            username: 'Aram Hernandez',
-            days: 8,
-            NumUsers: 4,
+//             location: 'Grecia',
+//             image: 'https://concepto.de/wp-content/uploads/2019/05/cultura-griega-acropolis-e1559077275552-800x400.jpg',
+//             imageuser: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png',
+//             username: 'Aram Hernandez',
+//             days: 8,
+//             NumUsers: 4,
 
-        },
-        {
+//         },
+//         {
 
-            location: 'Italia',
-            image: 'https://www.surfingtheplanet.com/wp-content/uploads/2017/08/plaza-navona-roma-italia-800x400.jpg',
-            imageuser: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png',
-            username: 'Carmen',
-            days: 4,
-            NumUsers: 2,
-        },
-        {
+//             location: 'Italia',
+//             image: 'https://www.surfingtheplanet.com/wp-content/uploads/2017/08/plaza-navona-roma-italia-800x400.jpg',
+//             imageuser: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png',
+//             username: 'Carmen',
+//             days: 4,
+//             NumUsers: 2,
+//         },
+//         {
 
-            location: 'Berlin',
-            image: 'https://humanidades.com/wp-content/uploads/2018/09/Berlin-min-e1536096458165.jpg',
-            imageuser: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png',
-            username: 'Diego',
-            days: 3,
-            NumUsers: 8,
-        }
-        ]
-    }
-});
+//             location: 'Berlin',
+//             image: 'https://humanidades.com/wp-content/uploads/2018/09/Berlin-min-e1536096458165.jpg',
+//             imageuser: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png',
+//             username: 'Diego',
+//             days: 3,
+//             NumUsers: 8,
+//         }
+//         ]
+//     }
+// });
 
 
 // Viajes de mis amigos
-fetch.addRoute('https://somekindofserver.com/user/friends/travels', {
-    get: {
-        response: [{
+// fetchSim.addRoute('https://somekindofserver.com/user/friends/travels', {
+//     get: {
+//         response: [{
 
-            location: 'Grecia',
-            image: 'https://concepto.de/wp-content/uploads/2019/05/cultura-griega-acropolis-e1559077275552-800x400.jpg',
-            imageuser: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png',
-            username: 'Aram Hernandez',
-            days: 8,
-            NumUsers: 4,
+//             location: 'Grecia',
+//             image: 'https://concepto.de/wp-content/uploads/2019/05/cultura-griega-acropolis-e1559077275552-800x400.jpg',
+//             imageuser: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png',
+//             username: 'Aram Hernandez',
+//             days: 8,
+//             NumUsers: 4,
 
-        },
-        {
+//         },
+//         {
 
-            location: 'Italia',
-            image: 'https://www.surfingtheplanet.com/wp-content/uploads/2017/08/plaza-navona-roma-italia-800x400.jpg',
-            imageuser: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png',
-            username: 'Carmen',
-            days: 4,
-            NumUsers: 2,
-        },
-        {
+//             location: 'Italia',
+//             image: 'https://www.surfingtheplanet.com/wp-content/uploads/2017/08/plaza-navona-roma-italia-800x400.jpg',
+//             imageuser: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png',
+//             username: 'Carmen',
+//             days: 4,
+//             NumUsers: 2,
+//         },
+//         {
 
-            location: 'Berlin',
-            image: 'https://humanidades.com/wp-content/uploads/2018/09/Berlin-min-e1536096458165.jpg',
-            imageuser: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png',
-            username: 'Diego',
-            days: 3,
-            NumUsers: 8,
-        }
-        ]
-    }
-});
+//             location: 'Berlin',
+//             image: 'https://humanidades.com/wp-content/uploads/2018/09/Berlin-min-e1536096458165.jpg',
+//             imageuser: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png',
+//             username: 'Diego',
+//             days: 3,
+//             NumUsers: 8,
+//         }
+//         ]
+//     }
+// });
 
 
 // Función principal que crea el contenido de la página

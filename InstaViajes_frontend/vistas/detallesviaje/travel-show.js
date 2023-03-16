@@ -1,94 +1,46 @@
 
-import Fetch from 'fetch-simulator';
-Fetch.use();
+// import fetchSim from 'fetch-simulator';
+// fetchSim.use();
 
-fetch.addRoute('https://somekindofserver.com/travel/2', {
-    get: {
-        response: [{
-            trip: {
-                title: "Viaje a Madrid",
-                participants: ["Diego", "Aram", "Jorge", "Carmen"],
-                owner: "Diego",
-                state: "En curso",
-                budget: 2000.54,
-                posts:[
-                    {
-                        id:1,
-                        img: "https://media.traveler.es/photos/62fe1ebd47832420e24c36d8/16:9/w_2580,c_limit/SurItalia_Positano1-Global.jpg",
-                        text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", 
-                    },
-                    {
-                        id:2,
-                        img: "https://media.traveler.es/photos/62fe1ebd47832420e24c36d8/16:9/w_2580,c_limit/SurItalia_Positano1-Global.jpg",
-                        text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", 
-                    },
-                    {
-                        id:3,
-                        img: "https://media.traveler.es/photos/62fe1ebd47832420e24c36d8/16:9/w_2580,c_limit/SurItalia_Positano1-Global.jpg",
-                        text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.", 
-                    },
-                    {
-                        id:4,
-                        img: "https://media.traveler.es/photos/62fe1ebd47832420e24c36d8/16:9/w_2580,c_limit/SurItalia_Positano1-Global.jpg",
-                        text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's .", 
-                    },
-                ],
-                days: [
-                    {
-                        date: "Día 23/03/2023",
-                        activities: [
-                            {
-                                id: 1,
-                                title: "Visita al museo de cera.",
-                                budget: 255.45,
-                                type: "Museo",
-                                votes: 15,
-                                image: "https://ep01.epimg.net/verne/imagenes/2015/03/05/articulo/1425549987_841133_1425571033_noticia_normal.jpg",
-                                description: "Visita guiada al museo del prado de Madrid.",
-                                duration: "2 horas"
-                            },
-                            {
-                                id: 2,
-                                title: "Visita al parque del retiro.",
-                                budget: 24,
-                                type: "Monumentos públicos",
-                                votes: 10,
-                                image: "https://madridando.com/wp-content/uploads/2018/07/el-retiro.jpeg",
-                                description: "Vuelta de reconocimiento a la plaza de españa.",
-                                duration: "1 horas"
-                            }
-                        ]
-                    },
-                    {
-                        date: "Día 27/03/2023",
-                        activities: [
-                            {
-                                id: 1,
-                                title: "5g4g4g4g4g4",
-                                budget: 2556.45,
-                                type: "Musg45g45eo",
-                                votes: 15,
-                                image: "https://ep01.epimg.net/verne/imagenes/2015/03/05/articulo/1425549987_841133_1425571033_noticia_normal.jpg",
-                                description: "Visita guiada al museo del prado de Madrid.",
-                                duration: "2 horas"
-                            },
-                            {
-                                id: 2,
-                                title: "Visita4h4h4hrg4 del retiro.",
-                                budget: 244,
-                                type: "Monumentos públicos",
-                                votes: 10,
-                                image: "https://madridando.com/wp-content/uploads/2018/07/el-retiro.jpeg",
-                                description: "Vuelta de reconocimiento a la plaza de españa.",
-                                duration: "1 horas"
-                            }
-                        ]
-                    },
-                ]
-            }
-        }]
-    }
-});
+// fetchSim.addRoute('https://somekindofserver.com/travel/2', {
+//     get: {
+//         response: [{
+//             trip: {
+//                 title: "Viaje a Madrid",
+//                 participants: ["Diego", "Aram", "Jorge", "Carmen"],
+//                 state: "En curso",
+//                 budget: 2000.54,
+//                 days: [
+//                     {
+//                         date: "Día 23/03/2023",
+//                         activities: [
+//                             {
+//                                 id: 1,
+//                                 title: "Visita al museo de cera.",
+//                                 budget: 255.45,
+//                                 type: "Museo",
+//                                 votes: 15,
+//                                 image: "https://ep01.epimg.net/verne/imagenes/2015/03/05/articulo/1425549987_841133_1425571033_noticia_normal.jpg",
+//                                 description: "Visita guiada al museo del prado de Madrid.",
+//                                 duration: "2 horas"
+//                             },
+//                             {
+//                                 id: 2,
+//                                 title: "Visita al parque del retiro.",
+//                                 budget: 24,
+//                                 type: "Monumentos públicos",
+//                                 votes: 10,
+//                                 image: "https://madridando.com/wp-content/uploads/2018/07/el-retiro.jpeg",
+//                                 description: "Vuelta de reconocimiento a la plaza de españa.",
+//                                 duration: "1 horas"
+//                             }
+//                         ]
+//                     }
+//                 ]
+//             }
+//         }]
+//     }
+// });
 
 
 export function renderHeader() {

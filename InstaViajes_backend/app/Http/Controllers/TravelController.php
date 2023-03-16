@@ -10,10 +10,14 @@ class TravelController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $travel = Travel::all();
+        $travel->where("user_id", '=', request('id'));
+
+        return response()->json(['data' => $travel]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,7 +40,9 @@ class TravelController extends Controller
      */
     public function show(Travel $travel)
     {
-        //
+        $travel = Travel::find($travel);
+
+        return response()->json(['data' => $travel]);
     }
 
     /**
@@ -44,7 +50,17 @@ class TravelController extends Controller
      */
     public function edit(Travel $travel)
     {
-        //
+        echo $travel;
+
+        $travelName = $travel->name;
+        $travelStartDate = $travel->start_date;
+        $travelEndDate = $travel->end_date;
+        $travelOrigin = $travel->origin;
+        $travelDestiny = $travel->destiny;
+        $travelDescription = $travel->description;
+        $travelBudget = $travel->budget;
+        $travelState = $travel->travelStates->name;
+        $travelFriends = $travel->user->friendship;
     }
 
     /**
