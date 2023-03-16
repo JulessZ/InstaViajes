@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Friendship;
 use App\Models\Image;
 use App\Models\Imageable;
 use App\Models\Travel;
@@ -17,9 +18,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('images')->select('id', 'name','surname', 'email')->get();
+
+        // $userList = [
+        //     'id' => $users->id,
+        //     'name' => $users->name,
+            
+        // ];
         return response()->json($users);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -83,7 +91,8 @@ class UserController extends Controller
         //
     }
 
-    public function showTravel(User $user) {
+    public function showTravel(User $user)
+    {
 
         foreach ($user->travels as $travel) {
 
@@ -94,11 +103,11 @@ class UserController extends Controller
             //     echo "aaaa" . $image->name . "<br>";
             // };
             foreach ($travel->images as $image) {
-                
-                bb($image);
+
+                //bb($image);
             }
         }
-        
+
         // dd($user->travels());
         // $var = $user->travels();
         // dd($var);
@@ -118,5 +127,20 @@ class UserController extends Controller
         // ];
         // return $foto;
         // return $travelId;
+    }
+    public function friends($userId)
+    {
+
+        // Obtener las relaciones de amistad que incluyen al usuario específico
+        $friendship = Friendship::where('sender_user_id', $userId)
+            ->orWhere('receptor_user_id', $userId)
+            ->get();
+
+        // Obtener los IDs de los amigos del usuario
+        $friendIds = $friendship->pluck('sender_user_id')->merge($friendship->pluck('receptor_user_id'))->unique();
+
+        // Obtener los datos de los amigos
+        //$friends = User::whereIn('id', $friendIds)->select('id', 'user_id_sender', 'receptor_user_id', 'state')->get();
+        return response()->json($friendship);
     }
 }
