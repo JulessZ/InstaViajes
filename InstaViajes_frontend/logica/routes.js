@@ -16,6 +16,7 @@ import { amigos as amigosTemplate } from './../plantillas/amigos.js';
 // Importaciones de los métodos de render de cada vista
 import * as View from './../viewImports.js';
 
+import { isUserAuth } from './../logica/users.js';
 //importacion del css
 import './../css/style.css';
 
@@ -45,27 +46,32 @@ export function exportLogicRoutes() {
         home: {
             pathname: '/home',
             template: homeTemplate,
-            views: [View.homeView, View.homeSideView]
+            views: [View.homeView, View.homeSideView],
+            conditions:[isUserAuth]
         },
         perfil: {
             pathname: '/perfil',
             template: perfilTemplate,
-            views: [View.renderPerfil]
+            views: [View.renderPerfil],
+            conditions:[isUserAuth]
         },
         detallesviaje: {
             pathname: '/detallesviaje',
             template: detallesViajeTemplate,
-            views: [View.renderButtonDetallesViajes, View.renderCarouselDetallesViajes, View.renderHeaderDetallesViajes, View.renderPostDetallesViajes]
+            views: [View.renderButtonDetallesViajes, View.renderCarouselDetallesViajes, View.renderHeaderDetallesViajes, View.renderPostDetallesViajes],
+            conditions:[isUserAuth]
         },
         misviajes: {
             pathname: '/misviajes',
             template: misViajesTemplate,
-            views: [View.renderMisViajes]
+            views: [View.renderMisViajes],
+            conditions:[isUserAuth]
         },
         amigos: {
             pathname: '/amigos',
             template: amigosTemplate,
-            views: [View.renderFriends]
+            views: [View.renderFriends],
+            conditions:[isUserAuth]
         },
         // crearactividades: {
         //   pathname: '/crearactividades',
@@ -75,12 +81,14 @@ export function exportLogicRoutes() {
         crearviaje: {
             pathname: '/crearviaje',
             template: crearViajeTemplate,
-            views: [View.renderFormCreateTravel]
+            views: [View.renderFormCreateTravel],
+            conditions:[isUserAuth]
         },
         crearactividades: {
             pathname: '/crearactividades',
             template: crearActividadesTemplate,
-            views: [View.renderFormCreateActivity]
+            views: [View.renderFormCreateActivity],
+            conditions:[isUserAuth]
         },
         // crearviaje: {
         //   pathname: '/crearviaje',
@@ -90,17 +98,20 @@ export function exportLogicRoutes() {
         editaractividades: {
             pathname: '/editaractividades',
             template: editarActividadesTemplate,
-            views: [View.renderFormEditActivity]
+            views: [View.renderFormEditActivity],
+            conditions:[isUserAuth]
         },
         crearpost: {
             pathname: '/crearpost',
             template: crearPostsTemplate,
-            views: [View.renderFormCreatePost]
+            views: [View.renderFormCreatePost],
+            conditions:[isUserAuth]
         },
         editarviaje: {
             pathname: '/editarviaje',
             template: editarViajeTemplate,
-            views: [View.renderEditarViaje]
+            views: [View.renderEditarViaje],
+            conditions:[isUserAuth]
         },
     };
 
@@ -120,6 +131,15 @@ export function exportLogicRoutes() {
             routes[pathnameNoSlash].views.forEach(view => {
                 view();
             });
+            if (routes[pathnameNoSlash].conditions) {
+                routes[pathnameNoSlash].conditions.forEach(async (condition) => {
+                    let booleano = await condition();
+                    if (booleano==false){
+                        onNavigate("/login");
+                    }
+                    
+                });
+            }
 
         } else {
             // Aqui debemos mostrar la página de un ERROR HTTP 404 (no se encuentra esta pagina)
@@ -145,6 +165,15 @@ export function exportLogicRoutes() {
         routes[pathnameNoSlash].views.forEach(view => {
             view();
         });
+        //logica para que compruebe si estas logueado cuando pulsas en los enlaces
+        if (routes[pathnameNoSlash].conditions) {
+            routes[pathnameNoSlash].conditions.forEach(async (condition) => {
+                let booleano = await condition();
+                if (booleano==false){
+                    onNavigate("/login");
+                }
+            });
+        }
     }
 
     /**
@@ -158,6 +187,14 @@ export function exportLogicRoutes() {
         routes[pathnameNoSlash].views.forEach(view => {
             view();
         });
+        if (routes[pathnameNoSlash].conditions) {
+            routes[pathnameNoSlash].conditions.forEach(async (condition) => {
+                let booleano = await condition();
+                if (booleano==false){
+                    onNavigate("/login");
+                }
+            });
+        }
 
     }
 
