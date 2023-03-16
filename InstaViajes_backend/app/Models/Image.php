@@ -25,4 +25,12 @@ class Image extends Model
     {
         return $this->morphedByMany(Post::class, 'imageable');
     }
+
+    /**
+     * Get all of the travels that are assigned this image.
+     */
+    public function travels(): MorphToMany
+    {
+        return $this->morphedByMany(Travel::class, 'imageable');
+    }
 }

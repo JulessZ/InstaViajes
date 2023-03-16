@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('imageables', function (Blueprint $table) {
             $table->unsignedBigInteger("image_id");
             $table->foreign("image_id")->references("id")->on("images")->onDelete("cascade");
-            $table->unsignedBigInteger("parentable_id");
-            $table->string("parentable_type");
+            $table->unsignedBigInteger("imageable_id");
+            $table->string("imageable_type");
+            $table->primary(["image_id"]);
             $table->timestamps();
         });
     }
