@@ -1,5 +1,6 @@
 
 import { isUserAuth } from "../../logica/users";
+import { baseUrl } from "../../config";
 let userList;
 let friendships;
 
@@ -10,8 +11,8 @@ let userLogged = userData.user.id;
 console.log(token);
 
 // Define the URL of the API that will receive the friend request
-const apiUrl1 = "http://localhost/api/profile/users";
-const apiUrl2 = "http://localhost/api/profile/" + userLogged;
+const apiUrl1 = baseUrl+"api/profile/users";
+const apiUrl2 = baseUrl+"api/profile/" + userLogged;
 
 // Define the application options
 const requestOptions = {

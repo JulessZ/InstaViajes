@@ -32,7 +32,9 @@ Route::post('login', [AuthController::class, 'login']);
 // Viajes
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
+    // Todos los viajes
     Route::get('/viajes', 'App\Http\Controllers\TravelController@index');
+    // Datos de un viaje
     Route::get('/viajes/{viaje}', 'App\Http\Controllers\TravelController@show');
     Route::post('/verify', [AuthController::class, 'verify']);
     //User and friends
@@ -42,12 +44,26 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/friendship/accept', 'App\Http\Controllers\FriendshipController@update');
     Route::delete('/friendship/delete', 'App\Http\Controllers\FriendshipController@destroy');
     Route::post('/friendship/add', 'App\Http\Controllers\FriendshipController@create');
+    // Viajes de un usuario
+    Route::get('/usuario/{user}/viajes', 'App\Http\Controllers\UserController@indexTravels');
+    // Viajes de los amigos de un usuario
+    Route::get('/usuario/{user}/friends/viajes', 'App\Http\Controllers\UserController@indexFriendTravels');
+    // datos del perfil de usuario
+    Route::post('/perfil/{user}/update', 'App\Http\Controllers\UserController@update');
+    
+    Route::post('/verify', [AuthController::class, 'verify']);
 });
 
-// Perfil de usuario
 
 
-// Viajes de un usuario
-Route::get('/usuario/{user}/viajes', 'App\Http\Controllers\UserController@indexTravels');
-// Viajes de los amigos de un usuario
-Route::get('/usuario/{user}/friends/viajes', 'App\Http\Controllers\UserController@indexFriendTravels');
+
+
+// Edición de viaje
+
+Route::get('/misviajes/{travel}/editar', 'App\Http\Controllers\TravelController@edit');
+
+// Edicion de actividad
+Route::get('/viaje/{activity}/editar', 'App\Http\Controllers\ActivityController@edit');
+
+// Creacion de actividad
+Route::post('/viaje/crearactividad', 'App\Http\Controllers\ActivityController@store');

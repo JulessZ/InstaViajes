@@ -1,6 +1,6 @@
 import {exportLogicRoutes}  from "./logica/routes.js";
 import * as users from './logica/users.js';
-
+import { baseUrl } from "./config.js";
 // Recoger el elemento body y llamamos a la función init() para que se ejecute mediante event onload
 document.querySelector('body').addEventListener('load', init());
 
@@ -12,6 +12,7 @@ function init(){
   users.init();
   // users.isUserAuth();
   window.isUserAuth = users.isUserAuth();
+  window.baseUrl= baseUrl;
 }
 
 

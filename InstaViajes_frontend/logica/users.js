@@ -1,5 +1,7 @@
 // Lógica para usuarios que hereda de app.js
 
+import { baseUrl } from "../config";
+
 let logoutBtn;
 
 export function init() {
@@ -19,7 +21,7 @@ function setupEventListeners() {
 export function logout() {
     const token = localStorage.getItem("auth_token");
     // Define the URL of the API that will receive the friend request
-    const apiUrl = "http://localhost/api/logout";
+    const apiUrl =baseUrl+"api/logout";
     const requestOptions = {
         method: "GET",
         headers: {
@@ -46,7 +48,7 @@ export async function isUserAuth() {
     // Set de auth token to send for request
     const token = localStorage.getItem("auth_token");
     // Define the URL of the API that will receive the friend request
-    const apiUrl = "http://localhost/api/verify";
+    const apiUrl = baseUrl+"api/verify";
 
     let auth = true;
     let userData = null;

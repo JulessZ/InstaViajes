@@ -1,5 +1,7 @@
 // import Fetch from 'fetch-simulator';
 
+import { baseUrl } from "../../config";
+
 // Fetch.addRoute('https://instaviajes.com/places', {
 //     get: {
 //         response: {
@@ -26,7 +28,8 @@
 
 export class fakeFetch {
     static getPlacesData() {
-        return fetch('https://instaviajes.com/places')
+        let url= baseUrl+"places";
+        return fetch(url)
         .then((response) => {
             return response.json();
         })
