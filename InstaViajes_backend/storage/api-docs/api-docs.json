@@ -268,6 +268,167 @@
                     }
                 ]
             }
+        },
+        "/friendship/add": {
+            "post": {
+                "tags": [
+                    "Friendship"
+                ],
+                "summary": "Crea una nueva solicitud de amistad",
+                "description": "Crea un nuevo registro de amistad en la base de datos",
+                "operationId": "c3bb2b320b1f74522ce8282fe455d9bf",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "userId",
+                                    "userInvitedId"
+                                ],
+                                "properties": {
+                                    "userId": {
+                                        "description": "ID del usuario que envía la solicitud de amistad",
+                                        "type": "integer",
+                                        "example": "123"
+                                    },
+                                    "userInvitedId": {
+                                        "description": "ID del usuario que recibe la solicitud de amistad",
+                                        "type": "integer",
+                                        "example": "456"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "La solicitud de amistad se ha enviado con éxito"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/friendship/accept": {
+            "put": {
+                "tags": [
+                    "Friendship"
+                ],
+                "summary": "Update the state of a friendship",
+                "description": "Update the state of a friendship to `true`",
+                "operationId": "48d3fb93ddd6478cfbd8bbf4392f07af",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "friendshipId"
+                                ],
+                                "properties": {
+                                    "friendshipId": {
+                                        "description": "The ID of the friendship to update",
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Friendship state updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Friendship state updated successfully"
+                                        },
+                                        "friendship": {
+                                            "$ref": "#/components/schemas/Friendship"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Friendship not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Friendship not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/friendships/{id}": {
+            "delete": {
+                "tags": [
+                    "Friendship"
+                ],
+                "summary": "Delete a friendship",
+                "description": "Delete a friendship by ID",
+                "operationId": "deleteFriendship",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the friendship to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Friendship deleted successfully"
+                    },
+                    "404": {
+                        "description": "Friendship not found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -302,6 +463,37 @@
                     "password": {
                         "type": "string",
                         "example": "The password field is required."
+                    }
+                },
+                "type": "object"
+            },
+            "Friendship": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "sender_user_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "receptor_user_id": {
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "state": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-03-16 10:00:00"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-03-16 11:00:00"
                     }
                 },
                 "type": "object"
