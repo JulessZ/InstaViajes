@@ -9,6 +9,7 @@ use App\Models\TravelTravelUsers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -83,40 +84,110 @@ class UserController extends Controller
         //
     }
 
-    public function showTravel(User $user) {
-
-        foreach ($user->travels as $travel) {
-
-            echo "TRAVEL " .  $travel . "<br>";
-
-            // foreach ($travel->images as $image) {
-            //     echo $travel->images;
-            //     echo "aaaa" . $image->name . "<br>";
-            // };
-            foreach ($travel->images as $image) {
-                
-                bb($image);
+    public function indexTravels(User $user)
+    {
+        $travels = $user->travels->toArray();
+        $newTravels = array_map(function ($travel) {
+            // Calcula el número de días
+            $startDate = Carbon::parse($travel['start_date']);
+            $endDate = Carbon::parse($travel['end_date']);
+            $days = $endDate->diffInDays($startDate);
+            // Número de participantes
+            $participantes = TravelTravelUsers::all()->where('travel_id', "=", $travel['id'])->count();
+            // Nombre de usuario creador
+            $userName = User::all()->where('id', "=", $travel['user_id'])->value('name');
+            // Imagen viaje
+            $fotoTravel = Imageable::all()->where('imageable_id', '=', $travel['id'])->where('imageable_type', '=', 'Travel')->value('image_id');
+            if ($fotoTravel) { // Evita errores
+                $fotoTravel = Image::find($fotoTravel)->value("name");
             }
+            // Imagen user
+            $fotoUser = Imageable::all()->where('imageable_id', '=', $travel['user_id'])->where('imageable_type', '=', 'User')->value('image_id');
+            if ($fotoUser) { // Evita errores
+                $fotoUser = Image::find($fotoUser)->value("name");
+            }
+
+            return [
+                'id' => $travel['id'],
+                'user_id' => $travel['user_id'],
+                'username' => $userName,
+                'image' => asset('images/' . $fotoTravel),
+                'imageuser' => asset('images/' . $fotoUser),
+                'travel_state_id' => $travel['travel_states_id'],
+                'description' => $travel['description'],
+                'start_date' => $travel['start_date'],
+                'end_date' => $travel['end_date'],
+                'days' => $days,
+                'location' => $travel['origin'],
+                'destiny' => $travel['destiny'],
+                'budget' => $travel['budget'],
+                'created_at' => $travel['created_at'],
+                'updated_at' => $travel['updated_at'],
+                'NumUsers' => $participantes,
+            ];
+        }, $travels);
+
+        // Imprimir los nuevos registros con los campos renombrados
+        foreach ($newTravels as $travel) {
+            echo json_encode($travel) . "\n";
         }
-        
-        // dd($user->travels());
-        // $var = $user->travels();
-        // dd($var);
+
+        // echo $user->friendships->where("state", "=", "true");
+
         // $travelId = Travel::all()->where("user_id", "=", $id)->value("id");
         // $viajes = Travel::all()->where("user_id", "=", $id)->pluck(['destiny']);
+    }
 
-        // $fecha1 = Travel::all()->where("user_id", "=", $id)->value('start_date');
-        // $fecha2 = Travel::all()->where("user_id", "=", $id)->value('end_date');
-        // $dias = strtotime($fecha1) - strtotime($fecha2) / 86400;
+    public function indexFriendTravels(User $user)
+    {
+        $friends = $user->friendships;
+        foreach ($friends as $friend) {
+            return $friend;
+            $travels = $user->travels->toArray();
+            $newTravels = array_map(function ($travel) {
+                // Calcula el número de días
+                $startDate = Carbon::parse($travel['start_date']);
+                $endDate = Carbon::parse($travel['end_date']);
+                $days = $endDate->diffInDays($startDate);
+                // Número de participantes
+                $participantes = TravelTravelUsers::all()->where('travel_id', "=", $travel['id'])->count();
+                // Nombre de usuario creador
+                $userName = User::all()->where('id', "=", $travel['user_id'])->value('name');
+                // Imagen viaje
+                $fotoTravel = Imageable::all()->where('imageable_id', '=', $travel['id'])->where('imageable_type', '=', 'Travel')->value('image_id');
+                if ($fotoTravel) { // Evita errores
+                    $fotoTravel = Image::find($fotoTravel)->value("name");
+                }
+                // Imagen user
+                $fotoUser = Imageable::all()->where('imageable_id', '=', $travel['user_id'])->where('imageable_type', '=', 'User')->value('image_id');
+                if ($fotoUser) { // Evita errores
+                    $fotoUser = Image::find($fotoUser)->value("name");
+                }
 
-        // $participantes = TravelTravelUsers::all()->where('travel_id', "=", $travelId)->count();
+                return [
+                    'id' => $travel['id'],
+                    'user_id' => $travel['user_id'],
+                    'username' => $userName,
+                    'image' => asset('images/' . $fotoTravel),
+                    'imageuser' => asset('images/' . $fotoUser),
+                    'travel_state_id' => $travel['travel_states_id'],
+                    'description' => $travel['description'],
+                    'start_date' => $travel['start_date'],
+                    'end_date' => $travel['end_date'],
+                    'days' => $days,
+                    'location' => $travel['origin'],
+                    'destiny' => $travel['destiny'],
+                    'budget' => $travel['budget'],
+                    'created_at' => $travel['created_at'],
+                    'updated_at' => $travel['updated_at'],
+                    'NumUsers' => $participantes,
+                ];
+            }, $travels);
 
-        // $foto = Imageable::all()->where('parentable_id', '=', $travelId)->where('parentable_type', '=', 'Travel')->value('image_id');
-        // $foto = Image::find($foto)->value("name");
-        // $array = [
-
-        // ];
-        // return $foto;
-        // return $travelId;
+            // Imprimir los nuevos registros con los campos renombrados
+            foreach ($newTravels as $travel) {
+                echo json_encode($travel) . "\n";
+            }
+        }
     }
 }
