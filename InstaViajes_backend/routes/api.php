@@ -51,16 +51,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // datos del perfil de usuario
     Route::post('/perfil/{user}/update', 'App\Http\Controllers\UserController@update');
     
+    // Edición de viaje
+    Route::get('/misviajes/{travel}/editar', 'App\Http\Controllers\TravelController@edit');
+    // Creación de viaje
+    Route::post('/misviajes/crear', 'App\Http\Controllers\TravelController@store');
+
     Route::post('/verify', [AuthController::class, 'verify']);
 });
 
 
-
-
-
-// Edición de viaje
-
-Route::get('/misviajes/{travel}/editar', 'App\Http\Controllers\TravelController@edit');
 
 // Edicion de actividad
 Route::get('/viaje/{activity}/editar', 'App\Http\Controllers\ActivityController@edit');

@@ -1,4 +1,5 @@
 import { baseUrl } from "../../config";
+import { isUserAuth } from "../../logica/users";
 
 // Insert the URL with friends users.
 let urlFetchUsers = baseUrl+'datos';
@@ -340,7 +341,7 @@ function setupSubmitEventListener() {
 
 
 // This function is called when submit button is pressed. Validates the form.
-function validateForm() {
+async function validateForm() {
     clearErrors();
     // Checks if travel name is defined.
     if (!document.querySelector("#name").value) {
@@ -375,15 +376,24 @@ function validateForm() {
                 return;
             }
         }
-        fetch(baseUrl+'datos', {
-            method: 'POST',
-            body: JSON.stringify(createObjectWithValues()),
+        const token = localStorage.getItem("auth_token");
+        const requestOptions = {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify( await createObjectWithValues())
+        };
+        console.log(requestOptions);
+        fetch(baseUrl+'api/misviajes/crear', requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error al enviar la solicitud");
             }
+            console.log("Solicitud enviada con éxito");
+            console.log(response);
         })
-            .then(response => response.json())
-            .then(data => console.log(data))
             .catch(error => console.error(error));
     }
 }
@@ -465,16 +475,21 @@ function verifyErrors() {
 Creates an object with the values of the travel form inputs and predefined data for invited friends.
 @returns {object} - The created object containing the travel information and invited friends data.
 */
-function createObjectWithValues() {
+
+async function createObjectWithValues() {
+    let { userData } = await isUserAuth();
+    let userLogged = userData.user.id;
     const viaje = {
-        travelName: document.getElementById("name").value,
-        fechaInicio: startDate.value,
-        fechaFinal: endDate.value,
-        origen: document.getElementById("origin").value,
-        destino: destiny.value,
-        descripcion: description.value,
-        presupuesto: document.getElementById("budget").value,
-        amigosInvitados: usuariosEnViaje.slice()
+        user_id: userLogged,
+        travel_states_id: 3,
+        name: document.getElementById("name").value,
+        description: description.value,
+        start_date: startDate.value,
+        end_date: endDate.value,
+        origin: document.getElementById("origin").value,
+        destiny: destiny.value,
+        budget: document.getElementById("budgetBar").value,
+        //amigosInvitados: usuariosEnViaje.slice()
     };
     return viaje;
 }
