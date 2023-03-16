@@ -41,4 +41,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::get('/profile/users', 'App\Http\Controllers\UserController@index');
 Route::get('/profile/{id}', 'App\Http\Controllers\UserController@friends');
 
-Route::get('/usuarios/{user}/travels', 'App\Http\Controllers\UserController@showTravel');
+// Viajes de un usuario
+Route::get('/usuario/{user}/viajes', 'App\Http\Controllers\UserController@indexTravels');
+// Viajes de los amigos de un usuario
+Route::get('/usuario/{user}/friends/viajes', 'App\Http\Controllers\UserController@indexFriendTravels');

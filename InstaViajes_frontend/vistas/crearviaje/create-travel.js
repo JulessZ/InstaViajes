@@ -69,6 +69,7 @@ function generateCreateTravelForm(idToAppend) {
             // !! Name Error
             const nameError = document.createElement("span");
             nameError.setAttribute("id", "name-error");
+            nameError.setAttribute("class", "msg-error");
         nameContainer.appendChild(nameLabel);
         nameContainer.appendChild(nameInput);
         nameContainer.appendChild(nameError);
@@ -87,6 +88,7 @@ function generateCreateTravelForm(idToAppend) {
                 // !! Starting date Error
                 const fechaInicioError = document.createElement("span");
                 fechaInicioError.setAttribute("id", "startDate-error");
+                fechaInicioError.setAttribute("class", "msg-error");
 
                 startingDateContainer.appendChild(fechaInicioLabel);
                 startingDateContainer.appendChild(fechaInicioInput);
@@ -103,6 +105,7 @@ function generateCreateTravelForm(idToAppend) {
                 // !! End date error
                 const fechaFinalError = document.createElement("span");
                 fechaFinalError.setAttribute("id", "endDate-error");
+                fechaFinalError.setAttribute("class", "msg-error");
 
                 endDateContainer.appendChild(fechaFinalLabel);
                 endDateContainer.appendChild(fechaFinalInput);
@@ -123,6 +126,7 @@ function generateCreateTravelForm(idToAppend) {
                 // !! Origin Location Origin Error
                 const origenError = document.createElement("span");
                 origenError.setAttribute("id", "origin-error");
+                origenError.setAttribute("class", "msg-error");
             originLocationsContainer.appendChild(origenLabel);
             originLocationsContainer.appendChild(origenInput);
             originLocationsContainer.appendChild(origenError);
@@ -138,6 +142,7 @@ function generateCreateTravelForm(idToAppend) {
                 // !! Destiny Location Error
                 const destinyError = document.createElement("span");
                 destinyError.setAttribute("id", "destiny-error");
+                destinyError.setAttribute("class", "msg-error");
             destinyLocationsContainer.appendChild(destinyLabel);
             destinyLocationsContainer.appendChild(destinyInput);
             destinyLocationsContainer.appendChild(destinyError);

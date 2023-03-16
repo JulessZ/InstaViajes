@@ -7,6 +7,8 @@ export async function getMisViajesData() {
     //mis viajes
     const data = await fetchMisViajes.showMisViajesData();
     for (const [key, journeyData] of Object.entries(data)) {
+        let linkDetallesViaje = document.createElement("a");
+        linkDetallesViaje.setAttribute("href", "/detallesviaje");
         let journeyCard = document.createElement('div');
         journeyCard.setAttribute("class","cajaSombra cajatarjeta caja-mis-viajes");
         journeyCard.setAttribute('id', `${journeyData.id}`);
@@ -97,15 +99,17 @@ export async function getMisViajesData() {
         if(journeyData.status == 'Abierto') {
             buttonDiv.appendChild(journeyButtonDelete);
         }
-
-        misViajesContainer.appendChild(journeyCard);
+        linkDetallesViaje.appendChild(journeyCard);
+        misViajesContainer.appendChild(linkDetallesViaje);
 
     }
 
     //viajes compartidos
 
-    const dataViajesCompartidos = await fetchMisViajes.showViajesCompartidosData();
-    for (const [key, journeyData] of Object.entries(dataViajesCompartidos)) {
+    const dataViajesCompartidos = await fetchMisViajes.showMisViajesData();
+    for (const [key, journeyData] of Object.entries(data)) {
+        let linkDetallesViaje = document.createElement("a");
+        linkDetallesViaje.setAttribute("href", "/detallesviaje");
         let journeyCard = document.createElement('div');
         journeyCard.setAttribute("class","cajaSombra cajatarjeta");
         journeyCard.setAttribute('value', `${journeyData.id}`);
@@ -180,8 +184,9 @@ export async function getMisViajesData() {
 
         journeyCard.appendChild(downDiv);
 
-        viajesCompartidosContainer.appendChild(journeyCard);
 
+        linkDetallesViaje.appendChild(journeyCard);
+        viajesCompartidosContainer.appendChild(linkDetallesViaje);
     }
 
     //apartado para borrar contenido de los viajes cuyo dueño es el propio usuario
