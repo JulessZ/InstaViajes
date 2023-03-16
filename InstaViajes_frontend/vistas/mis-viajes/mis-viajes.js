@@ -8,7 +8,8 @@ export async function getMisViajesData() {
     const data = await fetchMisViajes.showMisViajesData();
     for (const [key, journeyData] of Object.entries(data)) {
         let journeyCard = document.createElement('div');
-        journeyCard.setAttribute("class","cajaSombra cajatarjeta");
+        journeyCard.setAttribute("class","cajaSombra cajatarjeta caja-mis-viajes");
+        journeyCard.setAttribute('id', `${journeyData.id}`);
         //imagen del viaje
         let imgDiv = document.createElement('div');
         let img = document.createElement('img');
@@ -92,8 +93,10 @@ export async function getMisViajesData() {
 
         let journeyButtonDelete = document.createElement('button');
         journeyButtonDelete.textContent = 'Eliminar';
-        journeyButtonDelete.setAttribute('class', 'boton-cancelar');
-        buttonDiv.appendChild(journeyButtonDelete);
+        journeyButtonDelete.setAttribute('class', 'boton-cancelar deleteButton');
+        if(journeyData.status == 'Abierto') {
+            buttonDiv.appendChild(journeyButtonDelete);
+        }
 
         misViajesContainer.appendChild(journeyCard);
 
@@ -101,10 +104,11 @@ export async function getMisViajesData() {
 
     //viajes compartidos
 
-    const dataViajesCompartidos = await fetchMisViajes.showMisViajesData();
-    for (const [key, journeyData] of Object.entries(data)) {
+    const dataViajesCompartidos = await fetchMisViajes.showViajesCompartidosData();
+    for (const [key, journeyData] of Object.entries(dataViajesCompartidos)) {
         let journeyCard = document.createElement('div');
         journeyCard.setAttribute("class","cajaSombra cajatarjeta");
+        journeyCard.setAttribute('value', `${journeyData.id}`);
         //imagen del viaje
         let imgDiv = document.createElement('div');
         let img = document.createElement('img');
@@ -177,7 +181,23 @@ export async function getMisViajesData() {
         journeyCard.appendChild(downDiv);
 
         viajesCompartidosContainer.appendChild(journeyCard);
+
     }
+
+    //apartado para borrar contenido de los viajes cuyo dueño es el propio usuario
+    const deleteButton = document.querySelectorAll('.deleteButton');
+
+    const cajaSombra = document.querySelectorAll('.caja-mis-viajes');
+
+    for (let index = 0; index < deleteButton.length; index++) {
+
+        deleteButton[index].addEventListener('click', ()=> {
+
+            // console.log(cajaSombra[index].id); ESTE ES EL ID DEL VIAJE QUE SE DEBE INDICAR AL SERVIDOR QUE DEBE SER BORRADO
+            
+            misViajesContainer.removeChild(cajaSombra[index]);
+
+        });
+    }
+
 };
-// getMisViajesData();
-// fetchMisViajes.showViajesCompartidosData();

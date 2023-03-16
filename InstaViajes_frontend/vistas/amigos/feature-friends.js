@@ -197,6 +197,7 @@ export function otherPeople(userId) {
 
             // Add user's name
             const nameDiv = document.createElement("div");
+            nameDiv.setAttribute('class','nameDiv');
             nameDiv.textContent = `${user.firstName}`;
             userDiv.appendChild(nameDiv);
 
@@ -360,6 +361,7 @@ export function friendsRequests(userId) {
             const nameDiv = document.createElement("div");
             // nameDiv.textContent = `${friend.firstName} ${friend.lastName}`;
             nameDiv.textContent = `${friend.firstName}`;
+            nameDiv.setAttribute('class','nameDiv');
             friendDiv.appendChild(nameDiv);
 
             // Add a button to accept request
