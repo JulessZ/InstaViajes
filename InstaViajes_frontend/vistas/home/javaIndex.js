@@ -110,6 +110,9 @@ export async function renderIndex() {
 
     function Creartarjetas(datos) {
         datos.forEach(element => {
+            let linkDetallesViaje = document.createElement("a");
+            linkDetallesViaje.setAttribute("href", "/detallesviaje");
+            
             console.log(element);
             const tarjeta = document.createElement('div');
             tarjeta.setAttribute("class", "tarjetaviaje");

@@ -44,6 +44,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // datos del perfil de usuario
     Route::post('/perfil/{user}/update', 'App\Http\Controllers\UserController@update');
     
+    Route::post('/verify', [AuthController::class, 'verify']);
 });
 
 
