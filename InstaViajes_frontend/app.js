@@ -11,5 +11,9 @@ function init(){
   // Users.js
   users.init();
   // users.isUserAuth();
+  window.isUserAuth = users.isUserAuth();
 }
+
+
+
 
