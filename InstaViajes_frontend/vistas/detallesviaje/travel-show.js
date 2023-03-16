@@ -2,6 +2,8 @@
 // import fetchSim from 'fetch-simulator';
 // fetchSim.use();
 
+import { baseUrl } from "../../config";
+
 // fetchSim.addRoute('https://somekindofserver.com/travel/2', {
 //     get: {
 //         response: [{
@@ -42,11 +44,11 @@
 //     }
 // });
 
-
+let url = baseUrl+"travel/2";
 export function renderHeader() {
     const container = document.querySelector("#detallesviaje");
 
-    fetch("https://somekindofserver.com/travel/2")
+    fetch(url)
         .then(response => response.json())
         .then(data => {
             const headerContainer = document.createElement('div'); // Nuevo contenedor para el encabezado
@@ -110,7 +112,8 @@ const prueba = document.createElement("div");
 export function renderDivCarousel() {
     const carouselDiv = document.querySelector("#carruselitinerario");
     let isFirstItem = true;
-    fetch("https://somekindofserver.com/travel/2")
+
+    fetch(url)
         .then(response => response.json())
         .then(data => {
             data[0].trip.days.forEach((day, index) => {
@@ -156,7 +159,7 @@ export function renderDivCarousel() {
                     });
 
                     voteButton.addEventListener("click", () => {
-                        fetch("https://somekindofserver.com/travel/2")
+                        fetch(url)
                             .then(response => response.json())
                             .then(data => {
                                 // si la solicitud se realiza con éxito, actualizar el número de votos y desactivar el botón
@@ -255,7 +258,7 @@ export function renderPost() {
     addPostButtonDiv.appendChild(addPostButton);
     travelPostsDiv.appendChild(addPostButtonDiv);
 
-    fetch("https://somekindofserver.com/travel/2")
+    fetch(url)
     .then(response => response.json())
     .then(data => {
         let posts = data[0].trip.posts;
