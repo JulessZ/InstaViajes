@@ -66,13 +66,7 @@ export function isUserAuth() {
             return response.json();
         })
         .then(data => {
-            userData = data; 
-            if (userData) {
-                console.log(userData);
-                onNavigate("/home");
-            } else {
-                onNavigate("/login");
-            }
+            
         })
         .catch(error => {
             console.log(error);
