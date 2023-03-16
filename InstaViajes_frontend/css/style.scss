@@ -99,12 +99,13 @@ input {
 }
 
 .separator {
-    border-top: 2px solid black;
+    border-top: 2px solid lightgray;
 }
 
 input:focus {
     outline: none !important;
-    border: 2px solid #0DDEB8;
+    border: 2px solid #0DDEB8!important;
+    box-shadow: none!important;
 }
 body{
     font-family: Esteban;
@@ -125,3 +126,6 @@ p{
     border-radius: 31px;
     box-shadow: 0px 4px 2px #D3CFCF;
 }
+.msg-error{color: red!important; text-transform: lowercase;}
+.msg-error::first-letter{text-transform: capitalize;}
+a, a:visited, a:hover{color:black;text-decoration: none;}

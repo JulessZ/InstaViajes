@@ -31,6 +31,7 @@ export class createActivityView{
 
             let spanErrorName = document.createElement('span');
             spanErrorName.setAttribute('id', 'spanErrorName');
+            spanErrorName.setAttribute("class", "msg-error");
             divName.appendChild(spanErrorName);
 
             let datalist = document.createElement('datalist');
@@ -61,6 +62,7 @@ export class createActivityView{
 
             let spanErrorDescription = document.createElement('span');
             spanErrorDescription.setAttribute('id', 'spanErrorDescription');
+            spanErrorDescription.setAttribute("class", "msg-error");
             descriptionDiv.appendChild(spanErrorDescription);
 
             container.appendChild(descriptionDiv);
@@ -85,6 +87,7 @@ export class createActivityView{
 
             let spanErrorDate = document.createElement('span');
             spanErrorDate.setAttribute('id', 'spanErrorDate');
+            spanErrorDate.setAttribute("class", "msg-error");
             dateStartDiv.appendChild(spanErrorDate);
 
             dateDiv.appendChild(dateStartDiv);
@@ -104,6 +107,7 @@ export class createActivityView{
 
             let spanErrorHour = document.createElement('span');
             spanErrorHour.setAttribute('id', 'spanErrorHour');
+            spanErrorHour.setAttribute("class", "msg-error");
             hourDiv.appendChild(spanErrorHour);
 
             dateDiv.appendChild(hourDiv);
@@ -129,6 +133,7 @@ export class createActivityView{
 
             let spanErrorDuration = document.createElement('span');
             spanErrorDuration.setAttribute('id', 'spanErrorDuration');
+            spanErrorDuration.setAttribute("class", "msg-error");
             durationDiv.appendChild(spanErrorDuration);
 
             let durationAndPriceDiv = document.createElement('div');
@@ -151,6 +156,7 @@ export class createActivityView{
 
             let spanErrorPrice = document.createElement('span');
             spanErrorPrice.setAttribute('id', 'spanErrorPrice');
+            spanErrorPrice.setAttribute("class", "msg-error");
             priceDiv.appendChild(spanErrorPrice);
 
             durationAndPriceDiv.appendChild(priceDiv);
