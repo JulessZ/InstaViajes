@@ -83,13 +83,14 @@ export async function renderIndex() {
     Creartarjetas(datos);
 
     async function fetchDatos() {
-        const response = await fetch('https://somekindofserver.com/user/friends/travels');
+        const response = await fetch('localhost/api/viajes');
         console.log(response);
         return await response.json();
     }
 
     function Creartarjetas(datos) {
         datos.forEach(element => {
+            console.log(element);
             const tarjeta = document.createElement('div');
             tarjeta.setAttribute("class","tarjetaviaje");
 
