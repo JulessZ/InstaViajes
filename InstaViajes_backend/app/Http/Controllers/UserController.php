@@ -86,6 +86,9 @@ class UserController extends Controller
 
     public function indexTravels(User $user)
     {
+        if (isset($user->travels)) {
+            return [];
+        }
         $travels = $user->travels->toArray();
         $newTravels = array_map(function ($travel) {
             // Calcula el número de días
@@ -141,8 +144,12 @@ class UserController extends Controller
     public function indexFriendTravels(User $user)
     {
         $friends = $user->friendships;
+        return $friends;
         foreach ($friends as $friend) {
-            return $friend;
+            $user = $friend->user;
+            if (isset($user->travels)) {
+                return [];
+            }
             $travels = $user->travels->toArray();
             $newTravels = array_map(function ($travel) {
                 // Calcula el número de días
@@ -163,7 +170,6 @@ class UserController extends Controller
                 if ($fotoUser) { // Evita errores
                     $fotoUser = Image::find($fotoUser)->value("name");
                 }
-
                 return [
                     'id' => $travel['id'],
                     'user_id' => $travel['user_id'],
