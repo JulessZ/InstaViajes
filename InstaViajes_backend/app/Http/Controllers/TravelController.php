@@ -50,17 +50,27 @@ class TravelController extends Controller
      */
     public function edit(Travel $travel)
     {
-        echo $travel;
-
-        $travelName = $travel->name;
-        $travelStartDate = $travel->start_date;
-        $travelEndDate = $travel->end_date;
-        $travelOrigin = $travel->origin;
         $travelDestiny = $travel->destiny;
         $travelDescription = $travel->description;
         $travelBudget = $travel->budget;
         $travelState = $travel->travelStates->name;
-        $travelFriends = $travel->user->friendship;
+        $travelFriends = $travel->user->friendshis;
+
+        $travel = [
+            'name' => $travel->name,
+            'date' => $travel->start_date,
+            'dateEnd' => $travel->end_date,
+            'origin' = $travel->origin,
+            'destination' = $travel->destiny,
+            'description' = $travel->description,
+            'budget' = $travelBudget,
+            'estado' = $travelState,
+            'friendsOnTrip' = [
+                'id' = $travel
+            ]
+        ]
+
+        $json = json_encode($travel);
     }
 
     /**
