@@ -3,7 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\TravelStates;
+use App\Models\TravelTravelUsers;
 use App\Models\User;
+use App\Models\TravelUsers;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,8 +20,14 @@ class TravelFactory extends Factory
      */
     public function definition(): array
     {
+        $user_id = User::all()->random()->id;
+
+        TravelUsers::create([
+            'user_id' => $user_id,
+        ]);
+
         return [
-            'user_id' => User::all()->random()->id,
+            'user_id' => $user_id,
             'travel_states_id' => TravelStates::all()->random()->id,
             'name' => $this->faker->word(),
             'description' => $this->faker->paragraph(10),
