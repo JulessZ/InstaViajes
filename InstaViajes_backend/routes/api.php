@@ -42,6 +42,11 @@ Route::get('/usuario/{user}/viajes', 'App\Http\Controllers\UserController@indexT
 // Viajes de los amigos de un usuario
 Route::get('/usuario/{user}/friends/viajes', 'App\Http\Controllers\UserController@indexFriendTravels');
 
+// Edición de viaje
+
+Route::get('/misviajes/{travel}/editar', 'App\Http\Controllers\TravelController@edit');
+
+
 
 
 
