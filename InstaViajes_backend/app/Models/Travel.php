@@ -71,7 +71,7 @@ class Travel extends Model
     /**
      * Get all of the images for the travel.
      */
-    public function images()
+    public function images(): MorphToMany
     {
         return $this->morphToMany(Image::class, 'imageable');
     }

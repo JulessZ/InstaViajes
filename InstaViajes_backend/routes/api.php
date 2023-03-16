@@ -40,8 +40,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::get('/perfil/{user}', 'App\Http\Controllers\UserController@show');
 Route::post('/perfil/{user}/update', 'App\Http\Controllers\UserController@update');
 
-//
-Route::get('/usuarios/{user}/travels', 'App\Http\Controllers\UserController@showTravel');
+// Viajes de un usuario
+Route::get('/usuario/{user}/viajes', 'App\Http\Controllers\UserController@indexTravels');
+// Viajes de los amigos de un usuario
+Route::get('/usuario/{user}/friends/viajes', 'App\Http\Controllers\UserController@indexFriendTravels');
+
+// Edición de viaje
+
+Route::get('/misviajes/{travel}/editar', 'App\Http\Controllers\TravelController@edit');
 
 
 
