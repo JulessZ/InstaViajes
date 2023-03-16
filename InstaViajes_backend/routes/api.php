@@ -51,8 +51,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
 // Edición de viaje
-
 Route::get('/misviajes/{travel}/editar', 'App\Http\Controllers\TravelController@edit');
+// Creación de viaje
+Route::post('/misviajes/crear', 'App\Http\Controllers\TravelController@store');
 
 
 
