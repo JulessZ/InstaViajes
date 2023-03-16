@@ -179,7 +179,21 @@ export class createActivityView{
             cancellDiv.appendChild(buttonCancell);
             buttonsDiv.appendChild(cancellDiv);
 
+
             container.appendChild(buttonsDiv);
+        //end
+
+        //start datos ocultos para identificar el travel_id y user_id
+        //para facilitar el envio de datos al ActivityController
+            let input_travel_id = document.createElement('input');
+            input_travel_id.setAttribute('value', 10);//<-----id del viaje al que pertenece la actividad
+            input_travel_id.setAttribute('hidden', true);
+            container.appendChild(input_travel_id);
+
+            let input_user_id = document.createElement('input');
+            input_user_id.setAttribute('value', 12);//<-----id del usuario creador de la actividad
+            input_user_id.setAttribute('hidden', true);
+            container.appendChild(input_user_id);
         //end
     }
 }
