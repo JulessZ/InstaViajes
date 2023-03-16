@@ -75,44 +75,62 @@
 
 
 // Función principal que crea el contenido de la página
+
+
+
 export async function renderIndex() {
     const container = document.querySelector('#todosviajeshome')
-
 
     const datos = await fetchDatos();
     Creartarjetas(datos);
 
     async function fetchDatos() {
-        const response = await fetch('https://somekindofserver.com/user/friends/travels');
-        console.log(response);
-        return await response.json();
+        const token = localStorage.getItem("auth_token");
+        const apiUrl = "http://localhost/api/viajes";
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            }
+        };
+        try {
+            const response = await fetch(apiUrl, requestOptions);
+            if (!response.ok) {
+                throw new Error("Error al enviar la solicitud");
+            }
+            console.log(response);
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
     }
+    
 
     function Creartarjetas(datos) {
         datos.forEach(element => {
-            let linkDetallesViaje = document.createElement("a");
-            linkDetallesViaje.setAttribute("href", "/detallesviaje");
-            
+            console.log(element);
             const tarjeta = document.createElement('div');
-            tarjeta.setAttribute("class","tarjetaviaje");
+            tarjeta.setAttribute("class", "tarjetaviaje");
 
             const divInsideCard = document.createElement('div');
-            divInsideCard.setAttribute('class','infoViaje');
+            divInsideCard.setAttribute('class', 'infoViaje');
 
             const divInsideCard2 = document.createElement('div');
             const divInsideCard3 = document.createElement('div');
             const divInsideCard4 = document.createElement('div');
 
-            divInsideCard2.setAttribute('class','cajablancauno');
-            divInsideCard3.setAttribute('class','cajablancados');
+            divInsideCard2.setAttribute('class', 'cajablancauno');
+            divInsideCard3.setAttribute('class', 'cajablancados');
 
             const image = document.createElement('img');
             image.setAttribute('src', element.image);
-            image.setAttribute('class','imgViaje');
+            image.setAttribute('class', 'imgViaje');
 
             const imageuser = document.createElement('img')
             imageuser.setAttribute('src', element.imageuser);
-            imageuser.setAttribute('class','imageuser');
+            imageuser.setAttribute('class', 'imageuser');
 
             const location = document.createElement('h3');
             location.textContent = element.location;
@@ -130,7 +148,7 @@ export async function renderIndex() {
             container.appendChild(linkDetallesViaje);
             tarjeta.appendChild(image);
             divInsideCard.appendChild(divInsideCard2);
-            divInsideCard.appendChild(divInsideCard3); 
+            divInsideCard.appendChild(divInsideCard3);
             tarjeta.appendChild(divInsideCard);
             divInsideCard2.appendChild(location);
             divInsideCard2.appendChild(divInsideCard4);
