@@ -40,8 +40,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::get('/usuarios/{user}/travels', 'App\Http\Controllers\UserController@showTravel');
 
-
-
-
-
-
+// Edicion de actividad
+Route::get('/viaje/{activity}/editar', 'App\Http\Controllers\ActivityController@edit');

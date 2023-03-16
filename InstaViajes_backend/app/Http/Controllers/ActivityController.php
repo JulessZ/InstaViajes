@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity;
 use Illuminate\Http\Request;
+use App\Models\Place;
 
 class ActivityController extends Controller
 {
@@ -44,8 +45,18 @@ class ActivityController extends Controller
      */
     public function edit(Activity $activity)
     {
-        //
+        
+        
+        $activityId = $activity->id;
+        $activityName = Place::All()->where('id', '=', $activityId)->first()->name;
+        $activityDescription = $activity->description;
+        $activityStartDate = $activity->start_date;
+        $activityStartHour = $activity->start_hour;
+        $activityDuration = $activity->duration;
+        $activityPrice = $activity->price;
+        
     }
+
 
     /**
      * Update the specified resource in storage.
