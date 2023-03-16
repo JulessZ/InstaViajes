@@ -36,10 +36,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/viajes/{viaje}', 'App\Http\Controllers\TravelController@show');
 });
 
-// Perfil de usuario
 
-Route::get('/usuarios/{user}/travels', 'App\Http\Controllers\UserController@showTravel');
-
+// Viajes de un usuario
+Route::get('/usuario/{user}/viajes', 'App\Http\Controllers\UserController@indexTravels');
+// Viajes de los amigos de un usuario
+Route::get('/usuario/{user}/friends/viajes', 'App\Http\Controllers\UserController@indexFriendTravels');
 
 
 

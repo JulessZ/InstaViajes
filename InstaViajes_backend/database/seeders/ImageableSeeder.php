@@ -20,14 +20,6 @@ class ImageableSeeder extends Seeder
     {
         $images = Image::all();
         foreach ($images as $image) {
-            $random = (bool) mt_rand(0, 3);
-            // if ((bool) mt_rand(0, 1)) {
-            //     $p_id = Post::all()->random()->id;
-            //     $p_type = "Post";
-            // } else {
-            //     $p_id = User::all()->random()->id;
-            //     $p_type = "User";
-            // }
             $num_aleatorio = rand(0, 2);
             switch ($num_aleatorio) {
             case 0:

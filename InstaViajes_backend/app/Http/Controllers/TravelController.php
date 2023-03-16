@@ -10,9 +10,10 @@ class TravelController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $travel = Travel::all();
+        $travel->where("user_id", '=', request('id'));
 
         return response()->json(['data' => $travel]);
     }
