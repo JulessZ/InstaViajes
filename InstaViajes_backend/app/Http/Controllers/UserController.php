@@ -91,52 +91,6 @@ class UserController extends Controller
     {
         //
     }
-
-    public function showTravel(User $user)
-    {
-
-            return [
-                'id' => $travel['id'],
-                'user_id' => $travel['user_id'],
-                'username' => $userName,
-                'image' => asset('images/' . $fotoTravel),
-                'imageuser' => asset('images/' . $fotoUser),
-                'travel_state_id' => $travel['travel_states_id'],
-                'description' => $travel['description'],
-                'start_date' => $travel['start_date'],
-                'end_date' => $travel['end_date'],
-                'days' => $days,
-                'location' => $travel['origin'],
-                'destiny' => $travel['destiny'],
-                'budget' => $travel['budget'],
-                'created_at' => $travel['created_at'],
-                'updated_at' => $travel['updated_at'],
-                'NumUsers' => $participantes,
-            ];
-        }, $travels);
-
-        // Imprimir los nuevos registros con los campos renombrados
-        foreach ($newTravels as $travel) {
-            echo json_encode($travel) . "\n";
-        }
-
-            // foreach ($travel->images as $image) {
-            //     echo $travel->images;
-            //     echo "aaaa" . $image->name . "<br>";
-            // };
-            foreach ($travel->images as $image) {
-
-                //bb($image);
-            }
-        }
-
-        // dd($user->travels());
-        // $var = $user->travels();
-        // dd($var);
-        // $travelId = Travel::all()->where("user_id", "=", $id)->value("id");
-        // $viajes = Travel::all()->where("user_id", "=", $id)->pluck(['destiny']);
-    }
-
     public function indexFriendTravels(User $user)
     {
         $friends = $user->friendships;
@@ -197,11 +151,6 @@ class UserController extends Controller
             ->orWhere('receptor_user_id', $userId)
             ->get();
 
-        // Obtener los IDs de los amigos del usuario
-        $friendIds = $friendship->pluck('sender_user_id')->merge($friendship->pluck('receptor_user_id'))->unique();
-
-        // Obtener los datos de los amigos
-        //$friends = User::whereIn('id', $friendIds)->select('id', 'user_id_sender', 'receptor_user_id', 'state')->get();
         return response()->json($friendship);
     }
 }

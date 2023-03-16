@@ -41,6 +41,7 @@ let token = localStorage.getItem("auth_token");
 
 // Define the URL of the API that will receive the friend request
 const apiUrl1 = "http://localhost/api/profile/users";
+const apiUrl2 = "http://localhost/api/profile/" + userLogged;
 
 // Define the application options
 const requestOptions = {
@@ -61,7 +62,7 @@ const fetch1 = fetch(apiUrl1, requestOptions)
         //console.log(userList)
     });
 //Fetch to take friendships
-const fetch2 = fetch('/api/profile/' + userLogged, requestOptions)
+const fetch2 = fetch(apiUrl2, requestOptions)
     .then((response) => {
         return response.json();
     })
