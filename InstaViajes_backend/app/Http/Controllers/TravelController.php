@@ -12,8 +12,11 @@ class TravelController extends Controller
      */
     public function index()
     {
-        //
+        $travel = Travel::all();
+
+        return response()->json(['data' => $travel]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,7 +39,9 @@ class TravelController extends Controller
      */
     public function show(Travel $travel)
     {
-        //
+        $travel = Travel::find($travel);
+
+        return response()->json(['data' => $travel]);
     }
 
     /**

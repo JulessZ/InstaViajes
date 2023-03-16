@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TravelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +31,7 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
+    Route::get('/viajes', 'App\Http\Controllers\TravelController@index');
+    Route::get('/viajes/{viaje}', 'App\Http\Controllers\TravelController@show');
+    Route::post('/verify', [AuthController::class, 'verify']);
 });
