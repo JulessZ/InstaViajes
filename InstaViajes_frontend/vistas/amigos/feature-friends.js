@@ -35,27 +35,40 @@
 let userList;
 let friendships;
 let userLogged = 1;
+let token = localStorage.getItem("auth_token");
 //get th user logged id
 // let userLogged;
 
+// Define the URL of the API that will receive the friend request
+const apiUrl1 = "http://localhost/api/profile/users";
+const apiUrl2 = "http://localhost/api/profile/" + userLogged;
+
+// Define the application options
+const requestOptions = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+        "Autorization": "Bearer " + token,
+    },
+};
+
 //Fetch to the fake routes
-const fetch1 = fetch('https://instaviajes.com/profile/users')
+const fetch1 = fetch(apiUrl1, requestOptions)
     .then((response) => {
         return response.json();
     })
     .then((response) => {
         userList = response;
-        console.log(userList)
-
-        
+        //console.log(userList)
     });
 //Fetch to take friendships
-const fetch2 = fetch('https://instaviajes.com/profile/{user_id}/friends')
+const fetch2 = fetch(apiUrl2, requestOptions)
     .then((response) => {
         return response.json();
     })
     .then((response) => {
         friendships = response;
+        //console.log(friendships);
     });
 
 export async function showData() {
@@ -86,33 +99,34 @@ export function friendsList(userId) {
     // Add a div for every friend
     friendships.map((friendship) => {
         if (friendship.state) {
-            const friendId = friendship.user_id_sender === userId ? friendship.user_id_receptor : friendship.user_id_sender;
+
+            const friendId = friendship.sender_user_id === userId ? friendship.receptor_user_id : friendship.sender_user_id;
             const friend = userList.find((user) => user.id === friendId);
             const divdown = document.createElement('div');
-            divdown.setAttribute('class','divdown');
+            divdown.setAttribute('class', 'divdown');
             // Create a div element to contain a friend's information
             const friendDiv = document.createElement("div");
-            friendDiv.setAttribute('class','divContacto');
+            friendDiv.setAttribute('class', 'divContacto');
             // Add a profile picture
-            const imgDiv = document.createElement("div");
-            imgDiv.setAttribute('class','imgDiv');
-            const img = document.createElement("img");
-            img.src = `${friend.image}`;
-            imgDiv.appendChild(img);
-            friendDiv.appendChild(imgDiv);
+            // const imgDiv = document.createElement("div");
+            // imgDiv.setAttribute('class', 'imgDiv');
+            // const img = document.createElement("img");
+            // img.src = `${friend.images}`;
+            // imgDiv.appendChild(img);
+            // friendDiv.appendChild(imgDiv);
 
             // Add friend's name
             const nameDiv = document.createElement("div");
-            nameDiv.setAttribute('class','nameDiv');
+            nameDiv.setAttribute('class', 'nameDiv');
             // nameDiv.textContent = `${friend.firstName} ${friend.lastName}`;
-            nameDiv.textContent = `${friend.firstName}`;
+            nameDiv.textContent = `${friend.name}`;
             friendDiv.appendChild(nameDiv);
 
             // Add a button
             const divButton = document.createElement('div');
-            divButton.setAttribute('class','divButton');
+            divButton.setAttribute('class', 'divButton');
             const button = document.createElement("button");
-            button.setAttribute('class','boton-cancelar');
+            button.setAttribute('class', 'boton-cancelar');
             button.textContent = "...";
             divButton.appendChild(button);
             friendDiv.appendChild(divButton);
@@ -138,7 +152,7 @@ export function friendsList(userId) {
 
                 // Add information to the div
                 const deleteLink = document.createElement("a");
-                deleteLink.textContent = "Eliminar a " + `${friend.firstName}` + " de la lista de amigos";
+                deleteLink.textContent = "Eliminar a " + `${friend.name}` + " de la lista de amigos";
                 deleteLink.style.cursor = "pointer";
                 deleteLink.addEventListener("click", () => {
                     // Code to delete friend from the list goes here
@@ -167,7 +181,7 @@ export function friendsList(userId) {
 export function otherPeople(userId) {
     let divRoot2 = document.getElementById('usuariosamigos');
     const divdown = document.createElement('div');
-    divdown.setAttribute('class','divdown');
+    divdown.setAttribute('class', 'divdown');
     // Create a div element to contain the friends list
     const friendListDiv = document.createElement("div");
     // Add a header
@@ -183,29 +197,30 @@ export function otherPeople(userId) {
             (friendship.user_id_sender === user.id && friendship.user_id_receptor === userId));
         const isNotCurrentUser = user.id !== userId;
         if (isNotFriend && isNotCurrentUser) {
-
+            const divdown = document.createElement('div');
+            divdown.setAttribute('class', 'divdown');
             // Create a div element to contain a user's information
             const userDiv = document.createElement("div");
-            userDiv.setAttribute('class','divContacto');
+            userDiv.setAttribute('class', 'divContacto');
             // Add a profile picture
-            const imgDiv = document.createElement("div");
-            imgDiv.setAttribute('class','imgDiv');
-            const img = document.createElement("img");
-            img.src = `${user.image}`;
-            imgDiv.appendChild(img);
-            userDiv.appendChild(imgDiv);
+            // const imgDiv = document.createElement("div");
+            // imgDiv.setAttribute('class', 'imgDiv');
+            // const img = document.createElement("img");
+            // img.src = `${user.images}`;
+            // imgDiv.appendChild(img);
+            // userDiv.appendChild(imgDiv);
 
             // Add user's name
             const nameDiv = document.createElement("div");
-            nameDiv.setAttribute('class','nameDiv');
-            nameDiv.textContent = `${user.firstName}`;
+            nameDiv.setAttribute('class', 'nameDiv');
+            nameDiv.textContent = `${user.name}`;
             userDiv.appendChild(nameDiv);
 
             // Add a button
             const divButton = document.createElement('div');
-            divButton.setAttribute('class','divButton');
+            divButton.setAttribute('class', 'divButton');
             const button = document.createElement("button");
-            button.setAttribute('class','boton-cancelar');
+            button.setAttribute('class', 'boton-cancelar');
             button.textContent = "...";
             divButton.appendChild(button);
             userDiv.appendChild(divButton);
@@ -231,7 +246,7 @@ export function otherPeople(userId) {
 
                 // Add information to the div
                 const addLink = document.createElement("a");
-                addLink.textContent = "Agregar a " + `${user.firstName}` + " a la lista de amigos";
+                addLink.textContent = "Agregar a " + `${user.name}` + " a la lista de amigos";
                 addLink.style.cursor = "pointer";
                 addLink.addEventListener("click", () => {
                     // Code to add user to the list goes here
@@ -249,7 +264,7 @@ export function otherPeople(userId) {
 
 
             // Add the user's div element to the friends list
-            
+
             friendListDiv.appendChild(userDiv);
             friendListDiv.appendChild(divdown);
         }
@@ -264,17 +279,17 @@ export function buttons() {
     let divRoot4 = document.getElementById('botonfiltroamigos');
     // Create the first button
     const button1 = document.createElement("button");
-    button1.setAttribute('class','boton-principal');
+    button1.setAttribute('class', 'boton-principal');
     button1.textContent = "TODOS";
 
     // Create the second button
     const button2 = document.createElement("button");
-    button2.setAttribute('class','boton-secundario');
+    button2.setAttribute('class', 'boton-secundario');
     button2.textContent = "RECIENTES";
 
     // Create a container div for the buttons
     const buttonsDiv = document.createElement("div");
-    buttonsDiv.setAttribute('class','divbtnfiltroamigos');
+    buttonsDiv.setAttribute('class', 'divbtnfiltroamigos');
     buttonsDiv.appendChild(button1);
     buttonsDiv.appendChild(button2);
 
@@ -286,19 +301,19 @@ export function buttons() {
     const divSearchedElements = document.createElement('div');
     divSearchedElements.id = 'prueba';
 
-    searchInput.addEventListener('input', function () { 
+    searchInput.addEventListener('input', function () {
         borrarNodo(divSearchedElements);
         if (searchInput.value.length != 0) {
             userList.filter(element => {
-                if(((element.firstName).toLowerCase()).includes((searchInput.value).toLowerCase())) {
+                if (((element.firstName).toLowerCase()).includes((searchInput.value).toLowerCase())) {
                     createSearchedFriends(element.firstName);
                 }
             }
             );
         }
-        
+
     });
-    
+
     function borrarNodo(nodo) {
         while (nodo.firstChild) {
             nodo.removeChild(nodo.firstChild);
@@ -306,7 +321,7 @@ export function buttons() {
     }
 
     // Function to create the structure of searched friends
-    function createSearchedFriends (name) {
+    function createSearchedFriends(name) {
         const divStyleFriends = document.createElement('div');
 
         divStyleFriends.textContent = name;
@@ -315,7 +330,7 @@ export function buttons() {
 
     // Create a container div for the search input
     const searchDiv = document.createElement("div");
-    searchDiv.setAttribute('class','searchDiv');
+    searchDiv.setAttribute('class', 'searchDiv');
     searchDiv.appendChild(searchInput);
 
     // Add the buttons and search divs to the root div
@@ -343,33 +358,33 @@ export function friendsRequests(userId) {
     friendships.map((friendship) => {
         const friend = userList.find(
             (user) =>
-                user.id === (friendship.user_id_sender === userId ? friendship.user_id_receptor : friendship.user_id_sender)
+                user.id === (friendship.sender_user_id === userId ? friendship.receptor_user_id : friendship.sender_user_id)
         );
 
         if (!friendship.state) {
             // Create a div element to contain the information of a pending request
             const friendDiv = document.createElement("div");
-            friendDiv.setAttribute('class','friendDiv');
+            friendDiv.setAttribute('class', 'friendDiv');
             const divimagenfriend = document.createElement('div');
-            divimagenfriend.setAttribute('class','divimagenfriend');
+            divimagenfriend.setAttribute('class', 'divimagenfriend');
             // Add a profile picture
-            const img = document.createElement("img");
-            img.src = `${friend.image}`;
-            friendDiv.appendChild(img);
+            // const img = document.createElement("img");
+            // img.src = `${friend.images}`;
+            // friendDiv.appendChild(img);
 
             // Add friend's name
             const nameDiv = document.createElement("div");
             // nameDiv.textContent = `${friend.firstName} ${friend.lastName}`;
-            nameDiv.textContent = `${friend.firstName}`;
-            nameDiv.setAttribute('class','nameDiv');
+            nameDiv.textContent = `${friend.name}`;
+            nameDiv.setAttribute('class', 'nameDiv');
             friendDiv.appendChild(nameDiv);
 
             // Add a button to accept request
-            const divbotonrepuesta= document.createElement('div');
-            divbotonrepuesta.setAttribute('class','divbotonrepuesta');
+            const divbotonrepuesta = document.createElement('div');
+            divbotonrepuesta.setAttribute('class', 'divbotonrepuesta');
             const acceptButton = document.createElement("button");
             acceptButton.textContent = "Aceptar solicitud";
-            acceptButton.setAttribute('class','boton-secundario');
+            acceptButton.setAttribute('class', 'boton-secundario');
             acceptButton.addEventListener("click", () => {
                 manageFriendRequest(friendship.id, true);
             });
@@ -378,7 +393,7 @@ export function friendsRequests(userId) {
 
             // Add a reject button
             const rejectButton = document.createElement("button");
-            rejectButton.setAttribute('class','boton-cancelar');
+            rejectButton.setAttribute('class', 'boton-cancelar');
             rejectButton.textContent = "Rechazar solicitud";
             rejectButton.addEventListener("click", () => {
                 manageFriendRequest(friendship.id, false);
