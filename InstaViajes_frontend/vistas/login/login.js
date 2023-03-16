@@ -1,4 +1,5 @@
 //importamos la clase userRegistered que tiene datos de prueba
+import { baseUrl } from "../../config";
 import { UserRegistered } from "./userRegistered";
 
 export function render() {
@@ -66,7 +67,7 @@ export function render() {
     //--------
 
     let rememberPassword = document.createElement("a");
-    let rememberPasswordText = document.createTextNode("¿Has olvidado la contraseña?")
+    let rememberPasswordText = document.createTextNode("")
     let rememberPasswordSalto = document.createElement("br");
 
     rememberPassword.appendChild(rememberPasswordText);
@@ -97,7 +98,7 @@ export function render() {
         e.preventDefault();
 
         // Define the URL of the API that will receive the friend request
-        const apiUrl = "http://localhost/api/login";
+        const apiUrl = baseUrl+"api/login";
 
         // Defines the data object to be sent to the server
         const requestData = {
@@ -123,6 +124,7 @@ export function render() {
             })
             .then(data => {
                 localStorage.setItem("auth_token", data.access_token);
+                onNavigate("/home");
             })
             .catch(error => {
                 console.log(error);

@@ -1,5 +1,7 @@
+import { baseUrl } from "../../config";
+
 // Insert the URL with friends users.
-let urlFetchUsers = 'https://ejemplo.com/datos';
+let urlFetchUsers = baseUrl+'datos';
 
 
 let usuarios = [];
@@ -8,8 +10,8 @@ let usuariosEnViaje = [];
 
 // Function that initialices the form.
 function createTravelForm() {
-    let urlFetchUsers = 'https://ejemplo.com/datos';
-    fakeFetch(urlFetchUsers)
+    let urlFetchUsers = baseUrl+'datos';
+     fakeFetch(urlFetchUsers)
         .then((response) => {
             console.log(response);
             usuarios = response;
@@ -31,7 +33,7 @@ function fakeFetch(url) {
                     id: i,
                     name: `Usuario ${i}`,
                     mail: `usuario${i}@ejemplo.com`,
-                    image: `https://ejemplo.com/usuario${i}.jpg`
+                    image: baseUrl+`usuario${i}.jpg`
                 };
                 fakeData.push(fakeItem);
             }
@@ -40,9 +42,10 @@ function fakeFetch(url) {
     });
 }
 
-//function to call the front end
-export function renderCreateForm() {
-    createTravelForm();
+//function to call the front
+export async function renderCreateForm() {
+    await createTravelForm();
+    setupSubmitEventListener();
 }
 
 
@@ -68,6 +71,7 @@ function generateCreateTravelForm(idToAppend) {
             // !! Name Error
             const nameError = document.createElement("span");
             nameError.setAttribute("id", "name-error");
+            nameError.setAttribute("class", "msg-error");
         nameContainer.appendChild(nameLabel);
         nameContainer.appendChild(nameInput);
         nameContainer.appendChild(nameError);
@@ -86,6 +90,7 @@ function generateCreateTravelForm(idToAppend) {
                 // !! Starting date Error
                 const fechaInicioError = document.createElement("span");
                 fechaInicioError.setAttribute("id", "startDate-error");
+                fechaInicioError.setAttribute("class", "msg-error");
 
                 startingDateContainer.appendChild(fechaInicioLabel);
                 startingDateContainer.appendChild(fechaInicioInput);
@@ -102,6 +107,7 @@ function generateCreateTravelForm(idToAppend) {
                 // !! End date error
                 const fechaFinalError = document.createElement("span");
                 fechaFinalError.setAttribute("id", "endDate-error");
+                fechaFinalError.setAttribute("class", "msg-error");
 
                 endDateContainer.appendChild(fechaFinalLabel);
                 endDateContainer.appendChild(fechaFinalInput);
@@ -122,6 +128,7 @@ function generateCreateTravelForm(idToAppend) {
                 // !! Origin Location Origin Error
                 const origenError = document.createElement("span");
                 origenError.setAttribute("id", "origin-error");
+                origenError.setAttribute("class", "msg-error");
             originLocationsContainer.appendChild(origenLabel);
             originLocationsContainer.appendChild(origenInput);
             originLocationsContainer.appendChild(origenError);
@@ -137,6 +144,7 @@ function generateCreateTravelForm(idToAppend) {
                 // !! Destiny Location Error
                 const destinyError = document.createElement("span");
                 destinyError.setAttribute("id", "destiny-error");
+                destinyError.setAttribute("class", "msg-error");
             destinyLocationsContainer.appendChild(destinyLabel);
             destinyLocationsContainer.appendChild(destinyInput);
             destinyLocationsContainer.appendChild(destinyError);
@@ -298,7 +306,7 @@ function generateCreateTravelForm(idToAppend) {
                 submitButton.setAttribute("id", "submit")
                 submitButton.setAttribute("class", "boton-principal")
                 submitButton.textContent = "Añadir viaje";
-                submitButton.setAttribute("onclick", "validateForm()");
+                // submitButton.setAttribute("onclick", "validateForm()");
             submitButtonContainer.appendChild(submitButton);
         buttonsContainer.appendChild(submitButtonContainer);
             // Cancel Button Container
@@ -319,10 +327,17 @@ function generateCreateTravelForm(idToAppend) {
         document.querySelector("#budget-value").innerHTML = document.querySelector("#budgetBar").value + "€";
     });
 
-    document.querySelector("#form-crear-viajes").onsubmit = () => {
-        return false;
-    }
 }
+
+//Event listener to validate form when we submit
+function setupSubmitEventListener() {
+    console.log(document.querySelector('#form-crear-viajes'));
+    document.querySelector('#form-crear-viajes').addEventListener('submit', function (e) {
+        e.preventDefault();
+        validateForm();
+    });
+}
+
 
 // This function is called when submit button is pressed. Validates the form.
 function validateForm() {
@@ -360,7 +375,7 @@ function validateForm() {
                 return;
             }
         }
-        fetch('https://ejemplo.com/datos', {
+        fetch(baseUrl+'datos', {
             method: 'POST',
             body: JSON.stringify(createObjectWithValues()),
             headers: {

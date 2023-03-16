@@ -2,6 +2,8 @@
 // import fetchSim from 'fetch-simulator';
 // fetchSim.use();
 
+import { baseUrl } from "../../config";
+
 
 // fetchSim.addRoute('https://somekindofserver.com/user/travels', {
 //     get: {
@@ -30,6 +32,8 @@
 //         ]
 //     }
 // });
+//url necesarias para el fetch necesaria en esta vista
+let url1=baseUrl+"user/travels";
 
 // Función principal que crea el contenido de la página
 export async function renderIndex() {
@@ -49,7 +53,7 @@ export async function renderIndex() {
      * @returns 
      */
     async function fetchDatos() {
-        const response = await fetch('https://somekindofserver.com/user/travels');
+        const response = await fetch(url1);
         console.log(response);
         return await response.json();
     }
@@ -78,9 +82,12 @@ export async function renderIndex() {
             const tarjetacontainer = document.createElement('div');
             container.appendChild(tarjetacontainer);
             datos.forEach(element => {
+                //Creamos un link para que nos redireccione a los detalles del viaje
+                let linkDetallesViaje = document.createElement("a");
+                linkDetallesViaje.setAttribute("href", "/detallesviaje");
                 // Crea los elementos de la tarjeta de viaje
                 const tarjeta = document.createElement('div');
-                tarjeta.setAttribute("class",'tarjetaviajehome')
+                tarjeta.setAttribute("class",'tarjetaviajehome');
                 const divInfo = document.createElement('div');
                 divInfo.setAttribute("class","divInfo");
                 const divLocation = document.createElement('div');
@@ -99,7 +106,8 @@ export async function renderIndex() {
                 NumDay.textContent = element.days + 'dias';
 
                 // Agrega los elementos a la tarjeta de viaje
-                tarjetacontainer.appendChild(tarjeta);
+                linkDetallesViaje.appendChild(tarjeta);
+                tarjetacontainer.appendChild(linkDetallesViaje);
                 tarjeta.appendChild(image);
                 divInfo.appendChild(divLocation);
                 divInfo.appendChild(divUserDays);
@@ -126,7 +134,7 @@ export async function renderIndex() {
             btnNuevoViaje.type="submit";
             btnNuevoViaje.value="Nuevo Viaje";
             btnNuevoViaje.setAttribute('class','boton-secundario');
-            NuevoViaje.setAttribute('href', "index.html");
+            NuevoViaje.setAttribute('href', "/crearviaje");
             /* NuevoViaje.textContent = 'Nuevo Viaje'; */
             NuevoViaje.appendChild(btnNuevoViaje);
             container.appendChild(divFoot);

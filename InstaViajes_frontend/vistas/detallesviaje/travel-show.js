@@ -2,6 +2,8 @@
 // import fetchSim from 'fetch-simulator';
 // fetchSim.use();
 
+import { baseUrl } from "../../config";
+
 // fetchSim.addRoute('https://somekindofserver.com/travel/2', {
 //     get: {
 //         response: [{
@@ -42,11 +44,11 @@
 //     }
 // });
 
-
+let url = baseUrl+"travel/2";
 export function renderHeader() {
     const container = document.querySelector("#detallesviaje");
 
-    fetch("https://somekindofserver.com/travel/2")
+    fetch(url)
         .then(response => response.json())
         .then(data => {
             const headerContainer = document.createElement('div'); // Nuevo contenedor para el encabezado
@@ -82,6 +84,7 @@ export function renderButtonTravel() {
     editButtonTravel.classList.add("boton-secundario");
     editButtonTravel.addEventListener("click", () => {
         //!Aquí irá la lógica para ir a la vista de editar día
+        document.location.href = "/editarviaje";
     });
     const deleteButtonTravel = document.createElement("button");
     deleteButtonTravel.innerText = "Borrar Viaje";
@@ -95,6 +98,7 @@ export function renderButtonTravel() {
     createButtonActivity.classList.add("boton-principal");
     createButtonActivity.addEventListener("click", () => {
         //!Aquí irá la lógica para ir a la vista de agregar actividad.
+        document.location.href = "/crearactividades";
     });
     // Agregamos los botones de borrar, editar un viaje al contenedor principal y añadir actividad.
     buttonsTravelDiv.appendChild(editButtonTravel);
@@ -108,7 +112,8 @@ const prueba = document.createElement("div");
 export function renderDivCarousel() {
     const carouselDiv = document.querySelector("#carruselitinerario");
     let isFirstItem = true;
-    fetch("https://somekindofserver.com/travel/2")
+
+    fetch(url)
         .then(response => response.json())
         .then(data => {
             data[0].trip.days.forEach((day, index) => {
@@ -150,10 +155,11 @@ export function renderDivCarousel() {
                     editButton.classList.add("boton-secundario");
                     editButton.addEventListener("click", () => {
                         //! Aquí se implementaría la lógica para ir a la vista de editar actividad.
+                        document.location.href = "/editaractividades";
                     });
 
                     voteButton.addEventListener("click", () => {
-                        fetch("https://somekindofserver.com/travel/2")
+                        fetch(url)
                             .then(response => response.json())
                             .then(data => {
                                 // si la solicitud se realiza con éxito, actualizar el número de votos y desactivar el botón
@@ -252,7 +258,7 @@ export function renderPost() {
     addPostButtonDiv.appendChild(addPostButton);
     travelPostsDiv.appendChild(addPostButtonDiv);
 
-    fetch("https://somekindofserver.com/travel/2")
+    fetch(url)
     .then(response => response.json())
     .then(data => {
         let posts = data[0].trip.posts;

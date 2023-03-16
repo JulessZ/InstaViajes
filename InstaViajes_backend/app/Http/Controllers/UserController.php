@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Friendship;
 use App\Models\Image;
 use App\Models\Imageable;
 use App\Models\Travel;
@@ -19,9 +20,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('images')->select('id', 'name','surname', 'email')->get();
+
         return response()->json($users);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,7 +39,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -218,5 +221,14 @@ class UserController extends Controller
             // Imprimir los nuevos registros con los campos renombrados
             return response()->json($newTravels);
         }
+    }
+    public function friends($userId)
+    {
+
+        // Obtener las relaciones de amistad que incluyen al usuario específico
+        $friendship = Friendship::where('sender_user_id', $userId)
+            ->orWhere('receptor_user_id', $userId)
+            ->get();
+        return response()->json($friendship);
     }
 }

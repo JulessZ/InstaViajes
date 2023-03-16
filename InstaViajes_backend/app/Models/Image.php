@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 class Image extends Model
 {
     use HasFactory;
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
+
 
     /**
      * Get all of the users that are assigned this image.
@@ -17,7 +22,7 @@ class Image extends Model
     {
         return $this->morphedByMany(User::class, 'imageable');
     }
- 
+
     /**
      * Get all of the posts that are assigned this image.
      */

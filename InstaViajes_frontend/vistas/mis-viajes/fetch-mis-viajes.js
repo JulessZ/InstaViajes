@@ -1,6 +1,8 @@
 
 // import fetchSim from 'fetch-simulator';
 
+import { baseUrl } from "../../config";
+
 // fetchSim.addRoute('https://instaviajes.com/mis-viajes', {
 //     get: {
 //         response: {
@@ -27,22 +29,22 @@
 //     }
 // });
 
+//variables necesarias para las url de las apis de los fetch necesarios para esta página
+let url1=baseUrl+"mis-viajes";
+let url2=baseUrl+"viajes-compartidos";
 // fetchSim.use();
 
 export class fetchMisViajes {
     static async showMisViajesData() {
-        return fetch('https://instaviajes.com/mis-viajes')
+        return fetch(url1)
         .then((response) => {
             return response.json();
         })
     }
     static async showViajesCompartidosData() {
-        fetch('https://instaviajes.com/viajes-compartidos')
+        return fetch(url2)
         .then((response) => {
             return response.json();
-        })
-        .then((response) => {
-            console.log(response)
         })
     }
 }
