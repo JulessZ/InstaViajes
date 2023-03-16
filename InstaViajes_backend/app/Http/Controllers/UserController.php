@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Friendship;
 use App\Models\Image;
 use App\Models\Imageable;
 use App\Models\Travel;
@@ -18,9 +19,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('images')->select('id', 'name','surname', 'email')->get();
+
+        // $userList = [
+        //     'id' => $users->id,
+        //     'name' => $users->name,
+            
+        // ];
         return response()->json($users);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -83,61 +91,6 @@ class UserController extends Controller
     {
         //
     }
-
-    public function indexTravels(User $user)
-    {
-        $travels = $user->travels->toArray();
-        $newTravels = array_map(function ($travel) {
-            // Calcula el número de días
-            $startDate = Carbon::parse($travel['start_date']);
-            $endDate = Carbon::parse($travel['end_date']);
-            $days = $endDate->diffInDays($startDate);
-            // Número de participantes
-            $participantes = TravelTravelUsers::all()->where('travel_id', "=", $travel['id'])->count();
-            // Nombre de usuario creador
-            $userName = User::all()->where('id', "=", $travel['user_id'])->value('name');
-            // Imagen viaje
-            $fotoTravel = Imageable::all()->where('imageable_id', '=', $travel['id'])->where('imageable_type', '=', 'Travel')->value('image_id');
-            if ($fotoTravel) { // Evita errores
-                $fotoTravel = Image::find($fotoTravel)->value("name");
-            }
-            // Imagen user
-            $fotoUser = Imageable::all()->where('imageable_id', '=', $travel['user_id'])->where('imageable_type', '=', 'User')->value('image_id');
-            if ($fotoUser) { // Evita errores
-                $fotoUser = Image::find($fotoUser)->value("name");
-            }
-
-            return [
-                'id' => $travel['id'],
-                'user_id' => $travel['user_id'],
-                'username' => $userName,
-                'image' => asset('images/' . $fotoTravel),
-                'imageuser' => asset('images/' . $fotoUser),
-                'travel_state_id' => $travel['travel_states_id'],
-                'description' => $travel['description'],
-                'start_date' => $travel['start_date'],
-                'end_date' => $travel['end_date'],
-                'days' => $days,
-                'location' => $travel['origin'],
-                'destiny' => $travel['destiny'],
-                'budget' => $travel['budget'],
-                'created_at' => $travel['created_at'],
-                'updated_at' => $travel['updated_at'],
-                'NumUsers' => $participantes,
-            ];
-        }, $travels);
-
-        // Imprimir los nuevos registros con los campos renombrados
-        foreach ($newTravels as $travel) {
-            echo json_encode($travel) . "\n";
-        }
-
-        // echo $user->friendships->where("state", "=", "true");
-
-        // $travelId = Travel::all()->where("user_id", "=", $id)->value("id");
-        // $viajes = Travel::all()->where("user_id", "=", $id)->pluck(['destiny']);
-    }
-
     public function indexFriendTravels(User $user)
     {
         $friends = $user->friendships;
@@ -189,5 +142,15 @@ class UserController extends Controller
                 echo json_encode($travel) . "\n";
             }
         }
+    }
+    public function friends($userId)
+    {
+
+        // Obtener las relaciones de amistad que incluyen al usuario específico
+        $friendship = Friendship::where('sender_user_id', $userId)
+            ->orWhere('receptor_user_id', $userId)
+            ->get();
+
+        return response()->json($friendship);
     }
 }

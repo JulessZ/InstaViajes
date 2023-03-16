@@ -5,11 +5,6 @@
         "description": "Descripcion",
         "version": "1.0"
     },
-    "servers": [
-        {
-            "url": "localhost"
-        }
-    ],
     "paths": {
         "/api/register": {
             "post": {
