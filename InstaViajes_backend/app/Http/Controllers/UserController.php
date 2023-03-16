@@ -9,6 +9,7 @@ use App\Models\TravelTravelUsers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 
 class UserController extends Controller
@@ -41,16 +42,25 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(User $user)
     {
-        // $users = User::all();
+        //Datos que se recogen:
+        //Nombre, email, imagen.
+
+        $dataUser = [
+            'name' => $user->name,
+            'email' => $user->email
+        ];
+
+        return response()->json($dataUser);
+
         // $object = [
         //     Image
         // ];
         // return response()->json($users);
-        $var = Imageable::all()->where('parentable_id', '=', $id)->where('parentable_type', '=', 'User')->value('image_id');
-        $imageableId = Image::find($var);
-        return $imageableId;
+        // $var = Imageable::all()->where('parentable_id', '=', $id)->where('parentable_type', '=', 'User')->value('image_id');
+        // $imageableId = Image::find($var);
+        // return $imageableId;
 
         // $images = Storage::files('public/images');
         // $imageUrls = array_map(function ($image) {
@@ -65,7 +75,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        
+
+
     }
 
     /**
@@ -73,7 +85,21 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+
+        $validator =  Validator::make($request->all(), [
+            'name' => ['required'],
+            'email' => ['required']
+        ], $messages = [
+            'required' => ['rule' => "required", "message" => 'The :attribute is required.'],
+        ]);
+
+        if ($validator->fails()) {
+            // return  $validator->messages();
+            return response()->json($validator->messages());
+        }
+  
+        $user->update($request->all());
+        
     }
 
     /**
@@ -86,6 +112,9 @@ class UserController extends Controller
 
     public function indexTravels(User $user)
     {
+        if (isset($user->travels)) {
+            return [];
+        }
         $travels = $user->travels->toArray();
         $newTravels = array_map(function ($travel) {
             // Calcula el número de días
@@ -141,8 +170,12 @@ class UserController extends Controller
     public function indexFriendTravels(User $user)
     {
         $friends = $user->friendships;
+        return $friends;
         foreach ($friends as $friend) {
-            return $friend;
+            $user = $friend->user;
+            if (isset($user->travels)) {
+                return [];
+            }
             $travels = $user->travels->toArray();
             $newTravels = array_map(function ($travel) {
                 // Calcula el número de días
@@ -163,7 +196,6 @@ class UserController extends Controller
                 if ($fotoUser) { // Evita errores
                     $fotoUser = Image::find($fotoUser)->value("name");
                 }
-
                 return [
                     'id' => $travel['id'],
                     'user_id' => $travel['user_id'],
