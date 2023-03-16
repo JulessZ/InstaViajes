@@ -1,47 +1,48 @@
 
 import { isUserAuth } from "../../logica/users";
 import { baseUrl } from "../../config";
+
 let userList;
 let friendships;
 
-let token = localStorage.getItem("auth_token");
-//get the user logged id
-let { userData } = await isUserAuth();
-let userLogged = userData.user.id;
-
-// Define the URL of the API that will receive the friend request
-const apiUrl1 = baseUrl+"api/profile/users";
-const apiUrl2 = baseUrl+"api/profile/" + userLogged;
-
-// Define the application options
-const requestOptions = {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + token
-    }
-};
-
-//Fetch to the fake routes
-const fetch1 = fetch(apiUrl1, requestOptions)
-    .then((response) => {
-        return response.json();
-    })
-    .then((response) => {
-        userList = response;
-        //console.log(userList)
-    });
-//Fetch to take friendships
-const fetch2 = fetch(apiUrl2, requestOptions)
-    .then((response) => {
-        return response.json();
-    })
-    .then((response) => {
-        friendships = response;
-        //console.log(friendships);
-    });
-
 export async function showData() {
+
+    let token = localStorage.getItem("auth_token");
+    //get the user logged id
+    let { userData } = await isUserAuth();
+    let userLogged = userData.user.id;
+
+    // Define the URL of the API that will receive the friend request
+    const apiUrl1 = baseUrl + "api/profile/users";
+    const apiUrl2 = baseUrl + "api/profile/" + userLogged;
+
+    // Define the application options
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        }
+    };
+
+    //Fetch to the fake routes
+    const fetch1 = fetch(apiUrl1, requestOptions)
+        .then((response) => {
+            return response.json();
+        })
+        .then((response) => {
+            userList = response;
+            //console.log(userList)
+        });
+    //Fetch to take friendships
+    const fetch2 = fetch(apiUrl2, requestOptions)
+        .then((response) => {
+            return response.json();
+        })
+        .then((response) => {
+            friendships = response;
+            //console.log(friendships);
+        });
     //Call the funciont for friendRequest for now we use an static
     await fetch1;
     await fetch2;
@@ -450,9 +451,11 @@ export function manageFriendRequest(friendshipId, state) {
 
 }
 //Funcion to send a friend request
-export function sendFriendRequest(userId) {
+export async function sendFriendRequest(userId) {
     //Get the user token
     let token = localStorage.getItem("auth_token");
+    let { userData } = await isUserAuth();
+    let userLogged = userData.user.id;
     // Define the URL of the API that will receive the friend request
     const apiUrl = "http://localhost/api/friendship/add";
 
