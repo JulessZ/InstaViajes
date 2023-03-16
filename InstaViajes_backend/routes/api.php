@@ -48,3 +48,6 @@ Route::get('/misviajes/{travel}/editar', 'App\Http\Controllers\TravelController@
 
 // Edicion de actividad
 Route::get('/viaje/{activity}/editar', 'App\Http\Controllers\ActivityController@edit');
+
+// Creacion de actividad
+Route::post('/viaje/crearactividad', 'App\Http\Controllers\ActivityController@store');
