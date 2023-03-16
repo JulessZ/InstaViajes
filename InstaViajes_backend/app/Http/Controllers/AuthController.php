@@ -31,7 +31,6 @@ use OpenApi\Annotations as OA;
  *             description="Descripcion"
  * )
  *
- * @OA\Server(url="localhost")
  */
 
 

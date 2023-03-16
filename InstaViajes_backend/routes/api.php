@@ -45,10 +45,3 @@ Route::post('/perfil/{user}/update', 'App\Http\Controllers\UserController@update
 Route::get('/usuario/{user}/viajes', 'App\Http\Controllers\UserController@indexTravels');
 // Viajes de los amigos de un usuario
 Route::get('/usuario/{user}/friends/viajes', 'App\Http\Controllers\UserController@indexFriendTravels');
-
-// Edición de viaje
-
-Route::get('/misviajes/{travel}/editar', 'App\Http\Controllers\TravelController@edit');
-
-// Edicion de actividad
-Route::get('/viaje/{activity}/editar', 'App\Http\Controllers\ActivityController@edit');
