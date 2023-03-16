@@ -8,7 +8,6 @@ let token = localStorage.getItem("auth_token");
 //get the user logged id
 let { userData } = await isUserAuth();
 let userLogged = userData.user.id;
-console.log(token);
 
 // Define the URL of the API that will receive the friend request
 const apiUrl1 = baseUrl+"api/profile/users";
