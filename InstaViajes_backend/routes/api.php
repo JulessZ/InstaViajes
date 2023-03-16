@@ -37,9 +37,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/verify', [AuthController::class, 'verify']);
 });
 
-// Perfil de usuario
-Route::get('/profile/users', 'App\Http\Controllers\UserController@index');
-Route::get('/profile/{id}', 'App\Http\Controllers\UserController@friends');
+// datos del perfil de usuario
+Route::get('/perfil/{user}', 'App\Http\Controllers\UserController@show');
+Route::post('/perfil/{user}/update', 'App\Http\Controllers\UserController@update');
 
 // Viajes de un usuario
 Route::get('/usuario/{user}/viajes', 'App\Http\Controllers\UserController@indexTravels');
