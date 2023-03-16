@@ -3,7 +3,7 @@
 let logoutBtn;
 
 //Recoger todos los valores de los usuarios.
-let userData = null;
+let userData = {};
 
 export function init() {
     cacheElements();
@@ -46,12 +46,13 @@ export function logout() {
 }
 
 export async function isUserAuth() {
-    //Set de auth token to send for request
+    // Set de auth token to send for request
     const token = localStorage.getItem("auth_token");
     // Define the URL of the API that will receive the friend request
     const apiUrl = "http://localhost/api/verify";
 
     let auth = true;
+    let userData = null;
 
     const requestOptions = {
         method: "POST",
@@ -60,26 +61,29 @@ export async function isUserAuth() {
             "Authorization": "Bearer " + token
         }
     };
+
     // Sends the request to the server using fetch
-    const responseFetch = await fetch(apiUrl, requestOptions)
+    const response = await fetch(apiUrl, requestOptions)
         .then(response => {
             if (!response.ok) {
-                console.log("Mutando auth a false");
                 auth = false;
                 throw new Error("new error token unauthenticated");
             }
 
-            // return response.json();
+            return response.json();
+        })
+        .then(response => {
+            userData = response;
+            return response;
         })
         .catch(error => {
             auth = false;
             console.log(error);
         });
 
-        responseFetch;
-        console.log("devolviendo auth function")
-        return auth;
+    return { auth, userData };
 }
+
 
 // isUserAuth();
 
