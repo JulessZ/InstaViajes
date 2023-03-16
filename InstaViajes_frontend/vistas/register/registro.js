@@ -116,7 +116,8 @@ export function render() {
             newUser.repeatPassword = repeatPassword.value;
 
             // Define the URL of the API that will receive the friend request
-            const apiUrl = baseUrl+"register";
+            /* const apiUrl = baseUrl+"register"; */
+            const apiUrl = baseUrl+"api/register";
 
             // Defines the data object to be sent to the server
             const requestData = {
@@ -142,6 +143,7 @@ export function render() {
                     }
                     console.log("Solicitud enviada con éxito");
                     console.log(response);
+                    onNavigate("/login");
                 })
                 .catch(error => {
 
