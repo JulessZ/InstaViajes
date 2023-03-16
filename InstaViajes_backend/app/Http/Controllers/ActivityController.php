@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use Illuminate\Http\Request;
 use App\Models\Place;
+use App\Models\Travel;
 
 class ActivityController extends Controller
 {
@@ -21,7 +22,6 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -29,7 +29,24 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $actividadPlaceID = Place::All()->where('name', '=', $request->name)->first()->id;
+        
+        $actividad  = new Activity();
+        
+        $actividad -> travel_id = $request->travel_id;
+        $actividad -> user_id = $request->user_id;
+        $actividad -> place_id = $actividadPlaceID;
+        $actividad -> description = $request->description;
+        $actividad -> start_date = $request->start_date;
+        $actividad -> start_hour = $request->start_hour;
+        $actividad -> duration = $request->duration;
+        $actividad -> price = $request->price;
+
+        $actividad->save();
+
+        return redirect('../');
+
     }
 
     /**
