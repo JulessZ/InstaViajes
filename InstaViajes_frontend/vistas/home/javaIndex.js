@@ -74,8 +74,7 @@ import { baseUrl } from "../../config";
 //         ]
 //     }
 // });
-//variables con las rutas de los fetch necesarios para esta vista
-let url1 = baseUrl+"user/friends/travels";
+
 // Función principal que crea el contenido de la página
 
 
@@ -88,7 +87,7 @@ export async function renderIndex() {
 
     async function fetchDatos() {
         const token = localStorage.getItem("auth_token");
-        const apiUrl = "http://localhost/api/viajes";
+        const apiUrl = baseUrl+"api/viajes";
         const requestOptions = {
             method: "GET",
             headers: {
