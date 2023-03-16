@@ -2,9 +2,6 @@
 
 let logoutBtn;
 
-//Recoger todos los valores de los usuarios.
-let userData = {};
-
 export function init() {
     cacheElements();
     setupEventListeners();
