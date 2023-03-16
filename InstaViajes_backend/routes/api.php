@@ -36,8 +36,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/viajes/{viaje}', 'App\Http\Controllers\TravelController@show');
 });
 
-// Perfil de usuario
+// datos del perfil de usuario
+Route::get('/perfil/{user}', 'App\Http\Controllers\UserController@show');
+Route::post('/perfil/{user}/update', 'App\Http\Controllers\UserController@update');
 
+//
 Route::get('/usuarios/{user}/travels', 'App\Http\Controllers\UserController@showTravel');
 
 
