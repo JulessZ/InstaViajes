@@ -66,7 +66,7 @@ export function render() {
     //--------
 
     let rememberPassword = document.createElement("a");
-    let rememberPasswordText = document.createTextNode("¿Has olvidado la contraseña?")
+    let rememberPasswordText = document.createTextNode("")
     let rememberPasswordSalto = document.createElement("br");
 
     rememberPassword.appendChild(rememberPasswordText);
@@ -123,6 +123,7 @@ export function render() {
             })
             .then(data => {
                 localStorage.setItem("auth_token", data.access_token);
+                onNavigate("/home");
             })
             .catch(error => {
                 console.log(error);

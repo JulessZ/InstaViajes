@@ -1,4 +1,16 @@
-export function renderProfile() {
+import { isUserAuth } from "../../logica/users";
+
+export async function renderProfile() {
+    let name;
+    let email;
+    let id;
+    await isUserAuth()
+    .then(data => {
+        id = data.userData.user.id;
+        name = data.userData.user.name;
+        email = data.userData.user.email;
+    });
+    
     let body = document.querySelector("#profile");
 
     let fatherDiv = document.createElement("div");
@@ -65,33 +77,9 @@ export function renderProfile() {
 
     let userInput = document.createElement("input");
     userInput.type = "text";
+    userInput.value = name;
     userDiv.appendChild(userInput);
     inputsDiv.appendChild(userDiv);
-
-    //Elemento div del label nombre del usuario
-    let nameLabelDiv = document.createElement("div");
-    nameLabelDiv.className = "mt-4"
-
-    let nameLabel = document.createElement("label");
-    let nameLabelText = document.createTextNode("Nombre");
-    let br = document.createElement("br");
-    let nameLabelTextDown = document.createTextNode("Completo");
-
-    nameLabel.appendChild(nameLabelText);
-    nameLabel.appendChild(br);
-    nameLabel.appendChild(nameLabelTextDown);
-
-    nameLabelDiv.appendChild(nameLabel)
-    labelsDiv.appendChild(nameLabelDiv);
-
-    //Elemento div del input del nombre
-    let nameDiv = document.createElement("div");
-    nameDiv.className = "mt-4";
-
-    let nameInput = document.createElement("input");
-    nameInput.type = "text";
-    nameDiv.appendChild(nameInput);
-    inputsDiv.appendChild(nameDiv);
 
     //Elemento div del label email del usuario
     let emailLabelDiv = document.createElement("div");
@@ -109,28 +97,9 @@ export function renderProfile() {
 
     let emailInput = document.createElement("input");
     emailInput.type = "email";
+    emailInput.value = email;
     emailDiv.appendChild(emailInput);
     inputsDiv.appendChild(emailDiv);
-
-
-    //Elemento div del label contraseña
-    let passwordLabelDiv = document.createElement("div");
-    passwordLabelDiv.className = "mt-4";
-
-    let passwordLabel = document.createElement("label");
-    let passwordLabelText = document.createTextNode("Contraseña");
-    passwordLabel.appendChild(passwordLabelText);
-    passwordLabelDiv.appendChild(passwordLabel)
-    labelsDiv.appendChild(passwordLabelDiv);
-
-    //Elemento div del input de la contraseña
-    let passwordDiv = document.createElement("div");
-    passwordDiv.className = "mt-4";
-
-    let passwordInput = document.createElement("input");
-    passwordInput.type = "password";
-    passwordDiv.appendChild(passwordInput);
-    inputsDiv.appendChild(passwordDiv);
 
     //Elemento div del submit
     let submitInput = document.createElement("input");
@@ -156,4 +125,43 @@ export function renderProfile() {
     fatherDiv.appendChild(profileDiv);
 
     body.appendChild(fatherDiv);
+   
+    profileForm.addEventListener('submit', (e)=>{
+        e.preventDefault();
+
+        const token = localStorage.getItem("auth_token");
+
+        const apiUrl = `http://localhost/api/perfil/${id}/update`;
+
+        const requestData = {
+            name: userInput.value,
+            email: emailInput.value
+        };
+
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify(requestData)
+        };
+
+        fetch(apiUrl, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error al enviar la solicitud");
+            }
+            console.log("Solicitud enviada con éxito");
+            console.log(response);
+        })
+        .catch(error => {
+
+            console.log(error);
+        });
+    }) 
+
 }
+
+
+    

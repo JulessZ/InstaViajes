@@ -32,19 +32,21 @@ Route::post('login', [AuthController::class, 'login']);
 // Viajes
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
+    // Todos los viajes
     Route::get('/viajes', 'App\Http\Controllers\TravelController@index');
+    // Datos de un viaje
     Route::get('/viajes/{viaje}', 'App\Http\Controllers\TravelController@show');
     // Viajes de un usuario
     Route::get('/usuario/{user}/viajes', 'App\Http\Controllers\UserController@indexTravels');
     // Viajes de los amigos de un usuario
     Route::get('/usuario/{user}/friends/viajes', 'App\Http\Controllers\UserController@indexFriendTravels');
-    // Todos los viajes
+    // datos del perfil de usuario
+    Route::post('/perfil/{user}/update', 'App\Http\Controllers\UserController@update');
     
+    Route::post('/verify', [AuthController::class, 'verify']);
 });
 
-// datos del perfil de usuario
-Route::get('/perfil/{user}', 'App\Http\Controllers\UserController@show');
-Route::post('/perfil/{user}/update', 'App\Http\Controllers\UserController@update');
+
 
 
 

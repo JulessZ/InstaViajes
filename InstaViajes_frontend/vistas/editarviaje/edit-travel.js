@@ -1,5 +1,6 @@
 //Example of inputs dates to obtain the form 
 const trip1 = {
+    id: 1,
     name: "Vacaciones en Lisboa",
     //---IMPORTANT--- 
     date: "2023-06-01", //THE FORMAT OF THE DATES TO PRINT ON THE HMTL
@@ -53,11 +54,13 @@ function editForm(object) {
         const labelName = document.createElement('label');
         const name = document.createElement('input');
         const nameError = document.createElement('span');
+        nameError.setAttribute("class", "msg-error");
         const divDates = document.createElement('div');
         const divDateEnd = document.createElement('div');
         const labelDateEnd = document.createElement('label');
         const dateEnd = document.createElement('input');
         const dateEndError = document.createElement('span');
+        dateEndError.setAttribute("class", "msg-error");
         const divBudgetMain = document.createElement('div');
         const divBudget = document.createElement('div');
         const divLabelBudget = document.createElement('div');
@@ -153,24 +156,29 @@ function editForm(object) {
         const labelName = document.createElement('label');
         const name = document.createElement('input');
         const nameError = document.createElement('span');
+        nameError.setAttribute("class", "msg-error");
         const divDates = document.createElement('div');
         const divDate = document.createElement('div');
         const dateStartError = document.createElement('span');
+        dateStartError.setAttribute("class", "msg-error");
         const divDateEnd = document.createElement('div');
         const labelDate = document.createElement('label');
         const date = document.createElement('input');
         const labelDateEnd = document.createElement('label');
         const dateEnd = document.createElement('input');
         const dateEndError = document.createElement('span');
+        dateEndError.setAttribute("class", "msg-error");
         const labelOrigin = document.createElement('label');
         const divOriDes = document.createElement('div');
         const divOrigin = document.createElement('div');
         const origin = document.createElement('input');
         const originError = document.createElement('span');
+        originError.setAttribute("class", "msg-error");
         const labelDestination = document.createElement('label');
         const divDestination = document.createElement('div');
         const destination = document.createElement('input');
         const destinationError = document.createElement('span');
+        destinationError.setAttribute("class", "msg-error");
         const divDesBud = document.createElement('div');
         const divDescription = document.createElement('div');
         const labelDescription = document.createElement('label');
