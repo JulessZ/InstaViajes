@@ -9,7 +9,7 @@ let usuariosEnViaje = [];
 // Function that initialices the form.
 function createTravelForm() {
     let urlFetchUsers = 'https://ejemplo.com/datos';
-    fakeFetch(urlFetchUsers)
+     fakeFetch(urlFetchUsers)
         .then((response) => {
             console.log(response);
             usuarios = response;
@@ -40,9 +40,10 @@ function fakeFetch(url) {
     });
 }
 
-//function to call the front end
-export function renderCreateForm() {
-    createTravelForm();
+//function to call the front
+export async function renderCreateForm() {
+    await createTravelForm();
+    setupSubmitEventListener();
 }
 
 
@@ -298,7 +299,7 @@ function generateCreateTravelForm(idToAppend) {
                 submitButton.setAttribute("id", "submit")
                 submitButton.setAttribute("class", "boton-principal")
                 submitButton.textContent = "Añadir viaje";
-                submitButton.setAttribute("onclick", "validateForm()");
+                // submitButton.setAttribute("onclick", "validateForm()");
             submitButtonContainer.appendChild(submitButton);
         buttonsContainer.appendChild(submitButtonContainer);
             // Cancel Button Container
@@ -319,10 +320,17 @@ function generateCreateTravelForm(idToAppend) {
         document.querySelector("#budget-value").innerHTML = document.querySelector("#budgetBar").value + "€";
     });
 
-    document.querySelector("#form-crear-viajes").onsubmit = () => {
-        return false;
-    }
 }
+
+//Event listener to validate form when we submit
+function setupSubmitEventListener() {
+    console.log(document.querySelector('#form-crear-viajes'));
+    document.querySelector('#form-crear-viajes').addEventListener('submit', function (e) {
+        e.preventDefault();
+        validateForm();
+    });
+}
+
 
 // This function is called when submit button is pressed. Validates the form.
 function validateForm() {

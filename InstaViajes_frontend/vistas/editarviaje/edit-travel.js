@@ -1,5 +1,6 @@
 //Example of inputs dates to obtain the form 
 const trip1 = {
+    id: 1,
     name: "Vacaciones en Lisboa",
     //---IMPORTANT--- 
     date: "2023-06-01", //THE FORMAT OF THE DATES TO PRINT ON THE HMTL

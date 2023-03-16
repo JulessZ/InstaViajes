@@ -124,7 +124,7 @@ export class createActivityView{
             let inputDuration = document.createElement('input');
             inputDuration.setAttribute('type', 'text');
             inputDuration.setAttribute('id', 'inputDuration');
-            inputDuration.setAttribute('value', data.place.duration);
+            inputDuration.setAttribute('value', `${data.place.duration} Horas`);
             durationDiv.appendChild(inputDuration);
 
             let spanErrorDuration = document.createElement('span');
@@ -141,11 +141,12 @@ export class createActivityView{
             let priceText = document.createTextNode('Precio');
             price.appendChild(priceText);
             priceDiv.appendChild(price);
-
+            
             let inputPrice = document.createElement('input');
             inputPrice.setAttribute('type', 'text');
             inputPrice.setAttribute('id', 'inputPrice');
-            inputPrice.setAttribute('value', data.place.price);
+            inputPrice.setAttribute('placeholder', '€');
+            inputPrice.setAttribute('value', `${data.place.price} €`);
             priceDiv.appendChild(inputPrice);
 
             let spanErrorPrice = document.createElement('span');
