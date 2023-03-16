@@ -10,7 +10,22 @@ let usuariosEnViaje = [];
 
 
 // Function that initialices the form.
-function createTravelForm() {
+async function createTravelForm() {
+    let token = localStorage.getItem("auth_token");
+    let { userData } = await isUserAuth();
+    let userLogged = userData.user.id;
+
+    const apiUrl2 = baseUrl+"api/profile/" + userLogged;
+    // Define the application options
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        }
+    };
+    
+
     let urlFetchUsers = baseUrl+'datos';
      fakeFetch(urlFetchUsers)
         .then((response) => {
