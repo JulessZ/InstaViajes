@@ -82,6 +82,7 @@ export function renderButtonTravel() {
     editButtonTravel.classList.add("boton-secundario");
     editButtonTravel.addEventListener("click", () => {
         //!Aquí irá la lógica para ir a la vista de editar día
+        document.location.href = "/editarviaje";
     });
     const deleteButtonTravel = document.createElement("button");
     deleteButtonTravel.innerText = "Borrar Viaje";
@@ -95,6 +96,7 @@ export function renderButtonTravel() {
     createButtonActivity.classList.add("boton-principal");
     createButtonActivity.addEventListener("click", () => {
         //!Aquí irá la lógica para ir a la vista de agregar actividad.
+        document.location.href = "/crearactividades";
     });
     // Agregamos los botones de borrar, editar un viaje al contenedor principal y añadir actividad.
     buttonsTravelDiv.appendChild(editButtonTravel);
@@ -150,6 +152,7 @@ export function renderDivCarousel() {
                     editButton.classList.add("boton-secundario");
                     editButton.addEventListener("click", () => {
                         //! Aquí se implementaría la lógica para ir a la vista de editar actividad.
+                        document.location.href = "/editaractividades";
                     });
 
                     voteButton.addEventListener("click", () => {

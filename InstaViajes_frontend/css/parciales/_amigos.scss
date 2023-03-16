@@ -1,6 +1,5 @@
 #botonfiltroamigos{
     display:flex;
-    margin-top: 5%;
     margin-bottom: 3%;
     .divbtnfiltroamigos{
         width:50%;
@@ -19,6 +18,8 @@
 }
 
 #peticionesamigos{
+    margin-top:5%;
+    font-size: x-small;
     h2{
         margin-bottom: 3%;
     }
@@ -26,12 +27,12 @@
         display: flex;
         width:75%;
         padding:6px;
-        margin-bottom:2%;
+        margin-bottom:1%;
         img{
             border:1px solid #D3CFCF;
             border-radius: 50%;
-            width: 70px;
-            height:70px;
+            width: 50px;
+            height:50px;
             object-fit: cover;
         }
         .divimagenfriend{
@@ -40,18 +41,18 @@
            
         }
         .nameDiv{
-            width:25%;
-            font-size: x-large;
+            width:15%;
+            font-size: medium;
             padding-top: 15px;
+            margin-left:2%;
         }
         .divbotonrepuesta{
             padding-top: 15px;
         }
     }
-    margin-bottom: 3%;
+    margin-bottom: 4%;
 }
 #contactosamigos, #usuariosamigos{
-    margin-bottom:5%;
     h2{
         margin-bottom: 10%;
     }

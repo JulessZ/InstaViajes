@@ -110,6 +110,9 @@ export async function renderIndex() {
 
     function Creartarjetas(datos) {
         datos.forEach(element => {
+            let linkDetallesViaje = document.createElement("a");
+            linkDetallesViaje.setAttribute("href", "/detallesviaje");
+            
             console.log(element);
             const tarjeta = document.createElement('div');
             tarjeta.setAttribute("class", "tarjetaviaje");
@@ -144,7 +147,8 @@ export async function renderIndex() {
             const NumDay = document.createElement('span')
             NumDay.textContent = element.days + 'dias';
 
-            container.appendChild(tarjeta);
+            linkDetallesViaje.appendChild(tarjeta);
+            container.appendChild(linkDetallesViaje);
             tarjeta.appendChild(image);
             divInsideCard.appendChild(divInsideCard2);
             divInsideCard.appendChild(divInsideCard3);
