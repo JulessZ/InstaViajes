@@ -2,6 +2,8 @@
 // import fetchSim from 'fetch-simulator';
 // fetchSim.use();
 
+import { baseUrl } from "../../config";
+
 // // Viajes de otros usuarios de la plataforma
 // fetchSim.addRoute('https://somekindofserver.com/travelsRandom', {
 //     get: {
@@ -73,7 +75,6 @@
 //     }
 // });
 
-
 // Función principal que crea el contenido de la página
 
 
@@ -86,7 +87,7 @@ export async function renderIndex() {
 
     async function fetchDatos() {
         const token = localStorage.getItem("auth_token");
-        const apiUrl = "http://localhost/api/viajes";
+        const apiUrl = baseUrl+"api/viajes";
         const requestOptions = {
             method: "GET",
             headers: {

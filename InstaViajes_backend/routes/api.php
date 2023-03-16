@@ -36,6 +36,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/viajes', 'App\Http\Controllers\TravelController@index');
     // Datos de un viaje
     Route::get('/viajes/{viaje}', 'App\Http\Controllers\TravelController@show');
+    Route::post('/verify', [AuthController::class, 'verify']);
     // Viajes de un usuario
     Route::get('/usuario/{user}/viajes', 'App\Http\Controllers\UserController@indexTravels');
     // Viajes de los amigos de un usuario
@@ -55,8 +56,8 @@ Route::get('/misviajes/{travel}/editar', 'App\Http\Controllers\TravelController@
 // Creación de viaje
 Route::post('/misviajes/crear', 'App\Http\Controllers\TravelController@store');
 
+// Edicion de actividad
+Route::get('/viaje/{activity}/editar', 'App\Http\Controllers\ActivityController@edit');
 
-
-
-
-
+// Creacion de actividad
+Route::post('/viaje/crearactividad', 'App\Http\Controllers\ActivityController@store');
