@@ -35,7 +35,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Todos los viajes
     Route::get('/viajes', 'App\Http\Controllers\TravelController@index');
     // Datos de un viaje
-    Route::get('/viajes/{viaje}', 'App\Http\Controllers\TravelController@show');
+    Route::get('/viajes/{travel}', 'App\Http\Controllers\TravelController@show');
     Route::post('/verify', [AuthController::class, 'verify']);
     //User and friends
     Route::get('/profile/users', 'App\Http\Controllers\UserController@index');
@@ -53,7 +53,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     
     Route::post('/verify', [AuthController::class, 'verify']);
 });
-
 
 
 
