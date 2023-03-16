@@ -35,11 +35,17 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/viajes', 'App\Http\Controllers\TravelController@index');
     Route::get('/viajes/{viaje}', 'App\Http\Controllers\TravelController@show');
     Route::post('/verify', [AuthController::class, 'verify']);
+    //User and friends
+    Route::get('/profile/users', 'App\Http\Controllers\UserController@index');
+    Route::get('/profile/{id}', 'App\Http\Controllers\UserController@friends');
+    //Manager friends requests
+    Route::put('/friendship/accept', 'App\Http\Controllers\FriendshipController@update');
+    Route::delete('/friendship/delete', 'App\Http\Controllers\FriendshipController@destroy');
+    Route::post('/friendship/add', 'App\Http\Controllers\FriendshipController@create');
 });
 
 // Perfil de usuario
-Route::get('/profile/users', 'App\Http\Controllers\UserController@index');
-Route::get('/profile/{id}', 'App\Http\Controllers\UserController@friends');
+
 
 // Viajes de un usuario
 Route::get('/usuario/{user}/viajes', 'App\Http\Controllers\UserController@indexTravels');

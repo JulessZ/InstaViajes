@@ -21,11 +21,6 @@ class UserController extends Controller
     {
         $users = User::with('images')->select('id', 'name','surname', 'email')->get();
 
-        // $userList = [
-        //     'id' => $users->id,
-        //     'name' => $users->name,
-            
-        // ];
         return response()->json($users);
     }
 
@@ -150,7 +145,6 @@ class UserController extends Controller
         $friendship = Friendship::where('sender_user_id', $userId)
             ->orWhere('receptor_user_id', $userId)
             ->get();
-
         return response()->json($friendship);
     }
 }

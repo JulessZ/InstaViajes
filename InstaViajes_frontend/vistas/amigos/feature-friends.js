@@ -1,43 +1,13 @@
-// Import fake-simulator for develop
-// import fetchSim from 'fetch-simulator';
-// fetchSim.use();
 
-// //Generate fake routes to use
-// //Need to the API send this info with the profileImage in it
-// fetchSim.addRoute('https://instaviajes.com/profile/users', {
-//     get: {
-//         response: [
-//             { id: 1, firstName: 'Juan', lastName: 'Pérez', userName: '@juan', email: 'juan.perez@example.com' },
-//             { id: 2, firstName: 'María', lastName: 'García', userName: '@maria', email: 'maria.garcia@example.com' },
-//             { id: 3, firstName: 'Pedro', lastName: 'Martínez', userName: '@pedro', email: 'pedro.martinez@example.com' },
-//             { id: 4, firstName: 'Ana', lastName: 'Hernández', userName: '@ana', email: 'Ana.hdez@example.com' },
-//             { id: 5, firstName: 'Luis', lastName: 'Expósito', userName: '@luis', email: 'luis.exposito@example.com' },
-//             { id: 6, firstName: 'Belén', lastName: 'Ruíz', userName: '@belen', email: 'belen.ruiz@example.com' },
-//         ]
-//     }
-// });
-// fetchSim.addRoute('https://instaviajes.com/profile/{user_id}/friends', {
-//     get: {
-//         response: [
-//             { id: 1, user_id_sender: 1, user_id_receptor: 2, state: true },
-//             { id: 2, user_id_sender: 1, user_id_receptor: 3, state: false },
-//             { id: 3, user_id_sender: 1, user_id_receptor: 4, state: false },
-//             { id: 4, user_id_sender: 1, user_id_receptor: 5, state: false },
-//         ]
-//     }
-// });
-
-//Variables to use
-// let divRoot = document.getElementById('contactosamigos');
-// let divRoot2 = document.getElementById('usuariosamigos');
-// let divRoot3 = document.getElementById('peticionesamigos');
-// let divRoot4 = document.getElementById('botonfiltroamigos');
+import { isUserAuth } from "../../logica/users";
 let userList;
 let friendships;
-let userLogged = 1;
+
 let token = localStorage.getItem("auth_token");
-//get th user logged id
-// let userLogged;
+//get the user logged id
+let { userData } = await isUserAuth();
+let userLogged = userData.user.id;
+console.log(token);
 
 // Define the URL of the API that will receive the friend request
 const apiUrl1 = "http://localhost/api/profile/users";
@@ -48,8 +18,8 @@ const requestOptions = {
     method: "GET",
     headers: {
         "Content-Type": "application/json",
-        "Autorization": "Bearer " + token,
-    },
+        "Authorization": "Bearer " + token
+    }
 };
 
 //Fetch to the fake routes
@@ -193,8 +163,9 @@ export function otherPeople(userId) {
     userList.map((user) => {
         // Check if the user is not already a friend and is not the current user
         const isNotFriend = !friendships.find(friendship =>
-            (friendship.user_id_sender === userId && friendship.user_id_receptor === user.id) ||
-            (friendship.user_id_sender === user.id && friendship.user_id_receptor === userId));
+            (friendship.sender_user_id === userId && friendship.receptor_user_id === user.id) ||
+            (friendship.sender_user_id === user.id && friendship.receptor_user_id === userId));
+
         const isNotCurrentUser = user.id !== userId;
         if (isNotFriend && isNotCurrentUser) {
             const divdown = document.createElement('div');
@@ -346,14 +317,9 @@ export function friendsRequests(userId) {
     if (friendships.length === 0) {
         return;
     }
+
     // Create a div element to contain the list of pending requests
     const pendingListDiv = document.createElement("div");
-
-    // Add a header
-    let header = document.createElement("h2");
-    header.textContent = "Solicitudes de amistad pendientes";
-    pendingListDiv.appendChild(header);
-
     // Add a div for every pending friend request
     friendships.map((friendship) => {
         const friend = userList.find(
@@ -362,6 +328,11 @@ export function friendsRequests(userId) {
         );
 
         if (!friendship.state) {
+
+            // Add a header
+            let header = document.createElement("h2");
+            header.textContent = "Solicitudes de amistad pendientes";
+            pendingListDiv.appendChild(header);
             // Create a div element to contain the information of a pending request
             const friendDiv = document.createElement("div");
             friendDiv.setAttribute('class', 'friendDiv');
@@ -414,21 +385,23 @@ export function friendsRequests(userId) {
 
 //Functions to manage friends request
 export function manageFriendRequest(friendshipId, state) {
+    //Get the user token
+    let token = localStorage.getItem("auth_token");
+    // Defines the data object to be sent to the server
+    const requestData = {
+        friendshipId: friendshipId,
+    };
     //If the petition is accepted, send a PUT fetch, if not send a DELETE fetch
     if (state) {
         // Define the URL of the API that will receive the friend request
-        const apiUrl = "https://mi-api.com/amigos";
-
-        // Defines the data object to be sent to the server
-        const requestData = {
-            friendshipId: friendshipId,
-        };
+        const apiUrl = "http://localhost/api/friendship/accept";
 
         // Define the application options
         const requestOptions = {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
             },
             body: JSON.stringify(requestData)
         };
@@ -445,27 +418,23 @@ export function manageFriendRequest(friendshipId, state) {
             .catch(error => {
                 console.log(error);
             });
+        location.reload();
     } else {
         // Define the URL of the API that will receive the friend request
-        const apiUrl = "https://mi-api.com/amigos";
-
-        // Defines the data object to be sent to the server
-        const requestData = {
-            friendshipId: friendshipId,
-            accepted: state
-        };
+        const apiUrl2 = "http://localhost/api/friendship/delete";
 
         // Define the application options
         const requestOptions = {
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
             },
             body: JSON.stringify(requestData)
         };
-
+        console.log(requestOptions);
         // Sends the request to the server using fetch
-        fetch(apiUrl, requestOptions)
+        fetch(apiUrl2, requestOptions)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Error al enviar la solicitud");
@@ -476,14 +445,16 @@ export function manageFriendRequest(friendshipId, state) {
             .catch(error => {
                 console.log(error);
             });
+        location.reload();
     }
 
 }
 //Funcion to send a friend request
 export function sendFriendRequest(userId) {
-
+    //Get the user token
+    let token = localStorage.getItem("auth_token");
     // Define the URL of the API that will receive the friend request
-    const apiUrl = "https://mi-api.com/amigos/peticionDeAmistad";
+    const apiUrl = "http://localhost/api/friendship/add";
 
     // Defines the data object to be sent to the server
     const requestData = {
@@ -494,11 +465,12 @@ export function sendFriendRequest(userId) {
     const requestOptions = {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+
         },
         body: JSON.stringify(requestData)
     };
-
     // Sends the request to the server using fetch
     fetch(apiUrl, requestOptions)
         .then(response => {
@@ -511,6 +483,7 @@ export function sendFriendRequest(userId) {
         .catch(error => {
             console.log(error);
         });
+    location.reload();
 }
 
 
