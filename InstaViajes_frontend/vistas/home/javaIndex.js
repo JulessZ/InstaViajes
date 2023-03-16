@@ -2,6 +2,8 @@
 // import fetchSim from 'fetch-simulator';
 // fetchSim.use();
 
+import { baseUrl } from "../../config";
+
 // // Viajes de otros usuarios de la plataforma
 // fetchSim.addRoute('https://somekindofserver.com/travelsRandom', {
 //     get: {
@@ -72,8 +74,8 @@
 //         ]
 //     }
 // });
-
-
+//variables con las rutas de los fetch necesarios para esta vista
+let url1 = baseUrl+"user/friends/travels";
 // Función principal que crea el contenido de la página
 
 

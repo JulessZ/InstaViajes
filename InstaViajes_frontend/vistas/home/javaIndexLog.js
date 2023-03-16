@@ -2,6 +2,8 @@
 // import fetchSim from 'fetch-simulator';
 // fetchSim.use();
 
+import { baseUrl } from "../../config";
+
 
 // fetchSim.addRoute('https://somekindofserver.com/user/travels', {
 //     get: {
@@ -30,6 +32,8 @@
 //         ]
 //     }
 // });
+//url necesarias para el fetch necesaria en esta vista
+let url1=baseUrl+"user/travels";
 
 // Función principal que crea el contenido de la página
 export async function renderIndex() {
@@ -49,7 +53,7 @@ export async function renderIndex() {
      * @returns 
      */
     async function fetchDatos() {
-        const response = await fetch('https://somekindofserver.com/user/travels');
+        const response = await fetch(url1);
         console.log(response);
         return await response.json();
     }

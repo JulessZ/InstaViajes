@@ -1,5 +1,7 @@
+import { baseUrl } from "../../config";
+
 // Insert the URL with friends users.
-let urlFetchUsers = 'https://ejemplo.com/datos';
+let urlFetchUsers = baseUrl+'datos';
 
 
 let usuarios = [];
@@ -8,7 +10,7 @@ let usuariosEnViaje = [];
 
 // Function that initialices the form.
 function createTravelForm() {
-    let urlFetchUsers = 'https://ejemplo.com/datos';
+    let urlFetchUsers = baseUrl+'datos';
      fakeFetch(urlFetchUsers)
         .then((response) => {
             console.log(response);
@@ -31,7 +33,7 @@ function fakeFetch(url) {
                     id: i,
                     name: `Usuario ${i}`,
                     mail: `usuario${i}@ejemplo.com`,
-                    image: `https://ejemplo.com/usuario${i}.jpg`
+                    image: baseUrl+`usuario${i}.jpg`
                 };
                 fakeData.push(fakeItem);
             }
@@ -373,7 +375,7 @@ function validateForm() {
                 return;
             }
         }
-        fetch('https://ejemplo.com/datos', {
+        fetch(baseUrl+'datos', {
             method: 'POST',
             body: JSON.stringify(createObjectWithValues()),
             headers: {

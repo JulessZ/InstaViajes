@@ -2,6 +2,8 @@
 // import fetchSim from 'fetch-simulator';
 // fetchSim.use();
 
+import { baseUrl } from "../../config";
+
 // //Generate fake routes to use
 // //Need to the API send this info with the profileImage in it
 // fetchSim.addRoute('https://instaviajes.com/profile/users', {
@@ -40,8 +42,8 @@ let token = localStorage.getItem("auth_token");
 // let userLogged;
 
 // Define the URL of the API that will receive the friend request
-const apiUrl1 = "http://localhost/api/profile/users";
-const apiUrl2 = "http://localhost/api/profile/" + userLogged;
+const apiUrl1 = baseUrl+"api/profile/users";
+const apiUrl2 = baseUrl+"api/profile/" + userLogged;
 
 // Define the application options
 const requestOptions = {
