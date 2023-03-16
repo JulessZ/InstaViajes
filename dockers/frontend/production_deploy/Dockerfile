@@ -12,8 +12,8 @@ WORKDIR /app
 
 # Copiamos los contenidos de la aplicación javascript del font ya compilada
 #COPY dist/ /app/
-COPY InstaViajes_frontend/dist/* /app
-COPY InstaViajes_frontend/dist/assets/ /app/assets
+COPY InstaViajes_frontend/dist/* /app/
+COPY InstaViajes_frontend/dist/assets/ /app/assets/
 
 # Copia el archvode configuración de nginx
 COPY dockers/frontend/production_deploy/nginx-config/nginx.conf /etc/nginx/nginx.conf
