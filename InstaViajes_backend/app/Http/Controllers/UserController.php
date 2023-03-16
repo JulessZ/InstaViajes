@@ -112,7 +112,7 @@ class UserController extends Controller
 
     public function indexTravels(User $user)
     {
-        if (isset($user->travels)) {
+        if (!isset($user->travels)) {
             return [];
         }
         $travels = $user->travels->toArray();
@@ -157,9 +157,9 @@ class UserController extends Controller
         }, $travels);
 
         // Imprimir los nuevos registros con los campos renombrados
-        foreach ($newTravels as $travel) {
-            echo json_encode($travel) . "\n";
-        }
+   
+        return response()->json($newTravels);
+        
 
         // echo $user->friendships->where("state", "=", "true");
 
@@ -170,7 +170,6 @@ class UserController extends Controller
     public function indexFriendTravels(User $user)
     {
         $friends = $user->friendships;
-        return $friends;
         foreach ($friends as $friend) {
             $user = $friend->user;
             if (isset($user->travels)) {
@@ -217,9 +216,7 @@ class UserController extends Controller
             }, $travels);
 
             // Imprimir los nuevos registros con los campos renombrados
-            foreach ($newTravels as $travel) {
-                echo json_encode($travel) . "\n";
-            }
+            return response()->json($newTravels);
         }
     }
 }
