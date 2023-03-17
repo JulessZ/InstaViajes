@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TravelController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,7 +38,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Todos los viajes
     Route::get('/viajes', 'App\Http\Controllers\TravelController@index');
     // Datos de un viaje
-    Route::get('/viajes/{viaje}', 'App\Http\Controllers\TravelController@show');
+    Route::get('/viajes/{travel}', 'App\Http\Controllers\TravelController@show');
     Route::post('/verify', [AuthController::class, 'verify']);
     //User and friends
     Route::get('/profile/users', 'App\Http\Controllers\UserController@index');
@@ -59,7 +62,23 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/verify', [AuthController::class, 'verify']);
 });
 
+//Images
+Route::get('images/{filename}', function ($filename) {
+    $path = storage_path('app/public/images/' . $filename);
+    if (!File::exists($path)) {
+        abort(404);
+    }
+    $file = File::get($path);
+    $type = File::mimeType($path);
+    $response = response($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+})->where('filename', '.*');
 
+
+// Edición de viaje
+
+Route::get('/misviajes/{travel}/editar', 'App\Http\Controllers\TravelController@edit');
 
 // Edicion de actividad
 Route::get('/viaje/{activity}/editar', 'App\Http\Controllers\ActivityController@edit');

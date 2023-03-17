@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Storage::deleteDirectory('images');
-        Storage::makeDirectory('images');
+        Storage::deleteDirectory('public/images');
+        Storage::makeDirectory('public/images');
 
         User::factory(50)->create();
         Friendship::factory(90)->create();
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         ActivityVotes::factory(100)->create();
         // TravelTravelUsers::factory(100)->create();
         $this->call(TravelTravelUsersSeeder::class);
-        Image::factory(50)->create();
+        Image::factory(200)->create();
         $this->call(ImageableSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
