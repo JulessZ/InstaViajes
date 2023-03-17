@@ -10,7 +10,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class TravelUsers extends Model
 {
     use HasFactory;
-
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at'
+    ];
 
     // RELATIONSHIPS
 

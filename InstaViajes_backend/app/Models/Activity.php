@@ -11,6 +11,7 @@ class Activity extends Model
 {
     use HasFactory;
 
+    
 
     // RELATIONSHIPS
 

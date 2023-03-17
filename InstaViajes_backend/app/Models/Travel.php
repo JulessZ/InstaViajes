@@ -13,6 +13,11 @@ class Travel extends Model
 {
     use HasFactory;
     protected $table = 'travels';
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at'
+    ];
 
     // RELATIONSHIPS
 

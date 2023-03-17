@@ -100,7 +100,6 @@ export async function renderIndex() {
             if (!response.ok) {
                 throw new Error("Error al enviar la solicitud");
             }
-            console.log(response);
             const data = await response.json();
             return data;
         } catch (error) {
@@ -114,7 +113,7 @@ export async function renderIndex() {
             let linkDetallesViaje = document.createElement("a");
             linkDetallesViaje.setAttribute("href", "/detallesviaje");
             
-            console.log(element);
+            //console.log(element);
             const tarjeta = document.createElement('div');
             tarjeta.setAttribute("class", "tarjetaviaje");
 

@@ -87,7 +87,11 @@ class TravelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $travelId = $request->id;
+        $travelUserId = $request->user_id;
+        $travel = Travel::create($request->all());
+        $travelUser = TravelUsers::create(['user_id' => $travelUserId]);
+        $travelTravelUser = TravelTravelUsers::create(['travel_id' => $travel->id, 'travel_user_id' => $travelUserId]);
     }
 
     /**
@@ -134,17 +138,39 @@ class TravelController extends Controller
      */
     public function edit(Travel $travel)
     {
-        echo $travel;
+        $friends = [];
+        $friendsValueNames = ['id', 'name', 'mail', 'image'];
+        foreach ($travel->user->friendships as $friend) {
+            return $friend->user;
+            $auxFriend = [
+                'id' => $friend->user->id,
+                'name' => $friend->user->name,
+                'mail' => $friend->user->mail,
+                'image' => $friend->user->images
+            ];
+            array_push($friends, $auxFriend);
+        }
 
-        $travelName = $travel->name;
-        $travelStartDate = $travel->start_date;
-        $travelEndDate = $travel->end_date;
-        $travelOrigin = $travel->origin;
-        $travelDestiny = $travel->destiny;
-        $travelDescription = $travel->description;
-        $travelBudget = $travel->budget;
-        $travelState = $travel->travelStates->name;
-        $travelFriends = $travel->user->friendship;
+        $jsonObject = [
+
+            'trip' => [
+                'name' => $travel->name,
+                'date' => $travel->start_date,
+                'dateEnd' => $travel->end_date,
+                'origin' => $travel->origin,
+                'destination' => $travel->destiny,
+                'description' => $travel->description,
+                'budget' => $travel->budget,
+                'estado' => $travel->state,
+                'friendsOnTrip' => [
+                    'id' => $travel->id,
+                    'image' => $travel->images
+                ]
+            ],
+
+            'friends' => $auxFriend
+        ];
+        return response()->json($jsonObject);
     }
 
     /**

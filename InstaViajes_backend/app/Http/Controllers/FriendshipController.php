@@ -16,8 +16,32 @@ class FriendshipController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @OA\Post(
+     *     path="/friendship/add",
+     *     tags={"Friendship"},
+     *     summary="Crea una nueva solicitud de amistad",
+     *     description="Crea un nuevo registro de amistad en la base de datos",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"userId", "userInvitedId"},
+     *             @OA\Property(property="userId", type="integer", example="123", description="ID del usuario que envía la solicitud de amistad"),
+     *             @OA\Property(property="userInvitedId", type="integer", example="456", description="ID del usuario que recibe la solicitud de amistad"),
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="OK",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="La solicitud de amistad se ha enviado con éxito"),
+     *         ),
+     *     ),
+     *     security={
+     *         {"apiKeyAuth": {}}
+     *     }
+     * )
      */
+
     public function create(Request $request)
     {
         $userId = $request->input('userId'); // Get the user ID from the request data
@@ -60,8 +84,48 @@ class FriendshipController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/friendship/accept",
+     *     tags={"Friendship"},
+     *     summary="Update the state of a friendship",
+     *     description="Update the state of a friendship to `true`",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"friendshipId"},
+     *             @OA\Property(property="friendshipId", type="integer", example=1, description="The ID of the friendship to update"),
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Friendship state updated successfully",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Friendship state updated successfully"),
+     *             @OA\Property(property="friendship", type="object", ref="#/components/schemas/Friendship"),
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response="404",
+     *         description="Friendship not found",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Friendship not found"),
+     *         ),
+     *     ),
+     * )
+     *
+     * @OA\Schema(
+     *     schema="Friendship",
+     *     @OA\Property(property="id", type="integer", example=1),
+     *     @OA\Property(property="sender_user_id", type="integer", example=1),
+     *     @OA\Property(property="receptor_user_id", type="integer", example=2),
+     *     @OA\Property(property="state", type="boolean", example=true),
+     *     @OA\Property(property="created_at", type="string", format="date-time", example="2023-03-16 10:00:00"),
+     *     @OA\Property(property="updated_at", type="string", format="date-time", example="2023-03-16 11:00:00"),
+     * )
      */
+
+
+
     public function update(Request $request)
     {
         $friendshipId = $request->input('friendshipId'); // Get the friendship ID from the request data
@@ -80,8 +144,36 @@ class FriendshipController extends Controller
 
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/friendships/{id}",
+     *     summary="Delete a friendship",
+     *     description="Delete a friendship by ID",
+     *     operationId="deleteFriendship",
+     *     tags={"Friendship"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the friendship to delete",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="Friendship deleted successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Friendship not found"
+     *     ),
+     *     security={
+     *         {"Bearer": {}}
+     *     }
+     * )
      */
+
     public function destroy(Request $request)
     {
         $friendshipId = $request->input('friendshipId'); // Get the friendship ID from the request data
