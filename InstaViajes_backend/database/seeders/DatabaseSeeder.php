@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         ActivityVotes::factory(100)->create();
         // TravelTravelUsers::factory(100)->create();
         $this->call(TravelTravelUsersSeeder::class);
-        Image::factory(50)->create();
+        Image::factory(200)->create();
         $this->call(ImageableSeeder::class);
         // \App\Models\User::factory(10)->create();
     }

@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TravelController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,7 +57,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/verify', [AuthController::class, 'verify']);
 });
 
-
+//Images
+Route::get('images/{filename}', function ($filename) {
+    $path = storage_path('app/public/images/' . $filename);
+    if (!File::exists($path)) {
+        abort(404);
+    }
+    $file = File::get($path);
+    $type = File::mimeType($path);
+    $response = response($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+})->where('filename', '.*');
 
 
 // Edición de viaje
