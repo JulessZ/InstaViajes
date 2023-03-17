@@ -13,7 +13,6 @@ use App\Models\TravelTravelUsers;
 use App\Models\TravelUsers;
 use App\Models\User;
 use Carbon\Carbon;
-use App\Models\TravelUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
